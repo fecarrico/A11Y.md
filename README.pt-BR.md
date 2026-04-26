@@ -14,7 +14,10 @@
 
 <br/>
 
-> Este repositório não é apenas um guia de boas práticas. É uma **arquitetura de contexto** concebida para orientar desenvolvedores e Inteligências Artificiais a construírem interfaces inclusivas, performáticas e prontas para certificação.
+> **O A11Y.md não é um guia de boas práticas.**
+> Ele é um protocolo de validação de acessibilidade e uma **arquitetura de contexto persistente** para o desenvolvimento de softwares acessíveis guiado por IA. Foi concebido para integrar-se com agentes autônomos e esteiras de revisão humana, garantindo conformidade certificável desde a origem.
+
+Adotando o modelo mental do **`CLAUDE.md`** da Anthropic — que atua como uma memória de *system prompt* para geração de código —, o `A11Y.md` traduz essa arquitetura para uma camada de governança universal. Em vez de regras genéricas de código, ele força qualquer agente (Claude, Cursor, Copilot) a aderir estritamente às normas WCAG 2.2 AA e ADA desde a primeira linha de interface gerada.
 
 ---
 

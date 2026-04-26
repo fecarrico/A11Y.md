@@ -11,7 +11,10 @@
 
 <br/>
 
-> This repository is not just a best practices guide. It is a **context architecture** designed to guide developers and Artificial Intelligences to build inclusive, performant, and certification-ready interfaces.
+> **A11Y.md is not a guideline.**
+> It is an accessibility validation protocol and a **persistent context architecture** for developing accessible software with AI. It is designed to integrate with AI agent systems and human review workflows to ensure certifiable compliance.
+
+By adopting the mental model of Anthropic's **`CLAUDE.md`**—which acts as a system prompt memory for code generation—`A11Y.md` translates this architecture into a universal, portable governance layer. Instead of generic coding rules, it forces any coding agent (Claude, Cursor, Copilot) to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
 
 ---
 
