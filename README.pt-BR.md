@@ -4,6 +4,8 @@
 > A versão oficial e atualizada do projeto está em inglês.
 
 <div align="center">
+  <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
+  <br/><br/>
   <h1>♿ Project A11Y.md</h1>
   <p><b>O Sistema de Contexto Persistente para Acessibilidade</b></p>
   

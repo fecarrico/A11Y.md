@@ -1,6 +1,8 @@
 🇧🇷 Read in Portuguese: ./README.pt-BR.md
 
 <div align="center">
+  <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
+  <br/><br/>
   <h1>♿ Project A11Y.md</h1>
   <p><b>The Persistent Context System for Accessibility</b></p>
   
