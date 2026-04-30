@@ -1,27 +1,27 @@
 # Accessibility: Content, Interaction & Timing
 
-A acessibilidade não termina na estrutura HTML. A forma como o conteúdo é escrito e como as interações temporais ocorrem define o sucesso de usuários com deficiências cognitivas, auditivas e de visão.
+Accessibility doesn't end with HTML structure. The way content is written and how temporal interactions occur defines the success of users with cognitive, auditory, and visual impairments.
 
-## 1. Microcopy & Clareza
-A linguagem deve ser a mais simples possível para reduzir a carga cognitiva.
-- **Instruções Claras:** Evite jargões. Use verbos de ação (ex: "Enviar" em vez de "Processar").
-- **Identificação de Campos:** Instruções sobre formatos (ex: "DD/MM/AAAA") devem estar fora do input e lincadas via `aria-describedby`.
-- **Heading Content:** O texto dos títulos deve descrever claramente a seção que o segue.
+## 1. Microcopy & Clarity
+Language should be as simple as possible to reduce cognitive load.
+- **Clear Instructions:** Avoid jargon. Use action verbs (e.g., "Submit" instead of "Process").
+- **Field Identification:** Instructions about formats (e.g., "DD/MM/YYYY") must be outside the input and linked via `aria-describedby`.
+- **Heading Content:** The text of the headings must clearly describe the section that follows.
 
-## 2. Gestão de Tempo (Timeouts)
-Muitos usuários levam mais tempo para ler ou interagir com o sistema.
-- **Não Remova o Tempo sem Aviso:** Se uma sessão for expirar, o usuário **MUST** ser avisado com antecedência e ter a opção de estender o tempo.
-- **Conteúdo em Movimento:** Carrosséis ou conteúdos que se atualizam sozinhos **MUST** ter um botão de "Pausa".
+## 2. Timing Management (Timeouts)
+Many users take more time to read or interact with the system.
+- **Do Not Remove Time Without Warning:** If a session is going to expire, the user **MUST** be warned in advance and have the option to extend the time.
+- **Moving Content:** Carousels or self-updating content **MUST** have a "Pause" button.
 
-## 3. Feedback Sistêmico & Mensagens de Status (Aria-live)
-Mudanças dinâmicas que não causam recarregamento de página precisam ser anunciadas.
-- **Status Updates:** Use `aria-live="polite"` para notificações não críticas (ex: "Item adicionado ao carrinho").
-- **Erros Críticos:** Use `aria-live="assertive"` ou `role="alert"` para erros que impedem o progresso imediato.
-- **Progresso:** Se uma ação demorar, use um indicador de progresso programático que informe o status da tarefa.
+## 3. System Feedback & Status Messages (Aria-live)
+Dynamic changes that do not cause a page reload must be announced.
+- **Status Updates:** Use `aria-live="polite"` for non-critical notifications (e.g., "Item added to cart").
+- **Critical Errors:** Use `aria-live="assertive"` or `role="alert"` for errors that prevent immediate progress.
+- **Progress:** If an action takes time, use a programmatic progress indicator that informs the task status.
 
-## 4. Sensoriais e Multimídia
-- **Linguagem Sensorial:** **MUST NOT** dar instruções baseadas apenas em sentidos (ex: "Clique no botão redondo à direita" ou "Ouça o sinal para começar"). Use referências de texto/contexto (ex: "Clique no botão Enviar ao final do formulário").
-- **Legendas e Transcrições:** Áudios e vídeos **MUST** possuir alternativas em texto ou legendas sincronizadas.
+## 4. Sensory and Multimedia
+- **Sensory Language:** **MUST NOT** give instructions based solely on senses (e.g., "Click the round button on the right" or "Listen for the tone to begin"). Use text/context references (e.g., "Click the Submit button at the end of the form").
+- **Captions and Transcripts:** Audio and video **MUST** have text alternatives or synchronized captions.
 
-## 5. Dica para a IA de Conteúdo
-Ao gerar textos para a interface, a IA deve validar se a instrução sobrevive sem o contexto visual: *"Se eu não estivesse vendo a tela, essa instrução ainda faria sentido?"*.
+## 5. Tip for Content AI
+When generating text for the interface, the AI must validate if the instruction survives without the visual context: *"If I couldn't see the screen, would this instruction still make sense?"*.

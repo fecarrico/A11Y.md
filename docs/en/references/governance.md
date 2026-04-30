@@ -2,10 +2,10 @@
 
 This document defines the evidence and verification process required to maintain a "Certification Ready" status.
 
-## 1. Verificação Estática (O Mínimo de Engenharia)
-A verificação primária não consiste em ditar regras rígidas em uma *pipeline específica*, mas responsabilizar o ambiente de desenvolvimento (Seja o Dev ou a IA rodando em tempo real) por testes estáticos de validação rápida.
-- **Padrão de Código:** O código *deve* passar obrigatoriamente pelas checagens de linters ou avaliadores focados em acessibilidade (como `eslint-plugin-jsx-a11y` ou motor `axe`) sem exibir violações do nível crítico/sério antes da consolidação de código. 
-- **Desacoplamento:** Não tente "escrever lógicas robustas para componentes acessíveis e tentar consertá-los": adote bibliotecas agnósticas (Headless UI) sempre que a semântica nativa HTML não cobrir os requisitos da funcionalidade.
+## 1. Static Verification (The Engineering Minimum)
+Primary verification does not consist of dictating rigid rules in a *specific pipeline*, but holding the development environment (Be it the Dev or the AI running in real-time) accountable for fast static validation tests.
+- **Code Standard:** The code *must* necessarily pass through linters or accessibility-focused evaluators (like `eslint-plugin-jsx-a11y` or the `axe` engine) without displaying critical/serious violations before code consolidation.
+- **Decoupling:** Do not try to "write robust logic for accessible components and try to fix them": adopt agnostic libraries (Headless UI) whenever native HTML semantics do not cover the feature requirements.
 
 ## 2. Descriptive Evidence (The "Why")
 When creating custom complex widgets, the developer (or AI) must include a comment block explaining the accessibility strategy:
@@ -17,22 +17,22 @@ When creating custom complex widgets, the developer (or AI) must include a comme
 - **Color:** Never communicate state (Valid/Invalid/Warning) using only color. An accompanying icon or text description is mandatory.
 - **Contrast:** Brand colors that fail 4.5:1 ratio must be adjusted for UI elements or paired with a high-contrast alternative.
 
-## 4. Auditorias e Conformidade Legal (ADA/EAA Readiness)
-Para preparar sub-sistemas para certificação externa e auditoria:
-1. **Inventory:** Consolidar uma lista ou storybook dos componentes visuais chaves do fluxo e seus comportamentos com tecnologias assistivas.
-2. **Keyboard Path:** Prevenir Dead-ends através do mapeamento claro e planejado da ordem do layout visual (`Tab`).
-3. **Auditoria Padrão:** Em caso de entrega final, o checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) *deve* ser operado como "Definition of Done".
+## 4. Audits and Legal Compliance (ADA/EAA Readiness)
+To prepare subsystems for external certification and audit:
+1. **Inventory:** Consolidate a list or storybook of the key visual components of the flow and their behaviors with assistive technologies.
+2. **Keyboard Path:** Prevent Dead-ends through clear and planned mapping of the visual layout order (`Tab`).
+3. **Standard Audit:** In case of final delivery, the checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) *must* be operated as "Definition of Done".
 
 ## 5. Reporting & Liability (VPAT Strategy)
-Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:
-- **VPAT Creation:** Manter um documento técnico que registre quais critérios da WCAG são suportados total ou parcialmente.
-- **Traceability:** Cada grande funcionalidade deve ter um comentário no código citando qual critério da WCAG está sendo respeitado.
+Projects targeting the US market must be Section 508 compliant:
+- **VPAT Creation:** Maintain a technical document that records which WCAG criteria are fully or partially supported.
+- **Traceability:** Each major feature must have a comment in the code citing which WCAG criterion is being respected.
 
 ## 6. European Compliance (EN 301 549)
-Para conformidade com o EAA:
-- **Interoperability:** Garantir que o software não impeça o uso de tecnologias assistivas de terceiros.
-- **Accessibility Declaration:** Manter uma página de acessibilidade pública descrevendo as funcionalidades e o nível de conformidade alcançado.
+For EAA compliance:
+- **Interoperability:** Ensure the software does not prevent the use of third-party assistive technologies.
+- **Accessibility Declaration:** Maintain a public accessibility page describing the features and the achieved compliance level.
 
 ## 7. Compliance Versioning
-Padrão Atual focado: **WCAG 2.2 AA** | **EN 301 549**.
-Desvios do requisito legal devido a limitações severas de UI/UX, plataforma nativa ou arquitetura base, **MUST** ser justificados usando obrigatoriamente o arquivo matriz na página: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). Todos esses pontos devem possuir ações compensatórias.
+Current focused standard: **WCAG 2.2 AA** | **EN 301 549**.
+Deviations from legal requirements due to severe UI/UX, native platform, or base architecture limitations, **MUST** be justified mandatorily using the matrix file on the page: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). All these points must have compensatory actions.
