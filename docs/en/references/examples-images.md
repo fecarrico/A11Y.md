@@ -1,41 +1,41 @@
 # Accessibility: Images & Alternative Text
 
-Descrições de imagens são a ponte entre o visual e o compreensível. Para usuários de leitores de tela, uma imagem sem `alt` é um "buraco negro" de informação.
+Image descriptions are the bridge between the visual and the understandable. For screen reader users, an image without `alt` is a "black hole" of information.
 
-## 1. Imagens Informativas
-Imagens que transmitem um conceito ou informação.
-### ✅ Correto
+## 1. Informative Images
+Images that convey a concept or information.
+### ✅ Correct
 ```html
-<img src="grafico-vendas.png" alt="Gráfico de barras mostrando crescimento de 20% nas vendas no primeiro trimestre.">
+<img src="sales-chart.png" alt="Bar chart showing a 20% sales growth in the first quarter.">
 ```
-- **Por quê:** O `alt` resume a conclusão do gráfico, não apenas descreve que é um gráfico.
+- **Why:** The `alt` summarizes the chart's conclusion, not just describes that it's a chart.
 
-### ❌ Incorreto
+### ❌ Incorrect
 ```html
-<img src="grafico-vendas.png" alt="Gráfico de vendas">
+<img src="sales-chart.png" alt="Sales chart">
 ```
-- **Problema:** A descrição é vaga e não transmite a informação contida na imagem.
+- **Problem:** The description is vague and does not convey the information contained in the image.
 
-## 2. Imagens Funcionais
-Imagens usadas como links ou botões (ícones).
-### ✅ Correto
+## 2. Functional Images
+Images used as links or buttons (icons).
+### ✅ Correct
 ```html
-<a href="/imprimir">
-  <img src="printer-icon.png" alt="Imprimir documento">
+<a href="/print">
+  <img src="printer-icon.png" alt="Print document">
 </a>
 ```
-- **Por quê:** O `alt` descreve a **ação** do link, não a aparência do ícone (ex: não use "ícone de impressora").
+- **Why:** The `alt` describes the **action** of the link, not the appearance of the icon (e.g., don't use "printer icon").
 
-## 3. Imagens Decorativas
-Imagens que não adicionam conteúdo (bordas, ilustrações de fundo).
-### ✅ Correto
+## 3. Decorative Images
+Images that do not add content (borders, background illustrations).
+### ✅ Correct
 ```html
-<img src="divisor-bonito.png" alt="">
+<img src="pretty-divider.png" alt="">
 ```
-- **Por quê:** O `alt=""` (vazio) diz ao leitor de tela para ignorar a imagem. **Nunca** omita o atributo `alt`, senão o leitor lerá o nome do arquivo (ex: "imagem-123-final.png").
+- **Why:** The empty `alt=""` tells the screen reader to ignore the image. **Never** omit the `alt` attribute, otherwise the reader will read the filename (e.g., "image-123-final.png").
 
-## 4. O Problema do "Excesso de Descrição"
-Evite começar com "Imagem de..." ou "Foto de...". O leitor de tela já anuncia que é uma imagem. Vá direto ao ponto.
+## 4. The "Over-description" Problem
+Avoid starting with "Image of..." or "Photo of...". The screen reader already announces that it's an image. Get straight to the point.
 
-## Dica para a IA:
-Sempre que gerar um componente com imagem, a IA deve se perguntar: *"Se eu remover essa imagem, qual informação o usuário perde?"*. Essa resposta deve ser o seu `alt`.
+## Tip for AI:
+Whenever generating a component with an image, the AI should ask itself: *"If I remove this image, what information does the user lose?"*. That answer should be your `alt`.
