@@ -4,7 +4,23 @@ Modals are high-risk components. They interrupt the user flow and can "trap" use
 
 ## Good Examples
 
-### 1. Focus Trapping and Labeling
+### 1. Native HTMLDialogElement (Recommended)
+The most robust and accessible way to create a modal is by using the native `<dialog>` element with the `showModal()` method. It automatically handles focus trapping, background inertia, and the Esc key.
+
+```html
+<dialog id="my-modal" aria-labelledby="modal-title">
+  <h2 id="modal-title">Confirm Deletion</h2>
+  <form method="dialog">
+    <button>Close</button>
+  </form>
+</dialog>
+
+<script>
+  document.getElementById('my-modal').showModal();
+</script>
+```
+
+### 2. Focus Trapping and Labeling (Custom Div)
 ```javascript
 // When opening modal:
 // 1. Save reference to the element that had focus.
