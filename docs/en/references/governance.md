@@ -36,3 +36,9 @@ For EAA compliance:
 ## 7. Compliance Versioning
 Current focused standard: **WCAG 2.2 AA** | **EN 301 549**.
 Deviations from legal requirements due to severe UI/UX, native platform, or base architecture limitations, **MUST** be justified mandatorily using the matrix file on the page: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). All these points must have compensatory actions.
+
+## 8. External Standards & Engines
+For real-time AI context and developer reference, adhere to these canonical industry standards:
+- **WAI-ARIA APG:** [https://www.w3.org/WAI/ARIA/apg/](https://www.w3.org/WAI/ARIA/apg/)
+- **eBay MIND Patterns:** [https://ebay.github.io/mindpatterns/](https://ebay.github.io/mindpatterns/)
+- **Deque Axe Core:** [https://github.com/dequelabs/axe-core](https://github.com/dequelabs/axe-core)
