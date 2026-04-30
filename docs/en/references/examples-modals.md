@@ -20,7 +20,21 @@ Modals are high-risk components. They interrupt the user flow and can "trap" use
 ```
 - **Why:** `role="dialog"` and `aria-modal="true"` tell the browser to ignore the rest of the page. `aria-labelledby` provides context.
 
-### 2. Keyboard Control
+### 2. Native HTML Dialog
+```javascript
+// To open a modal use the native HTMLDialogElement.showModal() method where possible. This will automatically move the focus inside the modal and return the focus to the invoking element when the modal is closed.
+```
+```html
+<dialog aria-labelledby="modal-title" closedby="any" id="exampleDialog">
+  <h2 id="modal-title">Confirm Deletion</h2>
+  <button aria-label="Close" command="close" commandfor="exampleDialog">X</button>
+  ...
+</div>
+```
+- **Why:** The native `<dialog>` element comes with all required accessibility features out of the box. `closedby="any"` allows the dialog to be closed by pressing the escape key. `command="close"` and `commandfor=""` allows for closing the dialog using a button without any javascript and uses the native `invokerCommands` API. `aria-labelledby` provides context.
+
+
+### 3. Keyboard Control
 - **Esc Key:** Should always close the modal.
 - **Tab:** Should cycle through elements ONLY inside the modal.
 
