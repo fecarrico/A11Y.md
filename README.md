@@ -99,7 +99,7 @@ Fallback models and completion guarantees (Definition of Done):
 
 ### 4. 📝 [Examples (`EXAMPLES.md`)](docs/en/EXAMPLES.md)
 
-Practical Before/After examples showing how to refactor common anti-patterns into accessible code elements.
+Practical examples of real errors found in a system generated with **Figma Make** and **Antigravity** (using Gemini 3 Flash), along with their respective corrections suggested by `A11Y.md` acting as an automated reviewer.
 
 ---
 
