@@ -80,25 +80,29 @@ O resultado não é um "código que passou pelo Linter". É um código arquitetu
 
 Organizamos as soluções de modo que funcionem como uma documentação viva:
 
-### 1. ⚡ [Centro de Comando (`A11Y.md`)](A11Y.md)
+### 1. ⚡ [Centro de Comando (`A11Y.md`)](docs/pt-BR/A11Y.md)
 
 Onde reside a Matriz de Severidade, o framework comportamental para IAs, regras rígidas de SPA e o _Protocolo de Componentes Complexos_.
 
-### 2. 📚 [Biblioteca de Suporte (`references/`)](references/)
+### 2. 📚 [Biblioteca de Suporte (`references/`)](docs/pt-BR/references/)
 
 A "Deep Web" das soluções. Guias rápidos de engenharia para você não reinventar a roda:
 
-- 🎨 **UX e Percepção:** [Construção de Contraste Lógico](references/visual-perception.md)
-- 🧩 **UI Interativa:** [Anatomia de Forms](references/examples-forms.md) | [Ações e Botões](references/examples-buttons.md)
-- 🗺️ **Fluxos e Tempo:** [Imagens Críticas](references/examples-images.md) | [Navegação de Teclado](references/examples-navigation.md) | [Leituras em Tempo Real](references/examples-content-interaction.md) | [Gestão de Modals](references/examples-modals.md)
-- 🏢 **Governança:** [Estratégia Agnostica de Release](references/governance.md)
+- 🎨 **UX e Percepção:** [Construção de Contraste Lógico](docs/pt-BR/references/visual-perception.md)
+- 🧩 **UI Interativa:** [Anatomia de Forms](docs/pt-BR/references/examples-forms.md) | [Ações e Botões](docs/pt-BR/references/examples-buttons.md)
+- 🗺️ **Fluxos e Tempo:** [Imagens Críticas](docs/pt-BR/references/examples-images.md) | [Navegação de Teclado](docs/pt-BR/references/examples-navigation.md) | [Leituras em Tempo Real](docs/pt-BR/references/examples-content-interaction.md) | [Gestão de Modals](docs/pt-BR/references/examples-modals.md)
+- 🏢 **Governança:** [Estratégia Agnostica de Release](docs/pt-BR/references/governance.md)
 
-### 3. 🛠️ [Templates (`templates/`)](templates/)
+### 3. 🛠️ [Templates (`templates/`)](docs/pt-BR/templates/)
 
 Modelos de resguardo e garantia de finalização (Definition of Done):
 
-- [**📋 `REPORT.md`**](templates/REPORT.md): Checklist final da Sprint/Feature.
-- [**🛑 `EXCEPTIONS.md`**](templates/EXCEPTIONS.md): Registro estruturado de débitos técnicos contendo rotas alternativas.
+- [**📋 `REPORT.md`**](docs/pt-BR/templates/REPORT.md): Checklist final da Sprint/Feature.
+- [**🛑 `EXCEPTIONS.md`**](docs/pt-BR/templates/EXCEPTIONS.md): Registro estruturado de débitos técnicos contendo rotas alternativas.
+
+### 4. 📝 [Exemplos (`EXAMPLES.md`)](docs/pt-BR/EXAMPLES.md)
+
+Exemplos práticos de erros reais encontrados em um sistema gerado com **Figma Make** e **Antigravity** (usando Gemini 3 Flash), junto com suas respectivas correções sugeridas pelo `A11Y.md` atuando como revisor automatizado.
 
 ---
 

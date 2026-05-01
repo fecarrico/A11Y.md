@@ -1,15 +1,15 @@
-# Accessibility Guide: Modals & Dialogs
+# Guia de Acessibilidade: Modals & Dialogs
 
-Modals are high-risk components. They interrupt the user flow and can "trap" users if not implemented correctly.
+Modais são componentes de alto risco. Eles interrompem o fluxo do usuário e podem "prender" (trap) os usuários se não forem implementados corretamente.
 
-## Good Examples
+## Bons Exemplos (Good Examples)
 
-### 1. Focus Trapping and Labeling
+### 1. Focus Trapping e Labeling
 ```javascript
-// When opening modal:
-// 1. Save reference to the element that had focus.
-// 2. Move focus to the modal title or first focusable element.
-// 3. Keep focus inside the modal until closed.
+// Ao abrir o modal:
+// 1. Salve a referência para o elemento que tinha o foco.
+// 2. Mova o foco para o título do modal ou primeiro elemento focável.
+// 3. Mantenha o foco dentro do modal até ser fechado.
 ```
 ```html
 <div role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -18,20 +18,20 @@ Modals are high-risk components. They interrupt the user flow and can "trap" use
   ...
 </div>
 ```
-- **Why:** `role="dialog"` and `aria-modal="true"` tell the browser to ignore the rest of the page. `aria-labelledby` provides context.
+- **Por quê:** `role="dialog"` e `aria-modal="true"` dizem ao browser para ignorar o resto da página. `aria-labelledby` fornece o contexto.
 
 ### 2. Keyboard Control
-- **Esc Key:** Should always close the modal.
-- **Tab:** Should cycle through elements ONLY inside the modal.
+- **Esc Key:** Deve sempre fechar o modal.
+- **Tab:** Deve circular através dos elementos APENAS dentro do modal (Focus Trap).
 
-## Bad Examples
+## Maus Exemplos (Bad Examples)
 
-### 1. Leaving Focus Behind
-- **Implication:** If a modal opens and focus remains on the background trigger, a screen reader user might continue interacting with the page "underneath" the modal, leading to confusion and errors.
+### 1. Deixar o Foco para Trás (Leaving Focus Behind)
+- **Implicação:** Se um modal abre e o foco permanece no acionador ao fundo, um usuário de screen reader pode continuar interagindo com a página "por baixo" do modal, levando a confusões e erros.
 
-### 2. No Close Button
-- **Implication:** Users who rely on screen readers or have cognitive disabilities might not know how to exit a modal if there isn't a clear, labeled "Close" action.
+### 2. Sem Botão de Fechar (No Close Button)
+- **Implicação:** Usuários que dependem de screen readers ou possuem deficiências cognitivas podem não saber como sair de um modal se não houver uma ação clara e rotulada de "Close" ou "Fechar".
 
-## Accessibility Implications
-- **Modality:** Ensuring the user is aware they are in a "sub-state" of the application.
-- **Restoration:** When the modal closes, focus MUST return to the element that triggered it, so the user knows where they are in the document.
+## Implicações de Acessibilidade
+- **Modality:** Garantir que o usuário saiba que ele está em um "sub-estado" da aplicação.
+- **Restoration:** Quando o modal é fechado, o foco MUST retornar para o elemento que o acionou, para que o usuário saiba onde ele está no documento.

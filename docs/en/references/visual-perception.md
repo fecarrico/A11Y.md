@@ -1,39 +1,39 @@
 # Accessibility: Visual Perception, Color & Contrast
 
-Este documento detalha como garantir que interfaces sejam compreensíveis independentemente da capacidade de percepção de cores do usuário, utilizando modelos matemáticos modernos e técnicas de redundância.
+This document details how to ensure interfaces are understandable regardless of the user's color perception capacity, using modern mathematical models and redundancy techniques.
 
-## 1. Modelos de Cor e Distância Perceptual
-Para garantir que duas cores sejam "distinguíveis", não basta olhar para o código Hex. Usamos o espaço de cor **OKLCH** (Luminance, Chroma, Hue), que é perceptualmente uniforme.
+## 1. Color Models and Perceptual Distance
+To ensure two colors are "distinguishable", it is not enough to look at the Hex code. We use the **OKLCH** color space (Luminance, Chroma, Hue), which is perceptually uniform.
 
-- **Diferença de Luminância (L):** É o fator mais importante para legibilidade. O contraste deve vir primeiro da diferença entre "claro" e "escuro", e só depois do Matiz (Hue).
-- **Delta E (ΔE):** Medida de distância entre duas cores.
-    - **ΔE > 20:** Diferença perceptível para a maioria dos usuários.
-    - **ΔE > 40:** Diferença de alta segurança para usuários daltônicos.
+- **Luminance Difference (L):** It is the most important factor for readability. Contrast must come first from the difference between "light" and "dark", and only then from the Hue.
+- **Delta E (ΔE):** Measure of distance between two colors.
+    - **ΔE > 20:** Noticeable difference for most users.
+    - **ΔE > 40:** High-security difference for colorblind users.
 
-## 2. Redundância Visual e Padrões (Graphs Case)
-Gráficos e dashboards **MUST NOT** depender exclusivamente de cores para diferenciar séries de dados.
+## 2. Visual Redundancy and Patterns (Graphs Case)
+Charts and dashboards **MUST NOT** rely exclusively on colors to differentiate data series.
 
-### Estratégias para Gráficos:
-- **Linhas:** Use `dashed`, `dotted` e espessuras diferentes.
-- **Pontos (Markers):** Use formas distintas (círculos, triângulos, quadrados, X).
-- **Áreas (Charts):** Use texturas/hatch patterns em vez de cores sólidas adjacentes.
-- **Diretriz:** Se o gráfico for impresso em preto e branco, ele ainda deve ser interpretável.
+### Strategies for Charts:
+- **Lines:** Use `dashed`, `dotted` and different thicknesses.
+- **Markers:** Use distinct shapes (circles, triangles, squares, X).
+- **Areas (Charts):** Use textures/hatch patterns instead of adjacent solid colors.
+- **Guideline:** If the chart is printed in black and white, it must still be interpretable.
 
-## 3. Contraste Moderno (Introdução ao APCA)
-Enquanto a WCAG 2.1/2.2 usa o ratio estático (ex: 4.5:1), o **APCA** (Advanced Perceptual Contrast Algorithm) é o modelo sugerido para o futuro (WCAG 3).
+## 3. Modern Contrast (Introduction to APCA)
+While WCAG 2.1/2.2 uses the static ratio (e.g., 4.5:1), **APCA** (Advanced Perceptual Contrast Algorithm) is the suggested model for the future (WCAG 3).
 
-- **Por que importa:** O APCA considera que o texto branco no fundo preto e o preto no fundo branco não têm o mesmo impacto visual (efeitos de irradiação).
-- **Aplicação Prática:** Use o APCA para validar a legibilidade de fontes muito finas ou tamanhos pequenos, onde o ratio de 4.5:1 pode ser enganoso.
-- **Dica:** Procure um score **Lc (Lightness Contrast)** de pelo menos 60 para corpo de texto.
+- **Why it matters:** APCA considers that white text on a black background and black on a white background do not have the same visual impact (irradiation effects).
+- **Practical Application:** Use APCA to validate the readability of very thin fonts or small sizes, where the 4.5:1 ratio might be misleading.
+- **Tip:** Aim for a **Lc (Lightness Contrast)** score of at least 60 for body text.
 
-## 4. Estratégias de Redundância Semântica
-- **Cor + Ícone:** Toda mensagem de erro ou sucesso deve vir acompanhada de um ícone universal (Checkmark, Warning, Info).
-- **Labels Diretas:** Em gráficos de pizza ou barras, coloque a label diretamente sobre ou ao lado do elemento, evitando legendas distantes que exigem correspondência de cores.
+## 4. Semantic Redundancy Strategies
+- **Color + Icon:** Every error or success message must be accompanied by a universal icon (Checkmark, Warning, Info).
+- **Direct Labels:** In pie or bar charts, place the label directly on or next to the element, avoiding distant legends that require color matching.
 
-## 5. Protocolo de Verificação (QA)
-Para considerar a tarefa "Done" em termos de percepção visual:
-1. **Grayscale Test:** Desative as cores da tela. Você ainda consegue entender a hierarquia?
-2. **Simulator Check:** Use ferramentas como **Color Oracle** ou simuladores de browser para checar:
-    - **Protanopia/Deuteranopia:** (Deficiência no vermelho/verde - mais comum).
-    - **Tritanopia:** (Deficiência no azul/amarelo - raridade).
-3. **Luminance Check:** Garanta que a diferença de Luminance (L no OKLCH) entre fundo e texto seja significativa.
+## 5. Verification Protocol (QA)
+To consider the task "Done" in terms of visual perception:
+1. **Grayscale Test:** Turn off the screen colors. Can you still understand the hierarchy?
+2. **Simulator Check:** Use tools like **Color Oracle** or browser simulators to check:
+    - **Protanopia/Deuteranopia:** (Red/green deficiency - most common).
+    - **Tritanopia:** (Blue/yellow deficiency - rare).
+3. **Luminance Check:** Ensure the Luminance difference (L in OKLCH) between background and text is significant.

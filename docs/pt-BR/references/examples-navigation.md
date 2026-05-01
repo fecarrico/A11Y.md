@@ -1,10 +1,10 @@
-# Accessibility Guide: Navigation
+# Guia de Acessibilidade: Navigation
 
-Navigation must be consistent, predictable, and discoverable.
+A navegação (Navigation) deve ser consistente, previsível (predictable) e fácil de descobrir (discoverable).
 
-## Good Examples
+## Bons Exemplos (Good Examples)
 
-### 1. Semantic Navigation
+### 1. Navegação Semântica (Semantic Navigation)
 ```html
 <nav aria-label="Main Navigation">
   <ul>
@@ -13,27 +13,27 @@ Navigation must be consistent, predictable, and discoverable.
   </ul>
 </nav>
 ```
-- **Why:** `<nav>` is a landmark. `aria-current="page"` tells users which link represents the current location.
+- **Por quê:** `<nav>` é uma landmark. `aria-current="page"` diz aos usuários qual link representa a localização atual.
 
-### 2. Skip to Content
+### 2. Skip to Content (Pular para o Conteúdo)
 ```html
 <a href="#main-content" class="skip-link">Skip to main content</a>
 ...
 <main id="main-content">...</main>
 ```
-- **Why:** Allows keyboard users to bypass repetitive navigation links and go straight to the content.
+- **Por quê:** Permite que usuários de teclado ignorem links de navegação repetitivos e vão direto para o conteúdo principal.
 
-## Bad Examples
+## Maus Exemplos (Bad Examples)
 
-### 1. Nested Menus (Hover only)
-- **Implication:** Menus that only appear on hover are inaccessible to keyboard users and touch device users. They require JS to toggle on click/focus.
+### 1. Menus Aninhados (Apenas no Hover)
+- **Implicação:** Menus que aparecem apenas ao passar o mouse (hover) são inacessíveis para usuários de teclado e dispositivos touch. Eles exigem JS para alternar o estado via click ou focus.
 
-### 2. Non-standard Links
+### 2. Links Não-Padrão
 ```html
 <span onclick="window.location='/new-page'">Go to Page</span>
 ```
-- **Implication:** This is not an anchor tag. It has no focus, no "link" role, and cannot be opened in a new tab.
+- **Implicação:** Isto não é uma tag âncora (`<a>`). Não possui foco, não possui role de "link" e não pode ser aberto em uma nova aba.
 
-## Accessibility Implications
-- **Searchability:** Proper navigation landmarks allow screen reader users to jump directly to the navigation section using shortcut keys.
-- **Predictability:** Keeping the navigation in the same place and order across pages reduces cognitive load.
+## Implicações de Acessibilidade
+- **Searchability:** Landmarks de navegação adequadas permitem que usuários de screen reader pulem diretamente para a seção de navegação usando teclas de atalho.
+- **Predictability:** Manter a navegação no mesmo lugar e na mesma ordem entre as páginas reduz o cognitive load.

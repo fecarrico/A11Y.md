@@ -1,40 +1,40 @@
-# Accessibility Guide: Buttons & Actions
+# Guia de Acessibilidade: Buttons & Actions
 
-Buttons must look like buttons, act like buttons, and be labeled like buttons.
+Botões devem parecer botões (look like buttons), agir como botões e ser rotulados como botões.
 
-## Good Examples
+## Bons Exemplos (Good Examples)
 
-### 1. Native Button element
+### 1. Elemento Native Button
 ```html
 <button type="button" class="btn-primary">
   Submit Application
 </button>
 ```
-- **Why:** Native `<button>` elements have built-in keyboard support (Enter/Space) and are automatically identified as "button" by screen readers.
+- **Por quê:** Elementos `<button>` nativos possuem suporte embutido para teclado (Enter/Space) e são automaticamente identificados como "button" pelos screen readers (leitores de tela).
 
-### 2. Icon Buttons with Text
+### 2. Icon Buttons com Texto
 ```html
 <button aria-label="Close modal">
   <svg>...</svg>
 </button>
 ```
-- **Why:** For buttons without visible text, `aria-label` provides the necessary context for screen reader users.
+- **Por quê:** Para botões sem texto visível, o `aria-label` fornece o contexto necessário para usuários de screen reader.
 
-## Bad Examples
+## Maus Exemplos (Bad Examples)
 
-### 1. The "Clickable Div"
+### 1. A "Clickable Div"
 ```html
 <div onclick="submit()" class="my-button">Submit</div>
 ```
-- **Implication:** This is invisible to keyboard users (no tab focus) and screen readers (no "button" role). It requires excessive JS to fix what HTML does for free.
+- **Implicação:** Isso é invisível para usuários de teclado (sem tab focus) e screen readers (sem a role "button"). Exige excesso de JS para consertar o que o HTML faz de graça.
 
-### 2. Vague Labels
+### 2. Vague Labels (Rótulos Vagos)
 ```html
 <button>Click Here</button>
 <button>Learn More</button>
 ```
-- **Implication:** Screen reader users often list all buttons on a page to navigate. "Click Here" provides no context about what the button actually does. Use "Download Report" or "Read about our history" instead.
+- **Implicação:** Usuários de screen reader frequentemente listam todos os botões de uma página para navegar. "Click Here" não fornece nenhum contexto sobre o que o botão realmente faz. Use "Download Report" ou "Leia sobre nossa história" em vez disso.
 
-## Accessibility Implications
-- **Affordance:** Visually distinctive buttons help users with cognitive impairments identify interaction points.
-- **Precision:** Large tap targets (min 44x44px) are essential for mobile users and those with motor impairments.
+## Implicações de Acessibilidade
+- **Affordance:** Botões visualmente distintos ajudam usuários com deficiências cognitivas a identificar pontos de interação.
+- **Precisão:** Áreas de clique grandes (Target Size min 44x44px) são essenciais para usuários mobile e pessoas com deficiências motoras.
