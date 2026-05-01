@@ -29,7 +29,7 @@ Modals are high-risk components. They interrupt the user flow and can "trap" use
   <h2 id="modal-title">Confirm Deletion</h2>
   <button aria-label="Close" command="close" commandfor="exampleDialog">X</button>
   ...
-</div>
+</dialog>
 ```
 - **Why:** The native `<dialog>` element comes with all required accessibility features out of the box. `closedby="any"` allows the dialog to be closed by pressing the escape key. `command="close"` and `commandfor=""` allows for closing the dialog using a button without any javascript and uses the native `invokerCommands` API. `aria-labelledby` provides context.
 
