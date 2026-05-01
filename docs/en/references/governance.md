@@ -1,6 +1,6 @@
 # A11y Governance & Compliance Strategy
 
-This document defines the evidence and verification process required to maintain a "Certification Ready" status.
+> Scope: Static verification, VPAT strategy, ADA/EAA compliance, EN 301 549, and external audit readiness.
 
 ## 1. Static Verification (The Engineering Minimum)
 Primary verification does not consist of dictating rigid rules in a *specific pipeline*, but holding the development environment (Be it the Dev or the AI running in real-time) accountable for fast static validation tests.

@@ -1,6 +1,6 @@
 # Accessibility: Images & Alternative Text
 
-Image descriptions are the bridge between the visual and the understandable. For screen reader users, an image without `alt` is a "black hole" of information.
+> Scope: Alt text strategy, decorative images, complex images (charts/diagrams), and SVG accessibility.
 
 ## 1. Informative Images
 Images that convey a concept or information.

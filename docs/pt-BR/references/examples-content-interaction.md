@@ -1,6 +1,6 @@
 # Accessibility: Content, Interaction & Timing
 
-A acessibilidade não termina na estrutura HTML. A forma como o conteúdo é escrito e como as interações temporais ocorrem define o sucesso de usuários com deficiências cognitivas, auditivas e de visão.
+> Escopo: Microcopy, gestão de timeouts, feedback aria-live, acessibilidade em multimídia e orientações para IA de conteúdo.
 
 ## 1. Microcopy & Clareza
 A linguagem deve ser a mais simples possível para reduzir a carga cognitiva.

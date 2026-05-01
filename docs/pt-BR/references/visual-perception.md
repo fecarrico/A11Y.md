@@ -1,6 +1,6 @@
 # Accessibility: Visual Perception, Color & Contrast
 
-Este documento detalha como garantir que interfaces sejam compreensíveis independentemente da capacidade de percepção de cores do usuário, utilizando modelos matemáticos modernos e técnicas de redundância.
+> Escopo: Modelo de cores OKLCH, Delta E, contraste APCA, redundância em gráficos e protocolo de QA para daltonismo.
 
 ## 1. Modelos de Cor e Distância Perceptual
 Para garantir que duas cores sejam "distinguíveis", não basta olhar para o código Hex. Usamos o espaço de cor **OKLCH** (Luminance, Chroma, Hue), que é perceptualmente uniforme.

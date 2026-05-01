@@ -1,6 +1,6 @@
 # Accessibility Guide: Modals & Dialogs
 
-Modals are high-risk components. They interrupt the user flow and can "trap" users if not implemented correctly.
+> Scope: Focus trapping, native dialog element, keyboard control, and modal anti-patterns.
 
 ## Good Examples
 

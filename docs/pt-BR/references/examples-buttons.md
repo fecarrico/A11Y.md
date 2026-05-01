@@ -1,6 +1,6 @@
 # Guia de Acessibilidade: Buttons & Actions
 
-Botões devem parecer botões (look like buttons), agir como botões e ser rotulados como botões.
+> Escopo: Uso semântico de botões, padrões ARIA, interações por teclado e regras de rotulagem.
 
 ## Bons Exemplos (Good Examples)
 

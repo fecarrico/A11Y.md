@@ -1,6 +1,6 @@
 # Guia de Acessibilidade: Navigation
 
-A navegação (Navigation) deve ser consistente, previsível (predictable) e fácil de descobrir (discoverable).
+> Escopo: Padrões de navegação por teclado, skip links, regiões de landmark e gestão de foco em SPAs.
 
 ## Bons Exemplos (Good Examples)
 

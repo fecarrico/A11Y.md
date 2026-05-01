@@ -1,6 +1,6 @@
 # Accessibility Guide: Forms
 
-Forms are the most critical point of failure for accessibility. A form that cannot be filled by everyone is a broken product.
+> Scope: Label binding, error messaging, field grouping, and accessible form patterns.
 
 ## Good Examples
 

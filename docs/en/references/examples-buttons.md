@@ -1,6 +1,6 @@
 # Accessibility Guide: Buttons & Actions
 
-Buttons must look like buttons, act like buttons, and be labeled like buttons.
+> Scope: Semantic button usage, ARIA patterns, keyboard interactions, and labeling rules.
 
 ## Good Examples
 

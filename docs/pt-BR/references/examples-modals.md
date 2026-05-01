@@ -1,6 +1,6 @@
 # Guia de Acessibilidade: Modals & Dialogs
 
-Modais são componentes de alto risco. Eles interrompem o fluxo do usuário e podem "prender" (trap) os usuários se não forem implementados corretamente.
+> Escopo: Focus trapping, elemento dialog nativo, controle por teclado e anti-padrões de modal.
 
 ## Bons Exemplos (Good Examples)
 

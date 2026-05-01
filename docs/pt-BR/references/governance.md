@@ -1,6 +1,6 @@
 # A11y Governance & Compliance Strategy
 
-Este documento define o processo de evidência e verificação necessário para manter o status de "Certification Ready".
+> Escopo: Verificação estática, estratégia VPAT, conformidade ADA/EAA, EN 301 549 e prontidão para auditoria externa.
 
 ## 1. Verificação Estática (O Mínimo de Engenharia)
 A verificação primária não consiste em ditar regras rígidas em uma *pipeline específica*, mas responsabilizar o ambiente de desenvolvimento (Seja o Dev ou a IA rodando em tempo real) por testes estáticos de validação rápida.
