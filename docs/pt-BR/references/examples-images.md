@@ -1,6 +1,6 @@
 # Accessibility: Images & Alternative Text
 
-Descrições de imagens são a ponte entre o visual e o compreensível. Para usuários de leitores de tela, uma imagem sem `alt` é um "buraco negro" de informação.
+> Escopo: Estratégia de alt text, imagens decorativas, imagens complexas (gráficos/diagramas) e acessibilidade em SVG.
 
 ## 1. Imagens Informativas
 Imagens que transmitem um conceito ou informação.

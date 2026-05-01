@@ -1,6 +1,6 @@
 # Accessibility: Content, Interaction & Timing
 
-Accessibility doesn't end with HTML structure. The way content is written and how temporal interactions occur defines the success of users with cognitive, auditory, and visual impairments.
+> Scope: Microcopy, timeout management, aria-live feedback, multimedia accessibility, and AI content guidance.
 
 ## 1. Microcopy & Clarity
 Language should be as simple as possible to reduce cognitive load.

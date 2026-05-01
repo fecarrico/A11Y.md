@@ -1,6 +1,6 @@
 # Accessibility Guide: Modals & Dialogs
 
-Modals are high-risk components. They interrupt the user flow and can "trap" users if not implemented correctly.
+> Scope: Focus trapping, native dialog element, keyboard control, and modal anti-patterns.
 
 ## Good Examples
 
@@ -29,10 +29,11 @@ Modals are high-risk components. They interrupt the user flow and can "trap" use
   <h2 id="modal-title">Confirm Deletion</h2>
   <button aria-label="Close" command="close" commandfor="exampleDialog">X</button>
   ...
-</div>
+</dialog>
 ```
 - **Why:** The native `<dialog>` element comes with all required accessibility features out of the box. `closedby="any"` allows the dialog to be closed by pressing the escape key. `command="close"` and `commandfor=""` allows for closing the dialog using a button without any javascript and uses the native `invokerCommands` API. `aria-labelledby` provides context.
 
+> ⚠️ **Experimental compatibility:** The `closedby` and `command`/`commandfor` attributes (invokerCommands API) are currently supported only in **Chrome 133+**. Check [Can I Use](https://caniuse.com) before using in production and consider a JavaScript fallback for other browsers.
 
 ### 3. Keyboard Control
 - **Esc Key:** Should always close the modal.

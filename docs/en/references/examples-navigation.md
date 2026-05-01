@@ -1,6 +1,6 @@
 # Accessibility Guide: Navigation
 
-Navigation must be consistent, predictable, and discoverable.
+> Scope: Keyboard navigation patterns, skip links, landmark regions, and SPA routing focus management.
 
 ## Good Examples
 

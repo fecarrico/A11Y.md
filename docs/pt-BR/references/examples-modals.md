@@ -1,6 +1,6 @@
 # Guia de Acessibilidade: Modals & Dialogs
 
-Modais são componentes de alto risco. Eles interrompem o fluxo do usuário e podem "prender" (trap) os usuários se não forem implementados corretamente.
+> Escopo: Focus trapping, elemento dialog nativo, controle por teclado e anti-padrões de modal.
 
 ## Bons Exemplos (Good Examples)
 
@@ -20,7 +20,22 @@ Modais são componentes de alto risco. Eles interrompem o fluxo do usuário e po
 ```
 - **Por quê:** `role="dialog"` e `aria-modal="true"` dizem ao browser para ignorar o resto da página. `aria-labelledby` fornece o contexto.
 
-### 2. Keyboard Control
+### 2. Dialog HTML Nativo
+```javascript
+// Para abrir um modal, use o método nativo HTMLDialogElement.showModal() sempre que possível. Ele move o foco para dentro do modal automaticamente e o retorna ao elemento acionador quando o modal é fechado.
+```
+```html
+<dialog aria-labelledby="modal-title" closedby="any" id="exampleDialog">
+  <h2 id="modal-title">Confirm Deletion</h2>
+  <button aria-label="Close" command="close" commandfor="exampleDialog">X</button>
+  ...
+</dialog>
+```
+- **Por quê:** O elemento nativo `<dialog>` já vem com todos os recursos de acessibilidade necessários. `closedby="any"` permite fechar o dialog pressionando a tecla Esc. `command="close"` e `commandfor=""` permitem fechar o dialog via botão sem JavaScript, usando a API nativa `invokerCommands`. `aria-labelledby` fornece o contexto.
+
+> ⚠️ **Compatibilidade experimental:** Os atributos `closedby` e `command`/`commandfor` (invokerCommands API) têm suporte apenas no **Chrome 133+**. Verifique o [Can I Use](https://caniuse.com) antes de usar em produção e considere um fallback em JavaScript para outros navegadores.
+
+### 3. Keyboard Control
 - **Esc Key:** Deve sempre fechar o modal.
 - **Tab:** Deve circular através dos elementos APENAS dentro do modal (Focus Trap).
 

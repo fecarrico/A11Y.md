@@ -1,6 +1,6 @@
 # Guia de Acessibilidade: Forms
 
-Formulários (Forms) são o ponto de falha mais crítico para a acessibilidade. Um formulário que não pode ser preenchido por todos é um produto quebrado.
+> Escopo: Vinculação de labels, mensagens de erro, agrupamento de campos e padrões acessíveis de formulário.
 
 ## Bons Exemplos (Good Examples)
 
