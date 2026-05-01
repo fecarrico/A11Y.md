@@ -33,6 +33,8 @@ Modais são componentes de alto risco. Eles interrompem o fluxo do usuário e po
 ```
 - **Por quê:** O elemento nativo `<dialog>` já vem com todos os recursos de acessibilidade necessários. `closedby="any"` permite fechar o dialog pressionando a tecla Esc. `command="close"` e `commandfor=""` permitem fechar o dialog via botão sem JavaScript, usando a API nativa `invokerCommands`. `aria-labelledby` fornece o contexto.
 
+> ⚠️ **Compatibilidade experimental:** Os atributos `closedby` e `command`/`commandfor` (invokerCommands API) têm suporte apenas no **Chrome 133+**. Verifique o [Can I Use](https://caniuse.com) antes de usar em produção e considere um fallback em JavaScript para outros navegadores.
+
 ### 3. Keyboard Control
 - **Esc Key:** Deve sempre fechar o modal.
 - **Tab:** Deve circular através dos elementos APENAS dentro do modal (Focus Trap).
