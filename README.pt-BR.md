@@ -12,6 +12,9 @@
   [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
   [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
+  
+  <br/>
+  <a href="https://v0-projecta11y.vercel.app/">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310">📖 Leia o Manifesto (Medium)</a>
 </div>
 
 <br/>
@@ -27,9 +30,8 @@ Adotando o modelo mental do **`CLAUDE.md`** da Anthropic — que atua como uma m
 
 Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetivo real. Faça isto **agora** no seu projeto:
 
-1. **Baixe as Regras:** Copie o arquivo raiz `A11Y.md` para a base do repositório da sua aplicação.
-2. **Injete no Prompt:** Se você usa Cursor, GitHub Copilot ou Claude, adicione ao seu arquivo de regras globais (`.cursorrules` ou sistema de Contexto):
-   > _"Siga estritamente as regras de desenvolvimento definidas no arquivo A11Y.md."_
+1. **Baixe o Padrão:** Copie o arquivo `A11Y.md` de `docs/pt-BR/` para `docs/pt-BR/` no repositório da sua aplicação.
+2. **Configure sua IA:** Leia o [**Guia de Configuração (`SETUP.md`)**](docs/pt-BR/SETUP.md) para instruções de como configurar o Cursor, Copilot, Claude ou Gemini para seguir estritamente as regras.
 3. **Use como Trava de Qualidade:** Antes de fechar PRs importantes, use o checklist do `templates/REPORT.md`.
 
 _Se você não realizar os passos acima, você não está mudando seu workflow — está apenas lendo sobre o assunto._
@@ -88,10 +90,10 @@ Onde reside a Matriz de Severidade, o framework comportamental para IAs, regras 
 
 A "Deep Web" das soluções. Guias rápidos de engenharia para você não reinventar a roda:
 
-- 🎨 **UX e Percepção:** [Construção de Contraste Lógico](docs/pt-BR/references/visual-perception.md)
-- 🧩 **UI Interativa:** [Anatomia de Forms](docs/pt-BR/references/examples-forms.md) | [Ações e Botões](docs/pt-BR/references/examples-buttons.md)
-- 🗺️ **Fluxos e Tempo:** [Imagens Críticas](docs/pt-BR/references/examples-images.md) | [Navegação de Teclado](docs/pt-BR/references/examples-navigation.md) | [Leituras em Tempo Real](docs/pt-BR/references/examples-content-interaction.md) | [Gestão de Modals](docs/pt-BR/references/examples-modals.md)
-- 🏢 **Governança:** [Estratégia Agnostica de Release](docs/pt-BR/references/governance.md)
+- 🎨 **UX e Percepção:** [Construção de Contraste Lógico](docs/pt-BR/references/guide-visual-perception.md)
+- 🧩 **UI Interativa:** [Anatomia de Forms](docs/pt-BR/references/guide-forms.md) | [Ações e Botões](docs/pt-BR/references/guide-buttons.md)
+- 🗺️ **Fluxos e Tempo:** [Imagens Críticas](docs/pt-BR/references/guide-images.md) | [Navegação de Teclado](docs/pt-BR/references/guide-navigation.md) | [Leituras em Tempo Real](docs/pt-BR/references/guide-content-interaction.md) | [Gestão de Modals](docs/pt-BR/references/guide-modals.md)
+- 🏢 **Governança:** [Estratégia Agnostica de Release](docs/pt-BR/references/guide-governance.md)
 
 ### 3. 🛠️ [Templates (`templates/`)](docs/pt-BR/templates/)
 
@@ -100,7 +102,7 @@ Modelos de resguardo e garantia de finalização (Definition of Done):
 - [**📋 `REPORT.md`**](docs/pt-BR/templates/REPORT.md): Checklist final da Sprint/Feature.
 - [**🛑 `EXCEPTIONS.md`**](docs/pt-BR/templates/EXCEPTIONS.md): Registro estruturado de débitos técnicos contendo rotas alternativas.
 
-### 4. 📝 [Exemplos (`EXAMPLES.md`)](docs/pt-BR/EXAMPLES.md)
+### 4. 📝 [Exemplos (`showcase4humans.md`)](docs/pt-BR/showcase4humans.md)
 
 Exemplos práticos de erros reais encontrados em um sistema gerado com **Figma Make** e **Antigravity** (usando Gemini 3 Flash), junto com suas respectivas correções sugeridas pelo `A11Y.md` atuando como revisor automatizado.
 

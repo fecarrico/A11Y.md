@@ -9,6 +9,9 @@
   [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
   [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
+  
+  <br/>
+  <a href="https://v0-projecta11y.vercel.app/">🌐 Official Website</a> | <a href="https://felipearriadacarrio340730.substack.com/p/a11ymd-accessibility-before-any-prompt">📖 Read the Manifesto (Substack)</a>
 </div>
 
 <br/>
@@ -24,9 +27,8 @@ By adopting the mental model of Anthropic's **`CLAUDE.md`**—which acts as a sy
 
 Reading about accessibility is the first step, injecting it into your code is the real goal. Do this **right now** in your project:
 
-1. **Download the Rules:** Copy the `A11Y.md` file from `docs/en/` to the root of your application's repository.
-2. **Inject into the Prompt:** If you use Cursor, GitHub Copilot, or Claude, add this to your global rules file (`.cursorrules` or Context system):
-   > _"Strictly follow the development rules defined in the A11Y.md file."_
+1. **Download the Standard:** Copy the `A11Y.md` file from `docs/en/` to `docs/en/` in your application's repository.
+2. **Setup your AI:** Read the [**Setup Guide (`SETUP.md`)**](docs/en/SETUP.md) for instructions on how to configure Cursor, Copilot, Claude, or Gemini to strictly follow the rules.
 3. **Use as a Quality Gate:** Before merging important PRs, use the checklist in `docs/en/templates/REPORT.md`.
 
 _If you do not perform the steps above, you are not changing your workflow — you are just reading about the subject._
@@ -85,10 +87,10 @@ Where the Severity Matrix, the behavioral framework for AIs, strict SPA rules, a
 
 The "Deep Web" of solutions. Quick engineering guides so you don't reinvent the wheel:
 
-- 🎨 **UX and Perception:** [Building Logical Contrast](docs/en/references/visual-perception.md)
-- 🧩 **Interactive UI:** [Forms Anatomy](docs/en/references/examples-forms.md) | [Actions and Buttons](docs/en/references/examples-buttons.md)
-- 🗺️ **Flows and Timing:** [Critical Images](docs/en/references/examples-images.md) | [Keyboard Navigation](docs/en/references/examples-navigation.md) | [Real-Time Readings](docs/en/references/examples-content-interaction.md) | [Modal Management](docs/en/references/examples-modals.md)
-- 🏢 **Governance:** [Agnostic Release Strategy](docs/en/references/governance.md)
+- 🎨 **UX and Perception:** [Building Logical Contrast](docs/en/references/guide-visual-perception.md)
+- 🧩 **Interactive UI:** [Forms Anatomy](docs/en/references/guide-forms.md) | [Actions and Buttons](docs/en/references/guide-buttons.md)
+- 🗺️ **Flows and Timing:** [Critical Images](docs/en/references/guide-images.md) | [Keyboard Navigation](docs/en/references/guide-navigation.md) | [Real-Time Readings](docs/en/references/guide-content-interaction.md) | [Modal Management](docs/en/references/guide-modals.md)
+- 🏢 **Governance:** [Agnostic Release Strategy](docs/en/references/guide-governance.md)
 
 ### 3. 🛠️ [Templates (`templates/`)](docs/en/templates/)
 
@@ -97,7 +99,7 @@ Fallback models and completion guarantees (Definition of Done):
 - [**📋 `REPORT.md`**](docs/en/templates/REPORT.md): Final checklist for Sprint/Feature.
 - [**🛑 `EXCEPTIONS.md`**](docs/en/templates/EXCEPTIONS.md): Structured log of technical debt containing alternative paths.
 
-### 4. 📝 [Examples (`EXAMPLES.md`)](docs/en/EXAMPLES.md)
+### 4. 📝 [Examples (`showcase4humans.md`)](docs/en/showcase4humans.md)
 
 Practical examples of real errors found in a system generated with **Figma Make** and **Antigravity** (using Gemini 3 Flash), along with their respective corrections suggested by `A11Y.md` acting as an automated reviewer.
 
