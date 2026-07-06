@@ -14,7 +14,7 @@
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
   
   <br/>
-  <a href="https://github.com/fecarrico/A11Y.md/wiki">📖 Leia a Wiki Oficial</a> | <a href="https://v0-projecta11y.vercel.app/">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310">📝 Leia o Manifesto (Medium)</a>
+  <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Leia a Wiki Oficial</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310" target="_blank">📝 Leia o Manifesto (Medium)</a>
 </div>
 
 <br/>
@@ -43,7 +43,7 @@ Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetiv
    > *"Ao desenvolver o frontend, siga estritamente as regras de desenvolvimento definidas no arquivo A11Y.md."*
 3. **Defina o Perfil:** A IA perguntará proativamente qual Compliance Profile (Shield, Standard ou Launchpad) ela deve usar, caso você não tenha especificado.
 
-👉 **[Leia o guia completo de Setup e Integração na nossa Wiki.](https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration)**
+👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Leia o guia completo de Setup e Integração na nossa Wiki.</a>**
 
 ---
 
@@ -51,7 +51,7 @@ Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetiv
 
 A arquitetura completa, protocolos e exemplos práticos estão profundamente documentados na nossa Wiki no GitHub (em Inglês).
 
-**[🔗 Visite a Wiki do A11Y.md](https://github.com/fecarrico/A11Y.md/wiki)**
+**<a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">🔗 Visite a Wiki do A11Y.md</a>**
 
 Lá dentro você encontrará:
 - **O Command Center:** Como o arquivo principal A11Y.md funciona.
@@ -106,5 +106,5 @@ O objetivo deste projeto é ser uma arquitetura viva. Ele depende da comunidade 
   
   <p>Construído a partir da premissa de que a eficiência da inteligência artificial deve, invariavelmente, atuar como alavanca e destruidor de barreiras tanto no mundo físico quanto no digital.</p>
   
-  <a href="https://linkedin.com/in/fecarrico">LinkedIn</a> | <a href="https://medium.com/@carrico">Medium</a>
+  <a href="https://linkedin.com/in/fecarrico" target="_blank">LinkedIn</a> | <a href="https://medium.com/@carrico" target="_blank">Medium</a>
 </div>

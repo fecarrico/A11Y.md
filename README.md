@@ -11,7 +11,7 @@
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
   
   <br/>
-  <a href="https://github.com/fecarrico/A11Y.md/wiki">📖 Read the Official Wiki</a> | <a href="https://v0-projecta11y.vercel.app/">🌐 Official Website</a> | <a href="https://felipearriadacarrio340730.substack.com/p/a11ymd-accessibility-accessibility-before-any-prompt">📝 Read the Manifesto (Substack)</a>
+  <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Read the Official Wiki</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Official Website</a> | <a href="https://open.substack.com/pub/felipearriadacarrio340730/p/a11ymd-accessibility-before-any-prompt" target="_blank">📝 Read the Manifesto (Substack)</a>
 </div>
 
 <br/>
@@ -40,7 +40,7 @@ Reading about accessibility is the first step, injecting it into your code is th
    > *"When developing the frontend, follow strictly the development rules defined in the A11Y.md file."*
 3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.
 
-👉 **[Read the full Setup and Integration guide on our Wiki.](https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration)**
+👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Read the full Setup and Integration guide on our Wiki.</a>**
 
 ---
 
@@ -48,7 +48,7 @@ Reading about accessibility is the first step, injecting it into your code is th
 
 The complete architecture, protocols, and practical examples are thoroughly documented in our GitHub Wiki. 
 
-**[🔗 Visit the A11Y.md Wiki](https://github.com/fecarrico/A11Y.md/wiki)**
+**<a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">🔗 Visit the A11Y.md Wiki</a>**
 
 Inside, you will find:
 - **The Command Center:** How the core `A11Y.md` file works.
@@ -103,5 +103,5 @@ The goal of this project is to be a living, breathing architecture. It relies on
   
   <p>Built upon the premise that the efficiency of artificial intelligence must, invariably, act as a lever and barrier destroyer in both the physical and digital worlds.</p>
   
-  <a href="https://linkedin.com/in/fecarrico">LinkedIn</a> | <a href="https://medium.com/@carrico">Medium</a>
+  <a href="https://linkedin.com/in/fecarrico" target="_blank">LinkedIn</a> | <a href="https://medium.com/@carrico" target="_blank">Medium</a>
 </div>
