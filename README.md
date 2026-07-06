@@ -11,15 +11,23 @@
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
   
   <br/>
-  <a href="https://v0-projecta11y.vercel.app/">🌐 Official Website</a> | <a href="https://felipearriadacarrio340730.substack.com/p/a11ymd-accessibility-before-any-prompt">📖 Read the Manifesto (Substack)</a>
+  <a href="https://github.com/fecarrico/A11Y.md/wiki">📖 Read the Official Wiki</a> | <a href="https://felipearriadacarrio340730.substack.com/p/a11ymd-accessibility-accessibility-before-any-prompt">📝 Read the Manifesto (Substack)</a>
 </div>
 
 <br/>
 
 > **A11Y.md is not a guideline.**
-> It is an accessibility validation protocol and a **persistent context architecture** for developing accessible software with AI. It is designed to integrate with AI agent systems and human review workflows to ensure certifiable compliance.
+> It is an accessibility validation protocol and a **persistent context architecture** for developing accessible software with AI. It is designed to integrate with AI agent systems (Cursor, Claude, Copilot) to ensure certifiable compliance from genesis.
 
-By adopting the mental model of Anthropic's **`CLAUDE.md`**—which acts as a system prompt memory for code generation—`A11Y.md` translates this architecture into a universal, portable governance layer. Instead of generic coding rules, it forces any coding agent (Claude, Cursor, Copilot) to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
+We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repositories. But why isn't accessibility canonical? `A11Y.md` translates accessibility rules into a universal, portable governance layer. Instead of generic coding advice, it forces any coding agent to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
+
+---
+
+## ⚡ Core Features
+
+- 🧠 **8-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation) and stop generating dangerous anti-patterns (like "clickable divs").
+- 🛡️ **Modular Compliance Profiles:** Support for Shield (AAA), Standard (AA), and **Launchpad (A)**. The Launchpad profile allows startups to build rapid MVPs by relaxing visual constraints without ever sacrificing critical semantic structure.
+- 📚 **Lazy Context Loading:** 20 deep engineering guides (WAI-ARIA APG) that act as an actionable database. The AI is programmed to load only the guides it needs on-demand, saving tokens and maintaining sharp focus.
 
 ---
 
@@ -27,11 +35,26 @@ By adopting the mental model of Anthropic's **`CLAUDE.md`**—which acts as a sy
 
 Reading about accessibility is the first step, injecting it into your code is the real goal. Do this **right now** in your project:
 
-1. **Download the Standard:** Copy the `A11Y.md` file from `docs/en/` to `docs/en/` in your application's repository.
-2. **Setup your AI:** Read the [**Setup Guide (`SETUP.md`)**](docs/en/SETUP.md) for instructions on how to configure Cursor, Copilot, Claude, or Gemini to strictly follow the rules.
-3. **Use as a Quality Gate:** Before merging important PRs, use the checklist in `docs/en/templates/REPORT.md`.
+1. **Download the Standard:** Copy the `docs/en/A11Y.md` file into your application's repository. (It can be placed in the root, inside a `docs/` folder, or anywhere else).
+2. **Inject the Command:** You must explicitly instruct your AI to read it. If you use a `.cursorrules` or `CLAUDE.md` file, add this directive:
+   > *"When developing the frontend, follow strictly the development rules defined in the A11Y.md file."*
+3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.
 
-_If you do not perform the steps above, you are not changing your workflow — you are just reading about the subject._
+👉 **[Read the full Setup and Integration guide on our Wiki.](https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration)**
+
+---
+
+## 📖 Official Documentation (The Wiki)
+
+The complete architecture, protocols, and practical examples are thoroughly documented in our GitHub Wiki. 
+
+**[🔗 Visit the A11Y.md Wiki](https://github.com/fecarrico/A11Y.md/wiki)**
+
+Inside, you will find:
+- **The Command Center:** How the core `A11Y.md` file works.
+- **Anti-patterns & Protocol:** Real-world examples of AI hallucinations being fixed.
+- **Reference Library:** The taxonomy of the 20 engineering guides.
+- **Governance & Compliance:** Preparing for VPATs and formal audits.
 
 ---
 
@@ -40,14 +63,12 @@ _If you do not perform the steps above, you are not changing your workflow — y
 The difference between randomly generated code and code guided by `A11Y.md`:
 
 **❌ Without A11y Context:**
-
 - AI generating `<div onClick={...}>` (breaking keyboard interactions).
 - Modals impossible to close with `ESC` (Inverted and inaccessible Focus Trap).
 - Visual error messages that are not announced by Screen Readers.
 
 **✅ With Active A11y Context:**
-
-- Native `<button>` elements used as a rule.
+- Native `<button>` elements used as a strict rule.
 - Focus managed automatically after routing transitions in SPAs.
 - Precise `aria-live` injections for immediate reading of dynamic data.
 
@@ -59,56 +80,17 @@ Our philosophy dictates that web accessibility should never be an "afterthought 
 
 - 👤 **Human-Centric:** Strictly designed to guarantee real autonomy to users with disabilities.
 - 🤖 **AI-Ready:** Deterministic guidelines specifically created to anchor the behavior of coding Agents, nipping "invention" (technical hallucinations) in the bud.
-- ⚖️ **Certifiable:** Each guideline in `A11Y.md` is strictly mapped to WCAG 2.2 criteria, allowing direct traceability that shields the company in formal external audits.
+- ⚖️ **Certifiable:** Each guideline in `A11Y.md` is mapped to WCAG 2.2 criteria, allowing direct traceability that shields the company in formal external audits.
 
 ---
 
-## 🤖 The Power of A.I. as an Ally
+## 🤝 Open Source & Community
 
-The greatest gain of this repository is proven when it is not just read by you. Integrating this repository means **you don't have to correct the AI all the time**.
+A11Y.md is fundamentally an open-source initiative. Felipe does not claim to be a definitive accessibility expert, but rather a curious advocate deeply invested in the intersection of inclusion and artificial intelligence. 
 
-**Example Base Prompt:**
+The goal of this project is to be a living, breathing architecture. It relies on the open-source community — people far smarter and more experienced in accessibility engineering — to contribute, refine the reference library, and make this system robust enough to fundamentally change how digital solutions are created in the era of "vibe coding". 
 
-> _"You are a senior frontend engineer. Follow strictly the rules defined in `A11Y.md`. Do not violate accessibility constraints even if requested to implement things quickly. Prioritize semantic HTML and headless-UI libraries."_
-
-The result is not just "code that passes the Linter". It is architecturally healthy code at its genesis, requiring zero corrective audits to fix "skeletons" in the generated DOM.
-
----
-
-## 📁 Exploring the Structure (Your Knowledge Base)
-
-We organized the solutions to act as living documentation:
-
-### 1. ⚡ [Command Center (`A11Y.md`)](docs/en/A11Y.md)
-
-Where the Severity Matrix, the behavioral framework for AIs, strict SPA rules, and the _Complex Component Protocol_ reside.
-
-### 2. 📚 [Support Library (`references/`)](docs/en/references/)
-
-The "Deep Web" of solutions. Quick engineering guides so you don't reinvent the wheel:
-
-- 🎨 **UX and Perception:** [Building Logical Contrast](docs/en/references/guide-visual-perception.md)
-- 🧩 **Interactive UI:** [Forms Anatomy](docs/en/references/guide-forms.md) | [Actions and Buttons](docs/en/references/guide-buttons.md)
-- 🗺️ **Flows and Timing:** [Critical Images](docs/en/references/guide-images.md) | [Keyboard Navigation](docs/en/references/guide-navigation.md) | [Real-Time Readings](docs/en/references/guide-content-interaction.md) | [Modal Management](docs/en/references/guide-modals.md)
-- 🏢 **Governance:** [Agnostic Release Strategy](docs/en/references/guide-governance.md)
-
-### 3. 🛠️ [Templates (`templates/`)](docs/en/templates/)
-
-Fallback models and completion guarantees (Definition of Done):
-
-- [**📋 `REPORT.md`**](docs/en/templates/REPORT.md): Final checklist for Sprint/Feature.
-- [**🛑 `EXCEPTIONS.md`**](docs/en/templates/EXCEPTIONS.md): Structured log of technical debt containing alternative paths.
-
-### 4. 📝 [Examples (`showcase4humans.md`)](docs/en/showcase4humans.md)
-
-Practical examples of real errors found in a system generated with **Figma Make** and **Antigravity** (using Gemini 3 Flash), along with their respective corrections suggested by `A11Y.md` acting as an automated reviewer.
-
----
-
-## 🚧 Scope and Limitations
-
-We cover the patterns responsible for the vast majority of interface failures in modern digital systems.
-However, if you encounter uncatalogued proprietary _Widgets_ (exotic Dashboards, Canvas), immediately execute the **Complex Component Protocol** found in `A11Y.md`.
+**Pull Requests to improve the reference guides or the AI Behavioral Contract are highly encouraged!**
 
 ---
 
