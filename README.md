@@ -35,7 +35,7 @@ We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repo
 
 Reading about accessibility is the first step, injecting it into your code is the real goal. Do this **right now** in your project:
 
-1. **Download the Standard:** Copy the `docs/en/A11Y.md` file into your application's repository. (It can be placed in the root, inside a `docs/` folder, or anywhere else).
+1. **Download the Standard:** Copy the `docs/en/A11Y.md` file into your application's repository. (It can be placed in the root, inside a `docs/` folder, or anywhere else). Optionally, also copy the `references/` and `templates/` folders next to it to keep the deep-dive guides available offline; if you skip them, the AI falls back to the guides in this repository via their upstream URLs.
 2. **Inject the Command:** You must explicitly instruct your AI to read it. If you use a `.cursorrules` or `CLAUDE.md` file, add this directive:
    > *"When developing the frontend, follow strictly the development rules defined in the A11Y.md file."*
 3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.

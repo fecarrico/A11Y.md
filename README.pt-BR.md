@@ -38,7 +38,7 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 
 Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetivo real. Faça isto **agora** no seu projeto:
 
-1. **Baixe o Padrão:** Copie o arquivo `docs/pt-BR/A11Y.md` para o repositório da sua aplicação. (Ele pode ser colocado na raiz, dentro de uma pasta `docs/`, ou em qualquer outro lugar).
+1. **Baixe o Padrão:** Copie o arquivo `docs/pt-BR/A11Y.md` para o repositório da sua aplicação. (Ele pode ser colocado na raiz, dentro de uma pasta `docs/`, ou em qualquer outro lugar). Opcionalmente, copie também as pastas `references/` e `templates/` junto dele para manter os guias detalhados disponíveis offline; se você não copiá-las, a IA usa como fallback os guias deste repositório via URLs upstream.
 2. **Injete o Comando:** Você precisa instruir explicitamente a sua IA a lê-lo. Se você usa um arquivo `.cursorrules` ou `CLAUDE.md`, adicione esta diretiva:
    > *"Ao desenvolver o frontend, siga estritamente as regras de desenvolvimento definidas no arquivo A11Y.md."*
 3. **Defina o Perfil:** A IA perguntará proativamente qual Compliance Profile (Shield, Standard ou Launchpad) ela deve usar, caso você não tenha especificado.
