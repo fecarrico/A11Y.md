@@ -19,15 +19,15 @@
 > **A11Y.md is not a guideline.**
 > It is an accessibility validation protocol and a **persistent context architecture** for developing accessible software with AI. It is designed to integrate with AI agent systems (Cursor, Claude, Copilot) to ensure certifiable compliance from genesis.
 
-We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repositories. But why isn't accessibility canonical? `A11Y.md` translates accessibility rules into a universal, portable governance layer. Instead of generic coding advice, it forces any coding agent to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
+We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repositories. But why isn't accessibility canonical? `A11Y.md` translates accessibility rules into a portable governance layer: a **platform-agnostic normative core** (POUR, compliance profiles, severity, governance) with **mature web references** and a **native translation layer** (iOS, Android, React Native, Flutter). Instead of generic coding advice, it forces any coding agent to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
 
 ---
 
 ## ⚡ Core Features
 
-- 🧠 **8-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation) and stop generating dangerous anti-patterns (like "clickable divs").
-- 🛡️ **Modular Compliance Profiles:** Support for Shield (AAA), Standard (AA), and **Launchpad (A)**. The Launchpad profile allows startups to build rapid MVPs by relaxing visual constraints without ever sacrificing critical semantic structure.
-- 📚 **Lazy Context Loading:** 20 deep engineering guides (WAI-ARIA APG) that act as an actionable database. The AI is programmed to load only the guides it needs on-demand, saving tokens and maintaining sharp focus.
+- 🧠 **11-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation, Platform Awareness), reuse the project's existing components instead of recreating them (Component Reuse + Decision Memory), and stop generating dangerous anti-patterns (like "clickable divs").
+- 🛡️ **Modular Compliance Profiles:** Support for Shield (AAA), Standard (AA), and **Launchpad (A)** — each separating what WCAG actually requires (cited by Success Criterion) from this standard's stricter **House Rules**. The Launchpad profile allows startups to build rapid MVPs by relaxing visual constraints without ever sacrificing critical semantic structure.
+- 📚 **Lazy Context Loading:** 21 reference guides (WAI-ARIA APG) that act as an actionable database. The AI is programmed to load only the guides it needs on-demand, saving tokens and maintaining sharp focus.
 
 ---
 
@@ -35,9 +35,11 @@ We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repo
 
 Reading about accessibility is the first step, injecting it into your code is the real goal. Do this **right now** in your project:
 
-1. **Download the Standard:** Copy the `docs/en/A11Y.md` file into your application's repository. (It can be placed in the root, inside a `docs/` folder, or anywhere else). Optionally, also copy the `references/` and `templates/` folders next to it to keep the deep-dive guides available offline; if you skip them, the AI falls back to the guides in this repository via their upstream URLs.
-2. **Inject the Command:** You must explicitly instruct your AI to read it. If you use a `.cursorrules` or `CLAUDE.md` file, add this directive:
-   > *"When developing the frontend, follow strictly the development rules defined in the A11Y.md file."*
+1. **Point your AI to the Standard:** Add **one rule** to your agent's configuration file (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`…):
+   > *"When developing the frontend, follow strictly the accessibility rules defined in A11Y.md: https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md"*
+
+   That's it — no files copied. The AI reads the core file and lazy-loads only the reference guides it needs, always up to date. (Prefer Portuguese? Point to `docs/pt-BR/A11Y.md` instead.)
+2. **Prefer an offline or pinned copy?** Copy `docs/en/A11Y.md` into your repository (root, `docs/`, anywhere) — optionally with the `references/` and `templates/` folders — and point the rule at the local path. If you copy only the core file, the AI falls back to this repository's guides via their upstream URLs.
 3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Read the full Setup and Integration guide on our Wiki.</a>**
@@ -53,7 +55,7 @@ The complete architecture, protocols, and practical examples are thoroughly docu
 Inside, you will find:
 - **The Command Center:** How the core `A11Y.md` file works.
 - **Anti-patterns & Protocol:** Real-world examples of AI hallucinations being fixed.
-- **Reference Library:** The taxonomy of the 20 engineering guides.
+- **Reference Library:** The taxonomy of the 21 engineering guides.
 - **Governance & Compliance:** Preparing for VPATs and formal audits.
 
 ---

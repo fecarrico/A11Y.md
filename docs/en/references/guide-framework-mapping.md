@@ -6,6 +6,9 @@ The `A11Y.md` standard uses **React/TSX** syntax for its examples due to its ubi
 
 When an AI agent generates or reviews code, it **MUST transpose** these patterns into the active framework of the project while preserving semantic equivalence.
 
+> [!IMPORTANT]
+> **Scope: web frameworks only.** ARIA attributes and DOM events do not exist on native platforms. For iOS, Android, React Native, or Flutter targets, use the [Platform-Native Mapping](guide-platform-native.md) guide instead — transposing ARIA to native code is a violation of the *Platform Awareness* contract rule.
+
 ## Core Translation Rules
 
 1. **Native over Custom:** Always prefer the framework's native implementation of a semantic element over building one from scratch.

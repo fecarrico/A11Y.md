@@ -6,6 +6,9 @@ O padrão `A11Y.md` usa a sintaxe **React/TSX** em seus exemplos devido à sua p
 
 Quando um agente de IA gera ou revisa código, ele **MUST transpor** esses padrões para o framework ativo do projeto, preservando a equivalência semântica.
 
+> [!IMPORTANT]
+> **Escopo: apenas frameworks web.** Atributos ARIA e eventos de DOM não existem em plataformas nativas. Para alvos iOS, Android, React Native ou Flutter, use o guia [Platform-Native Mapping](guide-platform-native.md) — transpor ARIA para código nativo é uma violação da regra *Platform Awareness* do contrato.
+
 ## Regras Centrais de Tradução
 
 1. **Nativo sobre Customizado:** Sempre prefira a implementação nativa do framework para um elemento semântico em vez de construir um do zero.

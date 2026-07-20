@@ -37,4 +37,4 @@
 
 ## Implicações de Acessibilidade
 - **Affordance:** Botões visualmente distintos ajudam usuários com deficiências cognitivas a identificar pontos de interação.
-- **Precisão:** Áreas de clique grandes (Target Size min 44x44px) são essenciais para usuários mobile e pessoas com deficiências motoras.
+- **Precisão:** Projete áreas de clique de **44x44px** (Regra da Casa — Apple HIG/Material; o piso WCAG AA é 24×24, SC 2.5.8): essenciais para usuários mobile e pessoas com deficiências motoras.

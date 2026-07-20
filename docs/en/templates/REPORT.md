@@ -31,7 +31,7 @@ Critical functional paths and Screen Reader validation.
 Tests validating contrast and visual structure (color-independent).
 - [ ] **Text & UI Contrast:** Do all texts have a 4.5:1 ratio and essential components 3:1?
 - [ ] **Redundancy:** Errors and alerts do not convey information exclusively through color *(e.g., they always use Color + Icon + Text)*.
-- [ ] **Scale / Zoom:** When zooming in by 400%, does everything remain operable without blockages (screen overrides)?
+- [ ] **Scale / Zoom:** Text resized to 200% without loss (SC 1.4.4) and content reflowed at 320 CSS px — ≈400% zoom on a 1280px viewport (SC 1.4.10) — with everything operable and no two-dimensional scrolling?
 
 ---
 ## 📝 Assessment Notes or Known Blockers

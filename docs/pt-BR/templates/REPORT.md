@@ -31,7 +31,7 @@ Caminhos críticos da funcionalidade e validação via Leitores de Tela.
 Testes que validam contraste e estrutura visual (sem dependência de cores).
 - [ ] **Contraste de Texto & UI:** Todos os textos possuem ratio 4.5:1 e componentes essenciais 3:1?
 - [ ] **Redundância:** Erros e alertas não comunicam informações exclusivas por meio de cores *(ex: sempre usam Cor + Ícone + Texto)*.
-- [ ] **Scale / Zoom:** Ao ampliar a tela em 400%, tudo continuou operável e sem bloqueios (overrides de tela)?
+- [ ] **Scale / Zoom:** Texto redimensionado a 200% sem perda (SC 1.4.4) e conteúdo em reflow a 320 CSS px — ≈400% de zoom num viewport de 1280px (SC 1.4.10) — com tudo operável e sem rolagem bidimensional?
 
 ---
 ## 📝 Notas de Avaliação ou Bloqueios Conhecidos

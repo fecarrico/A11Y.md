@@ -37,4 +37,4 @@
 
 ## Accessibility Implications
 - **Affordance:** Visually distinctive buttons help users with cognitive impairments identify interaction points.
-- **Precision:** Large tap targets (min 44x44px) are essential for mobile users and those with motor impairments.
+- **Precision:** Design tap targets to **44x44px** (House Rule — Apple HIG/Material; the WCAG AA floor is 24×24, SC 2.5.8): essential for mobile users and those with motor impairments.
