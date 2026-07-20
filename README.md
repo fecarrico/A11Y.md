@@ -57,6 +57,7 @@ Inside, you will find:
 - **The Command Center:** How the core `A11Y.md` file works.
 - **Anti-patterns & Protocol:** Real-world examples of AI hallucinations being fixed.
 - **Reference Library:** The taxonomy of the 21 engineering guides.
+- **Evidence & Research:** The field data the standard responds to — published benchmarks and studies, with sources.
 - **Governance & Compliance:** Preparing for VPATs and formal audits.
 
 ---
