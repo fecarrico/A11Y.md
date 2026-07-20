@@ -3,12 +3,13 @@
 <div align="center">
   <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
   <br/><br/>
-  <h1>♿ Project A11Y.md</h1>
+  <h1>Project A11Y.md</h1>
   <p><b>The Persistent Context System for Accessibility</b></p>
   
   [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
   [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
+  [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
   
   <br/>
   <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Read the Official Wiki</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Official Website</a> | <a href="https://open.substack.com/pub/felipearriadacarrio340730/p/a11ymd-accessibility-before-any-prompt" target="_blank">📝 Read the Manifesto (Substack)</a>
@@ -88,7 +89,9 @@ Our philosophy dictates that web accessibility should never be an "afterthought 
 
 ## 🤝 Open Source & Community
 
-A11Y.md is fundamentally an open-source initiative. Felipe does not claim to be a definitive accessibility expert, but rather a curious advocate deeply invested in the intersection of inclusion and artificial intelligence. 
+A11Y.md is fundamentally an open-source initiative. In July 2026, the project was selected for **Anthropic's Claude for Open Source** program, which supports open-source maintainers worldwide.
+
+Felipe does not claim to be a definitive accessibility expert, but rather a curious advocate deeply invested in the intersection of inclusion and artificial intelligence. 
 
 The goal of this project is to be a living, breathing architecture. It relies on the open-source community — people far smarter and more experienced in accessibility engineering — to contribute, refine the reference library, and make this system robust enough to fundamentally change how digital solutions are created in the era of "vibe coding". 
 

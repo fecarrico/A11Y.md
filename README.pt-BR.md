@@ -6,12 +6,13 @@
 <div align="center">
   <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
   <br/><br/>
-  <h1>♿ Project A11Y.md</h1>
+  <h1>Project A11Y.md</h1>
   <p><b>O Sistema de Contexto Persistente para Acessibilidade</b></p>
   
   [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
   [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
+  [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
   
   <br/>
   <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Leia a Wiki Oficial</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310" target="_blank">📝 Leia o Manifesto (Medium)</a>
@@ -91,7 +92,9 @@ Nossa filosofia determina que a acessibilidade web nunca deve ser um "polimento 
 
 ## 🤝 Open Source & Comunidade
 
-O A11Y.md é fundamentalmente uma iniciativa open-source. Não me coloco como o dono da verdade absoluta em acessibilidade, mas sim como um entusiasta tentando cruzar a ponte entre Inclusão e Inteligência Artificial.
+O A11Y.md é fundamentalmente uma iniciativa open-source. Em julho de 2026, o projeto foi selecionado para o programa **Claude for Open Source, da Anthropic**, que apoia mantenedores open-source no mundo todo.
+
+Não me coloco como o dono da verdade absoluta em acessibilidade, mas sim como um entusiasta tentando cruzar a ponte entre Inclusão e Inteligência Artificial.
 
 O objetivo deste projeto é ser uma arquitetura viva. Ele depende da comunidade open-source — pessoas muito mais inteligentes e experientes em engenharia de acessibilidade — para contribuir, refinar a biblioteca de referências e tornar esse sistema robusto o suficiente para mudar como soluções digitais são criadas na era do "vibe coding".
 
