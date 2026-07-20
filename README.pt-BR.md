@@ -6,12 +6,13 @@
 <div align="center">
   <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
   <br/><br/>
-  <h1>♿ Project A11Y.md</h1>
+  <h1>Project A11Y.md</h1>
   <p><b>O Sistema de Contexto Persistente para Acessibilidade</b></p>
   
   [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
   [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
   [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
+  [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
   
   <br/>
   <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Leia a Wiki Oficial</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310" target="_blank">📝 Leia o Manifesto (Medium)</a>
@@ -22,15 +23,15 @@
 > **O A11Y.md não é um guia de boas práticas.**
 > Ele é um protocolo de validação de acessibilidade e uma **arquitetura de contexto persistente** para o desenvolvimento de softwares guiado por IA. Foi concebido para integrar-se com agentes autônomos (Cursor, Claude, Copilot) garantindo conformidade certificável desde a origem.
 
-Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades canônicas nos nossos repositórios. Mas por que a acessibilidade não é canônica? O `A11Y.md` traduz as regras de acessibilidade para uma camada de governança universal. Em vez de regras genéricas, ele força qualquer agente a aderir estritamente às normas WCAG 2.2 AA e ADA desde a primeira linha de código gerada.
+Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades canônicas nos nossos repositórios. Mas por que a acessibilidade não é canônica? O `A11Y.md` traduz as regras de acessibilidade para uma camada de governança portátil: um **núcleo normativo agnóstico de plataforma** (POUR, perfis de conformidade, severidade, governança) com **referências web maduras** e uma **camada de tradução nativa** (iOS, Android, React Native, Flutter). Em vez de regras genéricas, ele força qualquer agente a aderir estritamente às normas WCAG 2.2 AA e ADA desde a primeira linha de código gerada.
 
 ---
 
 ## ⚡ Core Features (Inovações)
 
-- 🧠 **Contrato Comportamental da IA (8 Regras):** Restrições determinísticas que forçam a IA a atuar como uma tradutora semântica entre frameworks e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
-- 🛡️ **Compliance Profiles Modulares:** Suporte aos perfis Shield (AAA), Standard (AA) e **Launchpad (A)**. O perfil Launchpad permite que startups construam MVPs rápidos relaxando regras visuais cosméticas, sem nunca sacrificar a estrutura semântica crítica.
-- 📚 **Lazy Context Loading:** 20 guias profundos de engenharia (WAI-ARIA APG). A IA é programada para carregar apenas os guias necessários sob demanda, economizando tokens e mantendo o foco afiado.
+- 🧠 **Contrato Comportamental da IA (11 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
+- 🛡️ **Compliance Profiles Modulares:** Suporte aos perfis Shield (AAA), Standard (AA) e **Launchpad (A)** — cada um separando o que a WCAG realmente exige (citado por Critério de Sucesso) das **Regras da Casa** mais estritas deste padrão. O perfil Launchpad permite que startups construam MVPs rápidos relaxando regras visuais cosméticas, sem nunca sacrificar a estrutura semântica crítica.
+- 📚 **Lazy Context Loading:** 21 guias de referência (WAI-ARIA APG). A IA é programada para carregar apenas os guias necessários sob demanda, economizando tokens e mantendo o foco afiado.
 
 ---
 
@@ -38,9 +39,11 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 
 Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetivo real. Faça isto **agora** no seu projeto:
 
-1. **Baixe o Padrão:** Copie o arquivo `docs/pt-BR/A11Y.md` para o repositório da sua aplicação. (Ele pode ser colocado na raiz, dentro de uma pasta `docs/`, ou em qualquer outro lugar). Opcionalmente, copie também as pastas `references/` e `templates/` junto dele para manter os guias detalhados disponíveis offline; se você não copiá-las, a IA usa como fallback os guias deste repositório via URLs upstream.
-2. **Injete o Comando:** Você precisa instruir explicitamente a sua IA a lê-lo. Se você usa um arquivo `.cursorrules` ou `CLAUDE.md`, adicione esta diretiva:
-   > *"Ao desenvolver o frontend, siga estritamente as regras de desenvolvimento definidas no arquivo A11Y.md."*
+1. **Aponte sua IA para o Padrão:** Adicione **uma regra** ao arquivo de configuração do seu agente (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`…):
+   > *"Ao desenvolver o frontend, siga estritamente as regras de acessibilidade definidas no A11Y.md: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md"*
+
+   Só isso — nenhum arquivo copiado. A IA lê o arquivo núcleo e carrega sob demanda apenas os guias de referência necessários, sempre atualizados. (Prefere inglês? Aponte para `docs/en/A11Y.md`.)
+2. **Prefere uma cópia offline ou fixada?** Copie o `docs/pt-BR/A11Y.md` para o seu repositório (raiz, `docs/`, onde quiser) — opcionalmente com as pastas `references/` e `templates/` — e aponte a regra para o caminho local. Se copiar só o arquivo núcleo, a IA usa como fallback os guias deste repositório via URLs upstream.
 3. **Defina o Perfil:** A IA perguntará proativamente qual Compliance Profile (Shield, Standard ou Launchpad) ela deve usar, caso você não tenha especificado.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Leia o guia completo de Setup e Integração na nossa Wiki.</a>**
@@ -56,7 +59,8 @@ A arquitetura completa, protocolos e exemplos práticos estão profundamente doc
 Lá dentro você encontrará:
 - **O Command Center:** Como o arquivo principal A11Y.md funciona.
 - **Anti-patterns & Protocol:** Casos reais de alucinações de IA sendo corrigidas nativamente.
-- **Reference Library:** A taxonomia dos 20 guias de engenharia.
+- **Reference Library:** A taxonomia dos 21 guias de engenharia.
+- **Evidence & Research:** Os dados de campo aos quais o padrão responde — benchmarks e estudos publicados, com fontes.
 - **Governança & Compliance:** Preparação técnica para auditorias formais.
 
 ---
@@ -89,7 +93,9 @@ Nossa filosofia determina que a acessibilidade web nunca deve ser um "polimento 
 
 ## 🤝 Open Source & Comunidade
 
-O A11Y.md é fundamentalmente uma iniciativa open-source. Não me coloco como o dono da verdade absoluta em acessibilidade, mas sim como um entusiasta tentando cruzar a ponte entre Inclusão e Inteligência Artificial.
+O A11Y.md é fundamentalmente uma iniciativa open-source. Em julho de 2026, o projeto foi selecionado para o programa **Claude for Open Source, da Anthropic**, que apoia mantenedores open-source no mundo todo.
+
+Não me coloco como o dono da verdade absoluta em acessibilidade, mas sim como um entusiasta tentando cruzar a ponte entre Inclusão e Inteligência Artificial.
 
 O objetivo deste projeto é ser uma arquitetura viva. Ele depende da comunidade open-source — pessoas muito mais inteligentes e experientes em engenharia de acessibilidade — para contribuir, refinar a biblioteca de referências e tornar esse sistema robusto o suficiente para mudar como soluções digitais são criadas na era do "vibe coding".
 
