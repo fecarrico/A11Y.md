@@ -12,7 +12,7 @@
   [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
   
   <br/>
-  <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Read the Official Wiki</a> | <a href="https://v0-projecta11y.vercel.app/" target="_blank">🌐 Official Website</a> | <a href="https://open.substack.com/pub/felipearriadacarrio340730/p/a11ymd-accessibility-before-any-prompt" target="_blank">📝 Read the Manifesto (Substack)</a>
+  <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Read the Official Wiki</a> | <a href="https://fecarrico.github.io/a11ymd/" target="_blank">🌐 Official Website</a> | <a href="https://open.substack.com/pub/felipearriadacarrio340730/p/a11ymd-accessibility-before-any-prompt" target="_blank">📝 Read the Manifesto (Substack)</a>
 </div>
 
 <br/>
