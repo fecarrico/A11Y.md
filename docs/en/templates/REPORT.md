@@ -2,6 +2,8 @@
 
 This report compiles the compliance evidence for a given *Feature*, ensuring its development reached the "Certification Ready" definition.
 
+> This report is a **versioned project record** — never add it to `.gitignore`. Evidence hidden from version control is not evidence: QA and leadership verify it before release, and audits read it after.
+
 ---
 
 ## 📌 Validation Context

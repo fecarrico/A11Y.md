@@ -10,6 +10,7 @@
 4. **Leia antes de construir:** antes de gerar qualquer componente interativo, consulte este registro e reutilize o padrão registrado (ver *Component Reuse* no AI Behavior Contract).
 5. **Nunca bifurque em silêncio:** se um requisito novo contradiz uma decisão registrada, pergunte ao usuário — não crie uma variante paralela.
 6. **Mantenha enxuto:** dezenas de linhas, não centenas. Este arquivo divide o orçamento de contexto com o Lazy Loading; se passar de ~40 entradas, consolide.
+7. **Versionado, nunca no gitignore:** esta é memória *compartilhada* — entre turnos, agentes e pessoas. Uma cópia local por dev bifurca os padrões e derrota o propósito inteiro do arquivo.
 
 ## Decisões
 

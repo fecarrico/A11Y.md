@@ -10,6 +10,7 @@
 4. **Read before building:** before generating any interactive component, check this log and reuse the recorded pattern (see *Component Reuse* in the AI Behavior Contract).
 5. **Never fork silently:** if a new requirement contradicts a recorded decision, ask the user — do not create a parallel variant.
 6. **Stay lean:** tens of lines, not hundreds. This file shares the context budget with Lazy Loading; if it grows past ~40 entries, consolidate.
+7. **Versioned, never gitignored:** this is *shared* memory — across turns, agents and developers. A local-only copy per developer forks the patterns and defeats the file's entire purpose.
 
 ## Decisions
 

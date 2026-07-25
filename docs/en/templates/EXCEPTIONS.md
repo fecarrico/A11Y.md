@@ -10,6 +10,7 @@ This document logs known deviations from accessibility standards (WCAG 2.2 AA / 
 > 3. Scope is the **narrowest practical**: one component/selector, never a whole rule.
 > 4. At expiry, the exception is reviewed: fixed and removed, or consciously renewed with a new date. **Never silently suppressed.**
 > 5. **AI duty:** in review mode, the AI MUST flag any exception past its expiry date as 🟠 HIGH technical debt.
+> 6. This log is a **versioned project record** — never add it to `.gitignore`. Exceptions must be visible in pull requests and auditable later; a risk record hidden from version control protects no one.
 
 ---
 

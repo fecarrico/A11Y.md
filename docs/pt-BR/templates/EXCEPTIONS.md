@@ -10,6 +10,7 @@ Este documento registra os desvios conhecidos em relação aos padrões de acess
 > 3. O escopo é o **mínimo praticável**: um componente/seletor, nunca uma regra inteira.
 > 4. Na expiração, a exceção é revisada: corrigida e removida, ou renovada conscientemente com nova data. **Nunca suprimida em silêncio.**
 > 5. **Dever da IA:** em modo revisão, a IA MUST sinalizar qualquer exceção vencida como débito técnico 🟠 HIGH.
+> 6. Este log é um **registro versionado do projeto** — nunca adicione ao `.gitignore`. Exceções precisam aparecer nos pull requests e ser auditáveis depois; registro de risco escondido do controle de versão não protege ninguém.
 
 ---
 

@@ -2,6 +2,8 @@
 
 Este relatório compila as evidências de conformidade para uma determinada *Feature*, garantindo que seu desenvolvimento atingiu a definição de "Certification Ready".
 
+> Este relatório é um **registro versionado do projeto** — nunca adicione ao `.gitignore`. Evidência escondida do controle de versão não é evidência: QA e liderança verificam antes do release, e auditorias leem depois.
+
 ---
 
 ## 📌 Contexto da Validação
