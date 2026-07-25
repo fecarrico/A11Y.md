@@ -5,6 +5,15 @@ All notable changes to the A11y Guidelines project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **ARIA Soup anti-pattern (Section 6):** named prohibition of decorative/redundant ARIA — no ARIA where native HTML provides the semantics, no redundant roles, no static never-updated ARIA states. Response to the WebAIM Million 2026 finding (133+ ARIA attributes per page, 6× since 2019, with more ARIA correlating with more errors).
+- **Benchmark pre-registration (`benchmark/`):** methodology and verbatim prompts for measuring whether A11Y.md reduces automatically detectable violations in AI-generated UI — published before any data collection.
+
+### Changed
+- **`templates/EXCEPTIONS.md`:** every exception now requires a **risk owner**, an **approver**, a **tracking issue** and an **expiry date**, at the narrowest practical scope; in review mode the AI flags expired exceptions as 🟠 HIGH technical debt. An exception is temporary and is never silently suppressed.
+
 ## [1.1.0] - 2026-07-20
 
 ### Added
