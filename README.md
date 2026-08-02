@@ -45,6 +45,8 @@ Reading about accessibility is the first step, injecting it into your code is th
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Read the full Setup and Integration guide on our Wiki.</a>**
 
+> **A11Y.md is portable markdown, and stays that way.** It has to work for anyone whose agent can read a file — no runtime, no install, no build step. The optional scripts in [`tools/`](./tools) are a convenience for teams that want a CI gate; running them is never a requirement of the standard.
+
 ---
 
 ## 📖 Official Documentation (The Wiki)

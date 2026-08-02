@@ -2,7 +2,15 @@
 
 Two dependency-free Python scripts. Both are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
 
+> [!IMPORTANT]
+> **These scripts are not part of the standard.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. Nothing in the normative core requires running these — and nothing ever should. They are a convenience for teams that want CI enforcement.
+
+> [!WARNING]
+> **Experimental (v0).** First release, exercised against fixtures and this repository — not against a wide range of real projects. A false positive in your pipeline is worse than no gate at all, so start with `--warn-only`, and please [open an issue](https://github.com/fecarrico/A11Y.md/issues) for anything it gets wrong. Bug reports are the fastest way to make it trustworthy.
+
 > **Neither script establishes conformance.** Automated tooling detects only a fraction of real barriers. These check what a regex and a date comparison can check; the human checkpoints in `REPORT.md` are what establish the rest.
+
+**Requirements:** Python 3.9+, standard library only — no `pip install`, no `package.json`. Python is preinstalled on macOS, most Linux distributions and virtually every CI runner. A Node port may follow if adoption shows real friction; until then, this is a deliberate choice for zero dependencies over toolchain familiarity.
 
 ---
 
@@ -23,14 +31,16 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 
 Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report without failing the build while a team adopts the standard.
 
-**GitHub Actions:**
+**GitHub Actions** — pin to a tag, never to `main`: this is executable code, and a moving branch is a supply-chain risk. Bump the tag deliberately, the same way you would any other dependency.
 
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/verify-a11y.py
-    python3 verify-a11y.py . --src src
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.2.0/tools/verify-a11y.py
+    python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
+
+Vendoring the script into your repository is equally valid, and gives you a reviewable diff when you upgrade.
 
 ## `lint-standard.py` — for maintaining the standard itself
 

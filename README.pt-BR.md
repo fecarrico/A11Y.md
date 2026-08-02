@@ -50,6 +50,10 @@ Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetiv
 
 ---
 
+> **O A11Y.md é markdown portátil, e continua sendo.** Ele precisa funcionar para qualquer pessoa cujo agente saiba ler um arquivo — sem runtime, sem instalação, sem build. Os scripts opcionais em [`tools/`](./tools) são uma conveniência para times que querem um gate de CI; executá-los nunca é requisito do padrão.
+
+---
+
 ## 📖 Documentação Oficial (A Wiki)
 
 A arquitetura completa, protocolos e exemplos práticos estão profundamente documentados na nossa Wiki no GitHub (em Inglês).
