@@ -4,6 +4,12 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 
 > Este relatório é um **registro versionado do projeto** — nunca adicione ao `.gitignore`. Evidência escondida do controle de versão não é evidência: QA e liderança verificam antes do release, e auditorias leem depois.
 
+> **Legenda de marcação (obrigatória):**
+> `[x]` verificado, com a evidência descrita ao lado · `[!]` verificado e **reprovado** (corrija, ou abra entrada no `EXCEPTIONS.md`) · `[~]` verificado parcialmente, com o que falta escrito · `[ ]` **não verificado** — o motivo MUST estar escrito ao lado.
+> Marcar `[x]` sem evidência reproduzível invalida o relatório inteiro.
+
+> **Agentes headless.** Uma IA sem navegador MUST gerar este relatório mesmo assim, marcando com `[ ]` todo checkpoint que exija navegador ou tecnologia assistiva, com o motivo e quem deve executá-lo. Relatório parcial e honesto é evidência; relatório ausente não é. O status geral é CONDICIONAL — nunca PASS — enquanto restar qualquer `[ ]` ou `[!]`.
+
 ---
 
 ## 📌 Contexto da Validação

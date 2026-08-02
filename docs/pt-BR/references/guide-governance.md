@@ -2,6 +2,16 @@
 
 > Escopo: Verificação estática, estratégia VPAT, conformidade ADA/EAA, EN 301 549 e prontidão para auditoria externa.
 
+## 0. Onde uma regra deve morar (princípio de projeto deste padrão)
+
+> **Evidência de campo (01/08/2026):** num post-mortem documentado de um projeto real, um agente aplicou corretamente as Seções 0 a 6 e não produziu nenhum `REPORT.md` nem `EXCEPTIONS.md`. O artefato que *foi* produzido (`A11Y-DECISIONS.md`) era o único citado pelo nome dentro de uma regra do **AI Behavior Contract**. A variável não foi obrigatoriedade — os outros dois já eram MUST em outros pontos — foi **onde o nome do arquivo aparecia**.
+
+Agentes tratam a Seção 2 como contrato executável e todo o resto como material de consulta. Portanto, ao estender este padrão:
+
+- **Tudo que a IA precisa FAZER** — criar um arquivo, recusar uma ação, checar algo antes de prosseguir — pertence ao **AI Behavior Contract (Seção 2)**, com um evento-gatilho explícito.
+- **A Seção 7 e os guias de referência** carregam profundidade, detalhe de verificação e justificativa — eles explicam e ampliam, mas nunca devem ser o *único* lugar onde uma obrigação existe.
+- Prefira **gatilhos por evento** ("antes de qualquer entrega ao usuário final") a **gatilhos por fase** ("na entrega final"): projetos de entrega contínua nunca alcançam a fase, e a regra nunca dispara.
+
 ## 1. Verificação Estática (O Mínimo de Engenharia)
 A verificação primária não consiste em ditar regras rígidas em uma *pipeline específica*, mas responsabilizar o ambiente de desenvolvimento (Seja o Dev ou a IA rodando em tempo real) por testes estáticos de validação rápida.
 - **Padrão de Código:** O código *deve* passar obrigatoriamente pelas checagens de linters ou avaliadores focados em acessibilidade (como `eslint-plugin-jsx-a11y` ou motor `axe`) sem exibir violações do nível crítico/sério antes da consolidação de código. 

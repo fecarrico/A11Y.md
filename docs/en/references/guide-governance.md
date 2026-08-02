@@ -2,6 +2,16 @@
 
 > Scope: Static verification, VPAT strategy, ADA/EAA compliance, EN 301 549, and external audit readiness.
 
+## 0. Where a rule belongs (design principle for this standard)
+
+> **Field evidence (2026-08-01):** in a documented post-mortem of a real project, an agent applied Sections 0–6 correctly and produced no `REPORT.md` or `EXCEPTIONS.md` at all. The artifact that *was* produced (`A11Y-DECISIONS.md`) was the only one named inside a rule of the **AI Behavior Contract**. The variable was not obligation — the other two were already MUST elsewhere — it was **where the filename appeared**.
+
+Agents treat Section 2 as an executable contract and everything else as reference material. Therefore, when extending this standard:
+
+- **Anything the AI must DO** — create a file, refuse an action, check something before proceeding — belongs in the **AI Behavior Contract (Section 2)**, with an explicit trigger event.
+- **Sections 7 and the reference guides** carry depth, verification detail and rationale — they explain and expand, but must never be the *only* place an obligation exists.
+- Prefer **event triggers** ("before any delivery to an end user") over **phase triggers** ("at final delivery"): continuous-delivery projects never reach a phase, so a phase-triggered rule never fires.
+
 ## 1. Static Verification (The Engineering Minimum)
 Primary verification does not consist of dictating rigid rules in a *specific pipeline*, but holding the development environment (Be it the Dev or the AI running in real-time) accountable for fast static validation tests.
 - **Code Standard:** The code *must* necessarily pass through linters or accessibility-focused evaluators (like `eslint-plugin-jsx-a11y` or the `axe` engine) without displaying critical/serious violations before code consolidation.
