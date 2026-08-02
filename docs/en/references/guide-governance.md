@@ -31,7 +31,8 @@ When creating custom complex widgets, the developer (or AI) must include a comme
 To prepare subsystems for external certification and audit:
 1. **Inventory:** Consolidate a list or storybook of the key visual components of the flow and their behaviors with assistive technologies.
 2. **Keyboard Path:** Prevent Dead-ends through clear and planned mapping of the visual layout order (`Tab`).
-3. **Standard Audit:** In case of final delivery, the checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) *must* be operated as "Definition of Done".
+3. **Standard Audit:** The checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** be operated as "Definition of Done" **before any delivery to an end user** — a published build, a deploy, a shared artifact, a tag — not only at a "final delivery" that continuously delivered projects never reach (see *Release Evidence*, `A11Y.md` §2).
+4. **One living report, not one per publish:** the report tracks the **interface**, not the release count. If nothing changed since the last one, it stands as is. When the interface changes, update the date and revisit only the entries that change affects: any checkpoint whose evidence the change invalidates goes back to `[ ]` or `[~]` until re-verified. Human checkpoints (screen reader, color simulator) keep their `[x]` and the date of the session that produced them, and are re-run when the flow they covered changes.
 
 ## 5. Reporting & Liability (VPAT Strategy)
 Projects targeting the US market must be Section 508 compliant:

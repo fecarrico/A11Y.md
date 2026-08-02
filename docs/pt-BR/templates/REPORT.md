@@ -14,7 +14,8 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 
 ## 📌 Contexto da Validação
 - **Funcionalidade/Épico:** [Ex: Checkout Integrado]
-- **Data do Teste:** [DD/MM/AAAA]
+- **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
+- **Data do Teste:** [DD/MM/AAAA — a data desta revisão; atualize sempre que a interface mudar]
 - **Status de Conformidade:** [✅ PASS | ⚠️ CONDICIONAL (Passa com Exceções) | 🚫 FAIL]
 
 ## 1. Verificação Técnica (Automated & Semantics)

@@ -31,7 +31,8 @@ Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir 
 Para preparar sub-sistemas para certificação externa e auditoria:
 1. **Inventory:** Consolidar uma lista ou storybook dos componentes visuais chaves do fluxo e seus comportamentos com tecnologias assistivas.
 2. **Keyboard Path:** Prevenir Dead-ends através do mapeamento claro e planejado da ordem do layout visual (`Tab`).
-3. **Auditoria Padrão:** Em caso de entrega final, o checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) *deve* ser operado como "Definition of Done".
+3. **Auditoria Padrão:** O checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** ser operado como "Definition of Done" **antes de qualquer entrega ao usuário final** — build publicado, deploy, artefato compartilhado, tag — e não apenas numa "entrega final" que projetos de entrega contínua nunca alcançam (ver *Release Evidence*, `A11Y.md` §2).
+4. **Um relatório vivo, não um por publicação:** o relatório acompanha a **interface**, não a contagem de releases. Se nada mudou desde o último, ele continua valendo. Quando a interface muda, atualize a data e revisite apenas as entradas afetadas: todo checkpoint cuja evidência a mudança invalida volta para `[ ]` ou `[~]` até ser reverificado. Checkpoints humanos (leitor de tela, simulador de cor) mantêm o `[x]` e a data da sessão que os produziu, e são refeitos quando o fluxo que cobriam muda.
 
 ## 5. Relatórios e Responsabilidades (VPAT Strategy)
 Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:
