@@ -4,11 +4,18 @@ This report compiles the compliance evidence for a given *Feature*, ensuring its
 
 > This report is a **versioned project record** — never add it to `.gitignore`. Evidence hidden from version control is not evidence: QA and leadership verify it before release, and audits read it after.
 
+> **Marking legend (mandatory):**
+> `[x]` verified, with the evidence described beside it · `[!]` verified and **failed** (fix it, or open an entry in `EXCEPTIONS.md`) · `[~]` partially verified, with what is missing written down · `[ ]` **not verified** — the reason MUST be written beside it.
+> Marking `[x]` without reproducible evidence invalidates the whole report.
+
+> **Headless agents.** An AI without a browser MUST still produce this report, marking `[ ]` every checkpoint that requires a browser or assistive technology, with the reason and who must run it. A partial, honest report is evidence; a missing report is not. Overall status is CONDITIONAL — never PASS — while any `[ ]` or `[!]` remains.
+
 ---
 
 ## 📌 Validation Context
 - **Feature/Epic:** [e.g., Integrated Checkout]
-- **Test Date:** [MM/DD/YYYY]
+- **Test Date:** [MM/DD/YYYY — the date of this revision; update it whenever the interface changes]
+- **Covers interface as of:** [commit / build / version this report was verified against]
 - **Compliance Status:** [✅ PASS | ⚠️ CONDITIONAL (Passes with Exceptions) | 🚫 FAIL]
 
 ## 1. Technical Verification (Automated & Semantics)

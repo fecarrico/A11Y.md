@@ -5,13 +5,23 @@ All notable changes to the A11y Guidelines project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.2.0] - 2026-08-02
+
+> Driven by a documented field post-mortem: an agent applied the standard to a real project for weeks, generated and maintained `A11Y-DECISIONS.md`, and never produced a `REPORT.md` or an `EXCEPTIONS.md`. The artifact that existed was the only one named inside a rule of the AI Behavior Contract. Obligation was not the variable — placement and trigger were.
 
 ### Added
+- **Exception Memory (AI Behavior Contract):** accepting a WCAG SC violation now requires creating or updating `EXCEPTIONS.md` **in the same turn**, from the template, with risk owner, approver, tracking issue and expiry. An accepted-but-unrecorded exception is a contract violation, not a pending decision.
+- **Release Evidence (AI Behavior Contract):** before any delivery to an end user — build, deploy, shared artifact, tag — the AI must verify a `REPORT.md` newer than the last interface change, or state that the delivery carries no conformance evidence. Event trigger, so it fires in continuous-delivery projects where a "final delivery" phase never arrives.
+- **Artifacts Present** checkpoint, now first in the Verification Workflow: the six existing checkpoints verified the interface, none verified that evidence of it exists.
+- **Headless-agent clause** (Section 7 and `REPORT.md`): an agent without a browser must still produce the report, marking unverifiable checkpoints and naming who must run them. A partial, honest report is evidence; a missing report is not.
+- **Marking legend in `REPORT.md`:** `[x]` verified with evidence · `[!]` verified and failed · `[~]` partial · `[ ]` not verified, reason required. Removes the ambiguity of an empty checkbox and the incentive to mark what "is probably fine".
+- **Governance guide, Section 0 — where a rule belongs:** anything the AI must DO belongs in the behavior contract with an explicit event trigger; guides carry depth, never sole obligation.
 - **ARIA Soup anti-pattern (Section 6):** named prohibition of decorative/redundant ARIA — no ARIA where native HTML provides the semantics, no redundant roles, no static never-updated ARIA states. Response to the WebAIM Million 2026 finding (133+ ARIA attributes per page, 6× since 2019, with more ARIA correlating with more errors).
 - **Benchmark pre-registration (`benchmark/`):** methodology and verbatim prompts for measuring whether A11Y.md reduces automatically detectable violations in AI-generated UI — published before any data collection.
 
 ### Changed
+- **Lazy Context Loading no longer covers `templates/`:** `references/` is per-component context (load on demand); `templates/` is lifecycle context and must be loaded when its triggering event occurs. Adds **template fidelity** — artifacts are created from the template files, never deduced from prose, resolving upstream first when the folder is absent.
+- **"Optional Templates" renamed to "Project Artifacts"** *(versioned, not optional)*, each with its trigger. The index label contradicted a normative body that says MUST four times.
 - **`templates/EXCEPTIONS.md`:** every exception now requires a **risk owner**, an **approver**, a **tracking issue** and an **expiry date**, at the narrowest practical scope; in review mode the AI flags expired exceptions as 🟠 HIGH technical debt. An exception is temporary and is never silently suppressed.
 
 ## [1.1.0] - 2026-07-20

@@ -26,7 +26,7 @@ We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repo
 
 ## ⚡ Core Features
 
-- 🧠 **11-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation, Platform Awareness), reuse the project's existing components instead of recreating them (Component Reuse + Decision Memory), and stop generating dangerous anti-patterns (like "clickable divs").
+- 🧠 **13-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation, Platform Awareness), reuse the project's existing components instead of recreating them (Component Reuse + Decision Memory), produce the evidence of its own work (Exception Memory + Release Evidence), and stop generating dangerous anti-patterns (like "clickable divs").
 - 🛡️ **Modular Compliance Profiles:** Support for Shield (AAA), Standard (AA), and **Launchpad (A)** — each separating what WCAG actually requires (cited by Success Criterion) from this standard's stricter **House Rules**. The Launchpad profile allows startups to build rapid MVPs by relaxing visual constraints without ever sacrificing critical semantic structure.
 - 📚 **Lazy Context Loading:** 21 reference guides (WAI-ARIA APG) that act as an actionable database. The AI is programmed to load only the guides it needs on-demand, saving tokens and maintaining sharp focus.
 
@@ -44,6 +44,8 @@ Reading about accessibility is the first step, injecting it into your code is th
 3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Read the full Setup and Integration guide on our Wiki.</a>**
+
+> **A11Y.md is portable markdown, and stays that way.** It has to work for anyone whose agent can read a file — no runtime, no install, no build step. The optional scripts in [`tools/`](./tools) are a convenience for teams that want a CI gate; running them is never a requirement of the standard.
 
 ---
 

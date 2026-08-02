@@ -29,7 +29,7 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 
 ## ⚡ Core Features (Inovações)
 
-- 🧠 **Contrato Comportamental da IA (11 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
+- 🧠 **Contrato Comportamental da IA (13 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory), a produzir a evidência do próprio trabalho (Exception Memory + Release Evidence) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
 - 🛡️ **Compliance Profiles Modulares:** Suporte aos perfis Shield (AAA), Standard (AA) e **Launchpad (A)** — cada um separando o que a WCAG realmente exige (citado por Critério de Sucesso) das **Regras da Casa** mais estritas deste padrão. O perfil Launchpad permite que startups construam MVPs rápidos relaxando regras visuais cosméticas, sem nunca sacrificar a estrutura semântica crítica.
 - 📚 **Lazy Context Loading:** 21 guias de referência (WAI-ARIA APG). A IA é programada para carregar apenas os guias necessários sob demanda, economizando tokens e mantendo o foco afiado.
 
@@ -47,6 +47,10 @@ Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetiv
 3. **Defina o Perfil:** A IA perguntará proativamente qual Compliance Profile (Shield, Standard ou Launchpad) ela deve usar, caso você não tenha especificado.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Leia o guia completo de Setup e Integração na nossa Wiki.</a>**
+
+---
+
+> **O A11Y.md é markdown portátil, e continua sendo.** Ele precisa funcionar para qualquer pessoa cujo agente saiba ler um arquivo — sem runtime, sem instalação, sem build. Os scripts opcionais em [`tools/`](./tools) são uma conveniência para times que querem um gate de CI; executá-los nunca é requisito do padrão.
 
 ---
 
