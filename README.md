@@ -19,6 +19,8 @@
 
 > **A11Y.md is not a guideline.**
 > It is an accessibility validation protocol and a **persistent context architecture** for developing accessible software with AI. It is designed to integrate with AI agent systems (Cursor, Claude, Copilot) to ensure certifiable compliance from genesis.
+>
+> Most agent context teaches a **capability** — how to do something, loaded when the task calls for it. This one defines a **constraint**: what may never be done, whatever you are building. That is why it belongs in context *before* the agent knows what it is about to build. *([the argument in full](https://dev.to/fecarrico/not-every-skill-is-a-capability-43n9) · [taken to the Agent Skills spec](https://github.com/agentskills/agentskills/discussions/484))*
 
 We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repositories. But why isn't accessibility canonical? `A11Y.md` translates accessibility rules into a portable governance layer: a **platform-agnostic normative core** (POUR, compliance profiles, severity, governance) with **mature web references** and a **native translation layer** (iOS, Android, React Native, Flutter). Instead of generic coding advice, it forces any coding agent to strictly adhere to WCAG 2.2 AA and ADA standards from the very first line of generated UI code.
 
