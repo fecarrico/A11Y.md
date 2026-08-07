@@ -36,7 +36,7 @@ Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report wi
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.2.0/tools/verify-a11y.py
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.3.0/tools/verify-a11y.py
     python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
 

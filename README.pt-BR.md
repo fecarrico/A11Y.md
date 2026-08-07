@@ -31,7 +31,7 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 
 ## ⚡ Core Features (Inovações)
 
-- 🧠 **Contrato Comportamental da IA (13 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory), a produzir a evidência do próprio trabalho (Exception Memory + Release Evidence) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
+- 🧠 **Contrato Comportamental da IA (14 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory), a produzir a evidência do próprio trabalho (Exception Memory + Release Evidence), a resolver toda imagem fornecida pelo usuário com o desenvolvedor no circuito (Image Evidence) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis).
 - 🛡️ **Compliance Profiles Modulares:** Suporte aos perfis Shield (AAA), Standard (AA) e **Launchpad (A)** — cada um separando o que a WCAG realmente exige (citado por Critério de Sucesso) das **Regras da Casa** mais estritas deste padrão. O perfil Launchpad permite que startups construam MVPs rápidos relaxando regras visuais cosméticas, sem nunca sacrificar a estrutura semântica crítica.
 - 📚 **Lazy Context Loading:** 21 guias de referência (WAI-ARIA APG). A IA é programada para carregar apenas os guias necessários sob demanda, economizando tokens e mantendo o foco afiado.
 

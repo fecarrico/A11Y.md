@@ -5,6 +5,18 @@ All notable changes to the A11y Guidelines project will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-08-07
+
+> Driven by a question from the field: how does the standard handle alt text when the *user* supplies the image? The taxonomy existed, the SC 1.1.1 MUST existed — but no rule fired at the moment an image entered the conversation, which is exactly where agents fabricate an `alt` from the filename and move on. Same lesson as 1.2.0: obligation was not the variable — placement and trigger were.
+
+### Added
+- **Image Evidence (AI Behavior Contract):** when the user supplies an image — pasted into the conversation or referenced as an asset — the AI must resolve its text alternative before the image enters the code. If it can perceive the image (multimodal input or an image-reading tool in the environment), it classifies it via the removal test and proposes the `alt` **as a draft for the developer to confirm** — the human decision is part of the rule, not a courtesy. If it cannot, it requests the description in the same turn. Fabricating an `alt` from a filename or defaulting to `alt=""` are contract violations; an unresolved image blocks the Definition of Done (functional = CRITICAL, informative = HIGH).
+- **`guide-images.md`, Section 5 — user-supplied images:** the three-step flow behind the rule (perceive → classify by the removal test → propose for human confirmation), the failure modes it forbids — including the silent `alt=""` no automated checker can catch — and borderline classifications routed to `A11Y-DECISIONS.md` as pattern-level decisions.
+
+### Changed
+- **Alt Text (Section 3, Perceivable):** the line now opens by stating that every `<img>` carries an `alt` attribute and that informative and functional images require a non-empty description; the **empty value** (`alt=""`) is reserved for images a human confirmed as decorative — a decision, never a default. The empty value is always named in prose, never only in notation, so no agent can misread "`alt=""` is for decorative images" as "the `alt` attribute is for decorative images". An `alt` deduced from a filename is fabricated evidence.
+- **Wiki — AI Behavioral Contract:** the contract grows to 14 rules; Image Evidence documented with the human-in-the-loop rationale (vision gives the content, only product context gives the purpose — the machine prepares the evidence, the human establishes it).
+
 ## [1.2.0] - 2026-08-02
 
 > Driven by a documented field post-mortem: an agent applied the standard to a real project for weeks, generated and maintained `A11Y-DECISIONS.md`, and never produced a `REPORT.md` or an `EXCEPTIONS.md`. The artifact that existed was the only one named inside a rule of the AI Behavior Contract. Obligation was not the variable — placement and trigger were.
