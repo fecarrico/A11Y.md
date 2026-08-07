@@ -37,5 +37,26 @@ Images that do not add content (borders, background illustrations).
 ## 4. The "Over-description" Problem
 Avoid starting with "Image of..." or "Photo of...". The screen reader already announces that it's an image. Get straight to the point.
 
+## 5. User-Supplied Images (Image Evidence)
+When the image comes from the user — a pasted screenshot, an uploaded asset, a referenced file — the `alt` decision happens **before the image enters the code**, not after. *(This is the "Image Evidence" rule of the AI Behavior Contract, Section 2 of the core file.)*
+
+**Step 1 — Check what you can perceive.**
+- You **can** see the image (multimodal input, or an image-reading tool available in the environment): describe what it shows, then move to Step 2. Vision gives you the *content*; only the surrounding context gives you the *purpose* — the same photo can be decorative on one page and informative on another.
+- You **cannot** see the image: request the description from the developer in the same turn. Never proceed with a guessed `alt`.
+
+**Step 2 — Classify by the removal test.** *"If I remove this image, what does the user lose?"*
+- Loses information → **informative**: the `alt` carries the content's conclusion (Section 1).
+- Loses a function (link/button) → **functional**: the `alt` names the action (Section 2).
+- Loses nothing → **decorative candidate**: `alt=""` — pending Step 3.
+
+**Step 3 — Propose; the human decides.** Present the classification and the draft `alt` to the developer and get an explicit confirmation. The AI's reading of an image is a hypothesis, not evidence — the same principle behind the human screen-reader validation in the Complex Component Protocol. The confirmation is part of the workflow, not a formality.
+
+**What this flow forbids:**
+- An `alt` fabricated from the filename (`alt="hero-final-v2"`) — a *No Inference* violation.
+- `alt=""` as a silent fallback: it hides a possibly informative image from screen reader users, and no automated checker can catch it — axe has no way of knowing the image mattered.
+- Shipping with the `alt` "to be filled in later": an unresolved image blocks the Definition of Done (functional = 🔴 CRITICAL, informative = 🟠 HIGH).
+
+Borderline classifications (e.g., a hero image that is arguably decorative) are pattern-level decisions: record them in `A11Y-DECISIONS.md` and reuse.
+
 ## Tip for AI:
 Whenever generating a component with an image, the AI should ask itself: *"If I remove this image, what information does the user lose?"*. That answer should be your `alt`.
