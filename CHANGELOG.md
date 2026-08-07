@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`guide-images.md`, Section 5 — user-supplied images:** the three-step flow behind the rule (perceive → classify by the removal test → propose for human confirmation), the failure modes it forbids — including the silent `alt=""` no automated checker can catch — and borderline classifications routed to `A11Y-DECISIONS.md` as pattern-level decisions.
 
 ### Changed
-- **Alt Text (Section 3, Perceivable):** `alt=""` is now explicitly reserved for images a human confirmed as decorative — a decision, never a default; an `alt` deduced from a filename is fabricated evidence.
+- **Alt Text (Section 3, Perceivable):** the line now opens by stating that every `<img>` carries an `alt` attribute and that informative and functional images require a non-empty description; the **empty value** (`alt=""`) is reserved for images a human confirmed as decorative — a decision, never a default. The empty value is always named in prose, never only in notation, so no agent can misread "`alt=""` is for decorative images" as "the `alt` attribute is for decorative images". An `alt` deduced from a filename is fabricated evidence.
 - **Wiki — AI Behavioral Contract:** the contract grows to 14 rules; Image Evidence documented with the human-in-the-loop rationale (vision gives the content, only product context gives the purpose — the machine prepares the evidence, the human establishes it).
 
 ## [1.2.0] - 2026-08-02

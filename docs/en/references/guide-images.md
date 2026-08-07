@@ -47,13 +47,13 @@ When the image comes from the user — a pasted screenshot, an uploaded asset, a
 **Step 2 — Classify by the removal test.** *"If I remove this image, what does the user lose?"*
 - Loses information → **informative**: the `alt` carries the content's conclusion (Section 1).
 - Loses a function (link/button) → **functional**: the `alt` names the action (Section 2).
-- Loses nothing → **decorative candidate**: `alt=""` — pending Step 3.
+- Loses nothing → **decorative candidate**: empty `alt=""` — pending Step 3.
 
 **Step 3 — Propose; the human decides.** Present the classification and the draft `alt` to the developer and get an explicit confirmation. The AI's reading of an image is a hypothesis, not evidence — the same principle behind the human screen-reader validation in the Complex Component Protocol. The confirmation is part of the workflow, not a formality.
 
 **What this flow forbids:**
 - An `alt` fabricated from the filename (`alt="hero-final-v2"`) — a *No Inference* violation.
-- `alt=""` as a silent fallback: it hides a possibly informative image from screen reader users, and no automated checker can catch it — axe has no way of knowing the image mattered.
+- An empty `alt=""` as a silent fallback: it hides a possibly informative image from screen reader users, and no automated checker can catch it — axe has no way of knowing the image mattered.
 - Shipping with the `alt` "to be filled in later": an unresolved image blocks the Definition of Done (functional = 🔴 CRITICAL, informative = 🟠 HIGH).
 
 Borderline classifications (e.g., a hero image that is arguably decorative) are pattern-level decisions: record them in `A11Y-DECISIONS.md` and reuse.
