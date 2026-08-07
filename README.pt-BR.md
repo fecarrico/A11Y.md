@@ -22,6 +22,8 @@
 
 > **O A11Y.md não é um guia de boas práticas.**
 > Ele é um protocolo de validação de acessibilidade e uma **arquitetura de contexto persistente** para o desenvolvimento de softwares guiado por IA. Foi concebido para integrar-se com agentes autônomos (Cursor, Claude, Copilot) garantindo conformidade certificável desde a origem.
+>
+> A maior parte do contexto para agentes ensina uma **capacidade** — como fazer algo, carregada quando a tarefa pede. Este define uma **restrição**: o que não pode ser feito, seja lá o que você esteja construindo. É por isso que ele precisa estar em contexto *antes* de o agente saber o que vai construir. *([o argumento completo](https://dev.to/fecarrico/not-every-skill-is-a-capability-43n9) · [levado à especificação do Agent Skills](https://github.com/agentskills/agentskills/discussions/484))*
 
 Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades canônicas nos nossos repositórios. Mas por que a acessibilidade não é canônica? O `A11Y.md` traduz as regras de acessibilidade para uma camada de governança portátil: um **núcleo normativo agnóstico de plataforma** (POUR, perfis de conformidade, severidade, governança) com **referências web maduras** e uma **camada de tradução nativa** (iOS, Android, React Native, Flutter). Em vez de regras genéricas, ele força qualquer agente a aderir estritamente às normas WCAG 2.2 AA e ADA desde a primeira linha de código gerada.
 
