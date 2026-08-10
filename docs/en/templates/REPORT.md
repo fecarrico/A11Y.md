@@ -32,7 +32,9 @@ Validation purely by keyboard (without mouse usage).
 
 ## 3. Behavior and Task Return
 Critical functional paths and Screen Reader validation.
-- [ ] **Screen Reader Test:** Performed the main task using VoiceOver/NVDA?
+- [ ] **Screen Reader Test:** Was the main task performed with **at least one screen reader + browser pair**, named here? *(Record the pair, not just the reader: NVDA + Firefox, JAWS + Chrome and VoiceOver + Safari diverge in ARIA behavior, and "I used NVDA" is not reproducible evidence. If the product has a corporate Windows audience, JAWS + Chrome is the pair missing from most reports.)*
+  - Pair(s) used: [e.g. NVDA 2026.1 + Firefox 141 · macOS VoiceOver + Safari 18]
+  - Who ran it and when: [name — YYYY-MM-DD]
 - [ ] **Status Change (`aria-live`):** Are form errors, loading states, or non-visual updates correctly announced?
 - [ ] **Form Filling:** Correctly related labels (`for` and `id`) in all inputs?
 
@@ -41,6 +43,23 @@ Tests validating contrast and visual structure (color-independent).
 - [ ] **Text & UI Contrast:** Do all texts have a 4.5:1 ratio and essential components 3:1?
 - [ ] **Redundancy:** Errors and alerts do not convey information exclusively through color *(e.g., they always use Color + Icon + Text)*.
 - [ ] **Scale / Zoom:** Text resized to 200% without loss (SC 1.4.4) and content reflowed at 320 CSS px — ≈400% zoom on a 1280px viewport (SC 1.4.10) — with everything operable and no two-dimensional scrolling?
+
+## 5. Time-Based Media and Motion
+*If this interface carries no video, audio or scroll-driven motion, write "N/A — no time-based media" here and skip the block.*
+- [ ] **Classification:** Every video/audio classified **with the developer** as informative, functional or decorative *(Media Evidence, §2 — the AI does not decide this alone; borderline calls recorded in `A11Y-DECISIONS.md`)*.
+- [ ] **Alternatives:** Captions synchronized (SC 1.2.2), transcript available, audio description where the visuals carry what the soundtrack does not (SC 1.2.5) — **reviewed by a human**, never shipped as raw machine output.
+- [ ] **Autoplay and Moving Content:** No audio starts on its own without a control (SC 1.4.2); automatic movement over 5 seconds has a pause/stop/hide mechanism (SC 2.2.2); nothing flashes more than three times per second (SC 2.3.1).
+- [ ] **Reduced Motion:** Interface validated once with `prefers-reduced-motion: reduce` active — media does not autoplay, parallax degrades to a static composition.
+- [ ] **Text over Media:** Contrast of text over video measured against its scrim, in the composited worst case (the lightest frame seen through the layer) — not estimated by eye.
+
+## 6. Cognitive Load and Flow
+*Applies to any flow with more than one step, an authentication, or a time limit.*
+- [ ] **Nothing to remember:** No step requires the user to hold information from another screen. Password fields accept paste and declare `autocomplete`; no transcription CAPTCHA without an alternative (SC 3.3.8).
+- [ ] **Nothing to retype:** Information already provided in the same process is auto-populated or offered for selection; state survives the Back button (SC 3.3.7).
+- [ ] **Help in the same place:** Where a help mechanism exists, it appears in the same relative order on every screen of the flow (SC 3.2.6).
+- [ ] **Text spacing:** Nothing is clipped or overlapped at line height 1.5×, paragraph 2×, letters 0.12× and words 0.16× (SC 1.4.12).
+- [ ] **Timing:** Every limit can be turned off, adjusted or extended, with a warning (SC 2.2.1).
+- [ ] **Conflicting needs:** If any decision served one accessibility need at the cost of another, both populations are named and the choice is recorded in `A11Y-DECISIONS.md`.
 
 ---
 ## 📝 Assessment Notes or Known Blockers

@@ -30,9 +30,11 @@ Images used as links or buttons (icons).
 Images that do not add content (borders, background illustrations).
 ### ✅ Correct
 ```html
+<!-- Classified as decorative and confirmed by a human — see Section 5. -->
 <img src="pretty-divider.png" alt="">
 ```
 - **Why:** The empty `alt=""` tells the screen reader to ignore the image. **Never** omit the `alt` attribute, otherwise the reader will read the filename (e.g., "image-123-final.png").
+- ⚠️ **The empty value is a confirmed decision, not a default.** The AI **MUST NOT** reach this classification on its own: the required flow is in **Section 5**. An `alt=""` applied unilaterally hides a possibly informative image from screen reader users — and no automated checker catches it, because the attribute is present.
 
 ## 4. The "Over-description" Problem
 Avoid starting with "Image of..." or "Photo of...". The screen reader already announces that it's an image. Get straight to the point.

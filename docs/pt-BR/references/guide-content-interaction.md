@@ -1,6 +1,6 @@
 # Accessibility: Content, Interaction & Timing
 
-> Escopo: Microcopy, gestão de timeouts, feedback aria-live, acessibilidade em multimídia e orientações para IA de conteúdo.
+> Escopo: Microcopy, gestão de timeouts, feedback aria-live, linguagem sensorial e orientações para IA de conteúdo. *(Vídeo, áudio e movimento estão em [Mídia Temporal & Movimento](guide-media.md).)*
 
 ## 1. Microcopy & Clareza
 A linguagem deve ser a mais simples possível para reduzir a carga cognitiva.
@@ -19,9 +19,9 @@ Mudanças dinâmicas que não causam recarregamento de página precisam ser anun
 - **Erros Críticos:** Use `aria-live="assertive"` ou `role="alert"` para erros que impedem o progresso imediato.
 - **Progresso:** Se uma ação demorar, use um indicador de progresso programático que informe o status da tarefa.
 
-## 4. Sensoriais e Multimídia
+## 4. Linguagem Sensorial
 - **Linguagem Sensorial:** **MUST NOT** dar instruções baseadas apenas em sentidos (ex: "Clique no botão redondo à direita" ou "Ouça o sinal para começar"). Use referências de texto/contexto (ex: "Clique no botão Enviar ao final do formulário").
-- **Legendas e Transcrições:** Áudios e vídeos **MUST** possuir alternativas em texto ou legendas sincronizadas.
+- **Mídia temporal** (legendas, transcrições, audiodescrição, vídeo de fundo, autoplay e parallax) tem guia próprio: [Mídia Temporal & Movimento](guide-media.md). A regra que dispara quando a mídia entra no código é a *Media Evidence*, Seção 2 do arquivo central.
 
 ## 5. Dica para a IA de Conteúdo
 Ao gerar textos para a interface, a IA deve validar se a instrução sobrevive sem o contexto visual: *"Se eu não estivesse vendo a tela, essa instrução ainda faria sentido?"*.

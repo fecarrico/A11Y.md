@@ -29,7 +29,7 @@ When an AI agent generates or reviews code, it **MUST transpose** these patterns
 
 ## 3. Svelte
 - **State Binding:** Direct binding `aria-expanded={isOpen}`.
-- **Event Handling:** Use `on:keydown`.
+- **Event Handling:** Use `onkeydown` (Svelte 5 event attributes). The `on:keydown` form is Svelte 4 directive syntax — still accepted, but legacy.
 - **Directives:** Use the `use:` directive for complex focus trapping or reusable accessibility logic (e.g., `use:focusTrap`).
 
 ## 4. SolidJS
@@ -78,7 +78,7 @@ When an AI agent generates or reviews code, it **MUST transpose** these patterns
 ```html
 <button
   aria-pressed={isActive}
-  on:click={() => isActive = !isActive}
+  onclick={() => isActive = !isActive}
 >
   Toggle
 </button>

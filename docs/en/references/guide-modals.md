@@ -18,7 +18,8 @@
   ...
 </div>
 ```
-- **Why:** `role="dialog"` and `aria-modal="true"` tell the browser to ignore the rest of the page. `aria-labelledby` provides context.
+- **Why:** `role="dialog"` announces the pattern and `aria-modal="true"` instructs **assistive technology** to ignore content outside the dialog. `aria-labelledby` provides context.
+- ⚠️ **`aria-modal` is not a focus trap.** It does not talk to the browser and does not affect the `Tab` key: without JavaScript, focus still escapes the dialog into the page behind it. Containment is your responsibility — or use the native `<dialog>` in example 2, which implements it.
 
 ### 2. Native HTML Dialog
 ```javascript
@@ -31,7 +32,7 @@
   ...
 </dialog>
 ```
-- **Why:** The native `<dialog>` element comes with all required accessibility features out of the box. `closedby="any"` allows the dialog to be closed by pressing the escape key. `command="close"` and `commandfor=""` allows for closing the dialog using a button without any javascript and uses the native `invokerCommands` API. `aria-labelledby` provides context.
+- **Why:** The native `<dialog>` element comes with all required accessibility features out of the box. `closedby="any"` adds *light dismiss* — closing by clicking outside the dialog; the `Esc` key **already works natively** in any dialog opened with `showModal()`, with no attribute at all. `command="close"` and `commandfor=""` allows for closing the dialog using a button without any javascript and uses the native `invokerCommands` API. `aria-labelledby` provides context.
 
 > ⚠️ **Experimental compatibility:** The `closedby` and `command`/`commandfor` attributes (invokerCommands API) are currently supported only in **Chrome 133+**. Check [Can I Use](https://caniuse.com) before using in production and consider a JavaScript fallback for other browsers.
 

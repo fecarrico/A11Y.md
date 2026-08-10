@@ -11,10 +11,14 @@ are defects a script can catch, so it should.
 Checks:
   parity        docs/en and docs/pt-BR hold the same files, headings and rules
   orphans       every references/guide-*.md is reachable from the core file
+  triggers      every guide and template has a stated loading trigger in the
+                §2.1 map — reachable is not the same as discoverable
   links         relative links in the core and templates resolve on disk
   phase-trigger no rule fires on a project phase ("at final delivery") instead
                 of an event — continuous delivery never reaches a phase
   optional      the project artifacts are not labelled optional anywhere
+  wiki          the Wiki documents the same number of contract rules as the
+                core file and lists every reference guide (skipped if absent)
 
 Usage: python3 lint-standard.py [REPO_ROOT]
 Stdlib only, no dependencies.
@@ -73,6 +77,30 @@ def check_orphans(root: Path) -> None:
                             f"lazy loading can never discover it")
 
 
+def check_triggers(root: Path) -> None:
+    """Reachability is not discoverability.
+
+    check_orphans proves a guide is linked somewhere in the core file. It does
+    not prove the agent knows *when* to open it. Under Lazy Context Loading the
+    references are never preloaded, so a guide whose trigger is not stated is a
+    guide that only gets found by guessing the filename. Every guide and every
+    template must appear in the §2.1 loading map.
+    """
+    for lang in LANGS:
+        text = core(root, lang).read_text(encoding="utf-8")
+        section = re.search(r"## 2\.1\..*?(?=\n## 3\.)", text, re.S)
+        if not section:
+            fail("triggers", f"docs/{lang}/A11Y.md has no §2.1 loading map")
+            continue
+        mapped = set(re.findall(r"(?:guide-[a-z0-9-]+|REPORT|EXCEPTIONS|A11Y-DECISIONS)\.md",
+                                section.group(0)))
+        expected = {p.name for p in (root / "docs" / lang / "references").glob("guide-*.md")}
+        expected |= {p.name for p in (root / "docs" / lang / "templates").glob("*.md")}
+        for missing in sorted(expected - mapped):
+            fail("triggers", f"docs/{lang}: {missing} has no trigger in the §2.1 loading map — "
+                             f"lazy loading can reach it, but nothing says when to open it")
+
+
 def check_links(root: Path) -> None:
     for lang in LANGS:
         base = root / "docs" / lang
@@ -104,6 +132,32 @@ def check_phase_triggers(root: Path) -> None:
                          f"Use 'before any delivery to an end user' (see Release Evidence, §2).")
 
 
+def check_wiki_drift(root: Path) -> None:
+    """The Wiki is the project's public documentation but lives outside version
+    control (see .gitignore), so nothing stops it from drifting away from the
+    standard it documents. Skipped when the folder is absent — most clones
+    will not have it."""
+    wiki = root / "WIKI"
+    if not wiki.is_dir():
+        return
+
+    contract = re.search(r"## 2\..*?(?=\n## 3\.)", core(root, "en").read_text(encoding="utf-8"), re.S)
+    core_rules = len(re.findall(r"^- \*\*", contract.group(0), re.M)) if contract else 0
+    page = wiki / "AI-Behavioral-Contract.md"
+    if page.is_file():
+        wiki_rules = len(re.findall(r"^### \d+\. ", page.read_text(encoding="utf-8"), re.M))
+        if wiki_rules != core_rules:
+            fail("wiki", f"WIKI/AI-Behavioral-Contract.md documents {wiki_rules} rules, "
+                         f"the core file defines {core_rules}")
+
+    library = wiki / "Reference-Library.md"
+    if library.is_file():
+        listed = set(re.findall(r"guide-[a-z0-9-]+\.md", library.read_text(encoding="utf-8")))
+        on_disk = {p.name for p in (root / "docs" / "en" / "references").glob("guide-*.md")}
+        for missing in sorted(on_disk - listed):
+            fail("wiki", f"WIKI/Reference-Library.md does not list {missing}")
+
+
 def check_optional_label(root: Path) -> None:
     for path in sorted((root / "docs").rglob("*.md")):
         for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -119,7 +173,8 @@ def main() -> int:
         print(f"error: {root} does not look like the A11Y.md repository", file=sys.stderr)
         return 2
 
-    for check in (check_parity, check_orphans, check_links, check_phase_triggers, check_optional_label):
+    for check in (check_parity, check_orphans, check_triggers, check_links,
+                  check_phase_triggers, check_optional_label, check_wiki_drift):
         check(root)
 
     for name, message in findings:
