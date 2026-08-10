@@ -34,6 +34,20 @@ To prepare subsystems for external certification and audit:
 3. **Standard Audit:** The checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** be operated as "Definition of Done" **before any delivery to an end user** — a published build, a deploy, a shared artifact, a tag — not only at a "final delivery" that continuously delivered projects never reach (see *Release Evidence*, `A11Y.md` §2).
 4. **One living report, not one per publish:** the report tracks the **interface**, not the release count. If nothing changed since the last one, it stands as is. When the interface changes, update the date and revisit only the entries that change affects: any checkpoint whose evidence the change invalidates goes back to `[ ]` or `[~]` until re-verified. Human checkpoints (screen reader, color simulator) keep their `[x]` and the date of the session that produced them, and are re-run when the flow they covered changes.
 
+## 4.1. Formal evaluation (WCAG-EM) — when the project will be audited
+
+Not every product goes through an external audit, and this standard does not assume it will. But **when it does**, `REPORT.md` alone is not the right instrument: it tracks a *feature*, while an audit evaluates an *entire site or application*. The two are complementary, and the gap between them shows up late — usually when the Accessibility Declaration required by Section 6 has to be issued.
+
+Where a formal audit, third-party evaluation or public declaration is on the horizon, anchor the work in the W3C's official methodology, [WCAG-EM](https://www.w3.org/TR/WCAG-EM/):
+
+1. **Define the scope:** which URLs/screens, which target level, which accessibility-supported technologies.
+2. **Explore:** identify page types, essential functionality, technologies in use.
+3. **Select the sample:** structured pages (one of each type, plus complete flows) plus a randomly selected sample — auditing "the main pages" without a declared sampling method is not an evaluation, it is an opinion.
+4. **Audit the sample** against every criterion at the target level.
+5. **Report:** use the W3C-WAI [Evaluation Report Template](https://www.w3.org/WAI/test-evaluate/report-template/) or the [WCAG-EM Report Tool](https://www.w3.org/WAI/eval/report-tool), which produce the format auditors and regulators expect to read.
+
+The project's accumulated `REPORT.md` files are the **provenance evidence** for that audit: they show what was verified, when, by whom, and what stayed open. A repository with a history of reports arrives at formal evaluation with ballast; one without starts from zero.
+
 ## 5. Reporting & Liability (VPAT Strategy)
 Projects targeting the US market must be Section 508 compliant:
 - **VPAT Creation:** Maintain a technical document that records which WCAG criteria are fully or partially supported.
@@ -44,8 +58,16 @@ For EAA compliance:
 - **Interoperability:** Ensure the software does not prevent the use of third-party assistive technologies.
 - **Accessibility Declaration:** Maintain a public accessibility page describing the features and the achieved compliance level.
 
+## 6.1. Brazilian Compliance (ABNT NBR 17225 / LBI)
+
+For products serving a Brazilian audience:
+
+- **ABNT NBR 17225:2025** — *Accessibility in web content and applications: requirements* — is the Brazilian technical standard, published in March 2025. It gathers 146 guidelines across requirements and recommendations, aligned with WCAG, and includes a list of critical items (captchas, facial recognition, assistive navigation, contrast, spacing, files, third-party content, custom components).
+- It provides the technical ballast for **article 63 of the Brazilian Inclusion Act (Lei 13.146/2015)**, which mandates accessibility for the websites of public bodies and of companies headquartered or commercially represented in the country.
+- **Practical effect on this standard:** WCAG 2.2 AA conformance covers most of the requirements, but the Brazilian standard's list of critical items is the acceptance checklist in Brazilian public procurement. If the project has that destination, declare it in `REPORT.md` alongside the compliance profile.
+
 ## 7. Compliance Versioning
-Current focused standard: **WCAG 2.2 AA** | **EN 301 549**.
+Current focused standard: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brazil, where applicable).
 Deviations from legal requirements due to severe UI/UX, native platform, or base architecture limitations, **MUST** be justified mandatorily using the matrix file on the page: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). All these points must have compensatory actions.
 
 ## 8. External Standards & Engines

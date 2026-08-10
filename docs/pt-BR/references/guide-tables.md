@@ -5,7 +5,7 @@
 ## Regras Centrais
 1. Use `<caption>` para descrever a tabela.
 2. Use `<th>` com `scope="col"` ou `scope="row"`.
-3. Evite usar `<div>` para dados tabulares, a menos que use `role="table"` e `role="cell"`.
+3. Evite usar `<div>` para dados tabulares. Se for inevitável, a estrutura ARIA MUST ser completa: `role="table"` no contêiner, `role="row"` em **cada linha** e `role="columnheader"` / `role="rowheader"` / `role="cell"` nas células. Sem o `role="row"` a tabela não expõe estrutura nenhuma — vira uma coleção de células soltas, e a navegação por linha e coluna do leitor de tela deixa de existir.
 
 ## Exemplo
 ```html

@@ -18,7 +18,8 @@
   ...
 </div>
 ```
-- **Por quê:** `role="dialog"` e `aria-modal="true"` dizem ao browser para ignorar o resto da página. `aria-labelledby` fornece o contexto.
+- **Por quê:** `role="dialog"` anuncia o padrão e `aria-modal="true"` instrui a **tecnologia assistiva** a ignorar o conteúdo fora do dialog. `aria-labelledby` fornece o contexto.
+- ⚠️ **`aria-modal` não é focus trap.** Ele não fala com o navegador e não afeta a tecla `Tab`: sem JavaScript, o foco continua saindo do dialog para a página ao fundo. A contenção é responsabilidade sua — ou use o `<dialog>` nativo do exemplo 2, que a implementa.
 
 ### 2. Dialog HTML Nativo
 ```javascript
@@ -31,7 +32,7 @@
   ...
 </dialog>
 ```
-- **Por quê:** O elemento nativo `<dialog>` já vem com todos os recursos de acessibilidade necessários. `closedby="any"` permite fechar o dialog pressionando a tecla Esc. `command="close"` e `commandfor=""` permitem fechar o dialog via botão sem JavaScript, usando a API nativa `invokerCommands`. `aria-labelledby` fornece o contexto.
+- **Por quê:** O elemento nativo `<dialog>` já vem com todos os recursos de acessibilidade necessários. `closedby="any"` acrescenta o *light dismiss* — fechar clicando fora do dialog; a tecla `Esc` **já funciona nativamente** em qualquer dialog aberto com `showModal()`, sem atributo nenhum. `command="close"` e `commandfor=""` permitem fechar o dialog via botão sem JavaScript, usando a API nativa `invokerCommands`. `aria-labelledby` fornece o contexto.
 
 > ⚠️ **Compatibilidade experimental:** Os atributos `closedby` e `command`/`commandfor` (invokerCommands API) têm suporte apenas no **Chrome 133+**. Verifique o [Can I Use](https://caniuse.com) antes de usar em produção e considere um fallback em JavaScript para outros navegadores.
 

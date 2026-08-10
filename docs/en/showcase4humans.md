@@ -37,16 +37,21 @@ If something can be clicked to trigger an action or navigation, it must be a sem
 // OverviewCard.tsx
 <button 
   onClick={() => navigate('/components')}
-  aria-label="View components list (120 indexed)"
-  className="glass-panel p-6 text-left hover:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none"
+  className="glass-panel p-6 text-left hover:border-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
 >
   <Puzzle className="w-5 h-5" aria-hidden="true" />
   <p className="text-3xl font-bold">120</p>
   <p className="text-xs font-semibold uppercase">Components</p>
+  <span className="sr-only">— view the full list</span>
 </button>
 ```
 
 > 💡 **Remember:** Never use `div` or `span` for click interactions.
+
+**Two choices in this example that are easy to miss:**
+
+- **Focus uses `outline`, not `ring`.** Tailwind's `focus:ring` is a `box-shadow` — and `box-shadow` **disappears** in Windows forced-colors mode, leaving without a visible focus indicator exactly the people who depend on it most. `outline` survives. If you must remove the default outline, the replacement has to be another `outline`, never a shadow alone.
+- **There is no `aria-label` on the button.** It would be tempting to write `aria-label="View components list"`, but `aria-label` **replaces** the visible text instead of adding to it: the screen reader stops announcing the "120", and when someone edits the on-screen text the label starts lying (an SC 2.5.3 *Label in Name* failure). The `sr-only` span adds the complement without erasing anything — the accessible name becomes "120 Components — view the full list", which contains everything on screen.
 
 ---
 
@@ -136,20 +141,21 @@ React renders the message on the screen. But a screen reader user receives **no 
 ```
 
 ### ✅ The Accessible Way
-Add `role="alert"` (or `aria-live="assertive"`). This way, the exact moment the message appears in the DOM, the screen reader will interrupt whatever it's saying and warn the user about the error immediately.
+Add `role="alert"`. This way, the exact moment the message appears in the DOM, the screen reader will interrupt whatever it's saying and warn the user about the error immediately.
 
 ```tsx
 // Notification.tsx
 {error && (
   <div 
-    role="alert" 
-    aria-live="assertive"
+    role="alert"
     className="p-3 bg-red-100 text-red-700 border border-red-500"
   >
     {error}
   </div>
 )}
 ```
+
+> ⚠️ **One or the other, never both.** `role="alert"` **already implies** `aria-live="assertive"` — writing both is the *ARIA Soup* anti-pattern (`A11Y.md` Section 6): redundant ARIA that adds no behavior and widens the error surface. Use `role="alert"` for what interrupts, `role="status"` for what merely informs.
 
 ---
 

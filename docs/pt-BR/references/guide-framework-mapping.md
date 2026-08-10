@@ -29,7 +29,7 @@ Quando um agente de IA gera ou revisa código, ele **MUST transpor** esses padr�
 
 ## 3. Svelte
 - **State Binding:** Binding direto `aria-expanded={isOpen}`.
-- **Event Handling:** Use `on:keydown`.
+- **Event Handling:** Use `onkeydown` (Svelte 5, atributos de evento). A forma `on:keydown` é a sintaxe de diretiva do Svelte 4 — ainda aceita, porém legada.
 - **Diretivas:** Use a diretiva `use:` para trapping de foco complexo ou lógicas de acessibilidade reutilizáveis (ex: `use:focusTrap`).
 
 ## 4. SolidJS
@@ -78,7 +78,7 @@ Quando um agente de IA gera ou revisa código, ele **MUST transpor** esses padr�
 ```html
 <button
   aria-pressed={isActive}
-  on:click={() => isActive = !isActive}
+  onclick={() => isActive = !isActive}
 >
   Alternar
 </button>

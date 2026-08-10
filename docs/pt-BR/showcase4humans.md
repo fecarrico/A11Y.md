@@ -37,16 +37,21 @@ Se algo pode ser clicado para disparar uma ação ou navegação, deve ser uma t
 // OverviewCard.tsx
 <button 
   onClick={() => navigate('/components')}
-  aria-label="Ver lista de componentes (120 indexados)"
-  className="glass-panel p-6 text-left hover:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none"
+  className="glass-panel p-6 text-left hover:border-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
 >
   <Puzzle className="w-5 h-5" aria-hidden="true" />
   <p className="text-3xl font-bold">120</p>
   <p className="text-xs font-semibold uppercase">Componentes</p>
+  <span className="sr-only">— ver lista completa</span>
 </button>
 ```
 
 > 💡 **Lembre-se:** Nunca use `div` ou `span` para interações de clique.
+
+**Duas escolhas neste exemplo que costumam passar batido:**
+
+- **O foco usa `outline`, não `ring`.** O `focus:ring` do Tailwind é `box-shadow` — e `box-shadow` **desaparece** no modo de alto contraste forçado do Windows, deixando sem foco visível exatamente quem mais depende dele. O `outline` sobrevive. Se você precisar apagar o outline padrão, o substituto tem que ser outro `outline`, nunca só uma sombra.
+- **Não há `aria-label` no botão.** Seria tentador escrever `aria-label="Ver lista de componentes"`, mas o `aria-label` **substitui** o texto visível em vez de somar a ele: o leitor de tela deixa de anunciar o "120", e quando alguém edita o texto na tela, o rótulo fica mentindo (falha de SC 2.5.3 *Label in Name*). O `sr-only` acrescenta o complemento sem apagar nada — o nome acessível vira "120 Componentes — ver lista completa", que contém tudo que está na tela.
 
 ---
 
@@ -136,20 +141,21 @@ O React renderiza a mensagem na tela. Mas quem usa leitor de tela não recebe **
 ```
 
 ### ✅ O Jeito Acessível
-Adicione `role="alert"` (ou `aria-live="assertive"`). Assim, no momento exato em que a mensagem aparecer no DOM, o leitor de tela vai interromper o que está falando e avisar o usuário imediatamente sobre o erro.
+Adicione `role="alert"`. Assim, no momento exato em que a mensagem aparecer no DOM, o leitor de tela vai interromper o que está falando e avisar o usuário imediatamente sobre o erro.
 
 ```tsx
 // Notification.tsx
 {error && (
   <div 
-    role="alert" 
-    aria-live="assertive"
+    role="alert"
     className="p-3 bg-red-100 text-red-700 border border-red-500"
   >
     {error}
   </div>
 )}
 ```
+
+> ⚠️ **Um ou outro, nunca os dois.** `role="alert"` **já implica** `aria-live="assertive"` — escrever os dois é o anti-padrão *ARIA Soup* (Seção 6 do `A11Y.md`): ARIA redundante que não acrescenta comportamento e engorda a superfície de erro. Use `role="alert"` para o que interrompe, `role="status"` para o que só informa.
 
 ---
 

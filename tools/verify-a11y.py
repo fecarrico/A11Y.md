@@ -30,7 +30,7 @@ SOURCE_SUFFIXES = {".html", ".htm", ".jsx", ".tsx", ".js", ".ts", ".vue", ".svel
 SKIP_DIRS = {".git", "node_modules", "dist", "build", ".next", "out", "vendor", "__pycache__", ".venv"}
 
 # Placeholder text from the templates — an unfilled template is not an entry.
-PLACEHOLDER = re.compile(r"\[(YYYY|MM/DD|e\.g\.|Ex:|Who|Link|Date|Quem|Data)", re.I)
+PLACEHOLDER = re.compile(r"\[(YYYY|AAAA|MM/DD|DD/MM|e\.g\.|Ex:|Who|Link|Date|Quem|Data|Escreva|Write)", re.I)
 
 findings: list[tuple[str, str, str]] = []  # (level, check, message)
 
@@ -88,18 +88,34 @@ def check_report_freshness(root: Path, report: Path, src: Path) -> None:
 
 
 def check_report_status(report: Path) -> None:
-    """A report claiming PASS cannot carry unverified or failed checkpoints."""
+    """A report claiming PASS cannot carry unverified or failed checkpoints.
+
+    The status is read from its own field, never from the whole document: the
+    template's headless-agent note contains the word CONDITIONAL, so a
+    document-wide search silently exonerates every report generated from it.
+    """
     text = report.read_text(encoding="utf-8", errors="replace")
     body = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith(">"))
     unchecked = len(re.findall(r"^\s*-\s*\[\s\]", body, re.M))
     failed = len(re.findall(r"^\s*-\s*\[!\]", body, re.M))
     partial = len(re.findall(r"^\s*-\s*\[~\]", body, re.M))
-    claims_pass = re.search(r"(Compliance Status|Status de Conformidade).*(✅|PASS)", text)
-    if claims_pass and not re.search(r"CONDITIONAL|CONDICIONAL", text):
-        if unchecked or failed or partial:
-            fail("report-status", f"REPORT.md claims PASS while carrying {unchecked} unverified, "
-                                  f"{partial} partial and {failed} failed checkpoints. "
-                                  f"Status must be CONDITIONAL until they are closed.")
+
+    field = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body)
+    value = field.group(1).strip() if field else ""
+    if not value:
+        fail("report-status", "REPORT.md has no Compliance Status field — fill it from templates/REPORT.md.")
+        return
+    if value.count("|") >= 2:  # the template's untouched menu of options
+        fail("report-status", "REPORT.md still carries the template's status placeholder "
+                              "(the PASS | CONDITIONAL | FAIL menu). Declare one status.")
+        return
+
+    conditional = re.search(r"CONDITIONAL|CONDICIONAL", value, re.I)
+    claims_pass = not conditional and (re.search(r"\bPASS\b", value, re.I) or "✅" in value)
+    if claims_pass and (unchecked or failed or partial):
+        fail("report-status", f"REPORT.md claims PASS while carrying {unchecked} unverified, "
+                              f"{partial} partial and {failed} failed checkpoints. "
+                              f"Status must be CONDITIONAL until they are closed.")
     if failed:
         warn("report-status", f"{failed} checkpoint(s) marked [!] (verified and failed) — "
                               f"fix them or open an EXCEPTIONS.md entry.")
@@ -151,27 +167,43 @@ def check_gitignore(root: Path) -> None:
 
 
 def check_source_antipatterns(root: Path, src: Path) -> None:
+    """Scan whole files, not single lines.
+
+    JSX spreads one element over many lines — `<div` on one, `onClick` three
+    below — which is the canonical React form and the exact shape of the
+    anti-pattern this standard exists to stop. A line-by-line scan never sees it.
+    """
     checks = (
         ("clickable-div", re.compile(r"<(div|span)\b[^>]*\bon[cC]lick\b"),
          "clickable <div>/<span> — use a native <button> (A11Y.md §6)"),
-        ("positive-tabindex", re.compile(r"tabindex\s*=\s*[\"']?\s*[1-9]"),
+        # `tabIndex={1}` (JSX) and `tabindex="1"` (HTML) are the same defect.
+        ("positive-tabindex", re.compile(r"tabindex\s*=\s*[\"'{]?\s*[1-9]", re.I),
          "positive tabindex breaks the natural focus order"),
-        ("outline-none", re.compile(r"outline\s*:\s*(none|0)\s*[;}]"),
-         "outline:none — provide a visible focus indicator instead (SC 2.4.7)"),
+        ("outline-none", re.compile(r"outline\s*:\s*(none|0)\s*[;}]|\boutline-none\b"),
+         "outline suppressed — pair it with a visible focus indicator that survives forced-colors "
+         "mode; a box-shadow ring alone disappears there (SC 2.4.7)"),
         ("aria-soup", re.compile(r"<button\b[^>]*\brole\s*=\s*[\"']button[\"']|<a\b[^>]*\brole\s*=\s*[\"']link[\"']"),
          "redundant role on a native element (ARIA Soup, A11Y.md §6)"),
+        ("redundant-alert", re.compile(r"role\s*=\s*[\"']alert[\"'][^>]*aria-live|aria-live[^>]*role\s*=\s*[\"']alert[\"']"),
+         "role=\"alert\" already implies aria-live=\"assertive\" — declaring both is ARIA Soup (A11Y.md §6)"),
+        ("nullified-alt", re.compile(r"<img\b(?=[^>]*\balt\s*=\s*[\"'][^\"']+[\"'])[^>]*\baria-hidden\s*=\s*[\"']?true"),
+         "aria-hidden on an image that carries a non-empty alt cancels it for screen readers while "
+         "every checker still passes (A11Y.md §6, guide-images.md)"),
+        ("media-autoplay", re.compile(r"<(video|audio)\b[^>]*\bautoplay\b(?!\s*[:=]\s*[{\"']?\s*false)", re.I),
+         "autoplay declared in the markup cannot be vetoed by prefers-reduced-motion — grant it by "
+         "script, mute it, and give it a pause mechanism (SC 2.2.2 / 1.4.2, guide-media.md §3)"),
     )
     for path in source_files(root, src):
         try:
             text = path.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
-        for line_no, line in enumerate(text.splitlines(), 1):
-            for name, pattern, message in checks:
-                if pattern.search(line):
-                    rel = path.relative_to(root)
-                    level = warn if name == "outline-none" else fail
-                    level(name, f"{rel}:{line_no} — {message}")
+        rel = path.relative_to(root)
+        for name, pattern, message in checks:
+            for match in pattern.finditer(text):
+                line_no = text.count("\n", 0, match.start()) + 1
+                level = warn if name in ("outline-none", "media-autoplay") else fail
+                level(name, f"{rel}:{line_no} — {message}")
 
 
 # --- main ------------------------------------------------------------------

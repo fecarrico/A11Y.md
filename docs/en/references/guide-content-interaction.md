@@ -1,6 +1,6 @@
 # Accessibility: Content, Interaction & Timing
 
-> Scope: Microcopy, timeout management, aria-live feedback, multimedia accessibility, and AI content guidance.
+> Scope: Microcopy, timeout management, aria-live feedback, sensory language, and AI content guidance. *(Video, audio and motion live in [Time-Based Media & Motion](guide-media.md).)*
 
 ## 1. Microcopy & Clarity
 Language should be as simple as possible to reduce cognitive load.
@@ -19,9 +19,9 @@ Dynamic changes that do not cause a page reload must be announced.
 - **Critical Errors:** Use `aria-live="assertive"` or `role="alert"` for errors that prevent immediate progress.
 - **Progress:** If an action takes time, use a programmatic progress indicator that informs the task status.
 
-## 4. Sensory and Multimedia
+## 4. Sensory Language
 - **Sensory Language:** **MUST NOT** give instructions based solely on senses (e.g., "Click the round button on the right" or "Listen for the tone to begin"). Use text/context references (e.g., "Click the Submit button at the end of the form").
-- **Captions and Transcripts:** Audio and video **MUST** have text alternatives or synchronized captions.
+- **Time-based media** (captions, transcripts, audio description, background video, autoplay and parallax) has its own guide: [Time-Based Media & Motion](guide-media.md). The rule that fires when media enters the code is *Media Evidence*, Section 2 of the core file.
 
 ## 5. Tip for Content AI
 When generating text for the interface, the AI must validate if the instruction survives without the visual context: *"If I couldn't see the screen, would this instruction still make sense?"*.

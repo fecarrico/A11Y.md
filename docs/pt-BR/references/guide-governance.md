@@ -34,6 +34,20 @@ Para preparar sub-sistemas para certificação externa e auditoria:
 3. **Auditoria Padrão:** O checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** ser operado como "Definition of Done" **antes de qualquer entrega ao usuário final** — build publicado, deploy, artefato compartilhado, tag — e não apenas numa "entrega final" que projetos de entrega contínua nunca alcançam (ver *Release Evidence*, `A11Y.md` §2).
 4. **Um relatório vivo, não um por publicação:** o relatório acompanha a **interface**, não a contagem de releases. Se nada mudou desde o último, ele continua valendo. Quando a interface muda, atualize a data e revisite apenas as entradas afetadas: todo checkpoint cuja evidência a mudança invalida volta para `[ ]` ou `[~]` até ser reverificado. Checkpoints humanos (leitor de tela, simulador de cor) mantêm o `[x]` e a data da sessão que os produziu, e são refeitos quando o fluxo que cobriam muda.
 
+## 4.1. Avaliação formal (WCAG-EM) — quando o projeto for auditado
+
+Nem todo produto passa por auditoria externa, e este padrão não presume que passe. Mas **quando passa**, o `REPORT.md` sozinho não é o instrumento certo: ele acompanha uma *feature*, e a auditoria avalia um *site ou aplicação inteira*. Os dois são complementares e a lacuna entre eles aparece tarde — normalmente na hora de emitir a Declaração de Acessibilidade exigida pela Seção 6.
+
+Quando houver auditoria formal, avaliação de terceiro ou declaração pública no horizonte, ancore o trabalho na metodologia oficial do W3C, a [WCAG-EM](https://www.w3.org/TR/WCAG-EM/):
+
+1. **Definir o escopo:** quais URLs/telas, qual nível-alvo, quais tecnologias de suporte.
+2. **Explorar:** identificar tipos de página, funcionalidades essenciais, tecnologias usadas.
+3. **Selecionar a amostra:** páginas estruturadas (uma de cada tipo, mais os fluxos completos) somadas a uma amostra aleatória — auditar "as páginas principais" sem amostragem declarada não é avaliação, é opinião.
+4. **Auditar a amostra** contra cada critério do nível-alvo.
+5. **Relatar:** use o [Template de Relatório de Avaliação](https://www.w3.org/WAI/test-evaluate/report-template/) ou o [WCAG-EM Report Tool](https://www.w3.org/WAI/eval/report-tool) do W3C-WAI, que produzem o formato que auditores e reguladores esperam ler.
+
+Os `REPORT.md` acumulados do projeto são a **evidência de origem** dessa auditoria: eles mostram o que foi verificado, quando, por quem e o que ficou em aberto. Um repositório com histórico de relatórios chega à avaliação formal com lastro; um sem histórico começa do zero.
+
 ## 5. Relatórios e Responsabilidades (VPAT Strategy)
 Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:
 - **VPAT Creation:** Manter um documento técnico que registre quais critérios da WCAG são suportados total ou parcialmente.
@@ -44,8 +58,16 @@ Para conformidade com o EAA:
 - **Interoperability:** Garantir que o software não impeça o uso de tecnologias assistivas de terceiros.
 - **Accessibility Declaration:** Manter uma página de acessibilidade pública descrevendo as funcionalidades e o nível de conformidade alcançado.
 
+## 6.1. Conformidade Brasileira (ABNT NBR 17225 / LBI)
+
+Para produtos com público no Brasil:
+
+- A **ABNT NBR 17225:2025** — *Acessibilidade em conteúdo e aplicações web: requisitos* — é a norma técnica brasileira, publicada em março de 2025. Reúne 146 diretrizes entre requisitos e recomendações, alinhadas à WCAG, e inclui uma lista de itens críticos (captchas, reconhecimento facial, navegação assistiva, contraste, espaçamento, arquivos, conteúdo de terceiros, componentes customizados).
+- Ela dá lastro técnico ao **artigo 63 da Lei Brasileira de Inclusão (Lei 13.146/2015)**, que obriga a acessibilidade em sites de órgãos públicos e de empresas com sede ou representação comercial no país.
+- **Efeito prático neste padrão:** conformidade WCAG 2.2 AA cobre a maior parte dos requisitos, mas a lista de itens críticos da norma brasileira é o checklist de recebimento em contratos públicos no Brasil. Se o projeto tem esse destino, declare-o no `REPORT.md` junto ao perfil de conformidade.
+
 ## 7. Compliance Versioning
-Padrão Atual focado: **WCAG 2.2 AA** | **EN 301 549**.
+Padrão Atual focado: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brasil, quando aplicável).
 Desvios do requisito legal devido a limitações severas de UI/UX, plataforma nativa ou arquitetura base, **MUST** ser justificados usando obrigatoriamente o arquivo matriz na página: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). Todos esses pontos devem possuir ações compensatórias.
 
 ## 8. Padrões Externos e Motores (External Standards & Engines)

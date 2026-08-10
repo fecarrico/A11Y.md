@@ -15,6 +15,8 @@ Checks:
   phase-trigger no rule fires on a project phase ("at final delivery") instead
                 of an event — continuous delivery never reaches a phase
   optional      the project artifacts are not labelled optional anywhere
+  wiki          the Wiki documents the same number of contract rules as the
+                core file and lists every reference guide (skipped if absent)
 
 Usage: python3 lint-standard.py [REPO_ROOT]
 Stdlib only, no dependencies.
@@ -104,6 +106,32 @@ def check_phase_triggers(root: Path) -> None:
                          f"Use 'before any delivery to an end user' (see Release Evidence, §2).")
 
 
+def check_wiki_drift(root: Path) -> None:
+    """The Wiki is the project's public documentation but lives outside version
+    control (see .gitignore), so nothing stops it from drifting away from the
+    standard it documents. Skipped when the folder is absent — most clones
+    will not have it."""
+    wiki = root / "WIKI"
+    if not wiki.is_dir():
+        return
+
+    contract = re.search(r"## 2\..*?(?=\n## 3\.)", core(root, "en").read_text(encoding="utf-8"), re.S)
+    core_rules = len(re.findall(r"^- \*\*", contract.group(0), re.M)) if contract else 0
+    page = wiki / "AI-Behavioral-Contract.md"
+    if page.is_file():
+        wiki_rules = len(re.findall(r"^### \d+\. ", page.read_text(encoding="utf-8"), re.M))
+        if wiki_rules != core_rules:
+            fail("wiki", f"WIKI/AI-Behavioral-Contract.md documents {wiki_rules} rules, "
+                         f"the core file defines {core_rules}")
+
+    library = wiki / "Reference-Library.md"
+    if library.is_file():
+        listed = set(re.findall(r"guide-[a-z0-9-]+\.md", library.read_text(encoding="utf-8")))
+        on_disk = {p.name for p in (root / "docs" / "en" / "references").glob("guide-*.md")}
+        for missing in sorted(on_disk - listed):
+            fail("wiki", f"WIKI/Reference-Library.md does not list {missing}")
+
+
 def check_optional_label(root: Path) -> None:
     for path in sorted((root / "docs").rglob("*.md")):
         for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -119,7 +147,8 @@ def main() -> int:
         print(f"error: {root} does not look like the A11Y.md repository", file=sys.stderr)
         return 2
 
-    for check in (check_parity, check_orphans, check_links, check_phase_triggers, check_optional_label):
+    for check in (check_parity, check_orphans, check_links, check_phase_triggers,
+                  check_optional_label, check_wiki_drift):
         check(root)
 
     for name, message in findings:

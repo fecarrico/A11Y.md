@@ -30,9 +30,11 @@ Imagens usadas como links ou botões (ícones).
 Imagens que não adicionam conteúdo (bordas, ilustrações de fundo).
 ### ✅ Correto
 ```html
+<!-- Classificada como decorativa e confirmada por um humano — ver Seção 5. -->
 <img src="divisor-bonito.png" alt="">
 ```
 - **Por quê:** O `alt=""` (vazio) diz ao leitor de tela para ignorar a imagem. **Nunca** omita o atributo `alt`, senão o leitor lerá o nome do arquivo (ex: "imagem-123-final.png").
+- ⚠️ **O valor vazio é uma decisão confirmada, não um padrão.** A IA **MUST NOT** chegar a esta classificação sozinha: o fluxo obrigatório está na **Seção 5**. Um `alt=""` aplicado por conta própria esconde do usuário de leitor de tela uma imagem possivelmente informativa — e nenhum verificador automático detecta, porque o atributo está lá.
 
 ## 4. O Problema do "Excesso de Descrição"
 Evite começar com "Imagem de..." ou "Foto de...". O leitor de tela já anuncia que é uma imagem. Vá direto ao ponto.
