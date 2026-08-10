@@ -11,6 +11,8 @@ are defects a script can catch, so it should.
 Checks:
   parity        docs/en and docs/pt-BR hold the same files, headings and rules
   orphans       every references/guide-*.md is reachable from the core file
+  triggers      every guide and template has a stated loading trigger in the
+                §2.1 map — reachable is not the same as discoverable
   links         relative links in the core and templates resolve on disk
   phase-trigger no rule fires on a project phase ("at final delivery") instead
                 of an event — continuous delivery never reaches a phase
@@ -73,6 +75,30 @@ def check_orphans(root: Path) -> None:
         for orphan in sorted(on_disk - linked):
             fail("orphans", f"docs/{lang}/references/{orphan} is not linked from the core file — "
                             f"lazy loading can never discover it")
+
+
+def check_triggers(root: Path) -> None:
+    """Reachability is not discoverability.
+
+    check_orphans proves a guide is linked somewhere in the core file. It does
+    not prove the agent knows *when* to open it. Under Lazy Context Loading the
+    references are never preloaded, so a guide whose trigger is not stated is a
+    guide that only gets found by guessing the filename. Every guide and every
+    template must appear in the §2.1 loading map.
+    """
+    for lang in LANGS:
+        text = core(root, lang).read_text(encoding="utf-8")
+        section = re.search(r"## 2\.1\..*?(?=\n## 3\.)", text, re.S)
+        if not section:
+            fail("triggers", f"docs/{lang}/A11Y.md has no §2.1 loading map")
+            continue
+        mapped = set(re.findall(r"(?:guide-[a-z0-9-]+|REPORT|EXCEPTIONS|A11Y-DECISIONS)\.md",
+                                section.group(0)))
+        expected = {p.name for p in (root / "docs" / lang / "references").glob("guide-*.md")}
+        expected |= {p.name for p in (root / "docs" / lang / "templates").glob("*.md")}
+        for missing in sorted(expected - mapped):
+            fail("triggers", f"docs/{lang}: {missing} has no trigger in the §2.1 loading map — "
+                             f"lazy loading can reach it, but nothing says when to open it")
 
 
 def check_links(root: Path) -> None:
@@ -147,8 +173,8 @@ def main() -> int:
         print(f"error: {root} does not look like the A11Y.md repository", file=sys.stderr)
         return 2
 
-    for check in (check_parity, check_orphans, check_links, check_phase_triggers,
-                  check_optional_label, check_wiki_drift):
+    for check in (check_parity, check_orphans, check_triggers, check_links,
+                  check_phase_triggers, check_optional_label, check_wiki_drift):
         check(root)
 
     for name, message in findings:

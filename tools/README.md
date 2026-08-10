@@ -52,6 +52,6 @@ Vendoring the script into your repository is equally valid, and gives you a revi
 python3 lint-standard.py [REPO_ROOT]
 ```
 
-Checks parity between `docs/en` and `docs/pt-BR` (file list, headings, contract rule count), orphaned reference guides, broken relative links, phase triggers ("at final delivery") that never fire in continuous delivery, any label calling the project artifacts optional, and Wiki drift (the Wiki must document the same number of contract rules as the core file and list every reference guide — skipped when the folder is absent).
+Checks parity between `docs/en` and `docs/pt-BR` (file list, headings, contract rule count), orphaned reference guides, guides and templates with no loading trigger in the §2.1 map, broken relative links, phase triggers ("at final delivery") that never fire in continuous delivery, any label calling the project artifacts optional, and Wiki drift (the Wiki must document the same number of contract rules as the core file and list every reference guide — skipped when the folder is absent).
 
 Every check exists because the corresponding defect actually shipped: the ten guides orphaned in 1.0.0, the "Optional Templates" label and the phase trigger that together caused the [2026-08-01 field failure](../CHANGELOG.md), and the Wiki running two releases ahead of the core file while nothing compared them. Run against the release before 1.2.0, it reports all four of the originals.
