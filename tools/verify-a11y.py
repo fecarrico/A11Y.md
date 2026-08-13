@@ -206,6 +206,35 @@ def check_source_antipatterns(root: Path, src: Path) -> None:
                 level(name, f"{rel}:{line_no} — {message}")
 
 
+def check_orphaned_aria(root: Path, src: Path) -> None:
+    """An ARIA relationship pointing at an id that is not in the file.
+
+    Only literal values are resolvable statically: `aria-controls={panelId}`
+    could be anything at runtime. That dynamic form is exactly where the defect
+    hides — two components each calling useId() — so it stays a job for review,
+    not for a regex. Reported as a warning: the target may legitimately live in
+    another file.
+    """
+    relations = re.compile(r'\b(aria-controls|aria-labelledby|aria-describedby|aria-activedescendant)'
+                           r'\s*=\s*"([^"{}]+)"')
+    declared = re.compile(r'\bid\s*=\s*"([^"{}]+)"')
+    for path in source_files(root, src):
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        ids = set(declared.findall(text))
+        for match in relations.finditer(text):
+            attribute, value = match.group(1), match.group(2)
+            for target in value.split():
+                if target not in ids:
+                    line_no = text.count("\n", 0, match.start()) + 1
+                    warn("orphaned-aria",
+                         f"{path.relative_to(root)}:{line_no} — {attribute}=\"{target}\" has no matching "
+                         f"id in this file. If the target lives in another component, make sure the id is "
+                         f"passed down rather than generated on both sides (A11Y.md §6).")
+
+
 # --- main ------------------------------------------------------------------
 
 def main() -> int:
@@ -228,6 +257,7 @@ def main() -> int:
     check_exceptions(root)
     check_gitignore(root)
     check_source_antipatterns(root, src)
+    check_orphaned_aria(root, src)
 
     errors = [f for f in findings if f[0] == "ERROR"]
     warnings = [f for f in findings if f[0] == "WARN"]

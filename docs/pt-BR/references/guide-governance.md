@@ -15,6 +15,7 @@ Agentes tratam a Seção 2 como contrato executável e todo o resto como materia
 ## 1. Verificação Estática (O Mínimo de Engenharia)
 A verificação primária não consiste em ditar regras rígidas em uma *pipeline específica*, mas responsabilizar o ambiente de desenvolvimento (Seja o Dev ou a IA rodando em tempo real) por testes estáticos de validação rápida.
 - **Padrão de Código:** O código *deve* passar obrigatoriamente pelas checagens de linters ou avaliadores focados em acessibilidade (como `eslint-plugin-jsx-a11y` ou motor `axe`) sem exibir violações do nível crítico/sério antes da consolidação de código. 
+- **Ferramentas deste padrão:** o repositório publica dois scripts opcionais em [`tools/`](https://github.com/fecarrico/A11Y.md/tree/main/tools), sem dependências: o `verify-a11y.py` roda no **seu projeto** — confere que os artefatos existem, que o `REPORT.md` é mais novo que a última mudança de interface e que o código não traz os anti-padrões da Seção 6; o `lint-standard.py` roda em **cópias ou forks deste padrão**, verificando paridade entre idiomas, gatilhos de carregamento e links. Executá-los nunca é requisito do padrão — o `A11Y.md` é markdown portátil —, mas um gate que reprova o build é mais forte que uma regra que alguém precisa lembrar.
 - **Desacoplamento:** Não tente "escrever lógicas robustas para componentes acessíveis e tentar consertá-los": adote bibliotecas agnósticas (Headless UI) sempre que a semântica nativa HTML não cobrir os requisitos da funcionalidade.
 
 ## 2. Evidência Descritiva (The "Why")

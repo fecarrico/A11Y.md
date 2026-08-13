@@ -15,6 +15,7 @@ Agents treat Section 2 as an executable contract and everything else as referenc
 ## 1. Static Verification (The Engineering Minimum)
 Primary verification does not consist of dictating rigid rules in a *specific pipeline*, but holding the development environment (Be it the Dev or the AI running in real-time) accountable for fast static validation tests.
 - **Code Standard:** The code *must* necessarily pass through linters or accessibility-focused evaluators (like `eslint-plugin-jsx-a11y` or the `axe` engine) without displaying critical/serious violations before code consolidation.
+- **This standard's own tools:** the repository ships two optional, dependency-free scripts in [`tools/`](https://github.com/fecarrico/A11Y.md/tree/main/tools): `verify-a11y.py` runs against **your project** — checking that the artifacts exist, that `REPORT.md` is newer than the last interface change, and that the source is free of the Section 6 anti-patterns; `lint-standard.py` runs against **copies or forks of this standard**, checking language parity, loading triggers and links. Running them is never a requirement of the standard — `A11Y.md` is portable markdown — but a gate that fails a build is stronger than a rule someone has to remember.
 - **Decoupling:** Do not try to "write robust logic for accessible components and try to fix them": adopt agnostic libraries (Headless UI) whenever native HTML semantics do not cover the feature requirements.
 
 ## 2. Descriptive Evidence (The "Why")

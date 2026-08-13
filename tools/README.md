@@ -29,6 +29,7 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 | `gitignore` | project artifacts excluded from version control |
 | `clickable-div` · `positive-tabindex` · `outline-none` · `aria-soup` | source anti-patterns from §6 |
 | `redundant-alert` · `nullified-alt` | `role="alert"` declared alongside `aria-live`; `aria-hidden` cancelling a non-empty `alt` |
+| `orphaned-aria` | `aria-controls`/`labelledby`/`describedby`/`activedescendant` pointing at an id absent from the file (warning — the target may live elsewhere) |
 | `media-autoplay` | `autoplay` in the markup — immune to `prefers-reduced-motion` by construction (warning) |
 
 The source scan reads whole files, not single lines: JSX spreads one element across many lines, and a line-by-line scan never sees `<div` three lines above its `onClick`.
@@ -40,7 +41,7 @@ Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report wi
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.5.0/tools/verify-a11y.py
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.6.0/tools/verify-a11y.py
     python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
 
