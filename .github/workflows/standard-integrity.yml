@@ -1,0 +1,25 @@
+name: Standard integrity
+
+# The standard requires evidence before delivery. Running its own linter only
+# when someone remembers to is the same phase-trigger failure the 1.2.0
+# post-mortem documented — so it runs here, on every change.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-standard:
+    name: Lint the standard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Parity, orphans, triggers, links, phase triggers, wiki drift
+        run: python3 tools/lint-standard.py .
