@@ -42,6 +42,48 @@ Quando um agente de IA gera ou revisa código, ele **MUST transpor** esses padr�
 
 ---
 
+## IDs que cruzam a fronteira de componentes
+
+Todo framework moderno tem um gerador de ID estável para SSR (`useId` no React 18+ e no Vue 3.5+, equivalentes nos demais). Ele resolve colisão de identificadores — e cria uma armadilha no momento em que dois componentes precisam **se referenciar**.
+
+### ❌ Incorreto
+
+```tsx
+// Toolbar.tsx
+const panelId = useId();                    // gera um valor
+return <button aria-controls={panelId} aria-expanded={open}>Filtros</button>;
+
+// Panel.tsx
+const panelId = useId();                    // gera OUTRO valor
+return <div id={panelId}>…</div>;
+```
+
+O `aria-controls` aponta para um `id` que não existe. Cada chamada de `useId()` é independente — nada faz dois componentes chegarem ao mesmo valor. E o defeito **passa** no axe e no Lighthouse: eles validam a sintaxe do atributo, não resolvem o destino da referência entre componentes.
+
+### ✅ Correto
+
+```tsx
+// Toolbar.tsx — um lado gera, o outro recebe
+const panelId = useId();
+return (
+  <>
+    <button aria-controls={panelId} aria-expanded={open}>Filtros</button>
+    <Panel id={panelId} />
+  </>
+);
+
+// Panel.tsx
+export function Panel({ id }: { id: string }) {
+  return <div id={id}>…</div>;
+}
+```
+
+Vale para `aria-controls`, `aria-labelledby`, `aria-describedby` e `aria-activedescendant`, em qualquer framework: **o identificador tem uma origem única e desce por propriedade.** Se os componentes estão distantes na árvore, o `id` sobe para o estado compartilhado ou para o contexto — o que não muda é ele ser gerado uma vez só.
+
+*Ver o anti-padrão **Referência ARIA Órfã** na Seção 6 do arquivo central.*
+
+---
+
 ## Exemplo de Tradução: Toggle Button
 
 ### 🔵 Origem (React/TSX)
