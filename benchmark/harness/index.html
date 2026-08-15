@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A11Y.md Benchmark Harness</title>
+<style>
+  :root { color-scheme: light dark; font-family: ui-monospace, monospace; }
+  body { margin: 2rem auto; max-width: 70rem; padding: 0 1rem; line-height: 1.5; }
+  h1 { font-size: 1.3rem; } h2 { font-size: 1.05rem; margin-top: 2rem; }
+  button { font: inherit; padding: .5rem 1rem; cursor: pointer; }
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-size: .85rem; }
+  th, td { border: 1px solid #8884; padding: .3rem .5rem; text-align: left; }
+  .crit { color: #c0392b; font-weight: 700; } .ok { color: #27823b; }
+  #frame { width: 1280px; height: 800px; border: 1px solid #8886; transform: scale(.35); transform-origin: 0 0; }
+  #frame-wrap { height: 290px; overflow: hidden; }
+  #status { font-weight: 700; margin: 1rem 0; }
+  .manual { color: #b07d10; }
+</style>
+</head>
+<body>
+<h1>A11Y.md Benchmark Harness</h1>
+<p>Runs the <strong>pinned axe-core</strong> (see <code>axe.lock</code>) plus the pre-registered deterministic
+checklist over every file in <code>runs/manifest.json</code>, mounted unmodified. Serve via
+<code>python3 ../run-benchmark.py</code> — opening this file directly cannot read the runs.</p>
+
+<p id="status">Loading manifest…</p>
+<button id="start" disabled>Run all</button>
+<button id="download" disabled>Download results.json</button>
+
+<div id="frame-wrap"><iframe id="frame" title="Generation under test"></iframe></div>
+<div id="out"></div>
+
+<script src="axe.min.js"></script>
+<script>
+const IMPACTS = ["critical", "serious", "moderate", "minor"];
+const results = [];
+let manifest = [];
+
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+async function loadManifest() {
+  try {
+    manifest = await (await fetch("../runs/manifest.json")).json();
+    $("status").textContent = `${manifest.length} run(s) in manifest. axe ${axe.version} loaded.`;
+    $("start").disabled = false;
+  } catch (e) {
+    $("status").textContent = "Could not load ../runs/manifest.json — start me with run-benchmark.py.";
+  }
+}
+
+function mount(url) {
+  return new Promise((resolve, reject) => {
+    const f = $("frame");
+    f.onload = () => setTimeout(() => resolve(f), 400);   // let the page's own JS settle
+    f.onerror = reject;
+    f.src = url;
+  });
+}
+
+/* ---- pre-registered deterministic checklist (METHODOLOGY.md §Measurement 2) ---- */
+function checklist(doc, win, task) {
+  const c = {};
+
+  // native elements vs clickable divs
+  const clickableDivs = doc.querySelectorAll("div[onclick],span[onclick]").length;
+  c["native-buttons"] = clickableDivs === 0 ? "PASS" : `FAIL (${clickableDivs} clickable div/span)`;
+
+  // labels programmatically associated
+  const fields = [...doc.querySelectorAll("input:not([type=hidden]):not([type=submit]):not([type=button]),select,textarea")];
+  const unlabeled = fields.filter(el => !(el.labels && el.labels.length) &&
+    !el.getAttribute("aria-label") && !el.getAttribute("aria-labelledby"));
+  c["labels-associated"] = fields.length === 0 ? "N/A"
+    : unlabeled.length === 0 ? "PASS" : `FAIL (${unlabeled.length}/${fields.length} unlabeled)`;
+
+  // dynamic feedback exposed through a live region
+  const live = doc.querySelectorAll("[aria-live],[role=status],[role=alert],[role=log],output").length;
+  c["live-region"] = live > 0 ? "PASS" : "FAIL (no live region in DOM)";
+
+  // minimum 24×24 CSS px target size (SC 2.5.8) — measured on the rendered DOM
+  const targets = [...doc.querySelectorAll("button,a[href],input[type=submit],input[type=button],[role=button]")];
+  const small = targets.filter(el => {
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0 && (r.width < 24 || r.height < 24);
+  });
+  c["target-24px"] = targets.length === 0 ? "N/A"
+    : small.length === 0 ? "PASS" : `FAIL (${small.length} target(s) under 24px — SC 2.5.8 exceptions need a human eye)`;
+
+  // no redundant ARIA on native elements (ARIA Soup)
+  const soup = doc.querySelectorAll("button[role=button],a[href][role=link],input[role=textbox]").length;
+  c["no-aria-soup"] = soup === 0 ? "PASS" : `FAIL (${soup} redundant role(s))`;
+
+  // task 2 only: modal focus behavior — semi-automated
+  if (task === "task2") c["modal-focus"] = modalCheck(doc, win);
+
+  return c;
+}
+
+function modalCheck(doc, win) {
+  try {
+    const del = [...doc.querySelectorAll("button")].find(b => /delete|excluir|apagar/i.test(b.textContent));
+    if (!del) return "MANUAL (no Delete button found)";
+    del.click();
+    const dlg = doc.querySelector("dialog[open]") ||
+      [...doc.querySelectorAll("[role=dialog],[role=alertdialog],.modal,[class*=modal],[class*=overlay]")]
+        .find(el => win.getComputedStyle(el).display !== "none" && el.offsetParent !== null);
+    if (!dlg) return "FAIL (dialog did not open on click)";
+    const focusIn = dlg.contains(doc.activeElement);
+    doc.activeElement.dispatchEvent(new win.KeyboardEvent("keydown", {key: "Escape", bubbles: true}));
+    doc.dispatchEvent(new win.KeyboardEvent("keydown", {key: "Escape", bubbles: true}));
+    const closed = !(doc.querySelector("dialog[open]") ||
+      (win.getComputedStyle(dlg).display !== "none" && dlg.offsetParent !== null));
+    const parts = [`focus moved in: ${focusIn ? "yes" : "NO"}`, `Escape closes: ${closed ? "yes" : "NO"}`];
+    const verdict = focusIn && closed ? "PASS" : "FAIL";
+    return `${verdict} (${parts.join(", ")}) — containment + focus return need a human tab-through`;
+  } catch (e) { return `MANUAL (script could not drive the modal: ${e.message})`; }
+}
+
+/* ---- runner ---- */
+async function runAll() {
+  $("start").disabled = true;
+  for (const entry of manifest) {
+    $("status").textContent = `Running ${entry.file} …`;
+    try {
+      const frame = await mount("../runs/" + entry.file);
+      const doc = frame.contentDocument, win = frame.contentWindow;
+      const axeResult = await axe.run(doc, {resultTypes: ["violations"]});
+      const counts = Object.fromEntries(IMPACTS.map(i => [i,
+        axeResult.violations.filter(v => v.impact === i)
+          .reduce((n, v) => n + v.nodes.length, 0)]));
+      results.push({
+        ...entry, axeVersion: axe.version, counts,
+        violations: axeResult.violations.map(v => ({id: v.id, impact: v.impact, nodes: v.nodes.length})),
+        checklist: checklist(doc, win, entry.task),
+      });
+    } catch (e) {
+      results.push({...entry, error: String(e)});
+    }
+    render();
+  }
+  $("status").textContent = `Done — ${results.length} run(s). Download the JSON and keep it in benchmark/results/.`;
+  $("download").disabled = false;
+}
+
+function render() {
+  const rows = results.map(r => {
+    if (r.error) return `<tr><td>${esc(r.file)}</td><td colspan="6" class="crit">${esc(r.error)}</td></tr>`;
+    const cl = Object.entries(r.checklist)
+      .map(([k, v]) => `<span class="${v.startsWith("PASS") ? "ok" : v.startsWith("MANUAL") || v === "N/A" ? "manual" : "crit"}">${k}: ${esc(v)}</span>`)
+      .join("<br>");
+    return `<tr><td>${esc(r.file)}</td>` +
+      IMPACTS.map(i => `<td class="${i === "critical" && r.counts[i] ? "crit" : ""}">${r.counts[i]}</td>`).join("") +
+      `<td>${cl}</td></tr>`;
+  }).join("");
+  $("out").innerHTML = `<table><tr><th>run</th><th>critical</th><th>serious</th><th>moderate</th><th>minor</th><th>checklist</th></tr>${rows}</table>`;
+}
+
+$("start").onclick = runAll;
+$("download").onclick = () => {
+  const blob = new Blob([JSON.stringify({generated: new Date().toISOString(), axeVersion: axe.version, results}, null, 2)],
+    {type: "application/json"});
+  const a = Object.assign(document.createElement("a"), {href: URL.createObjectURL(blob), download: "results.json"});
+  a.click();
+};
+
+loadManifest();
+</script>
+</body>
+</html>

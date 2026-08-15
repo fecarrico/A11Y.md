@@ -84,6 +84,13 @@ Conversational interfaces put the whole burden of structure on the reader. Apply
 | 2.5.3 Label in Name | AA | per-message controls named distinctly, containing their visible text |
 | 1.1.1 Non-text Content | A | generated images and charts carry alternatives, resolved with a human |
 
+## Sources
+
+- **Live region mechanics** — the behavior §0 and §1 rely on (a region must exist before its first message; how additions are processed): [WAI-ARIA — `log` role](https://www.w3.org/TR/wai-aria-1.2/#log) · Sara Soueidan, [*Accessible notifications with ARIA Live Regions*](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-1/).
+- **Why token-streams stutter or restart differently per reader** — live-region handling diverges measurably across screen reader/browser pairs, which is why this guide announces transitions instead of streaming content: [a11ysupport.io — `aria-live` test results](https://a11ysupport.io/tech/aria/aria-live_attribute).
+- **Runtime-assembled UI needs verification at render (§5):** *Accessible GenAI UI Generation with Post-Render Verification*, ICCHP 2026 ([Springer](https://link.springer.com/chapter/10.1007/978-3-032-31285-3_47)) — static standards cannot reach markup that only exists at runtime; a second check must run where the interface is composed.
+- **Cognitive load in conversational interfaces (§6):** Hervás et al., *Cognitive Accessibility in Generative AI Interfaces* — systematic review, International Journal of Human–Computer Interaction, 2026 ([Taylor & Francis](https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2618562)) — current text-based GenAI interfaces impose excess cognitive load and lack predictability and scaffolding.
+
 ## Tip for the AI:
 
 Turn on a screen reader and send one long prompt. If the response is read aloud while it is still being written, the live region is in the wrong place — move the announcement to a status region and let the content render silently. Then press `Tab` mid-stream: you should reach *Stop generating* before anything else.
