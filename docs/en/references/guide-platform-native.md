@@ -30,6 +30,7 @@ The normative layer of `A11Y.md` (Principle Zero, POUR, Compliance Profiles, Sev
 ## Verification (native equivalent of Section 7)
 
 - [ ] **Screen reader pass requested:** VoiceOver (iOS) / TalkBack (Android) — human validation; the AI MUST NOT claim it ran these.
+- [ ] **Assistive technologies beyond the screen reader:** the label a person **says** must match the label they **see** (Voice Control on iOS, Voice Access on Android — SC 2.5.3); every action reachable by sequential activation, for switch control (Switch Control / Switch Access); every control reachable by an external keyboard (Full Keyboard Access on iOS, keyboard navigation on Android). These three read the same accessible name and the same focus order the screen reader does — which is why a control named only for the screen reader breaks all four at once.
 - [ ] **Font scaling:** UI survives the largest system font size without truncation or overlap.
 - [ ] **Focus/swipe order:** sequential navigation follows the visual/logical order.
 - [ ] **Announcements:** async feedback audible without touching the screen.

@@ -30,6 +30,7 @@ A camada normativa do `A11Y.md` (Principle Zero, POUR, Perfis de Conformidade, S
 ## Verificação (equivalente nativo da Seção 7)
 
 - [ ] **Passagem de leitor de tela solicitada:** VoiceOver (iOS) / TalkBack (Android) — validação humana; a IA MUST NOT alegar que os executou.
+- [ ] **Tecnologias assistivas além do leitor de tela:** o rótulo que a pessoa **fala** precisa bater com o rótulo que ela **vê** (Voice Control no iOS, Voice Access no Android — SC 2.5.3); toda ação alcançável por ativação sequencial, para controle por acionador (Switch Control / Switch Access); todo controle alcançável por teclado externo (Full Keyboard Access no iOS, navegação por teclado no Android). Essas três leem o mesmo nome acessível e a mesma ordem de foco que o leitor de tela — e é por isso que um controle nomeado só para o leitor de tela quebra as quatro de uma vez.
 - [ ] **Escala de fonte:** a UI sobrevive ao maior tamanho de fonte do sistema sem truncamento ou sobreposição.
 - [ ] **Ordem de foco/swipe:** a navegação sequencial segue a ordem visual/lógica.
 - [ ] **Anúncios:** feedback assíncrono audível sem tocar na tela.
