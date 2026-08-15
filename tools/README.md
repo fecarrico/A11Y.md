@@ -26,6 +26,7 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 | `freshness` | report older than the last interface change (git history, falling back to mtime) |
 | `report-status` | report claiming PASS while carrying `[ ]`, `[~]` or `[!]` checkpoints — or still carrying the template's status placeholder |
 | `independence` | report with no *Verification Independence* field, with more than one level declared, or claiming PASS on `self-reported` — the generating agent as sole witness (Independent Verification, §2) |
+| `placement` *(lint-standard)* | a core rule past the size at which it is carrying its own documentation — a placement rule, not a content cap: no obligation is refused for size, rationale is sent to the guide the rule points at. Run against `v1.7.0`, reports the five rules whose diet produced it |
 | `exceptions` | entries without risk owner, approver, tracking issue or expiry — and expired ones |
 | `gitignore` | project artifacts excluded from version control |
 | `clickable-div` · `positive-tabindex` · `outline-none` · `aria-soup` | source anti-patterns from §6 |

@@ -16,6 +16,8 @@ Checks:
   links         relative links in the core and templates resolve on disk
   phase-trigger no rule fires on a project phase ("at final delivery") instead
                 of an event — continuous delivery never reaches a phase
+  placement     no core rule exceeds the size past which it is carrying its
+                own documentation — depth lives in guides, never in the core
   optional      the project artifacts are not labelled optional anywhere
   wiki          the Wiki documents the same number of contract rules as the
                 core file and lists every reference guide (skipped if absent)
@@ -158,6 +160,32 @@ def check_wiki_drift(root: Path) -> None:
             fail("wiki", f"WIKI/Reference-Library.md does not list {missing}")
 
 
+def check_placement(root: Path) -> None:
+    """The core carries obligation, never sole depth (guide-governance §0).
+
+    Rules accrete rationale release by release — mechanism essays, tool
+    caveats, field data — until the core stops being a core: 10.7KB at
+    1.0.0, 40.9KB at 1.7.0, with single rules past 1.6KB. Depth belongs
+    in the guide the rule already points at; past this threshold a rule
+    is almost certainly carrying its own documentation. This is a
+    placement rule, not a content cap: no obligation is ever refused for
+    size — what gets flagged is rationale living at the wrong address.
+    Run against the v1.7.0 tag, this check reports the five rules whose
+    diet produced it."""
+    LIMIT = 900  # bytes of rule body
+    for lang in LANGS:
+        text = core(root, lang).read_text(encoding="utf-8")
+        for match in re.finditer(r"^- \*\*([^:*]+):?\*\*:?(.*?)(?=^- \*\*|^- \[|^#|^\||\Z)",
+                                 text, re.M | re.S):
+            name, size = match.group(1).strip(), len(match.group(2).encode("utf-8"))
+            if size > LIMIT:
+                fail("placement",
+                     f"docs/{lang}/A11Y.md — rule '{name}' is {size} bytes; past {LIMIT} a rule is "
+                     f"carrying its own documentation. Keep the obligation, trigger and one-line "
+                     f"mechanism in the core; move the rationale to the guide the rule points at "
+                     f"(guide-governance §0).")
+
+
 def check_optional_label(root: Path) -> None:
     for path in sorted((root / "docs").rglob("*.md")):
         for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -174,7 +202,7 @@ def main() -> int:
         return 2
 
     for check in (check_parity, check_orphans, check_triggers, check_links,
-                  check_phase_triggers, check_optional_label, check_wiki_drift):
+                  check_phase_triggers, check_placement, check_optional_label, check_wiki_drift):
         check(root)
 
     for name, message in findings:

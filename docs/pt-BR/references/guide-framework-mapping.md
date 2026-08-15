@@ -58,7 +58,7 @@ const panelId = useId();                    // gera OUTRO valor
 return <div id={panelId}>…</div>;
 ```
 
-O `aria-controls` aponta para um `id` que não existe. Cada chamada de `useId()` é independente — nada faz dois componentes chegarem ao mesmo valor. E o defeito **passa** no axe e no Lighthouse: eles validam a sintaxe do atributo, não resolvem o destino da referência entre componentes.
+O `aria-controls` aponta para um `id` que não existe. Cada chamada de `useId()` é independente — nada faz dois componentes chegarem ao mesmo valor. E o defeito **passa** no axe e no Lighthouse: eles validam a sintaxe do atributo, não resolvem o destino da referência entre componentes. Esse modo de falha é o **inverso do ARIA Soup**: lá, ARIA é adicionado onde a semântica nativa bastava; aqui o ARIA é sintaticamente correto e vazio no destino — o leitor de tela segue o ponteiro e não encontra nada. *(Encontrado em campo pelo primeiro teste independente deste padrão: [a11y-md-ai-test](https://github.com/mjepis7/a11y-md-ai-test), de Maria Eduarda Iwashita — a sessão guiada ainda entregou exatamente este bug, e foi isso que o transformou no anti-pattern da Seção 6.)*
 
 ### ✅ Correto
 
