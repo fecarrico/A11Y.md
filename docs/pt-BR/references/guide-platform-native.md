@@ -23,9 +23,22 @@ A camada normativa do `A11Y.md` (Principle Zero, POUR, Perfis de Conformidade, S
 | Heading (`<h1>`–`<h6>`) | `.accessibilityAddTraits(.isHeader)` | `Modifier.semantics { heading() }` | `accessibilityRole="header"` | `Semantics(header: true)` |
 | Estado desabilitado (`disabled`, `aria-disabled`) | `.disabled(true)` (exposto automaticamente) | `enabled = false` | `accessibilityState={{disabled: true}}` | `Semantics(enabled: false)` ou widget desabilitado |
 | Agrupamento de conteúdo relacionado (label + valor) | `.accessibilityElement(children: .combine)` | `Modifier.semantics(mergeDescendants = true) {}` | `accessible={true}` no contêiner | `MergeSemantics` |
+| **Ação que só existe como gesto** (swipe action, menu de long-press, arraste) | `.accessibilityAction(named: Text("Arquivar")) { … }` (UIKit: `accessibilityCustomActions` = `[UIAccessibilityCustomAction(name:actionHandler:)]`) | `Modifier.semantics { customActions = listOf(CustomAccessibilityAction(label) { true }) }` | `accessibilityActions={[{name: 'archive', label: 'Arquivar'}]}` + `onAccessibilityAction` | `Semantics(customSemanticsActions: {CustomSemanticsAction(label: 'Arquivar'): () { … }})` |
 | Gerenciamento de foco após navegação | `@AccessibilityFocusState` | `FocusRequester.requestFocus()` | `AccessibilityInfo.sendAccessibilityEvent(handle, 'focus')` | `FocusNode.requestFocus()` |
 | `prefers-reduced-motion` | Ambiente `accessibilityReduceMotion` / `UIAccessibility.isReduceMotionEnabled` | Respeite a escala de animação do sistema; evite auto-animação gratuita | `AccessibilityInfo.isReduceMotionEnabled()` | `MediaQuery.of(context).disableAnimations` |
 | Zoom de texto (equivalência do SC 1.4.4) | Dynamic Type — use estilos de texto do sistema, nunca tamanhos fixos | Unidades `sp` para texto, nunca `dp` | `allowFontScaling` (default `true` — MUST NOT desabilitar) | `textScaler` do `MediaQuery` — nunca fixe `textScaleFactor: 1.0` |
+
+## Custom Actions — o problema do gesto
+
+A lacuna nativa mais comum no código gerado: **uma ação que só existe como gesto não existe para a tecnologia assistiva.** Deslizar para arquivar numa linha de lista, long-press para menu de contexto, arrastar para reordenar — quem enxerga e toca faz o gesto; quem usa leitor de tela, controle por acionador ou controle por voz não tem caminho nenhum até ela, porque o gesto é interceptado pela tecnologia assistiva ou é fisicamente indisponível. É o irmão nativo de *Pointer Gestures* (SC 2.5.1) e *Dragging Movements* (SC 2.5.7).
+
+1. **Toda ação alcançável apenas por gesto MUST ser exposta também como custom accessibility action**, com a API da plataforma na tabela acima. O toque da linha pode continuar sendo um toque; o que precisa ser exposto são as *consequências* do swipe (arquivar, apagar, fixar).
+2. **O rótulo da ação é parente do rótulo visível:** curto, começando pelo verbo, e igual ao texto que a UI mostra para a mesma ação em outro lugar (a SC 2.5.3 se aplica ao que quem usa controle por voz consegue falar).
+3. **Como elas aparecem, para quem valida saber o que testar:** o VoiceOver anuncia *"ações disponíveis"* no elemento — a pessoa desliza verticalmente com um dedo para percorrer as ações e toca duas vezes para executar; o TalkBack as apresenta no menu local de ações; Switch Control e Voice Control leem a mesma lista.
+4. **Não duplique.** Se os botões dentro da linha são focáveis individualmente *e* reexpostos como custom actions, toda ação é anunciada duas vezes. No Compose, limpe a semântica dos filhos (`clearAndSetSemantics { }`) ao subi-los para `customActions`; o princípio vale em todas as plataformas.
+5. **Custom action é suplemento, nunca esconderijo:** uma ação essencial à tarefa continua precisando de caminho visível e descobrível para todo mundo (um menu, uma tela de detalhes) — a custom action devolve paridade a quem usa tecnologia assistiva, não desculpa uma interface cuja *única* affordance é um gesto invisível.
+
+*APIs conferidas contra a documentação das plataformas: [`UIAccessibilityCustomAction`](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction) / [`accessibilityAction(named:)`](https://developer.apple.com/documentation/swiftui/view/accessibilityaction(named:_:)) · [Compose `customActions`](https://developer.android.com/develop/ui/compose/accessibility/semantics) · [React Native `accessibilityActions`](https://reactnative.dev/docs/accessibility) · [Flutter `CustomSemanticsAction`](https://api.flutter.dev/flutter/semantics/CustomSemanticsAction-class.html).*
 
 ## Verificação (equivalente nativo da Seção 7)
 
@@ -34,3 +47,4 @@ A camada normativa do `A11Y.md` (Principle Zero, POUR, Perfis de Conformidade, S
 - [ ] **Escala de fonte:** a UI sobrevive ao maior tamanho de fonte do sistema sem truncamento ou sobreposição.
 - [ ] **Ordem de foco/swipe:** a navegação sequencial segue a ordem visual/lógica.
 - [ ] **Anúncios:** feedback assíncrono audível sem tocar na tela.
+- [ ] **Paridade de gesto:** toda consequência de swipe, long-press ou arraste é alcançável pelas custom actions do elemento (VoiceOver: "ações disponíveis" → swipe vertical de um dedo; TalkBack: menu local de ações) — e nada é anunciado duas vezes.

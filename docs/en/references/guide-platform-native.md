@@ -23,9 +23,22 @@ The normative layer of `A11Y.md` (Principle Zero, POUR, Compliance Profiles, Sev
 | Heading (`<h1>`–`<h6>`) | `.accessibilityAddTraits(.isHeader)` | `Modifier.semantics { heading() }` | `accessibilityRole="header"` | `Semantics(header: true)` |
 | Disabled state (`disabled`, `aria-disabled`) | `.disabled(true)` (exposed automatically) | `enabled = false` | `accessibilityState={{disabled: true}}` | `Semantics(enabled: false)` or disabled widget |
 | Grouping related content (label + value) | `.accessibilityElement(children: .combine)` | `Modifier.semantics(mergeDescendants = true) {}` | `accessible={true}` on the container | `MergeSemantics` |
+| **Action that exists only as a gesture** (swipe action, long-press menu, drag) | `.accessibilityAction(named: Text("Archive")) { … }` (UIKit: `accessibilityCustomActions` = `[UIAccessibilityCustomAction(name:actionHandler:)]`) | `Modifier.semantics { customActions = listOf(CustomAccessibilityAction(label) { true }) }` | `accessibilityActions={[{name: 'archive', label: 'Archive'}]}` + `onAccessibilityAction` | `Semantics(customSemanticsActions: {CustomSemanticsAction(label: 'Archive'): () { … }})` |
 | Focus management after navigation | `@AccessibilityFocusState` | `FocusRequester.requestFocus()` | `AccessibilityInfo.sendAccessibilityEvent(handle, 'focus')` | `FocusNode.requestFocus()` |
 | `prefers-reduced-motion` | `accessibilityReduceMotion` environment / `UIAccessibility.isReduceMotionEnabled` | Respect system animator scale; avoid gratuitous auto-animation | `AccessibilityInfo.isReduceMotionEnabled()` | `MediaQuery.of(context).disableAnimations` |
 | Text zoom (SC 1.4.4 equivalence) | Dynamic Type — use system text styles, never fixed sizes | `sp` units for text, never `dp` | `allowFontScaling` (default `true` — MUST NOT disable) | `MediaQuery` `textScaler` — never hardcode `textScaleFactor: 1.0` |
+
+## Custom Actions — the gesture problem
+
+The most common native gap generated code ships: **an action that exists only as a gesture does not exist for assistive technology.** Swipe-to-archive on a list row, long-press for a context menu, drag to reorder — a sighted touch user performs the gesture; a screen-reader, switch-control or voice-control user has no path to it at all, because the gesture is intercepted by their assistive technology or is physically unavailable to them. This is the native sibling of *Pointer Gestures* (SC 2.5.1) and *Dragging Movements* (SC 2.5.7).
+
+1. **Every action reachable only by gesture MUST also be exposed as a custom accessibility action**, using the platform API in the table above. The row's tap can stay a tap; the swipe's *consequences* (archive, delete, pin) are what must be exposed.
+2. **The action label is a visible-label sibling:** short, verb-first, and matching whatever text the UI shows for the same action elsewhere (SC 2.5.3 applies to what voice-control users can say).
+3. **How they surface, so the human validator knows what to test:** VoiceOver announces *"actions available"* on the element — the user swipes vertically with one finger to cycle actions and double-taps to run one; TalkBack presents them in the local actions menu; Switch Control and Voice Control read the same list.
+4. **Do not duplicate.** If the buttons inside a row are individually focusable *and* re-exposed as custom actions, every action is announced twice. In Compose, clear child semantics (`clearAndSetSemantics { }`) when hoisting them into `customActions`; the same principle holds on every platform.
+5. **A custom action is a supplement, never a hiding place:** an action essential to the task still needs a visible, discoverable path for everyone (a menu, a details screen) — the custom action restores parity for assistive-technology users, it does not excuse an interface where the *only* affordance is an invisible gesture.
+
+*APIs verified against platform documentation: [`UIAccessibilityCustomAction`](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction) / [`accessibilityAction(named:)`](https://developer.apple.com/documentation/swiftui/view/accessibilityaction(named:_:)) · [Compose `customActions`](https://developer.android.com/develop/ui/compose/accessibility/semantics) · [React Native `accessibilityActions`](https://reactnative.dev/docs/accessibility) · [Flutter `CustomSemanticsAction`](https://api.flutter.dev/flutter/semantics/CustomSemanticsAction-class.html).*
 
 ## Verification (native equivalent of Section 7)
 
@@ -34,3 +47,4 @@ The normative layer of `A11Y.md` (Principle Zero, POUR, Compliance Profiles, Sev
 - [ ] **Font scaling:** UI survives the largest system font size without truncation or overlap.
 - [ ] **Focus/swipe order:** sequential navigation follows the visual/logical order.
 - [ ] **Announcements:** async feedback audible without touching the screen.
+- [ ] **Gesture parity:** every swipe, long-press or drag consequence is reachable through the element's custom actions (VoiceOver: "actions available" → vertical one-finger swipe; TalkBack: local actions menu) — and nothing is announced twice.
