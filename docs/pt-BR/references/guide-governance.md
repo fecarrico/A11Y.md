@@ -32,6 +32,21 @@ Uma rodada limpa do axe significa "nenhuma violação entre as regras que estava
 
 > **Um gate de CI é uma forma de verificação independente.** A *Independent Verification* (`A11Y.md` §2) pede que a evidência não seja de autoria exclusiva do agente que escreveu o código. Uma checagem de pipeline satisfaz isso na camada mecânica por construção — roda fora da sessão, contra o artefato, sem memória das decisões que o produziram. Ela não satisfaz, porém, os checkpoints humanos, e não eleva o nível de independência declarado no relatório para nada que uma máquina não consiga testar.
 
+### 1.2. Independent Verification — quem assina a evidência
+
+A *Independent Verification* (`A11Y.md` §2) existe porque a auto-revisão reexecuta o raciocínio que produziu o defeito. A evidência, em ordem de proximidade a este padrão:
+
+- **O caso do próprio padrão (1.6.0):** um `aria-controls` apontando para um id inexistente sobreviveu ao agente gerador, ao axe **e** ao Lighthouse, e só apareceu num teste independente — [a11y-md-ai-test](https://github.com/mjepis7/a11y-md-ai-test), de Maria Eduarda Iwashita, rodado contra uma versão pré-1.0.0 por alguém sem interesse no resultado.
+- **O resultado geral vindo da revisão de código:** modelos encontram mais bugs em código escrito por outro modelo do que no próprio (Greptile, [*Models are worse at reviewing their own code*](https://www.greptile.com/blog/model-inversion), 21/07/2026 — dois datasets de 500 PRs, um do Claude Code e um do Codex, ~1.500 comentários de ground truth; o GPT alcançou 62% de recall em PRs do Claude contra 53,7% do Claude no próprio código, com o padrão inverso no código do Codex).
+
+**O que cada nível compra:**
+
+- **cross-agent** — um modelo diferente quebra a correlação entre os defeitos gerados e os defeitos procurados. A forma mais forte, disponível onde houver dois agentes.
+- **fresh-context** — o mesmo modelo *sem a conversa que produziu o código*. O que se remove é a memória de ter decidido; aproximação prática do cross-agent, e o piso em qualquer lugar, porque custa um chat novo sobre o mesmo projeto, nunca uma ferramenta nova. Ambientes integrados de vibe-coding e IDEs de sessão única também o têm.
+- **self-reported** ⚠️ — honesto e visível, nunca suficiente: é o agente gerador reexecutando o raciocínio que produziu o código, exatamente o modo de falha que a regra existe para quebrar. Teto: ⚠️ CONDICIONAL.
+
+**A declaração é baseada em confiança, e ainda assim não é teatro.** O padrão não consegue observar qual sessão verificou — mas o campo do `REPORT.md` nomeia *quem* verificou, o que torna a alegação auditável por um humano, e o `verify-a11y.py` aplica o teto mecanicamente (um ✅ PASS self-reported reprova no gate). Nada disso substitui os checkpoints humanos: um segundo agente resolve uma referência entre dois arquivos; ele não escuta um leitor de tela, não julga se uma imagem é decorativa, não confirma uma legenda.
+
 ## 2. Evidência Descritiva (The "Why")
 Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir um bloco de comentários explicando a estratégia de acessibilidade:
 - Qual é a Focus order (ordem de foco)?

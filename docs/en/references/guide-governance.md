@@ -32,6 +32,21 @@ A clean axe run means "no violation among the rules that were enabled". Two defa
 
 > **A CI gate is a form of independent verification.** *Independent Verification* (`A11Y.md` §2) asks that the evidence not be authored solely by the agent that wrote the code. A pipeline check satisfies that for the mechanical layer by construction — it runs outside the session, against the artifact, with no memory of the decisions that produced it. It does not, however, satisfy the human checkpoints, and it does not raise the report's declared independence level for anything a machine cannot test.
 
+### 1.2. Independent Verification — who signs the evidence
+
+*Independent Verification* (`A11Y.md` §2) exists because self-review re-runs the reasoning that produced the defect. The evidence, in order of proximity to this standard:
+
+- **This standard's own case (1.6.0):** an `aria-controls` pointing at a non-existent id survived the generating agent, axe **and** Lighthouse, and surfaced only in an independent test — [a11y-md-ai-test](https://github.com/mjepis7/a11y-md-ai-test), by Maria Eduarda Iwashita, run against a pre-1.0.0 version by someone with no stake in the result.
+- **The general result from code review at large:** models find more bugs in code written by another model than in their own (Greptile, [*Models are worse at reviewing their own code*](https://www.greptile.com/blog/model-inversion), 2026-07-21 — two 500-PR datasets, one authored by Claude Code and one by Codex, ~1,500 ground-truth comments; GPT reached 62% recall on Claude-authored PRs against Claude's 53.7% on its own, with the inverse pattern on Codex code).
+
+**What each level buys:**
+
+- **cross-agent** — a different model breaks the correlation between the defects generated and the defects looked for. The strongest form, available wherever two agents are.
+- **fresh-context** — the same model *without the conversation that produced the code*. What is removed is the memory of having decided; a practical approximation of cross-agent, and the floor everywhere, because it costs a new chat over the same project, never a new tool. Integrated vibe-coding environments and single-session IDEs have it too.
+- **self-reported** ⚠️ — honest and visible, never sufficient: it is the generating agent re-running the reasoning that produced the code, which is the failure mode the rule exists to break. Ceiling: ⚠️ CONDITIONAL.
+
+**The declaration is trust-based, and still not theater.** The standard cannot observe which session verified — but the `REPORT.md` field names *who* did, which makes the claim auditable by a human, and `verify-a11y.py` enforces the ceiling mechanically (a self-reported ✅ PASS fails the gate). None of this replaces the human checkpoints: a second agent can resolve a reference between two files; it cannot hear a screen reader, judge whether an image is decorative, or confirm a caption.
+
 ## 2. Descriptive Evidence (The "Why")
 When creating custom complex widgets, the developer (or AI) must include a comment block explaining the accessibility strategy:
 - What is the focus order?
