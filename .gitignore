@@ -5,3 +5,4 @@ WIKI/
 # benchmark: vendored engine and generated manifest (the lock and results are committed)
 benchmark/harness/axe.min.js
 benchmark/runs/manifest.json
+__pycache__/
