@@ -1,0 +1,45 @@
+name: "📐 Erratum / normative correction"
+description: "The standard states something and reality disagrees — a wrong SC, a changed API, a technique current assistive technology no longer supports."
+title: "[Erratum] "
+labels: ["erratum"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This standard cites WCAG by Success Criterion number precisely so it can be proven wrong. Thank you for trying.
+  - type: input
+    id: location
+    attributes:
+      label: Where
+      description: "File and section (or line)."
+      placeholder: "docs/en/references/guide-modals.md, §2"
+    validations:
+      required: true
+  - type: textarea
+    id: says
+    attributes:
+      label: What the standard says
+      description: "Quote it verbatim."
+    validations:
+      required: true
+  - type: textarea
+    id: reality
+    attributes:
+      label: What is actually the case
+      description: "And how you know — behavior you observed, spec text, platform documentation."
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source
+      description: "Link to the spec, official docs, or study. A blog post summarizing a study will be asked for the study."
+    validations:
+      required: true
+  - type: input
+    id: sc
+    attributes:
+      label: Affected Success Criterion (if any)
+      placeholder: "SC 2.5.3"
+    validations:
+      required: false

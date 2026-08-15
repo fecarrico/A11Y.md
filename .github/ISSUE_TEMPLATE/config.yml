@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Documentation (Wiki)
+    url: https://github.com/fecarrico/A11Y.md/wiki
+    about: "Architecture, behavioral contract, evidence & research, practical examples."
+  - name: 🔒 Report a security issue privately
+    url: https://github.com/fecarrico/A11Y.md/security/advisories/new
+    about: "For anything that should not be public before a fix — see SECURITY.md."

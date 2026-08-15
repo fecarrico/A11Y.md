@@ -1,0 +1,35 @@
+name: "🖼️ Gallery submission"
+description: "You built something with A11Y.md and want it in the Project Gallery."
+title: "[Gallery] "
+labels: ["gallery"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Project
+      description: "Name and link (live URL and/or repository)."
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How A11Y.md was used
+      description: "Which profile, which agent, injected how — and one thing the standard changed in the result."
+    validations:
+      required: true
+  - type: input
+    id: report
+    attributes:
+      label: Public REPORT.md (if any)
+      description: "A public report — even a CONDITIONAL one — is the strongest gallery entry. A partial, honest report is evidence."
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmations
+      options:
+        - label: "I am affiliated with this project and authorize listing it"
+          required: true
+        - label: "The project does not misrepresent its conformance (no PASS claim without human validation)"
+          required: true

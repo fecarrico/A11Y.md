@@ -1,0 +1,49 @@
+name: "🧪 Field report"
+description: "You applied the standard to a real project and something happened — it caught, it missed, an agent misread. The most valuable issue this repository receives."
+title: "[Field] "
+labels: ["field-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Three releases of this standard (1.2.0, 1.3.0, 1.6.0) each began as one of these. A documented failure is worth more to us than a compliment — and it gets credited in the CHANGELOG.
+  - type: input
+    id: context
+    attributes:
+      label: What you built, and with what
+      description: "Project type, framework/platform, which agent (Cursor, Claude Code, Copilot…), how the standard was injected (URL rule, local copy)."
+      placeholder: "React SPA · Claude Code · rule pointing at the GitHub URL"
+    validations:
+      required: true
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Compliance profile
+      options:
+        - "Standard (AA)"
+        - "Shield (AAA)"
+        - "Launchpad (A)"
+        - "Not sure / never asked"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: "What the standard caught, what it missed, what the agent did with a rule that surprised you. Concrete beats complete."
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Artifacts
+      description: "Were REPORT.md / EXCEPTIONS.md / A11Y-DECISIONS.md generated? Links to them (public repos make a field report reproducible — and gallery-eligible)."
+    validations:
+      required: false
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification context
+      options:
+        - label: "A human ran at least one assistive-technology check (screen reader, voice control, keyboard-only)"
+        - label: "The verification was independent (different agent or fresh session — see Independent Verification, §2)"
