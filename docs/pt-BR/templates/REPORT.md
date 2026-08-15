@@ -17,6 +17,9 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 - **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
 - **Data do Teste:** [DD/MM/AAAA — a data desta revisão; atualize sempre que a interface mudar]
 - **Status de Conformidade:** [✅ PASS | ⚠️ CONDICIONAL (Passa com Exceções) | 🚫 FAIL]
+- **Independência da Verificação:** [cross-agent | fresh-context | self-reported] — *quem verificou: [modelo/agente e sessão, ex.: "Claude Code, sessão nova sobre o repo" ou "Copilot auditando saída gerada pelo Cursor"]*
+
+> **Para que serve este campo** *(Independent Verification, §2)*. Um modelo encontra na saída de outro modelo defeitos que não encontra na própria, e o defeito que virou o anti-pattern Orphaned ARIA deste projeto sobreviveu ao agente que o gerou, ao axe **e** ao Lighthouse. Por isso o relatório declara quem conferiu: **cross-agent** (outro modelo/agente auditou o código), **fresh-context** (mesmo modelo, sessão nova, sem a conversa que produziu o código) ou **self-reported** (o próprio agente gerador, na sessão que gerou — permitido, mas **não pode** fechar como ✅ PASS; o teto é ⚠️ CONDICIONAL). Sem um segundo agente disponível, fresh-context é o piso e custa um chat novo, não uma ferramenta nova. Nada disso substitui os checkpoints humanos abaixo — só impede que o autor seja a única testemunha dos automáticos.
 
 ## 1. Verificação Técnica (Automated & Semantics)
 Evidências obtidas via validadores estáticos para garantir base técnica estrutural.
@@ -35,6 +38,8 @@ Caminhos críticos da funcionalidade e validação via Leitores de Tela.
 - [ ] **Screen Reader Test:** Realizou a tarefa principal com **pelo menos um par leitor de tela + navegador**, nomeado aqui? *(Registre o par, não só o leitor: NVDA + Firefox, JAWS + Chrome e VoiceOver + Safari divergem em comportamento ARIA, e "usei NVDA" não é evidência reproduzível. Se o produto tem público corporativo em Windows, JAWS + Chrome é o par que falta na maioria dos relatórios.)*
   - Par(es) usado(s): [ex.: NVDA 2026.1 + Firefox 141 · macOS VoiceOver + Safari 18]
   - Quem executou e quando: [nome — AAAA-MM-DD]
+- [ ] **Controle por Voz:** Todo controle visível pode ser acionado **falando o rótulo visível dele**? *(SC 2.5.3 — um `aria-label` que substitui o texto visível torna o controle inalcançável por voz. Nomeie a ferramenta usada, ou declare que os nomes foram conferidos contra os rótulos por leitura.)*
+  - Ferramenta ou método: [ex.: Voice Control do iOS · Voice Access do Android · leitura dos nomes acessíveis contra os rótulos visíveis]
 - [ ] **Mudança de Status (`aria-live`):** Erros de formulário, loading states ou atualizações não visuais são corretamente anunciadas?
 - [ ] **Preenchimento de Formulários:** Labels corretas e relacionadas (`for` e `id`) em todos os inputs?
 

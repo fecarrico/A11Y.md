@@ -121,6 +121,55 @@ def check_report_status(report: Path) -> None:
                               f"fix them or open an EXCEPTIONS.md entry.")
 
 
+def check_report_independence(report: Path) -> None:
+    """Who verified is part of the evidence (Independent Verification, §2).
+
+    Read from the field alone, never from the whole document — the template's
+    own explanation of the field names all three levels, and a document-wide
+    search would find "cross-agent" in every report generated from it. Same
+    trap the status check fell into before 1.5.0.
+    """
+    text = report.read_text(encoding="utf-8", errors="replace")
+    body = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith(">"))
+
+    field = re.search(r"(?:Verification Independence|Independência da Verificação):?\*{0,2}[ \t]*(.*)", body)
+    if not field:
+        fail("independence", "REPORT.md has no Verification Independence field. Add it from "
+                             "templates/REPORT.md and declare who reproduced the automated checkpoints "
+                             "(A11Y.md §2, Independent Verification).")
+        return
+
+    value = field.group(1).strip()
+    levels = [name for name in ("cross-agent", "fresh-context", "self-reported") if name in value.lower()]
+    if len(levels) != 1:
+        fail("independence", "REPORT.md does not declare exactly one verification level — expected "
+                             "cross-agent, fresh-context or self-reported, found "
+                             f"{len(levels)}. An untouched template menu counts as undeclared.")
+        return
+
+    level = levels[0]
+    status = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body)
+    status_value = status.group(1).strip() if status else ""
+    conditional = re.search(r"CONDITIONAL|CONDICIONAL", status_value, re.I)
+    claims_pass = not conditional and (re.search(r"\bPASS\b", status_value, re.I) or "✅" in status_value)
+
+    if level == "self-reported":
+        if claims_pass:
+            fail("independence", "REPORT.md claims PASS on self-reported verification — the agent that "
+                                 "generated the code is the only witness that it conforms. Re-run the "
+                                 "automated checkpoints in a fresh session (or with another agent), or "
+                                 "lower the status to CONDITIONAL.")
+        else:
+            warn("independence", "Verification is self-reported: the generating agent checked its own "
+                                 "output. Ceiling is CONDITIONAL. A new chat over this project, without "
+                                 "the conversation that produced the code, raises it to fresh-context.")
+
+    if re.fullmatch(r"(cross-agent|fresh-context|self-reported)\W*", value, re.I):
+        warn("independence", f"Verification level is '{level}' but nobody is named. Record which "
+                             f"model/agent and which session reproduced the checkpoints — an "
+                             f"unattributed level is not reproducible evidence.")
+
+
 def check_exceptions(root: Path) -> None:
     """Every exception needs owner, approver, tracking issue and a future expiry."""
     path = root / "EXCEPTIONS.md"
@@ -254,6 +303,7 @@ def main() -> int:
     if report:
         check_report_freshness(root, report, src)
         check_report_status(report)
+        check_report_independence(report)
     check_exceptions(root)
     check_gitignore(root)
     check_source_antipatterns(root, src)

@@ -25,6 +25,7 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 | `artifacts` | `REPORT.md` missing before a delivery (Release Evidence, §2) |
 | `freshness` | report older than the last interface change (git history, falling back to mtime) |
 | `report-status` | report claiming PASS while carrying `[ ]`, `[~]` or `[!]` checkpoints — or still carrying the template's status placeholder |
+| `independence` | report with no *Verification Independence* field, with more than one level declared, or claiming PASS on `self-reported` — the generating agent as sole witness (Independent Verification, §2) |
 | `exceptions` | entries without risk owner, approver, tracking issue or expiry — and expired ones |
 | `gitignore` | project artifacts excluded from version control |
 | `clickable-div` · `positive-tabindex` · `outline-none` · `aria-soup` | source anti-patterns from §6 |
@@ -41,7 +42,7 @@ Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report wi
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.6.0/tools/verify-a11y.py
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.7.0/tools/verify-a11y.py
     python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
 

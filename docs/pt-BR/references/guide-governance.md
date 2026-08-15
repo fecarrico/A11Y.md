@@ -18,6 +18,20 @@ A verificação primária não consiste em ditar regras rígidas em uma *pipelin
 - **Ferramentas deste padrão:** o repositório publica dois scripts opcionais em [`tools/`](https://github.com/fecarrico/A11Y.md/tree/main/tools), sem dependências: o `verify-a11y.py` roda no **seu projeto** — confere que os artefatos existem, que o `REPORT.md` é mais novo que a última mudança de interface e que o código não traz os anti-padrões da Seção 6; o `lint-standard.py` roda em **cópias ou forks deste padrão**, verificando paridade entre idiomas, gatilhos de carregamento e links. Executá-los nunca é requisito do padrão — o `A11Y.md` é markdown portátil —, mas um gate que reprova o build é mais forte que uma regra que alguém precisa lembrar.
 - **Desacoplamento:** Não tente "escrever lógicas robustas para componentes acessíveis e tentar consertá-los": adote bibliotecas agnósticas (Headless UI) sempre que a semântica nativa HTML não cobrir os requisitos da funcionalidade.
 
+### 1.1. Configuração padrão não é cobertura
+
+Uma rodada limpa do axe significa "nenhuma violação entre as regras que estavam ligadas". Dois padrões merecem correção, ambos descobertos ao construir a landing deste próprio projeto sob este padrão:
+
+- **Ligue as regras experimentais que carregam um Critério de Sucesso.** A `label-content-name-mismatch` detecta nome acessível que não contém o texto visível — uma **falha de SC 2.5.3, Nível AA**, que quebra controle por voz — e vem **desligada por padrão**, tanto no axe-core quanto na extensão de navegador. Ligue: `axe.run(context, { rules: { 'label-content-name-mismatch': { enabled: true } } })`, ou marque *Experimental rules* nas configurações da extensão. Em campo, foi essa regra que pegou um `aria-label` substituindo o texto visível de um seletor de idioma; a rodada padrão passou limpa.
+- **Resolva o conflito linter × motor em vez de silenciá-lo.** A `scrollable-region-focusable` (axe) exige parada de foco num container que o usuário consegue rolar mas não alcançar por Tab; a `no-noninteractive-tabindex` (`eslint-plugin-jsx-a11y`) acusa exatamente esse `tabIndex`. Seguir as duas ao pé da letra é impossível, e o caminho de menor resistência — desligar a regra do ESLint — remove uma proteção real. Configure:
+  ```jsonc
+  // .eslintrc — permite a parada de foco que o axe exige, mantém a regra no resto
+  "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["region"], "tags": [], "allowExpressionValues": true }]
+  ```
+  E lembre que a regra do axe é **condicional**: a parada de foco cabe só em regiões cujo conteúdo de fato transborda. Aplicá-la a todo container rolável cria paradas de tabulação que não levam a nada (ver *Armadilhas de Foco que Ninguém Pediu*, `A11Y.md` §6).
+
+> **Um gate de CI é uma forma de verificação independente.** A *Independent Verification* (`A11Y.md` §2) pede que a evidência não seja de autoria exclusiva do agente que escreveu o código. Uma checagem de pipeline satisfaz isso na camada mecânica por construção — roda fora da sessão, contra o artefato, sem memória das decisões que o produziram. Ela não satisfaz, porém, os checkpoints humanos, e não eleva o nível de independência declarado no relatório para nada que uma máquina não consiga testar.
+
 ## 2. Evidência Descritiva (The "Why")
 Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir um bloco de comentários explicando a estratégia de acessibilidade:
 - Qual é a Focus order (ordem de foco)?
