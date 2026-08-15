@@ -1,0 +1,44 @@
+name: "🧩 Gap / proposal"
+description: "A component or situation the standard should cover and does not — or a rule that belongs in it."
+title: "[Proposal] "
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before writing: check the [§2.1 loading map](https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md#21-loading-triggers-lazy-loading-map). 29 guides exist — sometimes the gap is a missing *trigger keyword*, not a missing guide.
+  - type: textarea
+    id: gap
+    attributes:
+      label: The gap
+      description: "What situation an agent (or a developer) hits today where the standard gives no answer — or a wrong-by-omission one."
+    validations:
+      required: true
+  - type: textarea
+    id: not-covered
+    attributes:
+      label: Why the existing guides do not cover it
+      description: "Name the closest guide(s) and where they stop short."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence it matters
+      description: "A WCAG SC left unserved, a real interface that shipped broken, field data, an APG pattern with no counterpart here."
+    validations:
+      required: true
+  - type: dropdown
+    id: shape
+    attributes:
+      label: Where do you think it belongs?
+      description: "The maintainer decides placement, but your instinct helps — rules live where they fire (guide-governance.md §0)."
+      options:
+        - "A new reference guide"
+        - "A section in an existing guide"
+        - "A rule in the AI Behavior Contract (§2)"
+        - "An anti-pattern (§6)"
+        - "A §2.1 trigger for an existing guide"
+        - "Not sure"
+    validations:
+      required: true
