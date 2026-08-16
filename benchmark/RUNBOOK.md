@@ -1,6 +1,8 @@
 # Benchmark Runbook — collecting the 54 generations
 
-> Companion to [`METHODOLOGY.md`](METHODOLOGY.md) (pre-registered, 2026-07-25). The methodology says *what* is measured and why; this file says *how to physically collect and measure*, so a run session needs no decisions — decisions made mid-collection are how bias enters a benchmark.
+> **Superseded for the primary arm.** Methodology v2.0 (2026-08-16) moved Arm 1 collection to the API, where session isolation is the default and the collector script replaces every manual step below. This file remains the reference for hand-driven collection in chat/agent interfaces — the procedure Arm 2 adapts — and will be revised alongside the collector when that arm starts.
+
+> Companion to [`METHODOLOGY.md`](METHODOLOGY.md). The methodology says *what* is measured and why; this file says *how to physically collect and measure*, so a run session needs no decisions — decisions made mid-collection are how bias enters a benchmark.
 
 ## One-time setup
 
