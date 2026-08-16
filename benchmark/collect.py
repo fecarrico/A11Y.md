@@ -36,7 +36,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 API_URL = "https://generativelanguage.googleapis.com/v1beta/interactions"
-DEFAULT_MODEL = "gemini-3.6-flash"
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
 REPO = Path(__file__).resolve().parent.parent
 BENCH = REPO / "benchmark"
