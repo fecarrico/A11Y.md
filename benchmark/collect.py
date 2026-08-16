@@ -446,9 +446,14 @@ def main() -> int:
                   file=sys.stderr)
             return 2
 
+    # Interleaved, as the registered protocol requires (METHODOLOGY.md §Size):
+    # within a wave, each task cycles through every condition before any
+    # condition repeats — a day's cap can never land on one condition's block,
+    # so interface drift cannot load onto a condition. Runs are the outermost
+    # layer: run 1 of the whole design completes before run 2 begins.
     jobs = [(task, condition, run)
-            for task in wanted for condition in conditions
-            for run in range(1, args.runs + 1)]
+            for run in range(1, args.runs + 1)
+            for task in wanted for condition in conditions]
 
     html_dir = args.out / "html"
     raw_dir = args.out / "raw"
