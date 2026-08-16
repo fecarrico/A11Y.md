@@ -1,0 +1,46 @@
+# Arm 2 — the ecological check, declared before it runs
+
+> The registered protocol ([osf.io/pg6r5](https://osf.io/pg6r5), METHODOLOGY.md §Arms) reserves a small ecological arm: *"a small-n check that the Arm 1 effect direction survives in a real coding agent with a real filesystem: conditions A and D only, a task subset, `n=3`. Reported descriptively; no hypothesis test."* This file fixes everything the registration left open — before the first run, dated, in the repository.
+
+## What this arm is for
+
+Arm 1 simulates lazy loading with a single scoped tool over a raw API. Arm 2 runs the standard **the way an adopter actually uses it**: a project directory, the Quick Start rule in `CLAUDE.md`, a real coding agent (Claude Code, official client, subscription) reading files from disk with its own tools, system prompt and habits. It answers one question, descriptively: *does the effect direction seen in Arm 1 survive contact with a real agent?*
+
+## Fixed design
+
+| | |
+|---|---|
+| Agent | Claude Code CLI (version recorded per run), non-interactive `claude -p`, official scripting mode |
+| Conditions | **A** (bare workspace) · **D** (standard on disk + Quick Start rule) |
+| Tasks | `signup-form` · `destructive-confirmation-modal` · `dashboard-chart` — the same frozen prompts, verbatim, chosen to span a light (~1.7k chars), mid (~3.1k) and heavy (~7.7k) reference guide |
+| Repetitions | 3 per cell → **18 runs**, each in a fresh workspace, each a fresh session |
+| Model | whatever the subscription session serves; the response JSON records it per run |
+
+## Workspaces
+
+- **Condition A:** an empty directory. The task prompt is the only input.
+- **Condition D:** the directory contains `A11Y.md`, `references/` and `templates/` copied from `docs/en/` at the current commit, plus a `CLAUDE.md` holding the Quick Start rule, verbatim, pointed at the local copy:
+
+  > `When developing the frontend, follow strictly the accessibility rules defined in A11Y.md: ./A11Y.md`
+
+  Nothing else. No hint about lazy loading, no file list — the agent discovers the standard's mechanics by reading it, or does not.
+
+## Invocation
+
+```
+claude -p "<task prompt, verbatim>" --output-format json --permission-mode acceptEdits
+```
+
+run from inside the workspace, with a 20-minute wall clock per run. `acceptEdits` lets the agent write files without interactive approval; everything else stays at the product's defaults.
+
+## The environment is real, and that is declared, not sanitized
+
+Claude Code loads the developer's user-level configuration (global `CLAUDE.md`, settings, MCP servers) in every session. This arm **does not strip it**: the adopter's real environment includes their global config, and it applies identically to both conditions. What would be a contamination in Arm 1 is the object of measurement here. The one asymmetry that matters — the presence of the standard and its rule — is the condition itself.
+
+## What is captured
+
+Per run: every file the agent created (the seeded standard files are excluded by manifest), the largest HTML artifact (with locally-referenced CSS/JS inlined mechanically, the assembly rule the runbook already allows), the full `claude -p` response JSON verbatim (model, usage, reported cost), wall-clock duration, and the agent version. A run that produces no HTML is logged as such — that is data, not failure.
+
+## What will and will not be claimed
+
+Outputs are scored by the same pinned harness as Arm 1 and reported **descriptively, next to — never pooled with — the primary arm**. Eighteen runs support statements shaped like "the direction held" or "it did not"; they support no p-value and none will be computed. Token figures from this arm are *reported-by-the-client* numbers, not API-metered ones, and are labeled accordingly.
