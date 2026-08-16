@@ -4,6 +4,13 @@
 
 ---
 
+## 2026-08-16 — Tool-call ceiling raised 6 → 12 via runtime flag; one truncated cell re-collected
+
+- **What happened:** generation 7 of the first retained wave (`destructive-confirmation-modal`, condition C, run 1) requested a seventh file read; the collector's default `--max-tool-calls 6` cut the loop and the generation ended with **zero output characters** — seven quota calls spent on an unusable cell.
+- **Response:** the wave was stopped at generation 11, the truncated cell's artifacts were deleted, and collection resumed with `--max-tool-calls 12` on the command line. The frozen `collect.py` is untouched — the ceiling is a documented runtime flag, and the default in the file still reads 6 — but the operative value changed mid-collection, which is exactly the kind of thing this log exists to record.
+- **Data handling:** the truncated cell re-collects under `--resume` (its deletion makes it pending again). Its first, truncated attempt remains in the collection log as a failed record; analysis reads generations from disk and never pools zero-output artifacts.
+- **Why 12:** the pilot's condition-D generation read 6 files; the control's lazy map plus its three templates make 7+ reads a legitimate path, not a runaway. Twelve bounds a runaway loop at roughly twice the observed legitimate maximum.
+
 ## 2026-08-16 — Primary-arm model finalized as `gemini-3.5-flash-lite` after a quota wall
 
 - **Registered text:** Arm 1 is "Gemini API, free tier (current Flash-class model; exact model string and version recorded per call)" — the registration deliberately did not pin a model string.
