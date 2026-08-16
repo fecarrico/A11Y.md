@@ -5,4 +5,13 @@ WIKI/
 # benchmark: vendored engine and generated manifest (the lock and results are committed)
 benchmark/harness/axe.min.js
 benchmark/runs/manifest.json
+
+# benchmark: collected data never enters this repository. Generations and raw API
+# responses are research data — published as a dataset with its own DOI, where they
+# are citable and where their size is not this repo's problem. What belongs here is
+# the protocol, the scripts, and aggregated results (put those in benchmark/results/,
+# which is deliberately not ignored).
+benchmark/.env
+benchmark/runs/
+
 __pycache__/
