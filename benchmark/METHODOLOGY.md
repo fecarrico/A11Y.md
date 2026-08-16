@@ -147,7 +147,7 @@ One generation (signup form, condition D) was run on 2026-08-16 under a draft ha
 
 ## Registration
 
-This protocol is registered at **OSF Registries** before the first retained generation, and the registration's identifier is added here in the same commit that starts collection. The repository tag marking the frozen protocol is signed. From that point, every departure — a model that refuses a task, a rate-limit change mid-wave, a re-collected cell — is a dated entry in `DEVIATIONS.md`.
+This protocol is registered at **OSF Registries: [osf.io/pg6r5](https://osf.io/pg6r5)** (registered 2026-08-16, before any retained generation). The registration snapshot carries the frozen files and their SHA-256 hashes as of commit `dcf199b` — the tree also marked by the repository tag [`benchmark-protocol-v2.0`](https://github.com/fecarrico/A11Y.md/releases/tag/benchmark-protocol-v2.0). **Collection opens with the commit that adds this paragraph.** From this point, every departure — a model that refuses a task, a rate-limit change mid-wave, a re-collected cell — is a dated entry in [`DEVIATIONS.md`](DEVIATIONS.md).
 
 ## Phase 2 — human validation (planned, not started)
 
