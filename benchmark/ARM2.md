@@ -31,7 +31,9 @@ Arm 1 simulates lazy loading with a single scoped tool over a raw API. Arm 2 run
 claude -p "<task prompt, verbatim>" --output-format json --permission-mode acceptEdits
 ```
 
-run from inside the workspace, with a 20-minute wall clock per run. `acceptEdits` lets the agent write files without interactive approval; everything else stays at the product's defaults.
+run from inside the workspace, with a 40-minute wall clock per run. `acceptEdits` lets the agent write files without interactive approval; everything else stays at the product's defaults.
+
+> **Amendment, 2026-08-16 (before any retained D run):** the clock was declared at 20 minutes and calibrated blind. The first condition-D run exceeded it — not stalled, but **following the standard in full**: alongside the page it generated `REPORT.md` and `A11Y-DECISIONS.md` unprompted, exactly as the standard's Release Evidence rule mandates, and 20 minutes was not enough to finish. The clock is now 40 minutes, symmetric across conditions; the timed-out run re-collects. The behaviour itself — a real agent producing the lifecycle artifacts nobody asked for — is an ecological observation in its own right and will be reported.
 
 ## The environment is real, and that is declared, not sanitized
 

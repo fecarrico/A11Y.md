@@ -35,7 +35,7 @@ from collect import load_tasks  # the same frozen prompts, the same parser
 
 TASKS = ("signup-form", "destructive-confirmation-modal", "dashboard-chart")
 CONDITIONS = ("A", "D")
-TIMEOUT_S = 20 * 60
+TIMEOUT_S = 40 * 60
 
 # Verbatim Quick Start rule, pointed at the local copy (ARM2.md §Workspaces).
 RULE = ("When developing the frontend, follow strictly the accessibility rules "
