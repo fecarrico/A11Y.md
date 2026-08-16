@@ -1,6 +1,6 @@
 # tools/
 
-Two dependency-free Python scripts. Both are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
+Three dependency-free Python scripts. All are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
 
 > [!IMPORTANT]
 > **These scripts are not part of the standard.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. Nothing in the normative core requires running these — and nothing ever should. They are a convenience for teams that want CI enforcement.
@@ -58,3 +58,21 @@ python3 lint-standard.py [REPO_ROOT]
 Checks parity between `docs/en` and `docs/pt-BR` (file list, headings, contract rule count), orphaned reference guides, guides and templates with no loading trigger in the §2.1 map, broken relative links, phase triggers ("at final delivery") that never fire in continuous delivery, any label calling the project artifacts optional, and Wiki drift (the Wiki must document the same number of contract rules as the core file and list every reference guide — skipped when the folder is absent).
 
 Every check exists because the corresponding defect actually shipped: the ten guides orphaned in 1.0.0, the "Optional Templates" label and the phase trigger that together caused the [2026-08-01 field failure](../CHANGELOG.md), and the Wiki running two releases ahead of the core file while nothing compared them. Run against the release before 1.2.0, it reports all four of the originals.
+
+## `context-cost.py` — what the standard costs in context
+
+```bash
+python3 context-cost.py [--lang en|pt-BR] [--compare GIT_REF] [--at GIT_REF] [--markdown]
+```
+
+The standard is loaded lazily, so "how much context does it cost" has no single answer — it has one per task type. This reads the Loading Triggers map out of §2.1 and adds each guide to the core, giving the floor for every row in the table. It stays correct when the map changes, because the map is its input.
+
+`--compare` puts two versions side by side, which is what a release note needs before it claims a reduction. A core that slims while its guides deepen does not save the same amount on every task: it saves most where no guide applies, and least where a guide absorbed what the core gave up.
+
+```bash
+python3 context-cost.py --compare v1.7.0 --at v1.8.0
+```
+
+> 1.8.0 cut the core by 10.5%. Per task the saving ranges from 10.5% (no guide applies) to 2.1% (`guide-platform-native`, which grew by more than half). Nothing got worse; the headline figure is the best case, not the typical one.
+
+Characters are counted exactly; the token column is an estimate from a fixed divisor. **A ratio between two versions is trustworthy — the same bias sits on both sides — an absolute cost in currency is not.** Quote money only from a token count the model provider produced.
