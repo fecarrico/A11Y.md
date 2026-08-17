@@ -15,3 +15,7 @@ benchmark/.env
 benchmark/runs/
 
 __pycache__/
+
+# benchmark: headless verification — the one external dependency (Playwright),
+# contained here; the lockfile is committed, the installed tree is not.
+benchmark/verify/node_modules/
