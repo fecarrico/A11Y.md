@@ -41,12 +41,36 @@ TIMEOUT_S = 40 * 60
 RULE = ("When developing the frontend, follow strictly the accessibility rules "
         "defined in A11Y.md: ./A11Y.md\n")
 
+# Each agent is invoked through its official client's documented scripting mode,
+# reads the rule from the config file its product documents (both are named in
+# the standard's own Quick Start), and gets exactly one concession: permission
+# to write files without interactive approval. Everything else is the product's
+# default. Usage figures are whatever the client reports — labeled as such.
+AGENTS = {
+    "claude-code": {
+        "rule_file": "CLAUDE.md",
+        "version": ["claude", "--version"],
+        "command": lambda prompt: ["claude", "-p", prompt,
+                                   "--output-format", "json",
+                                   "--permission-mode", "acceptEdits"],
+        "parse": "json",    # stdout is one JSON object
+    },
+    "codex": {
+        "rule_file": "AGENTS.md",
+        "version": ["codex", "--version"],
+        "command": lambda prompt: ["codex", "exec", prompt, "--json",
+                                   "--sandbox", "workspace-write",
+                                   "--skip-git-repo-check"],
+        "parse": "jsonl",   # stdout is a stream of JSONL events
+    },
+}
+
 LINK_CSS = re.compile(r"<link\s+[^>]*rel=[\"']stylesheet[\"'][^>]*>", re.I)
 HREF = re.compile(r"href=[\"']([^\"']+)[\"']", re.I)
 SCRIPT_SRC = re.compile(r"<script\s+[^>]*src=[\"']([^\"']+)[\"'][^>]*>\s*</script>", re.I)
 
 
-def build_workspace(condition: str, parent: Path) -> tuple[Path, set[str]]:
+def build_workspace(condition: str, parent: Path, rule_file: str) -> tuple[Path, set[str]]:
     """Create a fresh workspace; return it and the seeded files' relative paths."""
     ws = Path(tempfile.mkdtemp(prefix=f"arm2-{condition}-", dir=parent))
     seeded: set[str] = set()
@@ -55,7 +79,7 @@ def build_workspace(condition: str, parent: Path) -> tuple[Path, set[str]]:
         shutil.copy2(src / "A11Y.md", ws / "A11Y.md")
         shutil.copytree(src / "references", ws / "references")
         shutil.copytree(src / "templates", ws / "templates")
-        (ws / "CLAUDE.md").write_text(RULE, encoding="utf-8")
+        (ws / rule_file).write_text(RULE, encoding="utf-8")
         seeded = {str(p.relative_to(ws)) for p in ws.rglob("*") if p.is_file()}
     return ws, seeded
 
@@ -102,12 +126,11 @@ def pick_html(files: list[dict], ws: Path) -> Path | None:
     return ws / max(candidates, key=lambda f: f["bytes"])["path"]
 
 
-def run_agent(task_prompt: str, ws: Path) -> tuple[dict | None, str, float]:
+def run_agent(agent: dict, task_prompt: str, ws: Path) -> tuple[dict | None, str, float]:
     started = time.monotonic()
     try:
         proc = subprocess.run(
-            ["claude", "-p", task_prompt,
-             "--output-format", "json", "--permission-mode", "acceptEdits"],
+            agent["command"](task_prompt),
             cwd=ws, capture_output=True, text=True, timeout=TIMEOUT_S,
         )
         raw = proc.stdout
@@ -116,20 +139,62 @@ def run_agent(task_prompt: str, ws: Path) -> tuple[dict | None, str, float]:
     elapsed = time.monotonic() - started
     if proc.returncode != 0:
         return None, f"exit {proc.returncode}: {proc.stderr[:300]}", elapsed
+
+    if agent["parse"] == "jsonl":
+        events, stray = [], []
+        for line in raw.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                stray.append(line)
+        response: dict = {"events": events}
+        if stray:
+            response["unparsed_lines"] = stray[:200]
+        # best-effort usage: the last event that carries token figures
+        for event in reversed(events):
+            found = _usage_in(event)
+            if found:
+                response["usage"] = found
+                break
+        return response, "", elapsed
+
     try:
         return json.loads(raw), "", elapsed
     except json.JSONDecodeError:
         return {"unparsed_stdout": raw[:20000]}, "stdout was not JSON", elapsed
 
 
+def _usage_in(node):
+    """Find a dict of token counts anywhere in an event, by shape."""
+    if isinstance(node, dict):
+        if any("token" in str(k).lower() for k in node) and \
+           any(isinstance(v, int) for v in node.values()):
+            return node
+        for value in node.values():
+            found = _usage_in(value)
+            if found:
+                return found
+    elif isinstance(node, list):
+        for item in node:
+            found = _usage_in(item)
+            if found:
+                return found
+    return None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the ecological arm (ARM2.md).")
+    parser.add_argument("--agent", default="claude-code", choices=sorted(AGENTS))
     parser.add_argument("--runs", type=int, default=3)
     parser.add_argument("--plan", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--keep-workspaces", action="store_true",
                         help="do not delete workspaces after capture (debugging)")
     args = parser.parse_args()
+    agent = AGENTS[args.agent]
 
     tasks = load_tasks(BENCH / "PROMPTS.md")
     missing = [t for t in TASKS if t not in tasks]
@@ -137,14 +202,14 @@ def main() -> int:
         print(f"error: tasks not found in PROMPTS.md: {missing}", file=sys.stderr)
         return 2
 
-    version = subprocess.run(["claude", "--version"], capture_output=True, text=True).stdout.strip()
+    version = subprocess.run(agent["version"], capture_output=True, text=True).stdout.strip()
 
     jobs = [(t, c, r) for r in range(1, args.runs + 1) for t in TASKS for c in CONDITIONS]
     html_dir, raw_dir = OUT / "html", OUT / "raw"
     log_path = OUT / "log.jsonl"
 
     def slug(t, c, r):
-        return f"claude-code__{t}__{c}__run{r}"
+        return f"{args.agent}__{t}__{c}__run{r}"
 
     if args.resume:
         jobs = [j for j in jobs if not (html_dir / f"{slug(*j)}.html").is_file()]
@@ -166,14 +231,14 @@ def main() -> int:
     for index, (task, condition, run) in enumerate(jobs, 1):
         name = slug(task, condition, run)
         print(f"[{index}/{len(jobs)}] {name}", flush=True)
-        ws, seeded = build_workspace(condition, scratch)
+        ws, seeded = build_workspace(condition, scratch, agent["rule_file"])
 
-        response, error, elapsed = run_agent(tasks[task], ws)
+        response, error, elapsed = run_agent(agent, tasks[task], ws)
         files = created_files(ws, seeded)
         html_path = pick_html(files, ws)
 
         record = {
-            "id": name, "task": task, "condition": condition, "run": run,
+            "id": name, "agent": args.agent, "task": task, "condition": condition, "run": run,
             "agent_version": version,
             "collected_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "duration_s": round(elapsed, 1),

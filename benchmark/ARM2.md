@@ -43,6 +43,21 @@ Claude Code loads the developer's user-level configuration (global `CLAUDE.md`, 
 
 Per run: every file the agent created (the seeded standard files are excluded by manifest), the largest HTML artifact (with locally-referenced CSS/JS inlined mechanically, the assembly rule the runbook already allows), the full `claude -p` response JSON verbatim (model, usage, reported cost), wall-clock duration, and the agent version. A run that produces no HTML is logged as such — that is data, not failure.
 
+## Second agent — Codex CLI (added 2026-08-17, before its first run)
+
+The arm extends to a second real agent under the same design: same three tasks, same conditions, same `n=3`, same 40-minute clock, same capture. What changes is only what the product itself changes:
+
+- **Client:** Codex CLI (version recorded per run), official non-interactive mode `codex exec`, authenticated by ChatGPT subscription sign-in — the product's documented path.
+- **Rule file:** condition D's rule goes in `AGENTS.md` — the config file Codex reads, and one the standard's own Quick Start already names.
+- **The one concession, translated:** `--sandbox workspace-write` (file writes without interactive approval — Codex's equivalent of `acceptEdits`) plus `--skip-git-repo-check` (the workspace is a fresh directory, not a git repository). `--json` streams the client's events, kept verbatim; token figures in them are client-reported and labeled as such.
+- **Quota:** the subscription tier's Codex allowance is the lightest sold; if a wave hits it, collection resumes in the next window — the same discipline as the primary arm's daily caps.
+
+Two agents do not make a model comparison and none will be drawn: each agent is reported against its own baseline (its condition A), descriptively, like everything else in this arm.
+
+### Capture notes (running log)
+
+- **2026-08-16, `claude-code__destructive-confirmation-modal__A__run2`:** the agent built the page but wrote it to its session scratchpad and attempted to publish it as a chat artifact instead of writing to the workspace. The file was recovered mechanically from the path named in the response JSON (kept under `runs/arm2/recovered/`, copied into the capture set). Observation worth reporting: every condition-D run anchored its output in the project directory; condition-A runs occasionally treated the task as chat. The standard appears to give the agent a sense of *place*.
+
 ## What will and will not be claimed
 
 Outputs are scored by the same pinned harness as Arm 1 and reported **descriptively, next to — never pooled with — the primary arm**. Eighteen runs support statements shaped like "the direction held" or "it did not"; they support no p-value and none will be computed. Token figures from this arm are *reported-by-the-client* numbers, not API-metered ones, and are labeled accordingly.
