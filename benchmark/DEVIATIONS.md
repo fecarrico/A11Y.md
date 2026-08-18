@@ -4,6 +4,13 @@
 
 ---
 
+## 2026-08-18 — Confirmatory model operationalized with task fixed effects
+
+- **Registered text:** "negative-binomial mixed regression, violations ~ condition + (1 | task)" — random intercepts per task.
+- **What happened:** the analysis stack (statsmodels) offers no frequentist negative-binomial mixed model. With ten task levels, the standard operationalizations are task **fixed effects** or **cluster-robust errors by task**. Both were fit and both are reported: fixed effects as primary, cluster-robust as sensitivity. Where they diverge (D vs A: significant under fixed effects, borderline under cluster-robust), the divergence is reported, not resolved by choosing.
+- **Timing caveat, stated plainly:** the operationalization was decided after the robustness-track descriptives (pre-registered as computable pre-model) had been seen. The choice was constrained by software, not by results — but the sequence is disclosed so readers can weigh it.
+- **Scripts:** `analysis/confirmatory.py`, environment frozen in `analysis/requirements.txt`, dispersion α profiled by grid (≈3.15), seed-free (the model is deterministic given data).
+
 ## 2026-08-16 — Tool-call ceiling raised 6 → 12 via runtime flag; one truncated cell re-collected
 
 - **What happened:** generation 7 of the first retained wave (`destructive-confirmation-modal`, condition C, run 1) requested a seventh file read; the collector's default `--max-tool-calls 6` cut the loop and the generation ended with **zero output characters** — seven quota calls spent on an unusable cell.
