@@ -74,7 +74,8 @@ AGENTS = {
                                    "--effort", "low",
                                    "--output-format", "json",
                                    "--mode", "accept-edits",
-                                   "--print-timeout", "40m"],
+                                   "--print-timeout", "40m",
+                                   "--new-project"],
         "parse": "json",    # stdout is one JSON object
     },
 }

@@ -87,6 +87,15 @@ the motivation and the probes. Same tasks, same conditions, same n, same clock.
   one JSON object (`status`, `response`, `duration_seconds`, `num_turns`,
   `usage`) — recorded as reported, labeled as the client's own accounting.
 
+**Amendment (2026-08-18, before any retained run) — fresh profile required.**
+The first collection attempt was aborted after two failed runs: the product's
+persistent profile memory carried the standard into a bare-condition session
+(condition A citing A11Y.md unprompted — full account in `DEVIATIONS.md`).
+The cell therefore collects under a fresh OS profile (`HOME` at an empty
+directory, one-time auth) with `--new-project` per run, gated on a
+clean-profile probe that must show no ambient knowledge of the standard.
+If the probe fails, the extension is abandoned and documented.
+
 **Amendment — the arm's honest formulation (2026-08-18).** With no cell shared
 with Arm 1, this arm does not "check that the Arm 1 effect survives a real
 agent". What it shows is: *an independent demonstration, in real agents, that
