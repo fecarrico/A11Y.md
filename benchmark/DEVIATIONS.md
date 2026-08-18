@@ -4,6 +4,25 @@
 
 ---
 
+## 2026-08-18 — Third agent for the ecological arm: Antigravity CLI (declared before any run; motivated by results)
+
+- **What is added:** a third agent in Arm 2 — the Antigravity CLI (`agy`), official Google client, included in the author's existing Google AI Pro subscription ($0 marginal, the same criterion that qualified Claude Code and Codex). Same three tasks, same conditions A and D, same n=3, same 40-minute clock: 18 runs.
+- **Why, stated plainly:** an external methodological review of the (unpublished) report flagged that Arms 1 and 2 change two variables at once — harness *and* model family — with no shared cell. This addition was decided **after the primary-arm results were final**, and is disclosed as such. The principle that makes it defensible: it creates a new opportunity for the effect to *fail* in a third harness, not a new opportunity for it to succeed. Whatever it shows goes in the report.
+- **What the probe found (2026-08-18, outside the dataset):** `agy models` does **not** list `gemini-3.5-flash-lite`, the primary arm's model. Nearest available: Gemini 3.5 Flash. **This cell therefore does not close the harness×model confound — it narrows it** ("same family, adjacent tier"). The strict closure remains Arm 1-ext (the same API protocol on the ecological agents' models), still conditional on research credits.
+- **Rule-file test (2026-08-18, outside the dataset):** two marker runs (one in a plain directory, one in a git repository) show the CLI reads **neither `AGENTS.md` nor `GEMINI.md`** in print mode — input token counts unchanged with the files present, marker instructions not followed. Condition D therefore delivers the rule as a **prompt preamble**: the same verbatim Quick Start sentence the rule files carry, with the standard on disk. This makes the cell a declared bridge to Arm 1 (same delivery mechanism, real agent harness) rather than a mirror of the other two agents.
+- **Pins:** model `gemini-3.5-flash`; `--effort low` (the flag is a new degree of freedom the other agents do not expose — fixed identically across conditions, chosen as the closest available neighbour to the Lite tier's cost profile); `--mode accept-edits` (the single concession, symmetric with the other agents); `--output-format json`; `--print-timeout 40m`; version logged per run (`agy` 1.1.14 at declaration time).
+- **Discipline:** this entry and the matching `ARM2.md` section are committed **before the first retained run**. Collection starts only after merge.
+
+## 2026-08-18 — Repository audit after external review (clarifications; no protocol change)
+
+An independent methodological review of the draft report prompted an audit of verifiable claims. Findings, recorded so they are answered before they are asked:
+
+- **Two OSF IDs:** `osf.io/s2ntw` is the OSF **project**; `osf.io/pg6r5` is the **registration** inside it. The commit that opened collection (`0b37456`) carries the project ID in its title; git history is immutable, so this note is the correction. Every normative file points to the registration.
+- **Tool-call ceiling was never reached:** across all retained primary-arm generations the maximum observed is **11 tool calls** (two condition-C generations); the operative ceiling was 12. No generation's loading behaviour was truncated by the instrument.
+- **Collector defaults vs. operative invocation:** the frozen `collect.py` still carries v1 defaults (`--conditions A,B,D`, `--runs 3`, ceiling 6). They were overridden in every wave; the operative invocation is logged in the collection pipeline: `--conditions A,B,C,D --runs 10 --max-tool-calls 12`. Defaults were left untouched because the file's hash is part of the registered snapshot.
+- **Arm 2 environment, documented:** the user-global `CLAUDE.md` on the collection machine contains **zero accessibility-related content** (checked by keyword sweep), and Arm 2 workspaces were created under the system temp directory, **outside any repository** — no project-level agent config applied to any run. The "declared, not sanitized" clause now has its contents on record.
+- **`RUNBOOK.md` marked historical:** it describes the superseded v1 design and now says so unambiguously at the top.
+
 ## 2026-08-18 — Confirmatory model operationalized with task fixed effects
 
 - **Registered text:** "negative-binomial mixed regression, violations ~ condition + (1 | task)" — random intercepts per task.

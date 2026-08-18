@@ -46,6 +46,8 @@ RULE = ("When developing the frontend, follow strictly the accessibility rules "
 # the standard's own Quick Start), and gets exactly one concession: permission
 # to write files without interactive approval. Everything else is the product's
 # default. Usage figures are whatever the client reports — labeled as such.
+# Exception, declared (ARM2.md, 2026-08-18): Antigravity's print mode reads no
+# project rule file, so its condition-D rule travels as a prompt preamble.
 AGENTS = {
     "claude-code": {
         "rule_file": "CLAUDE.md",
@@ -63,6 +65,18 @@ AGENTS = {
                                    "--skip-git-repo-check"],
         "parse": "jsonl",   # stdout is a stream of JSONL events
     },
+    "antigravity": {
+        "rule_file": None,      # reads neither AGENTS.md nor GEMINI.md (tested)
+        "prompt_rule": True,    # condition D: RULE prepended to the prompt
+        "version": ["agy", "--version"],
+        "command": lambda prompt: ["agy", "-p", prompt,
+                                   "--model", "gemini-3.5-flash",
+                                   "--effort", "low",
+                                   "--output-format", "json",
+                                   "--mode", "accept-edits",
+                                   "--print-timeout", "40m"],
+        "parse": "json",    # stdout is one JSON object
+    },
 }
 
 LINK_CSS = re.compile(r"<link\s+[^>]*rel=[\"']stylesheet[\"'][^>]*>", re.I)
@@ -79,7 +93,8 @@ def build_workspace(condition: str, parent: Path, rule_file: str) -> tuple[Path,
         shutil.copy2(src / "A11Y.md", ws / "A11Y.md")
         shutil.copytree(src / "references", ws / "references")
         shutil.copytree(src / "templates", ws / "templates")
-        (ws / rule_file).write_text(RULE, encoding="utf-8")
+        if rule_file:
+            (ws / rule_file).write_text(RULE, encoding="utf-8")
         seeded = {str(p.relative_to(ws)) for p in ws.rglob("*") if p.is_file()}
     return ws, seeded
 
@@ -90,7 +105,7 @@ def created_files(ws: Path, seeded: set[str]) -> list[dict]:
         if not p.is_file():
             continue
         rel = str(p.relative_to(ws))
-        if rel in seeded or rel.startswith(".claude"):
+        if rel in seeded or rel.split("/")[0].startswith("."):  # client state dirs
             continue
         out.append({"path": rel, "bytes": p.stat().st_size})
     return out
@@ -233,7 +248,10 @@ def main() -> int:
         print(f"[{index}/{len(jobs)}] {name}", flush=True)
         ws, seeded = build_workspace(condition, scratch, agent["rule_file"])
 
-        response, error, elapsed = run_agent(agent, tasks[task], ws)
+        prompt = tasks[task]
+        if condition == "D" and agent.get("prompt_rule"):
+            prompt = RULE + "\n" + prompt
+        response, error, elapsed = run_agent(agent, prompt, ws)
         files = created_files(ws, seeded)
         html_path = pick_html(files, ws)
 

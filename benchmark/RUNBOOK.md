@@ -1,6 +1,12 @@
 # Benchmark Runbook — collecting the 54 generations
 
-> **Superseded for the primary arm.** Methodology v2.0 (2026-08-16) moved Arm 1 collection to the API, where session isolation is the default and the collector script replaces every manual step below. This file remains the reference for hand-driven collection in chat/agent interfaces — the procedure Arm 2 adapts — and will be revised alongside the collector when that arm starts.
+> **Historical document — do not follow.** This runbook describes the v1
+> design (54 hand-collected generations, conditions `bare | grounded`, models
+> `claude | gemini | gpt`), which no longer exists. The registered v2 protocol
+> ([osf.io/pg6r5](https://osf.io/pg6r5)) collects Arm 1 with
+> [`collect.py`](collect.py) and Arm 2 with [`arm2.py`](arm2.py); every rule
+> that survived v1 lives in [`METHODOLOGY.md`](METHODOLOGY.md) and
+> [`ARM2.md`](ARM2.md). This file is kept for provenance only.
 
 > Companion to [`METHODOLOGY.md`](METHODOLOGY.md). The methodology says *what* is measured and why; this file says *how to physically collect and measure*, so a run session needs no decisions — decisions made mid-collection are how bias enters a benchmark.
 
