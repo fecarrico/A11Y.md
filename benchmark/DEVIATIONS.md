@@ -4,6 +4,14 @@
 
 ---
 
+## 2026-08-18 — Antigravity: first attempt aborted; ambient-memory contamination found; fresh profile required
+
+- **What happened:** the first two runs (signup-form, conditions A and D, run 1) ended `status=ERROR` with zero files created — and their transcripts show something worse than a flag problem: **condition A went looking for A11Y.md.** The agent resolved paths inside the author's repository and cited the standard, WCAG 2.2 AA and the author's own UX rules — in a fresh workspace, on a bare task prompt that carried no rule at all.
+- **Where it comes from:** Antigravity keeps persistent profile-level memory and product-level rules. A follow-up probe **with `--new-project`** (outside the dataset) still described a brand-new empty directory as "structured around accessibility guidelines (A11y)" and cited `docs/en/A11Y.md` by path. On the standard author's machine the standard is *ambient* — the product carries it into sessions that never asked for it. An A cell collected in that profile would not be an A cell.
+- **Why this differs from the other agents:** the audit entry below documents that the live profile's global agent config contains zero accessibility content for Claude Code and Codex — running them in the live environment is "declared, not sanitized" working as intended. For Antigravity the live environment contains **the treatment itself**; that philosophy cannot cover it.
+- **Declared remedy (before any retained run):** the Antigravity cell collects under a **fresh OS profile** — `HOME` pointed at an empty directory, one-time authentication, locally verified to isolate profile state — with `--new-project` added to every invocation. The asymmetry with the other two agents is declared here. **Gate:** a clean-profile probe must answer "what do you know about this project?" without referencing the standard; if ambient knowledge survives a fresh profile (server-side memory), the extension is **abandoned, and this entry closes with that outcome** — a declared, unexecuted extension with its reason on record.
+- **Data handling:** the two ERROR runs stay in the collection log as failed records (precedent: the truncated Arm 1 cell). Nothing was produced, nothing is retained; `--resume` recollects them under the fixed invocation.
+
 ## 2026-08-18 — Third agent for the ecological arm: Antigravity CLI (declared before any run; motivated by results)
 
 - **What is added:** a third agent in Arm 2 — the Antigravity CLI (`agy`), official Google client, included in the author's existing Google AI Pro subscription ($0 marginal, the same criterion that qualified Claude Code and Codex). Same three tasks, same conditions A and D, same n=3, same 40-minute clock: 18 runs.
