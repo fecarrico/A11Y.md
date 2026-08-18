@@ -105,6 +105,17 @@ sentence is what the data support, and it is the one the report will use.
 
 ### Capture notes (running log)
 
+- **2026-08-18 · Antigravity collected (fresh profile).** 18/18 runs, zero
+  failures, after the clean-profile gate passed (both probes archived under
+  `runs/arm2/probes/`). Third vendor, same emergence: REPORT.md in 9/9
+  condition-D runs, A11Y-DECISIONS.md in 8/9, zero in condition A. Median
+  durations 15 s (A) vs 42 s (D). The single non-zero D page
+  (`dashboard-chart`, run 2) carries one rule — `aria-prohibited-attr` —
+  twelve times: ARIA over-applied where it is prohibited, a systematic error
+  correctable in one fix. Logged here because it is precisely the
+  error-topology phenomenon Study 2 registers as an outcome.
+
+
 - **2026-08-16, `claude-code__destructive-confirmation-modal__A__run2`:** the agent built the page but wrote it to its session scratchpad and attempted to publish it as a chat artifact instead of writing to the workspace. The file was recovered mechanically from the path named in the response JSON (kept under `runs/arm2/recovered/`, copied into the capture set). Observation worth reporting: every condition-D run anchored its output in the project directory; condition-A runs occasionally treated the task as chat. The standard appears to give the agent a sense of *place*.
 
 ## What will and will not be claimed
