@@ -39,6 +39,11 @@ run from inside the workspace, with a 40-minute wall clock per run. `acceptEdits
 
 Claude Code loads the developer's user-level configuration (global `CLAUDE.md`, settings, MCP servers) in every session. This arm **does not strip it**: the adopter's real environment includes their global config, and it applies identically to both conditions. What would be a contamination in Arm 1 is the object of measurement here. The one asymmetry that matters — the presence of the standard and its rule — is the condition itself.
 
+**Environment contents, on record (2026-08-18):** the user-global `CLAUDE.md`
+on the collection machine contains zero accessibility-related content, and
+workspaces are created under the system temp directory, outside any repository
+— no project-level agent config applies to any run.
+
 ## What is captured
 
 Per run: every file the agent created (the seeded standard files are excluded by manifest), the largest HTML artifact (with locally-referenced CSS/JS inlined mechanically, the assembly rule the runbook already allows), the full `claude -p` response JSON verbatim (model, usage, reported cost), wall-clock duration, and the agent version. A run that produces no HTML is logged as such — that is data, not failure.
@@ -53,6 +58,41 @@ The arm extends to a second real agent under the same design: same three tasks, 
 - **Quota:** the subscription tier's Codex allowance is the lightest sold; if a wave hits it, collection resumes in the next window — the same discipline as the primary arm's daily caps.
 
 Two agents do not make a model comparison and none will be drawn: each agent is reported against its own baseline (its condition A), descriptively, like everything else in this arm.
+
+## Third agent — Antigravity CLI (declared 2026-08-18, before its first run)
+
+Added after the primary-arm results were final, at the prompting of an external
+methodological review — see the dated `DEVIATIONS.md` entry, which also records
+the motivation and the probes. Same tasks, same conditions, same n, same clock.
+
+- **Client:** `agy` (Antigravity CLI, official Google client), version logged
+  per run (1.1.14 at declaration). Included in the author's existing Google AI
+  Pro subscription — $0 marginal, the criterion that qualified the other two.
+- **Model / effort:** `--model gemini-3.5-flash`, `--effort low`, fixed across
+  conditions. `agy models` does not offer `gemini-3.5-flash-lite`, so this cell
+  is **same family, adjacent tier** relative to Arm 1 — it narrows the
+  harness×model confound; it does not close it. The strict closure remains
+  Arm 1-ext, conditional on credits.
+- **Rule delivery:** empirical test (2026-08-18, two marker runs, plain dir and
+  git repo) shows print mode reads neither `AGENTS.md` nor `GEMINI.md`.
+  Condition D therefore ships the standard on disk plus the **verbatim Quick
+  Start rule as a prompt preamble** — the same sentence the other agents read
+  from their rule files, delivered the way Arm 1 delivers its grounding. This
+  makes the cell a declared bridge between the arms, not a mirror of the other
+  two agents. Condition A gets the bare task prompt.
+- **Invocation:** `agy -p <prompt> --model gemini-3.5-flash --effort low
+  --output-format json --mode accept-edits --print-timeout 40m`, cwd = the
+  workspace. `--mode accept-edits` is the single concession (file writes
+  without interactive approval), symmetric with the other agents. Capture is
+  one JSON object (`status`, `response`, `duration_seconds`, `num_turns`,
+  `usage`) — recorded as reported, labeled as the client's own accounting.
+
+**Amendment — the arm's honest formulation (2026-08-18).** With no cell shared
+with Arm 1, this arm does not "check that the Arm 1 effect survives a real
+agent". What it shows is: *an independent demonstration, in real agents, that
+the standard produces an effect in the same direction — in models the primary
+arm never touched, with harness and model changing together.* That weaker
+sentence is what the data support, and it is the one the report will use.
 
 ### Capture notes (running log)
 
