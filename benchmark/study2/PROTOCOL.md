@@ -128,9 +128,10 @@ component variance, and repetitions too few show nothing.
 n, and the registration says so.** Point estimates, bootstrap intervals,
 Cliff's delta for D′ vs B′. No hypothesis tests, no p-values.
 
-The wall clock is calibrated by the pilot (Study 1's 40 minutes was calibrated
-on single components and does not transfer), fixed symmetrically across
-conditions, and declared before the first retained run.
+**Wall clock: 90 minutes per run, symmetric across conditions** — fixed from
+the pilot's observed maximum (37.1 min) with >2× headroom. Calibrated on
+Claude Code; if another agent needs a different clock it changes for all
+conditions of that agent, dated, before its first retained run.
 
 ## Blinding — and its declared limit
 
@@ -146,14 +147,27 @@ declared here.
 Study 1's discipline unchanged: axe-core pinned by SHA-256, headless Chromium,
 screens served over HTTP, per-screen JSONL, full-page screenshots.
 
-## Pilot — run, learned from, discarded
+## Pilot — run 2026-08-18, learned from, discarded
 
-Before registration: one full journey per condition, outside the dataset, to
-calibrate the classifier's detection anchors and signature dimensions, the
-deliverable count rule, and the wall clock. Pilot data is discarded by
-construction; what it teaches is written into this file; the classifier
-executable is then frozen — SHA-256 recorded in CLASSIFIER.md — **before**
-registration. Precedent: Study 1's pilot disclosure.
+One full journey per condition on Claude Code, outside the repository, data
+discarded by construction. What it taught, in full:
+
+- **Durations:** bare 15.0 min · generic 19.8 · standard 37.1 — all three
+  shipped 7 screens. Wall clock fixed at 90 minutes (above).
+- **The amortization regime is real:** the standard-condition journey read the
+  documentation once and served the rest from cache — 5.8M cache-read tokens
+  against 291k cache-creation in the client's own accounting. The regime the
+  study exists to measure is observable in one session.
+- **Governance emerges at journey scale too:** the standard's journey produced
+  `A11Y-DECISIONS.md` spontaneously — and *not* `REPORT.md`, which is why the
+  rubric counts each artifact independently.
+- **Classifier calibration:** static-DOM scope declared; native-confirm scan
+  with dominance rule; anchors widened (all in CLASSIFIER.md, which records
+  the frozen executable's hash). The pilot journey of the standard scored
+  *worst* on variant excess — the instrument can rule against the standard,
+  which is exactly what an instrument must be able to do.
+
+Precedent for this disclosure: Study 1's pilot disclosure.
 
 ## Deviations
 

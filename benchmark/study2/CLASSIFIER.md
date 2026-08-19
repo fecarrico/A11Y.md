@@ -1,8 +1,8 @@
 # The consistency classifier — specification
 
-> **v0.1, pre-pilot. Not frozen.** This file freezes when it records the
-> SHA-256 of the classifier executable, after pilot calibration and before
-> registration. Until that hash exists, nothing may be collected.
+> **v1.0 — FROZEN 2026-08-18, post-pilot.** Executable: [`classifier.py`](classifier.py)
+> SHA-256 `485d40647dff688f5b68cc6882d5fde6be51ab4bb7d40fecc7c673e5fc0a5135`.
+> Any change after registration is a dated `DEVIATIONS.md` entry.
 
 ## Principles
 
@@ -57,9 +57,23 @@ Per family: `variants = |{distinct signatures across screens}|`.
 Aggregate per run: **variant excess** `Σ (variants − 1)` over counted
 families. Zero = every family implemented one way everywhere.
 
-## What the pilot must settle
+## What the pilot settled (2026-08-18)
 
-Detection anchors robust to naming (no reliance on class names or ids);
-signature granularity (dimensions 3–4 may merge if the pilot shows them too
-noisy); the deliverable-count rule for the amortized-cost denominator; the
-wall clock. Every calibration decision lands in PROTOCOL.md §Pilot, dated.
+- **Static-DOM scope, declared:** instances rendered purely by JavaScript leave
+  no static footprint and are out of scope — symmetrically for every condition.
+  The pilot's bare journey shipped an empty `<header>` filled at runtime; its
+  navigation is invisible to this instrument, and the limitation is part of the
+  measure's definition, not a bug to patch per run.
+- **Native `confirm()` scan:** `window.confirm` leaves no DOM footprint either;
+  the classifier statically scans inline and same-run linked scripts for it.
+  **Dominance rule:** a run with DOM dialog instances keeps confirm references
+  as metadata (fallback branches must not count as a second variant); a run
+  with none receives them as its dialog instances.
+- **Anchors widened:** nav falls back to the outermost cluster of ≥3 internal
+  links; card children include `<a>` wrappers.
+- **Deliverable rule confirmed:** non-empty screen `*.html` files (7/7/7 in the
+  pilot's three journeys).
+- **The instrument is not a rubber stamp:** in the single pilot journey the
+  standard's condition scored *worst* on variant excess (4, vs 2 generic and
+  3 bare). One journey means nothing statistically and the data is discarded —
+  but the metric demonstrably can rule against the standard.
