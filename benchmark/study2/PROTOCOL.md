@@ -176,11 +176,14 @@ Study 1's discipline: dated entries, clarifications included, nothing hidden.
 
 ## Registration
 
-To be registered on OSF as **its own registration** — not an amendment to
-[osf.io/pg6r5](https://osf.io/pg6r5) — after the pilot freezes the classifier
-and **before Study 1 is published**, so that Study 1's limitations section
-points at a live public test instead of a promise. This section receives the
-registration URL when it exists.
+**Registered: [osf.io/mqs7x](https://osf.io/mqs7x)** — "A11Y.md Efficacy
+Benchmark (Study 2)", Open-Ended Registration, submitted 2026-08-19 01:29 UTC,
+accepted 2026-08-20, public. Its own registration — not an amendment to
+[osf.io/pg6r5](https://osf.io/pg6r5) — and registered **before Study 1's
+publication**, as this section always required. The snapshot's `study2/`
+folder was verified file-by-file against the frozen hashes (6/6 identical)
+on acceptance day. *(This paragraph is the fill-in this section pre-declared;
+the frozen snapshot carries the pre-registration wording.)*
 
 ## What will and will not be claimed
 

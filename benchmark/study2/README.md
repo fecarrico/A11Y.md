@@ -18,7 +18,7 @@ in one real agent session** — the regime the standard was built for.
 - [x] Protocol drafted (2026-08-18)
 - [x] Pilot run and discarded; lessons written into the protocol (2026-08-18)
 - [x] Classifier frozen (SHA-256 in `CLASSIFIER.md`, 2026-08-18)
-- [ ] Registered on OSF (own registration — **before Study 1 publishes**)
+- [x] Registered on OSF: [osf.io/mqs7x](https://osf.io/mqs7x) (2026-08-20 — before Study 1 publishes)
 - [ ] Collection
 - [ ] Report
 
