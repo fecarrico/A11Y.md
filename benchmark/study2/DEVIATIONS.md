@@ -4,6 +4,30 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-20 — Codex quota wall: the pre-declared reserve swap executes
+
+- **What happened:** all 15 Codex journey runs failed in seconds with the
+  client's own message: *"You've hit your usage limit … or try again at
+  Sep 16th, 2026"*. The plan's Codex quota — consumed in part by Study 1's
+  ecological runs — resets only in a month; waiting is not viable and was
+  never required.
+- **What executes:** the naming entry above pre-declared exactly this: the
+  reserve agent (Antigravity) enters **only if a quota wall forces the swap,
+  with its own dated entry** — this is that entry. No new decision is being
+  made; a declared rule is being applied on its declared trigger.
+- **Conditions of the swap:** Study 1's fresh-profile amendment applies in
+  full — empty-`HOME` profile, `--new-project` per run, and the clean-profile
+  gate probe re-run **before any retained journey** (the profile has since
+  hosted Study 1's Antigravity runs; if ambient knowledge of the standard
+  survives, collection halts and this entry reopens with that outcome).
+  Rule delivery for condition D: verbatim Quick Start as prompt preamble,
+  standard on disk — the bridge-cell translation already declared in ARM2.md.
+- **Data handling:** the 15 failed Codex records stay in the collection log
+  as failed records (Study 1 precedent); `--resume` never confuses them with
+  journeys, which key by agent. If Codex quota returns before Study 2 closes,
+  its 15 journeys may still be collected under the original naming — additive,
+  declared here in advance.
+
 ## 2026-08-20 — Registration accepted; agents named; pre-declared fill-ins applied
 
 - **Registration:** [osf.io/mqs7x](https://osf.io/mqs7x), accepted 2026-08-20.

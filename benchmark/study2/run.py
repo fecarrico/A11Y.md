@@ -44,9 +44,21 @@ AGENTS = {
                                    "--sandbox", "workspace-write",
                                    "--skip-git-repo-check"],
     },
-    # Declared reserve (DEVIATIONS.md naming entry): antigravity — fresh
-    # profile + --new-project per Study 1's dated amendment, added here only
-    # if a quota wall forces the swap, with its own dated entry.
+    # Reserve, activated 2026-08-20 by the Codex quota wall (DEVIATIONS.md):
+    # fresh profile (empty HOME, set by the invoker) + --new-project per run,
+    # rule as prompt preamble per ARM2.md's bridge-cell translation.
+    "antigravity": {
+        "rule_file": None,
+        "prompt_rule": True,
+        "version": ["agy", "--version"],
+        "command": lambda prompt: ["agy", "-p", prompt,
+                                   "--model", "gemini-3.5-flash",
+                                   "--effort", "low",
+                                   "--output-format", "json",
+                                   "--mode", "accept-edits",
+                                   "--print-timeout", "90m",
+                                   "--new-project"],
+    },
 }
 
 
@@ -62,7 +74,8 @@ def build_workspace(condition: str, parent: Path, rule_file: str):
         shutil.copy2(src / "A11Y.md", ws / "A11Y.md")
         shutil.copytree(src / "references", ws / "references")
         shutil.copytree(src / "templates", ws / "templates")
-        (ws / rule_file).write_text(RULE, encoding="utf-8")
+        if rule_file:
+            (ws / rule_file).write_text(RULE, encoding="utf-8")
     seeded = {str(p.relative_to(ws)) for p in ws.rglob("*") if p.is_file()}
     return ws, seeded
 
@@ -98,6 +111,8 @@ def main() -> int:
         print(f"[{i}/{len(jobs)}] {name}", flush=True)
         ws, seeded = build_workspace(condition, scratch, agent["rule_file"])
         full = (GENERIC + prompt) if condition == "B" else prompt
+        if condition == "D" and agent.get("prompt_rule"):
+            full = RULE + "\n" + full
         t0 = time.time()
         try:
             r = subprocess.run(agent["command"](full), cwd=ws, capture_output=True,
