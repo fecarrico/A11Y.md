@@ -36,6 +36,20 @@
   insisted on keeping. Sampled human adjudication is not a formality; this
   entry is the proof.
 
+## 2026-08-24 — Dataset published: DOI 10.5281/zenodo.22073026
+
+- The complete dataset of both studies — 454 Study-1 pages with axe reports,
+  screenshots and logs; the blind worksheets and their unsealed results; the
+  30 Study-2 journeys with screens, reports and the registered analysis; both
+  SHA-256 manifests — is published on Zenodo under CC-BY-4.0:
+  [doi.org/10.5281/zenodo.22073026](https://doi.org/10.5281/zenodo.22073026).
+- Integrity audited on publication day via the Zenodo API: 6/6 files with
+  MD5 checksums identical to the local originals. Related-work links bind the
+  DOI to both registrations (osf.io/pg6r5, osf.io/mqs7x) and the repository.
+- With this, every claim in the reports is backed by a citable, immutable,
+  independently hosted copy of the raw data. Raw data never enters git —
+  exactly as registered.
+
 ## 2026-08-23 — SC 2.5.8 adjudication: the registered machine/human split, applied
 
 - **Registered text:** MANUAL checklist items are *"automated where a scripted

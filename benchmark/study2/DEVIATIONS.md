@@ -4,6 +4,13 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-24 — Dataset published (shared DOI with Study 1)
+
+Study 2's raw data (30 journeys: screens, verification reports, screenshots,
+classifier output, registered analysis, probes) is published in the combined
+benchmark dataset: [doi.org/10.5281/zenodo.22073026](https://doi.org/10.5281/zenodo.22073026), CC-BY-4.0,
+MD5-audited on publication day. Files `a11ymd-study2-*` + `MANIFEST-study2.json`.
+
 ## 2026-08-20 — Codex quota wall: the pre-declared reserve swap executes
 
 - **What happened:** all 15 Codex journey runs failed in seconds with the
