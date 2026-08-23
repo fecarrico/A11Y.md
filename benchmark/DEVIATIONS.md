@@ -4,6 +4,23 @@
 
 ---
 
+## 2026-08-23 — SC 2.5.8 adjudication: the registered machine/human split, applied
+
+- **Registered text:** MANUAL checklist items are *"automated where a scripted
+  browser can decide them; the remainder adjudicated by a human."*
+- **What ran:** `verify/target-prepass.js` measured every visible interactive
+  target on the 60 blind-sampled pages (Playwright, 1280×900). "No target
+  below 24×24 CSS px exists" is machine-decidable: **41 of 52 target-size rows
+  closed mechanically as N-A**, each stamped as such in the worksheet's
+  observation column. The 11 pages that do contain sub-24px targets go to the
+  human adjudicator with a factual measurement report
+  (`adjudicacao-alvos-pequenos.md` — shapes, counts, examples); the exception
+  judgments the SC delegates to a person (equivalent control, inline,
+  essential) remain human, exactly as registered.
+- **Blinding intact:** the script sees content hashes, never conditions; the
+  sealed map stays sealed. Modal-focus rows are untouched — keyboard
+  interaction with focus-return judgment stays with the adjudicator.
+
 ## 2026-08-18 — Antigravity: first attempt aborted; ambient-memory contamination found; fresh profile required
 
 - **What happened:** the first two runs (signup-form, conditions A and D, run 1) ended `status=ERROR` with zero files created — and their transcripts show something worse than a flag problem: **condition A went looking for A11Y.md.** The agent resolved paths inside the author's repository and cited the standard, WCAG 2.2 AA and the author's own UX rules — in a fresh workspace, on a bare task prompt that carried no rule at all.
