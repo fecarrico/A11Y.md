@@ -4,6 +4,38 @@
 
 ---
 
+## 2026-08-23 — Instrument defect found by the human adjudicator: extract_html dropped delivered CSS/JS; mechanical repair + dual reporting
+
+- **Discovery:** during blind adjudication, the adjudicator opened a sampled
+  page that rendered unstyled and questioned whether the model had really
+  shipped it that way. He was right to: the frozen collector's
+  `extract_html()` keeps the largest fenced block of a raw response and
+  silently drops the ```css/```js fences delivered alongside. **32 of 400
+  Arm-1 artifacts** reference a stylesheet the model DID write and the
+  extractor discarded — verified against every raw response (32/32 contained
+  the CSS; zero cases of the model not delivering).
+- **Impact:** those 32 pages were axe-scored and sampled in a state poorer
+  than the model's actual deliverable. Arm 2 is unaffected (its runner always
+  assembled local assets — an instrument asymmetry this repair harmonizes).
+  Tokens and loading outcomes are untouched.
+- **Remedy, blind to condition:** `verify/repair-artifacts.py` — one rule for
+  every generation: css/js fences from the generation's own raw response are
+  injected back (content only added, never removed, repair marked by comment).
+  Originals untouched in `runs/html`; repaired copies in `runs/html-repaired`.
+  **Every affected outcome is reported under both versions** — the frozen
+  instrument and the repaired sensitivity — starting with a fresh axe pass on
+  the repaired 32.
+- **Blind sample:** the 7 affected sampled pages were rebuilt by script
+  (content-matched, conditions never printed, map still sealed; filenames kept
+  as inherited ids). The target-size pre-pass re-ran on the repaired sample:
+  the pending human worksheet is unchanged in size — the repaired pages still
+  carry genuinely small styled targets — but the human now judges the true
+  deliverable. No mechanically-closed row reopened; no human verdict existed
+  yet to preserve.
+- **Credit where due:** the defect was caught by the human step the protocol
+  insisted on keeping. Sampled human adjudication is not a formality; this
+  entry is the proof.
+
 ## 2026-08-23 — SC 2.5.8 adjudication: the registered machine/human split, applied
 
 - **Registered text:** MANUAL checklist items are *"automated where a scripted
