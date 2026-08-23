@@ -63,7 +63,15 @@ function serve(dirs) {
       res.writeHead(404).end();
       return;
     }
-    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+    // fix 2026-08-24: every file was served as text/html, so browsers silently
+    // rejected external stylesheets (strict MIME for <link rel=stylesheet>).
+    // Study 2 was the first design with non-inlined assets — see DEVIATIONS.md.
+    const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css',
+                   '.js': 'text/javascript', '.svg': 'image/svg+xml',
+                   '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp',
+                   '.json': 'application/json' };
+    const type = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
+    res.writeHead(200, { 'content-type': type });
     res.end(fs.readFileSync(file));
   });
 }
