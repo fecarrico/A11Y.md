@@ -32,6 +32,15 @@
   carry genuinely small styled targets — but the human now judges the true
   deliverable. No mechanically-closed row reopened; no human verdict existed
   yet to preserve.
+- **Repair v2, same day:** the first repair pass under-injected JS — its guard
+  treated an external `<script src>` reference as "page already has script",
+  which is exactly the broken case (31/32 still missing their delivered JS).
+  Caught by the adjudicator again, this time via keyboard testing (a dropdown
+  that would not open). Rule fixed: delivered fences inject whenever their
+  content is absent. All 32 regenerated, the 7 sampled pages updated, axe
+  re-run fresh: **32/32 counts identical to the frozen instrument in both
+  repair versions** — the primary and confirmatory outcomes are untouched by
+  the defect and by its repair.
 - **Credit where due:** the defect was caught by the human step the protocol
   insisted on keeping. Sampled human adjudication is not a formality; this
   entry is the proof.

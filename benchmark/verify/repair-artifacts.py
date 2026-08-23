@@ -42,10 +42,13 @@ def repair(html, raw_text):
     if css:
         block = f"{MARK}\n<style>\n{css}\n</style>"
         html = html.replace("</head>", block + "\n</head>", 1) if "</head>" in html else block + "\n" + html
-    if js and "<script" not in html:
+    # v2 (2026-08-23): the first pass skipped JS whenever ANY <script> tag was
+    # present — but an external src reference is exactly the broken case. The
+    # rule now injects the delivered fences whenever their content is absent.
+    if js and js[:80] not in html:
         block = f"<script>\n{js}\n</script>"
         html = html.replace("</body>", block + "\n</body>", 1) if "</body>" in html else html + "\n" + block
-    return html, bool(css)
+    return html, bool(css or js)
 
 def main():
     OUT.mkdir(exist_ok=True)
