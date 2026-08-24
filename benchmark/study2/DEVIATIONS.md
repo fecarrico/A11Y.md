@@ -4,6 +4,36 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-24 — Instrument defect #4: the analyzer double-counted Antigravity token usage; analysis re-run, both outputs preserved
+
+- **Discovery:** during an author-requested external scrutiny of the full body
+  of work, the author asked whether the report's token table counted per screen
+  or per whole journey. Tracing that table's provenance against `analysis.json`
+  exposed a factor-of-two mismatch — the fourth instrument defect, and the
+  fourth found by human contact with the object rather than by any log: three
+  by eye on the screens, this one by a question in front of a table.
+- **The defect:** `analyze.py` summed every usage field whose name contains
+  "token". The Antigravity client reports `total_tokens` (= input + output)
+  **alongside** its components, so input and output were counted twice:
+  `fresh_per_screen` and `total_per_screen` were inflated ≈2× for every
+  Antigravity journey. The Claude Code schema has no aggregate field and was
+  unaffected (verified: identical values under both computations). Consistency,
+  axe and governance outcomes never touch these fields — the defect is confined
+  to the token metrics of one agent.
+- **Why the conclusions survive:** the inflation is uniform across conditions
+  (same client, same schema on every journey), so directions, ratios and
+  Cliff's deltas are unchanged; medians and interval endpoints halve. The
+  report's token table (21k / 19k / 41k fresh tokens per screen) had been
+  computed from the raw fields directly and is confirmed correct by the re-run.
+- **Remedy:** explicit per-schema field lists in `analyze.py` (dated comment in
+  code); the inflated output is preserved at
+  `runs/study2/analysis-token-double-count.json` and the corrected
+  `analysis.json` replaces it — dual reporting, the discipline of defects
+  #1–#3 applied a fourth time.
+- **Dataset:** v2 of the Zenodo record carries the inflated `analysis.json`;
+  the next dataset version will carry the corrected file and cite this entry
+  in its version notes. Nothing is overwritten, everything stays traceable.
+
 ## 2026-08-24 — Dataset v2 published (10.5281/zenodo.22080079)
 
 The corrected Study-2 verification is live as version 2 of the dataset record:
