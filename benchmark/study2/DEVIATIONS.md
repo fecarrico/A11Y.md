@@ -4,6 +4,31 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-24 — Instrument defect: the verifier served every asset as text/html; Study 2 re-verified
+
+- **Discovery:** the author, reviewing an illustration built from the
+  verification screenshots, noticed the journey pages rendered without CSS.
+  He was right for the third time: the verifier's embedded HTTP server sent
+  **every** file with `content-type: text/html`, and browsers silently reject
+  stylesheets with a wrong MIME type. Scripts still executed; styles never
+  applied.
+- **Scope, precisely:** Study 2 only. Study 1's Arm-1 artifacts are single
+  self-contained files and Arm-2 pages were mechanically inlined before
+  verification — the MIME type never mattered for them. Study 2 was the first
+  design whose screens reference external `assets/` files, so **all 210
+  screens were axe-scanned and screenshotted unstyled**. Unaffected by
+  construction: the consistency classifier (static DOM, no rendering),
+  tokens, durations, governance counts.
+- **Remedy:** MIME table by extension in `verify.js` (dated comment in code);
+  the styleless measurement is preserved under `runs/study2/verify-sem-css/`
+  and the corrected verification replaces it — **both sets reported**, same
+  discipline as the Arm-1 repair.
+- **Dataset:** the published record (10.5281/zenodo.22073026) contains the
+  styleless Study-2 verification; a **version 2** of the record with the
+  corrected files follows once the re-verification is complete, with this
+  entry cited in the version notes. Zenodo versioning preserves v1 —
+  nothing is overwritten, everything is traceable.
+
 ## 2026-08-24 — Dataset published (shared DOI with Study 1)
 
 Study 2's raw data (30 journeys: screens, verification reports, screenshots,
