@@ -4,6 +4,16 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-24 — Dataset v2 published (10.5281/zenodo.22080079)
+
+The corrected Study-2 verification is live as version 2 of the dataset record:
+[doi.org/10.5281/zenodo.22080079](https://doi.org/10.5281/zenodo.22080079)
+(concept DOI [10.5281/zenodo.22073025](https://doi.org/10.5281/zenodo.22073025)
+always resolves to the latest version). Study-1 files carried over bit-identical
+from v1 (MD5-audited via API on publication day, 6/6); the styleless Study-2
+measurement is preserved inside the v2 package under `verify-sem-css/`.
+Version 1 remains archived and citable — nothing was overwritten.
+
 ## 2026-08-24 — Instrument defect: the verifier served every asset as text/html; Study 2 re-verified
 
 - **Discovery:** the author, reviewing an illustration built from the
