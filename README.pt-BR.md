@@ -66,7 +66,7 @@ Lá dentro você encontrará:
 - **O Command Center:** Como o arquivo principal A11Y.md funciona.
 - **Anti-patterns & Protocol:** Casos reais de alucinações de IA sendo corrigidas nativamente.
 - **Reference Library:** A taxonomia dos 29 guias de engenharia.
-- **Evidence & Research:** Os dados de campo aos quais o padrão responde — benchmarks e estudos publicados, com fontes.
+- **Evidence & Research:** Os dados de campo aos quais o padrão responde — benchmarks e estudos publicados, com fontes. Incluindo o benchmark de eficácia do próprio projeto (dois estudos pré-registrados, com placebo, dados abertos e empates publicados sem desconto): **[leia o relato completo](https://fecarrico.github.io/a11ymd/estudo/)**.
 - **Governança & Compliance:** Preparação técnica para auditorias formais.
 
 ---
