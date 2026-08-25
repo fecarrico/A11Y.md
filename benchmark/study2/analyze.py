@@ -49,10 +49,21 @@ def outcomes(rec):
         if "counts" in v:
             axe += v["counts"]["critical"] + v["counts"]["serious"]
     u = json.loads((S2 / "raw" / f"{rid}.json").read_text() or "{}").get("usage", {})
-    total = sum(v for k, v in u.items() if isinstance(v, int) and "token" in k)
-    cache = u.get("cache_read_input_tokens", u.get("cache_read_tokens", 0))
+    # 2026-08-24, instrument defect #4 (DEVIATIONS.md): the previous version
+    # summed every usage field containing "token". The Antigravity client
+    # reports total_tokens (= input + output) ALONGSIDE its components, so
+    # input and output were counted twice — every Antigravity token figure
+    # inflated ~2x. Explicit per-schema field lists; Claude Code unchanged.
+    if "total_tokens" in u:  # antigravity client schema
+        cache = u.get("cache_read_tokens", 0)
+        fresh = (u.get("input_tokens", 0) + u.get("output_tokens", 0)
+                 + u.get("thinking_tokens", 0))
+    else:                    # claude-code client schema
+        cache = u.get("cache_read_input_tokens", 0)
+        fresh = (u.get("input_tokens", 0) + u.get("output_tokens", 0)
+                 + u.get("cache_creation_input_tokens", 0))
     return {"excess": excess, "axe": axe,
-            "total_per_screen": total / 7, "fresh_per_screen": (total - cache) / 7}
+            "total_per_screen": (fresh + cache) / 7, "fresh_per_screen": fresh / 7}
 
 def topology(rid):
     rules = {}
