@@ -61,7 +61,7 @@ Inside, you will find:
 - **The Command Center:** How the core `A11Y.md` file works.
 - **Anti-patterns & Protocol:** Real-world examples of AI hallucinations being fixed.
 - **Reference Library:** The taxonomy of the 29 engineering guides.
-- **Evidence & Research:** The field data the standard responds to — published benchmarks and studies, with sources.
+- **Evidence & Research:** The field data the standard responds to — published benchmarks and studies, with sources. Including the project's own preregistered efficacy benchmark (two studies, placebo-controlled, open data, honest nulls): **[read the full report](https://fecarrico.github.io/a11ymd/estudo/)**.
 - **Governance & Compliance:** Preparing for VPATs and formal audits.
 
 ---
