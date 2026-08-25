@@ -4,6 +4,18 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-25 — Dataset v3 published (10.5281/zenodo.22088369)
+
+The corrected registered analysis is live as version 3 of the dataset record:
+[doi.org/10.5281/zenodo.22088369](https://doi.org/10.5281/zenodo.22088369)
+(concept DOI [10.5281/zenodo.22073025](https://doi.org/10.5281/zenodo.22073025)
+always resolves to the latest version). The Study-2 package now carries the
+corrected `analysis.json` alongside the preserved inflated output
+(`analysis-token-double-count.json`) — closing the loop the defect-#4 entry
+below opened. All other files are bit-identical to v2, MD5-audited via the
+Zenodo API on publication day: 6/6 identical to the local originals. Nothing
+was overwritten; v1 and v2 remain archived and citable.
+
 ## 2026-08-24 — Instrument defect #4: the analyzer double-counted Antigravity token usage; analysis re-run, both outputs preserved
 
 - **Discovery:** during an author-requested external scrutiny of the full body
