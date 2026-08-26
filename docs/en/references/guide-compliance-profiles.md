@@ -66,3 +66,14 @@
 - ❌ Changes in state without `aria-live` or role alerts
 
 Any use of the Launchpad profile in production should be documented in the `EXCEPTIONS.md` file as technical debt to be upgraded to Standard (AA).
+
+## 4. Brazil Mapping (ABNT NBR 17225)
+
+When the product serves Brazil, the declared profile also states its NBR 17225 level:
+
+| Profile | NBR 17225 level |
+| :--- | :--- |
+| ⚖️ Standard (AA) | **Regular** — all 96 requirements (declared equivalent to WCAG 2.2 A+AA) |
+| 🛡️ Shield (AAA) | **Plena** — requirements + all 50 recommendations; each unmet recommendation carries a reasonable justification in `EXCEPTIONS.md` |
+
+Structure of the norm and the Annex A critical-items checklist: [Governance §6.1](guide-governance.md).

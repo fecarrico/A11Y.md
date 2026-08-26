@@ -65,6 +65,20 @@ Tests validating contrast and visual structure (color-independent).
 - [ ] **Conflicting needs:** If any decision served one accessibility need at the cost of another, both populations are named and the choice is recorded in `A11Y-DECISIONS.md`.
 
 ---
+## 7. Functional Performance *(optional — EN 301 549 / NBR 17225 Annex B / VPAT)*
+*Fill when the report backs a formal declaration. For each statement, record how the product supports usage:*
+- **Without vision:** [ ]
+- **With limited vision:** [ ]
+- **Without perception of color:** [ ]
+- **Without hearing:** [ ]
+- **With limited hearing:** [ ]
+- **Without vocal capability:** [ ]
+- **With limited manipulation or strength:** [ ]
+- **With limited reach:** [ ]
+- **Minimizing photosensitive seizure triggers:** [ ]
+- **With limited cognition:** [ ]
+
+---
 ## 📝 Assessment Notes or Known Blockers
 *Describe whether any exception behavior was detected or what measures were opened in `EXCEPTIONS.md`*
 
