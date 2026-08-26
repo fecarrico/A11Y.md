@@ -26,7 +26,7 @@
 ```html
 <div onclick="submit()" class="my-button">Submit</div>
 ```
-- **Implication:** This is invisible to keyboard users (no tab focus) and screen readers (no "button" role). It requires excessive JS to fix what HTML does for free.
+- See *Clickable Divs* — core §6.
 
 ### 2. Vague Labels
 ```html

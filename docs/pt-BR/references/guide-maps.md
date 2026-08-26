@@ -71,14 +71,4 @@ A maioria dos mapas vem de Google Maps, Mapbox, Leaflet ou equivalente. **A obri
 - Dê ao `<iframe>` um `title` que diga o que ele contém — um iframe de mapa sem título é anunciado como "frame".
 - Onde o controle do provedor não puder ser corrigido neste ciclo, isso é entrada em `EXCEPTIONS.md` com dono, issue e expiração — e a alternativa textual é o que mantém a funcionalidade utilizável enquanto isso, e é por isso que ela nunca é opcional.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 1.1.1 Conteúdo Não Textual | A | a informação do mapa existe como texto |
-| 2.1.1 Teclado | A | pan, zoom, marcadores e seleção operáveis sem mouse |
-| 2.1.2 Sem Armadilha de Teclado | A | sempre é possível sair do mapa |
-| 2.5.1 Gestos de Ponteiro | A | pinça e arraste têm alternativa de ponteiro único |
-| 1.4.1 Uso de Cor | A | categoria nunca carregada só por cor |
-| 1.4.11 Contraste Não Textual | AA | rotas, zonas e marcadores a 3:1 |
-| 4.1.3 Mensagens de Status | AA | mudança de área visível ou de resultados anunciada |
+*Critérios de sucesso cobertos: 1.1.1 Conteúdo Não Textual (A) · 2.1.1 Teclado (A) · 2.1.2 Sem Armadilha de Teclado (A) · 2.5.1 Gestos de Ponteiro (A) · 1.4.1 Uso de Cor (A) · 1.4.11 Contraste Não Textual (AA) · 4.1.3 Mensagens de Status (AA)*

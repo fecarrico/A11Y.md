@@ -131,19 +131,7 @@ Scroll-driven translation is a vestibular trigger — nausea, dizziness and diso
 - **Controls:** prefer the native `controls` attribute. A custom player is a Complex Component (Section 5 of the core file) — keyboard operable end to end, every control a real `<button>` with a name, state announced.
 - **Third-party embeds (YouTube, Vimeo, Loom):** the embed does not transfer the obligation. Verify that captions exist on the hosted asset and that the `<iframe>` carries a `title`. Auto-generated captions are a draft, exactly as in Section 2.
 
-## Success criteria mapped
-
-| SC | Level | What it demands here |
-| :--- | :--- | :--- |
-| 1.2.1 Audio-only and Video-only | A | transcript for audio-only; alternative for silent video that carries information |
-| 1.2.2 Captions (Prerecorded) | A | synchronized captions for any prerecorded audio in video |
-| 1.2.3 Audio Description **or** Media Alternative | A | one of the two for the visual information |
-| 1.2.5 Audio Description (Prerecorded) | AA | the audio description itself — the alternative is no longer sufficient |
-| 1.4.2 Audio Control | A | pause/stop/independent volume for audio over 3 seconds |
-| 2.2.2 Pause, Stop, Hide | A | mechanism for automatic movement over 5 seconds |
-| 2.3.1 Three Flashes | A | no more than three flashes per second |
-| 2.3.3 Animation from Interactions | AAA (House Rule† here) | `prefers-reduced-motion` respected by autoplay and parallax |
-| 1.4.3 Contrast (Minimum) | AA | text over media measured against a stable layer, not against a frame |
+*Success criteria covered: 1.2.1 Audio-only and Video-only (A) · 1.2.2 Captions (Prerecorded) (A) · 1.2.3 Audio Description or Media Alternative (A) · 1.2.5 Audio Description (Prerecorded) (AA) · 1.4.2 Audio Control (A) · 2.2.2 Pause, Stop, Hide (A) · 2.3.1 Three Flashes (A) · 2.3.3 Animation from Interactions (AAA (House Rule† here)) · 1.4.3 Contrast (Minimum) (AA)*
 
 ## Tip for AI:
 

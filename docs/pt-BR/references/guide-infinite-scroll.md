@@ -13,11 +13,4 @@
 5. **O rodapé continua alcançável.** Se o conteúdo cresce sozinho, ou pare o carregamento automático depois de alguns lotes (trocando para o botão), ou ofereça um atalho para pular o feed — rodapé que foge quando você se aproxima é conteúdo que existe e não pode ser usado (Princípio Zero).
 6. **`role="feed"`** é o container certo para um feed de verdade (fluxo de artigos): deixa o leitor de tela navegar entre artigos enquanto o carregamento continua; cada artigo carrega `aria-posinset`/`aria-setsize`.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 2.4.3 Ordem de Foco | A | o foco pousa no conteúdo novo após "Carregar mais"; nunca reseta |
-| 4.1.3 Mensagens de Status | AA | cada lote anunciado, com a posição no todo |
-| 2.1.1 Teclado | A | tudo alcançável sem gesto de rolagem |
-| 2.4.1 Pular Blocos | A | um caminho para além do feed, até o que vem depois |
+*Critérios de sucesso cobertos: 2.4.3 Ordem de Foco (A) · 4.1.3 Mensagens de Status (AA) · 2.1.1 Teclado (A) · 2.4.1 Pular Blocos (A)*

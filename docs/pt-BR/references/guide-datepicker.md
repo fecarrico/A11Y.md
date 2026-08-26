@@ -56,14 +56,4 @@ Passar do fim do mês com as setas, ou apertar o botão de próximo mês, troca 
 
 O `<input type="date">` entrega o picker da própria plataforma — já operável por teclado, já localizado, já familiar ao leitor de tela da pessoa, e de graça no mobile. É o padrão certo sempre que você não precisa de seleção de intervalo, datas desabilitadas customizadas ou identidade visual específica. Os motivos para *não* usá-lo (estilização inconsistente, sem suporte a intervalo, formato preso ao locale) são decisões de produto — registre em `A11Y-DECISIONS.md` em vez de redecidir a cada tela. Em plataforma nativa, use o picker do sistema: ver [Tradução para Plataformas Nativas](guide-platform-native.md).
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 1.3.1 Informação e Relações | A | a grade expõe linhas, colunas e cabeçalhos; o input tem rótulo de verdade |
-| 2.1.1 Teclado | A | toda data alcançável e selecionável sem mouse |
-| 2.1.2 Sem Armadilha de Teclado | A | `Esc` sempre sai do calendário |
-| 3.3.2 Rótulos ou Instruções | A | formato e restrições visíveis antes da digitação |
-| 3.3.8 Autenticação Acessível | AA | colagem e preenchimento automático nunca bloqueados |
-| 1.4.1 Uso de Cor | A | disponibilidade e seleção nunca sinalizadas só por cor |
-| 4.1.2 Nome, Função, Valor | A | células expõem data completa, estado de seleção e data atual |
+*Critérios de sucesso cobertos: 1.3.1 Informação e Relações (A) · 2.1.1 Teclado (A) · 2.1.2 Sem Armadilha de Teclado (A) · 3.3.2 Rótulos ou Instruções (A) · 3.3.8 Autenticação Acessível (AA) · 1.4.1 Uso de Cor (A) · 4.1.2 Nome, Função, Valor (A)*

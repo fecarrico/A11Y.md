@@ -56,14 +56,4 @@ Arrowing past the end of a month, or pressing the next-month button, changes the
 
 `<input type="date">` gives you the platform's own picker — already keyboard-operable, already localized, already familiar to the person's screen reader, and free on mobile. It is the right default whenever you do not need range selection, custom disabled dates, or a specific visual identity. The reasons *not* to use it (inconsistent styling, no range support, format tied to locale) are product decisions — record them in `A11Y-DECISIONS.md` rather than re-deciding per screen. On native platforms, use the system picker: see [Platform-Native Mapping](guide-platform-native.md).
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 1.3.1 Info and Relationships | A | the grid exposes rows, columns and headers; the input has a real label |
-| 2.1.1 Keyboard | A | every date reachable and selectable without a mouse |
-| 2.1.2 No Keyboard Trap | A | `Esc` always leaves the calendar |
-| 3.3.2 Labels or Instructions | A | expected format and constraints visible before entry |
-| 3.3.8 Accessible Authentication | AA | paste and autofill are never blocked |
-| 1.4.1 Use of Color | A | availability and selection never signalled by color alone |
-| 4.1.2 Name, Role, Value | A | cells expose full date, selected state and current date |
+*Success criteria covered: 1.3.1 Info and Relationships (A) · 2.1.1 Keyboard (A) · 2.1.2 No Keyboard Trap (A) · 3.3.2 Labels or Instructions (A) · 3.3.8 Accessible Authentication (AA) · 1.4.1 Use of Color (A) · 4.1.2 Name, Role, Value (A)*

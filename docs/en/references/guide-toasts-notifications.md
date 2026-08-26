@@ -13,11 +13,4 @@
 5. **Dismissible by keyboard:** a real close `<button>` with a name, reachable by `Tab` — and `Esc` dismisses the focused toast.
 6. **Same channel, same place:** toasts appear in a consistent position across the product; repeats collapse (*"3 items archived"*) instead of stacking a tower the reader announces one by one.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 4.1.3 Status Messages | AA | the message is announced without receiving focus |
-| 2.2.1 Timing Adjustable | A | nothing actionable disappears on a timer |
-| 2.1.1 Keyboard | A | dismiss and act without a mouse |
-| 1.4.13 Content on Hover or Focus | AA | hover pausing dismissal must not be the only way to keep it |
+*Success criteria covered: 4.1.3 Status Messages (AA) · 2.2.1 Timing Adjustable (A) · 2.1.1 Keyboard (A) · 1.4.13 Content on Hover or Focus (AA)*

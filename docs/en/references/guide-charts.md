@@ -88,14 +88,4 @@ Dashboards change under filters, date ranges and live data. Every change is a st
 - Small metadata is where the 10px density exception gets abused — it is an `EXCEPTIONS.md` entry with 7:1 contrast, not a default (`A11Y.md` §4).
 - A "chart" that is a single number (a KPI tile) is text: mark it up as text, not as an image of a number.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 1.1.1 Non-text Content | A | the chart has a text alternative — and for data, the equivalent is the data |
-| 1.4.1 Use of Color | A | hue is never the only channel distinguishing series or states |
-| 1.4.11 Non-text Contrast | AA | series, markers and axes at 3:1, including against each other |
-| 2.1.1 Keyboard | A | points, tooltips, zoom and selection all reachable without a mouse |
-| 2.4.7 Focus Visible | AA | the focused data point is visibly focused |
-| 2.2.2 Pause, Stop, Hide | A | live-updating charts can be paused |
-| 4.1.3 Status Messages | AA | filter and range changes announce their result |
+*Success criteria covered: 1.1.1 Non-text Content (A) · 1.4.1 Use of Color (A) · 1.4.11 Non-text Contrast (AA) · 2.1.1 Keyboard (A) · 2.4.7 Focus Visible (AA) · 2.2.2 Pause, Stop, Hide (A) · 4.1.3 Status Messages (AA)*

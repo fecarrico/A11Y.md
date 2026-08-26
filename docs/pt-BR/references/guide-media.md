@@ -131,16 +131,4 @@ Translação disparada por scroll é gatilho vestibular — náusea, tontura e d
 - **Controles:** prefira o atributo nativo `controls`. Um player customizado é Componente Complexo (Seção 5 do arquivo central) — operável por teclado de ponta a ponta, cada controle um `<button>` real com nome, estado anunciado.
 - **Embeds de terceiros (YouTube, Vimeo, Loom):** o embed não transfere a obrigação. Verifique se as legendas existem no ativo hospedado e se o `<iframe>` tem `title`. Legenda autogerada é rascunho, exatamente como na Seção 2.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 1.2.1 Apenas Áudio e Apenas Vídeo | A | transcrição para só-áudio; alternativa para vídeo mudo que carrega informação |
-| 1.2.2 Legendas (Pré-gravado) | A | legendas sincronizadas para qualquer áudio pré-gravado em vídeo |
-| 1.2.3 Audiodescrição **ou** Alternativa | A | uma das duas para a informação visual |
-| 1.2.5 Audiodescrição (Pré-gravado) | AA | a audiodescrição em si — a alternativa deixa de bastar |
-| 1.4.2 Controle de Áudio | A | pausar/parar/volume independente para áudio acima de 3 segundos |
-| 2.2.2 Pausar, Parar, Ocultar | A | mecanismo para movimento automático acima de 5 segundos |
-| 2.3.1 Três Flashes | A | no máximo três flashes por segundo |
-| 2.3.3 Animação por Interação | AAA (Regra da Casa† aqui) | `prefers-reduced-motion` respeitado por autoplay e parallax |
-| 1.4.3 Contraste (Mínimo) | AA | texto sobre mídia medido contra camada estável, não contra um frame |
+*Critérios de sucesso cobertos: 1.2.1 Apenas Áudio e Apenas Vídeo (A) · 1.2.2 Legendas (Pré-gravado) (A) · 1.2.3 Audiodescrição ou Alternativa (A) · 1.2.5 Audiodescrição (Pré-gravado) (AA) · 1.4.2 Controle de Áudio (A) · 2.2.2 Pausar, Parar, Ocultar (A) · 2.3.1 Três Flashes (A) · 2.3.3 Animação por Interação (AAA (Regra da Casa† aqui)) · 1.4.3 Contraste (Mínimo) (AA)*

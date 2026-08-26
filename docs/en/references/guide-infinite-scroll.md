@@ -13,11 +13,4 @@
 5. **The footer stays reachable.** If content grows automatically, either stop auto-loading after a few batches (switching to the button), or provide a skip link past the feed — a footer that flees on approach is content that exists and cannot be used (Principle Zero).
 6. **`role="feed"`** is the right container for a true feed (article stream), letting screen readers move between articles while loading continues; each article carries `aria-posinset`/`aria-setsize`.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 2.4.3 Focus Order | A | focus lands on new content after "Load more"; never resets |
-| 4.1.3 Status Messages | AA | each loaded batch announced, with position in the whole |
-| 2.1.1 Keyboard | A | everything reachable without scroll gestures |
-| 2.4.1 Bypass Blocks | A | a way past the feed to what follows it |
+*Success criteria covered: 2.4.3 Focus Order (A) · 4.1.3 Status Messages (AA) · 2.1.1 Keyboard (A) · 2.4.1 Bypass Blocks (A)*

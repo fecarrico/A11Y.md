@@ -43,12 +43,4 @@ Most banners come from a consent management platform (CMP). **The obligation doe
 - If the CMP is inaccessible and cannot be replaced in the current cycle, that is an `EXCEPTIONS.md` entry — with risk owner, issue and expiry — not somebody else's problem.
 - Many CMPs expose accessibility options that ship disabled (initial focus, labels, contrast). Those belong to configuration, not to the backlog.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 2.1.2 No Keyboard Trap | A | there is always a keyboard way out, modal or not |
-| 2.4.11 Focus Not Obscured (Minimum) | AA | the fixed strip may not cover the focused element |
-| 2.2.1 Timing Adjustable | A | no auto-dismiss and no consent by elapsed time |
-| 4.1.3 Status Messages | AA | late appearance announced |
-| 2.5.8 Target Size | AA | banner buttons follow the active profile's floor |
+*Success criteria covered: 2.1.2 No Keyboard Trap (A) · 2.4.11 Focus Not Obscured (Minimum) (AA) · 2.2.1 Timing Adjustable (A) · 4.1.3 Status Messages (AA) · 2.5.8 Target Size (AA)*

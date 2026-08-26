@@ -56,12 +56,4 @@ Siga o [padrão Tree View da APG](https://www.w3.org/WAI/ARIA/apg/patterns/treev
 - Um ramo carregando filhos anuncia a espera (`aria-busy="true"` no nó, e uma região de status polida para o resultado: *"src expandido, 12 itens"*). Expansão assíncrona silenciosa é o motivo mais comum de quem usa leitor de tela achar que a árvore quebrou.
 - Indentação é só visual. Profundidade chega à tecnologia assistiva por aninhamento ou por `aria-level` — nunca por padding.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 1.3.1 Informação e Relações | A | hierarquia exposta por aninhamento ou `aria-level`, não por indentação |
-| 2.1.1 Teclado | A | operação completa por setas, expandir e recolher inclusos |
-| 2.4.3 Ordem de Foco | A | foco itinerante: uma parada de tabulação, posição previsível |
-| 4.1.2 Nome, Função, Valor | A | `treeitem` com estados de expansão e seleção sempre atualizados |
-| 4.1.3 Mensagens de Status | AA | expansão assíncrona anuncia o resultado |
+*Critérios de sucesso cobertos: 1.3.1 Informação e Relações (A) · 2.1.1 Teclado (A) · 2.4.3 Ordem de Foco (A) · 4.1.2 Nome, Função, Valor (A) · 4.1.3 Mensagens de Status (AA)*

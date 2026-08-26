@@ -71,14 +71,4 @@ Most maps come from Google Maps, Mapbox, Leaflet or an equivalent. **The obligat
 - Give the `<iframe>` a `title` that says what it contains — an untitled map iframe is announced as "frame".
 - Where the provider's control cannot be fixed in this cycle, that is an `EXCEPTIONS.md` entry with owner, issue and expiry — and the text alternative is what keeps the feature usable meanwhile, which is why it is never optional.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 1.1.1 Non-text Content | A | the information on the map exists as text |
-| 2.1.1 Keyboard | A | pan, zoom, markers and selection operable without a mouse |
-| 2.1.2 No Keyboard Trap | A | the map can always be left |
-| 2.5.1 Pointer Gestures | A | pinch and drag have single-pointer alternatives |
-| 1.4.1 Use of Color | A | category never carried by color alone |
-| 1.4.11 Non-text Contrast | AA | routes, zones and markers at 3:1 |
-| 4.1.3 Status Messages | AA | changes in view or results announced |
+*Success criteria covered: 1.1.1 Non-text Content (A) · 2.1.1 Keyboard (A) · 2.1.2 No Keyboard Trap (A) · 2.5.1 Pointer Gestures (A) · 1.4.1 Use of Color (A) · 1.4.11 Non-text Contrast (AA) · 4.1.3 Status Messages (AA)*

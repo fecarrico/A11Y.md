@@ -13,12 +13,4 @@
 5. **Slides fora da tela ficam `inert`.** `tabindex="-1"` afeta só o elemento em que está — os links e botões *dentro* do slide oculto continuam focáveis, exatamente o foco invisível que esta regra existe para evitar. `inert` remove a subárvore inteira do foco e da árvore de acessibilidade.
 6. **Anuncie só as mudanças iniciadas pela pessoa:** uma região polida confirma *"Slide 4 de 8"* depois do Próximo — mas a rotação automática **nunca** é anunciada, ou o carrossel narra a si mesmo por cima de todo o resto da página.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 2.2.2 Pausar, Parar, Ocultar | A | avanço automático acima de 5s tem pausa alcançável |
-| 2.1.1 Teclado | A | todos os controles e o conteúdo dos slides operáveis sem mouse |
-| 1.4.1 Uso de Cor | A | posição e slide atual nunca só por cor |
-| 4.1.2 Nome, Função, Valor | A | carrossel e slides nomeados; estado atual exposto |
-| 2.4.3 Ordem de Foco | A | o foco nunca é abandonado num slide que girou embora |
+*Critérios de sucesso cobertos: 2.2.2 Pausar, Parar, Ocultar (A) · 2.1.1 Teclado (A) · 1.4.1 Uso de Cor (A) · 4.1.2 Nome, Função, Valor (A) · 2.4.3 Ordem de Foco (A)*

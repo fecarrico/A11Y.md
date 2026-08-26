@@ -21,11 +21,4 @@
 - **Revelar no scroll é a mesma armadilha:** conteúdo abaixo da dobra existe para leitores, impressão e busca *antes* de qualquer `IntersectionObserver` disparar — o observer adiciona a animação, nunca adiciona o conteúdo.
 - **`<noscript>` não é a correção.** O caso que falha costuma ser JavaScript *ligado* porém quebrado, bloqueado ou atrasado — um bloco `<noscript>` não ajuda nenhum desses.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 4.1.3 Mensagens de Status | AA | espera anunciada uma vez, desfecho anunciado uma vez |
-| 2.4.3 Ordem de Foco | A | carregar nunca rouba nem encalha o foco |
-| 1.1.1 / Princípio Zero | A | conteúdo nunca condicionado a um script que pode não rodar |
-| Motion (Regra da Casa†) | — | o pulso do skeleton honra `prefers-reduced-motion` |
+*Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.4.3 Ordem de Foco (A) · 1.1.1 / Princípio Zero (A) · Motion (Regra da Casa†) (—)*
