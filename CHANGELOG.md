@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-08-26
+
+The post-benchmark milestone. Everything below was shaped by three inputs: the project's own preregistered studies (what the numbers ordered), a measured token-economy pass (what the evidence allowed), and the Brazilian normative layer (what ABNT NBR 17225:2025 requires). Obligations grew 62 → 71 per edition while the cost per task stayed within 1.5% of the 1.8.0 floor — the diet paid for the growth.
+
 ### Added
 - **Benchmark harness (`benchmark/harness/` + `run-benchmark.py` + `RUNBOOK.md`):** the pre-registered methodology (2026-07-25) promised a static harness; it now exists, stdlib-only. `fetch-axe.py` vendors the pinned engine — **axe-core 4.13.0, SHA-256 locked in `axe.lock`** — so every run on any machine measures with the same engine. The harness mounts each generation unmodified in an iframe and runs axe plus the pre-registered deterministic checklist (clickable divs, label association, live region presence, 24px targets measured on the rendered DOM, ARIA Soup, and a semi-automated modal drive for task 2). `run-benchmark.py --analyze` prints the completeness check against the 54-cell design and the pre-registered analysis: median critical+serious per model and condition, zero-critical share, checklist pass-rate. The RUNBOOK fixes collection mechanics — fresh sessions, "Use your defaults." as the only permitted reply, interleaved conditions so interface drift cannot load one side, and a DEVIATIONS.md protocol. Validated end-to-end against a synthetic 54-run results file.
 - **Sources in `guide-generative-ui.md`:** the guide shipped in 1.7.0 with its claims uncited — the only guide outside the house citation pattern. Now anchored: WAI-ARIA `log` role and Sara Soueidan on live-region mechanics; a11ysupport.io's empirical test matrix for why token-streams behave differently per screen reader; ICCHP 2026 (Springer) on post-render verification of runtime-assembled UI; Hervás et al. 2026 (IJHCI) on cognitive load in generative interfaces.
