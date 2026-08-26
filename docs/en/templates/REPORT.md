@@ -38,6 +38,7 @@ Critical functional paths and Screen Reader validation.
   - Who ran it and when: [name — YYYY-MM-DD]
 - [ ] **Voice Control:** Can every visible control be activated by **speaking its visible label**? *(SC 2.5.3 — an `aria-label` that replaces the visible text makes the control unreachable by voice. Name the tool used, or state that the names were checked against the labels by reading.)*
   - Tool or method: [e.g. iOS Voice Control · Android Voice Access · read accessible names against visible labels]
+- [ ] **Interactive states inventoried:** every stateful component (menu, dialog, accordion, validation, loading) lists its states and how each was verified — **navigated**, **code-read**, or **not verified (reason stated)**. *(A state nobody visited is a state nobody verified: the field case behind this line is a broken menu that survived a report because no navigation ever opened it.)*
 - [ ] **Status Change (`aria-live`):** Are form errors, loading states, or non-visual updates correctly announced?
 - [ ] **Form Filling:** Correctly related labels (`for` and `id`) in all inputs?
 
