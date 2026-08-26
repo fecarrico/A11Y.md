@@ -1,7 +1,7 @@
 🇧🇷 Read in Portuguese: ./README.pt-BR.md
 
 <div align="center">
-  <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
+  <img src="./a11ymd.png" alt="A11Y.md in coral code type over a dark grid, stamped by the Claude for Open Source badge. Below: Accessibility before any prompt — Human-centric, AI-ready, Certifiable." style="max-width: 100%; border-radius: 8px;" />
   <br/><br/>
   <h1>Project A11Y.md</h1>
   <p><b>The Persistent Context System for Accessibility</b></p>
