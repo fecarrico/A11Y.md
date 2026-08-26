@@ -77,9 +77,12 @@ For EAA compliance:
 
 For products serving a Brazilian audience:
 
-- **ABNT NBR 17225:2025** — *Accessibility in web content and applications: requirements* — is the Brazilian technical standard, published in March 2025. It gathers 146 guidelines across requirements and recommendations, aligned with WCAG, and includes a list of critical items (captchas, facial recognition, assistive navigation, contrast, spacing, files, third-party content, custom components).
-- It provides the technical ballast for **article 63 of the Brazilian Inclusion Act (Lei 13.146/2015)**, which mandates accessibility for the websites of public bodies and of companies headquartered or commercially represented in the country.
-- **Practical effect on this standard:** WCAG 2.2 AA conformance covers most of the requirements, but the Brazilian standard's list of critical items is the acceptance checklist in Brazilian public procurement. If the project has that destination, declare it in `REPORT.md` alongside the compliance profile.
+- **ABNT NBR 17225:2025** — *Accessibility in web content and applications: requirements* (March 2025) — is the Brazilian technical standard and the ballast for **article 63 of the LBI (Lei 13.146/2015)**, which mandates accessibility for the sites of public bodies and of companies with presence in Brazil. It organizes **146 items — 96 requirements + 50 recommendations — in 16 thematic groups**, each mapped to a WCAG 2.2 SC, and defines two conformance levels:
+  - **Regular** = all 96 requirements — declared equivalent to WCAG 2.2 A+AA. Profile mapping: **Standard (AA) ≈ regular**.
+  - **Plena** = requirements + all 50 recommendations, where an unmet recommendation demands a *reasonable justification* — the exact mechanics of this standard's `EXCEPTIONS.md` / `A11Y-DECISIONS.md`. Profile mapping: **Shield (AAA) ≈ plena**.
+- **Annex A — the critical-items list**, the acceptance checklist in Brazilian public procurement: CAPTCHA with an alternative modality · **facial recognition / biometrics with an accessible alternative route** · content only on hover/focus · content inserted via CSS · third-party content, with the user warned · custom components · **downloadable (non-HTML) files that are themselves accessible** · layout tables · markup per specification. Three of these go beyond day-to-day WCAG practice: biometrics, files, and CSS-injected content.
+- **Annex B** carries ten functional-performance statements (from EN 301 549) — `REPORT.md` §7 offers them as an optional section serving NBR, EN 301 549 and VPAT at once.
+- **Practical effect:** with a Brazilian destination, `REPORT.md` declares the NBR level targeted (regular/plena) alongside the compliance profile, and Annex A is treated as a named checklist. For sign-language users, see [Sign Language & Libras](guide-sign-language-br.md).
 
 ## 7. Compliance Versioning
 Current focused standard: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brazil, where applicable).

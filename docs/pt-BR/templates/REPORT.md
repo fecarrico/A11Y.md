@@ -65,6 +65,20 @@ Testes que validam contraste e estrutura visual (sem dependência de cores).
 - [ ] **Necessidades conflitantes:** Se alguma decisão atendeu uma necessidade de acessibilidade às custas de outra, as duas populações estão nomeadas e a escolha está registrada no `A11Y-DECISIONS.md`.
 
 ---
+## 7. Desempenho Funcional *(opcional — EN 301 549 / NBR 17225 Anexo B / VPAT)*
+*Preencha quando o relatório embasa uma declaração formal. Para cada afirmação, registre como o produto sustenta o uso:*
+- **Sem visão:** [ ]
+- **Com visão limitada:** [ ]
+- **Sem percepção de cor:** [ ]
+- **Sem audição:** [ ]
+- **Com audição limitada:** [ ]
+- **Sem capacidade vocal:** [ ]
+- **Com manipulação ou força limitadas:** [ ]
+- **Com alcance limitado:** [ ]
+- **Minimizando gatilhos de crise fotossensível:** [ ]
+- **Com cognição limitada:** [ ]
+
+---
 ## 📝 Notas de Avaliação ou Bloqueios Conhecidos
 *Descreva se houve algum comportamento de exceção detectado ou quais medidas foram abertas no `EXCEPTIONS.md`*
 

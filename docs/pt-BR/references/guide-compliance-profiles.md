@@ -66,3 +66,14 @@
 - ❌ Mudanças de estado sem avisos em `aria-live` ou role alerts
 
 Qualquer uso do Launchpad em produção deve ser documentado no `EXCEPTIONS.md` como débito técnico a ser evoluído para o Standard (AA).
+
+## 4. Mapeamento Brasil (ABNT NBR 17225)
+
+Quando o produto serve o Brasil, o perfil declarado informa também seu nível NBR 17225:
+
+| Perfil | Nível NBR 17225 |
+| :--- | :--- |
+| ⚖️ Standard (AA) | **Regular** — todos os 96 requisitos (declarada equivalente à WCAG 2.2 A+AA) |
+| 🛡️ Shield (AAA) | **Plena** — requisitos + todas as 50 recomendações; cada recomendação não atendida carrega justificativa razoável no `EXCEPTIONS.md` |
+
+Estrutura da norma e o checklist de itens críticos do Anexo A: [Governança §6.1](guide-governance.md).

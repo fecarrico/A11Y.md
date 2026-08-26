@@ -75,11 +75,14 @@ Para conformidade com o EAA:
 
 ## 6.1. Conformidade Brasileira (ABNT NBR 17225 / LBI)
 
-Para produtos com público no Brasil:
+Para produtos que servem público brasileiro:
 
-- A **ABNT NBR 17225:2025** — *Acessibilidade em conteúdo e aplicações web: requisitos* — é a norma técnica brasileira, publicada em março de 2025. Reúne 146 diretrizes entre requisitos e recomendações, alinhadas à WCAG, e inclui uma lista de itens críticos (captchas, reconhecimento facial, navegação assistiva, contraste, espaçamento, arquivos, conteúdo de terceiros, componentes customizados).
-- Ela dá lastro técnico ao **artigo 63 da Lei Brasileira de Inclusão (Lei 13.146/2015)**, que obriga a acessibilidade em sites de órgãos públicos e de empresas com sede ou representação comercial no país.
-- **Efeito prático neste padrão:** conformidade WCAG 2.2 AA cobre a maior parte dos requisitos, mas a lista de itens críticos da norma brasileira é o checklist de recebimento em contratos públicos no Brasil. Se o projeto tem esse destino, declare-o no `REPORT.md` junto ao perfil de conformidade.
+- A **ABNT NBR 17225:2025** — *Acessibilidade em conteúdo e aplicações web: requisitos* (março de 2025) — é a norma técnica brasileira e o lastro do **art. 63 da LBI (Lei 13.146/2015)**, que obriga acessibilidade nos sites de órgãos públicos e de empresas com presença no Brasil. Ela organiza **146 itens — 96 requisitos + 50 recomendações — em 16 grupos temáticos**, cada um mapeado a um SC da WCAG 2.2, e define dois níveis de conformidade:
+  - **Regular** = todos os 96 requisitos — declarada equivalente à WCAG 2.2 A+AA. Mapeamento de perfil: **Standard (AA) ≈ regular**.
+  - **Plena** = requisitos + todas as 50 recomendações, em que recomendação não atendida exige *justificativa razoável* — exatamente a mecânica do `EXCEPTIONS.md` / `A11Y-DECISIONS.md` deste padrão. Mapeamento de perfil: **Shield (AAA) ≈ plena**.
+- **Anexo A — a lista de itens críticos**, o checklist de aceitação em compras públicas brasileiras: CAPTCHA com modalidade alternativa · **reconhecimento facial / biometria com rota alternativa acessível** · conteúdo apenas em hover/foco · conteúdo inserido via CSS · conteúdo de terceiros, com o usuário avisado · componentes customizados · **arquivos para download (não-HTML) eles próprios acessíveis** · tabelas de leiaute · marcação conforme a especificação. Três desses vão além da prática WCAG do dia a dia: biometria, arquivos e conteúdo via CSS.
+- O **Anexo B** traz dez declarações de desempenho funcional (da EN 301 549) — o `REPORT.md` §7 as oferece como seção opcional que serve NBR, EN 301 549 e VPAT de uma vez.
+- **Efeito prático:** com destino brasileiro, o `REPORT.md` declara o nível NBR pretendido (regular/plena) ao lado do perfil de conformidade, e o Anexo A é tratado como checklist nomeado. Para usuários de língua de sinais, ver [Língua de Sinais & Libras](guide-sign-language-br.md).
 
 ## 7. Compliance Versioning
 Padrão Atual focado: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brasil, quando aplicável).
