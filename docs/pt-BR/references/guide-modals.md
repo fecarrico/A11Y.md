@@ -43,7 +43,7 @@
 ## Maus Exemplos
 
 ### 1. Deixar o Foco para Trás
-- **Implicação:** Se um modal abre e o foco permanece no acionador ao fundo, um usuário de screen reader pode continuar interagindo com a página "por baixo" do modal, levando a confusões e erros.
+- Ver *Leaked Focus Traps* — core §6.
 
 ### 2. Sem Botão de Fechar
 - **Implicação:** Usuários que dependem de screen readers ou possuem deficiências cognitivas podem não saber como sair de um modal se não houver uma ação clara e rotulada de "Close" ou "Fechar".

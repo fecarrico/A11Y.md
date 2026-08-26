@@ -13,12 +13,4 @@
 5. **Alvos de soltura não falam por cor:** alvos válidos ganham indicador visível a 3:1 (SC 1.4.11) mais uma pista não-cromática (contorno, padrão, linha de inserção), e o alvo atual é nomeado no anúncio, não só destacado.
 6. **Zonas de soltar arquivo** são a mesma regra disfarçada: a zona MUST vir acompanhada de um `<input type="file">` de verdade (ou botão que abre um) — "arraste os arquivos para cá" como único caminho é a SC 2.5.7 falhando na primeira interação do fluxo.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 2.5.7 Dragging Movements | AA | todo desfecho de arraste alcançável por ponteiro único, sem arrastar |
-| 2.1.1 Teclado | A | pegar, mover, soltar e cancelar sem mouse |
-| 4.1.3 Mensagens de Status | AA | pego / movido / solto anunciados |
-| 2.4.7 Foco Visível | AA | o foco acompanha visivelmente o item movido |
-| 1.4.11 Contraste Não Textual | AA | indicadores de soltura a 3:1, nunca só cor |
+*Critérios de sucesso cobertos: 2.5.7 Dragging Movements (AA) · 2.1.1 Teclado (A) · 4.1.3 Mensagens de Status (AA) · 2.4.7 Foco Visível (AA) · 1.4.11 Contraste Não Textual (AA)*

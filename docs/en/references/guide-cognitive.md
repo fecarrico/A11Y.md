@@ -88,6 +88,7 @@ WCAG only requires a reading level at AAA (SC 3.1.5), which leaves clarity outsi
 - **The label states the outcome**, not the mechanism: "Save draft", not "Submit".
 - **A critical instruction never lives in a `placeholder` or a tooltip.** It must be visible while the person is deciding.
 - **An error names the way out.** "Invalid postcode" is a diagnosis; "A postcode has 5 digits — check whether one is missing" is an instruction.
+- **Sensory Language (SC 1.3.3):** instructions **MUST NOT** rely on senses alone — "click the round button on the right", "listen for the tone". Name the control by its visible label: "click **Submit**, at the end of the form". Format instructions ("DD/MM/YYYY") live outside the input, linked via `aria-describedby`.
 
 ## 7. Conflicting access needs
 
@@ -122,16 +123,4 @@ The [W3C Cognitive Accessibility Guidance](https://www.w3.org/WAI/WCAG2/suppleme
 7. Provide help and support
 8. Support adaptation and personalization
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 3.2.6 Consistent Help | A | help mechanism in the same relative order across pages |
-| 3.3.7 Redundant Entry | A | do not re-request information already given in the same process |
-| 2.2.1 Timing Adjustable | A | turn off, adjust (10×) or extend (20s warning, 10 times) |
-| 3.3.8 Accessible Authentication (Minimum) | AA | no cognitive function test; paste allowed; correct `autocomplete` |
-| 1.4.12 Text Spacing | AA | no loss at 1.5 / 2× / 0.12× / 0.16× applied by the user |
-| 3.3.2 Labels or Instructions | A | instruction visible outside the field — see [Forms](guide-forms.md) |
-| 3.3.3 Error Suggestion | AA | the message says how to fix it, not only what failed |
-| 3.3.9 Accessible Authentication (Enhanced) | AAA (Shield profile) | removes the object-recognition and personal-content exceptions |
-| 3.1.5 Reading Level | AAA | the language of Section 6 as a requirement, not a good practice |
+*Success criteria covered: 1.3.3 Sensory Characteristics (A) · 3.2.6 Consistent Help (A) · 3.3.7 Redundant Entry (A) · 2.2.1 Timing Adjustable (A) · 3.3.8 Accessible Authentication (Minimum) (AA) · 1.4.12 Text Spacing (AA) · 3.3.2 Labels or Instructions (A) · 3.3.3 Error Suggestion (AA) · 3.3.9 Accessible Authentication (Enhanced) (AAA (Shield profile)) · 3.1.5 Reading Level (AAA)*

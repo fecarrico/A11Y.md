@@ -88,6 +88,7 @@ A WCAG só exige nível de leitura em AAA (SC 3.1.5), o que deixa a clareza fora
 - **O rótulo diz o resultado**, não o mecanismo: "Salvar rascunho", não "Submeter".
 - **Instrução crítica não vive em `placeholder` nem em tooltip.** Ela precisa estar visível quando a pessoa está decidindo.
 - **Erro nomeia a saída.** "CPF inválido" é diagnóstico; "O CPF tem 11 dígitos — verifique se faltou algum" é instrução.
+- **Linguagem Sensorial (SC 1.3.3):** instruções **MUST NOT** depender só dos sentidos — "clique no botão redondo à direita", "aguarde o sinal sonoro". Nomeie o controle pelo rótulo visível: "clique em **Enviar**, no fim do formulário". Instruções de formato ("DD/MM/AAAA") vivem fora do campo, ligadas via `aria-describedby`.
 
 ## 7. Necessidades de acesso conflitantes
 
@@ -122,16 +123,4 @@ O [W3C Cognitive Accessibility Guidance](https://www.w3.org/WAI/WCAG2/supplement
 7. Oferecer ajuda e suporte
 8. Apoiar adaptação e personalização
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 3.2.6 Ajuda Consistente | A | mecanismo de ajuda na mesma ordem relativa entre páginas |
-| 3.3.7 Entrada Redundante | A | não repedir informação já dada no mesmo processo |
-| 2.2.1 Tempo Ajustável | A | desligar, ajustar (10×) ou estender (aviso + 20s, 10 vezes) |
-| 3.3.8 Autenticação Acessível (Mínimo) | AA | sem teste de função cognitiva; colar permitido; `autocomplete` correto |
-| 1.4.12 Espaçamento de Texto | AA | sem perda com 1,5 / 2× / 0,12× / 0,16× aplicados pelo usuário |
-| 3.3.2 Rótulos ou Instruções | A | instrução visível fora do campo — ver [Formulários](guide-forms.md) |
-| 3.3.3 Sugestão de Erro | AA | a mensagem diz como corrigir, não só o que falhou |
-| 3.3.9 Autenticação Acessível (Melhorada) | AAA (perfil Shield) | remove as exceções de reconhecimento de objeto e conteúdo pessoal |
-| 3.1.5 Nível de Leitura | AAA | linguagem da Seção 6 como requisito, não como boa prática |
+*Critérios de sucesso cobertos: 1.3.3 Características Sensoriais (A) · 3.2.6 Ajuda Consistente (A) · 3.3.7 Entrada Redundante (A) · 2.2.1 Tempo Ajustável (A) · 3.3.8 Autenticação Acessível (Mínimo) (AA) · 1.4.12 Espaçamento de Texto (AA) · 3.3.2 Rótulos ou Instruções (A) · 3.3.3 Sugestão de Erro (AA) · 3.3.9 Autenticação Acessível (Melhorada) (AAA (perfil Shield)) · 3.1.5 Nível de Leitura (AAA)*

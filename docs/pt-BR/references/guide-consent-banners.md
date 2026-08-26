@@ -43,12 +43,4 @@ A maior parte dos banners vem de uma plataforma de consentimento (CMP). **A obri
 - Se o CMP é inacessível e não pode ser trocado no ciclo atual, isso é uma entrada no `EXCEPTIONS.md` — com dono do risco, issue e expiração —, não um problema de outra pessoa.
 - Muitos CMPs expõem opções de acessibilidade desligadas por padrão (foco inicial, rótulos, contraste). Elas fazem parte da configuração, não do backlog.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 2.1.2 Sem Armadilha de Teclado | A | sempre há saída pelo teclado, modal ou não |
-| 2.4.11 Foco Não Obscurecido (Mínimo) | AA | a faixa fixa não pode encobrir o elemento focado |
-| 2.2.1 Tempo Ajustável | A | sem autofechamento e sem consentimento por decurso de prazo |
-| 4.1.3 Mensagens de Status | AA | aparição tardia anunciada |
-| 2.5.8 Tamanho do Alvo | AA | botões do banner seguem o piso do perfil ativo |
+*Critérios de sucesso cobertos: 2.1.2 Sem Armadilha de Teclado (A) · 2.4.11 Foco Não Obscurecido (Mínimo) (AA) · 2.2.1 Tempo Ajustável (A) · 4.1.3 Mensagens de Status (AA) · 2.5.8 Tamanho do Alvo (AA)*

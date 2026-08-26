@@ -21,11 +21,4 @@
 - **Scroll-reveal is the same trap:** below-the-fold content exists for readers, print and search *before* any `IntersectionObserver` fires — the observer adds the animation, it never adds the content.
 - **`<noscript>` is not the fix.** The failing case is usually JavaScript *enabled* but broken, blocked or late — a `<noscript>` block helps none of those.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 4.1.3 Status Messages | AA | wait announced once, outcome announced once |
-| 2.4.3 Focus Order | A | loading never steals or strands focus |
-| 1.1.1 / Principle Zero | A | content never gated behind a script that may not run |
-| Motion (House Rule†) | — | skeleton pulse honors `prefers-reduced-motion` |
+*Success criteria covered: 4.1.3 Status Messages (AA) · 2.4.3 Focus Order (A) · 1.1.1 / Principle Zero (A) · Motion (House Rule†) (—)*

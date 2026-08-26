@@ -26,7 +26,7 @@
 ```html
 <div onclick="submit()" class="my-button">Submit</div>
 ```
-- **Implicação:** Isso é invisível para usuários de teclado (sem tab focus) e screen readers (sem a role "button"). Exige excesso de JS para consertar o que o HTML faz de graça.
+- Ver *Clickable Divs* — core §6.
 
 ### 2. Rótulos Vagos
 ```html

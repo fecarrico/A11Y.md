@@ -43,7 +43,7 @@
 ## Bad Examples
 
 ### 1. Leaving Focus Behind
-- **Implication:** If a modal opens and focus remains on the background trigger, a screen reader user might continue interacting with the page "underneath" the modal, leading to confusion and errors.
+- See *Leaked Focus Traps* — core §6.
 
 ### 2. No Close Button
 - **Implication:** Users who rely on screen readers or have cognitive disabilities might not know how to exit a modal if there isn't a clear, labeled "Close" action.

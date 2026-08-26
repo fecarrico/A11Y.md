@@ -30,10 +30,10 @@
 ```html
 <input type="text" placeholder="Enter your username">
 ```
-- **Implication:** Placeholders disappear when typing, losing context. They often fail contrast requirements and aren't reliably read by screen readers as labels.
+- See *Placeholder Labels* — core §6.
 
 ### 2. Information via Color Only
 ```html
 <input type="text" style="border: 1px solid red;">
 ```
-- **Implication:** Color-blind users or those with low vision may not see the border change. Always add an icon or text indicating the error.
+- See *Semantic Redundancy* — core §3.

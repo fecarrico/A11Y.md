@@ -79,14 +79,4 @@ Interface conversacional joga todo o peso da estrutura sobre quem lê. Aplique [
 - **UI montada em runtime precisa de verificação no render (§5):** *Accessible GenAI UI Generation with Post-Render Verification*, ICCHP 2026 ([Springer](https://link.springer.com/chapter/10.1007/978-3-032-31285-3_47)) — padrões estáticos não alcançam marcação que só existe em tempo de execução; uma segunda checagem precisa rodar onde a interface é composta.
 - **Carga cognitiva em interfaces conversacionais (§6):** Hervás et al., *Cognitive Accessibility in Generative AI Interfaces* — revisão sistemática, International Journal of Human–Computer Interaction, 2026 ([Taylor & Francis](https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2618562)) — as interfaces textuais de IA generativa atuais impõem carga cognitiva excessiva e carecem de previsibilidade e scaffolding.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 4.1.3 Mensagens de Status | AA | estado da geração anunciado sem reler a mensagem |
-| 2.2.2 Pausar, Parar, Ocultar | A | o streaming pode ser interrompido |
-| 2.2.1 Tempo Ajustável | A | nem compositor nem sessão expiram no meio da tarefa |
-| 1.3.1 Informação e Relações | A | a saída renderizada mantém cabeçalhos, listas e tabelas como semântica real |
-| 2.4.3 Ordem de Foco | A | o foco nunca é roubado por uma resposta que chega |
-| 2.5.3 Label in Name | AA | controles por mensagem nomeados de forma distinta, contendo o texto visível |
-| 1.1.1 Conteúdo Não Textual | A | imagens e gráficos gerados carregam alternativa, resolvida com o humano |
+*Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.2.2 Pausar, Parar, Ocultar (A) · 2.2.1 Tempo Ajustável (A) · 1.3.1 Informação e Relações (A) · 2.4.3 Ordem de Foco (A) · 2.5.3 Label in Name (AA) · 1.1.1 Conteúdo Não Textual (A)*

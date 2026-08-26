@@ -13,12 +13,4 @@
 5. **Drop targets don't speak in color:** valid targets get a visible indicator at 3:1 (SC 1.4.11) plus a non-color cue (outline, pattern, insertion line), and the current target is named in the announcement, not only highlighted.
 6. **File drop zones** are the same rule in disguise: the zone MUST be accompanied by a real `<input type="file">` (or a button opening one) — "drag files here" as the only path is SC 2.5.7 failed at the first interaction of the flow.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 2.5.7 Dragging Movements | AA | every drag outcome reachable by a single pointer, no dragging |
-| 2.1.1 Keyboard | A | pick up, move, drop and cancel without a mouse |
-| 4.1.3 Status Messages | AA | grabbed / moved / dropped announced |
-| 2.4.7 Focus Visible | AA | focus visibly tracks the moved item |
-| 1.4.11 Non-text Contrast | AA | drop indicators at 3:1, never color alone |
+*Success criteria covered: 2.5.7 Dragging Movements (AA) · 2.1.1 Keyboard (A) · 4.1.3 Status Messages (AA) · 2.4.7 Focus Visible (AA) · 1.4.11 Non-text Contrast (AA)*

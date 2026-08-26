@@ -79,14 +79,4 @@ Conversational interfaces put the whole burden of structure on the reader. Apply
 - **Runtime-assembled UI needs verification at render (§5):** *Accessible GenAI UI Generation with Post-Render Verification*, ICCHP 2026 ([Springer](https://link.springer.com/chapter/10.1007/978-3-032-31285-3_47)) — static standards cannot reach markup that only exists at runtime; a second check must run where the interface is composed.
 - **Cognitive load in conversational interfaces (§6):** Hervás et al., *Cognitive Accessibility in Generative AI Interfaces* — systematic review, International Journal of Human–Computer Interaction, 2026 ([Taylor & Francis](https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2618562)) — current text-based GenAI interfaces impose excess cognitive load and lack predictability and scaffolding.
 
-## Success criteria mapped
-
-| SC | Level | What it requires here |
-| :--- | :--- | :--- |
-| 4.1.3 Status Messages | AA | generation state announced without re-reading the message |
-| 2.2.2 Pause, Stop, Hide | A | streaming can be stopped |
-| 2.2.1 Timing Adjustable | A | no expiring composer or session mid-task |
-| 1.3.1 Info and Relationships | A | rendered output keeps headings, lists and tables as real semantics |
-| 2.4.3 Focus Order | A | focus is never stolen by an arriving response |
-| 2.5.3 Label in Name | AA | per-message controls named distinctly, containing their visible text |
-| 1.1.1 Non-text Content | A | generated images and charts carry alternatives, resolved with a human |
+*Success criteria covered: 4.1.3 Status Messages (AA) · 2.2.2 Pause, Stop, Hide (A) · 2.2.1 Timing Adjustable (A) · 1.3.1 Info and Relationships (A) · 2.4.3 Focus Order (A) · 2.5.3 Label in Name (AA) · 1.1.1 Non-text Content (A)*

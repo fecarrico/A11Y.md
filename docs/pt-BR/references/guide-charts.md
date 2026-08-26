@@ -88,14 +88,4 @@ Dashboards mudam sob filtros, intervalos de data e dados ao vivo. Toda mudança 
 - Metadado pequeno é onde a exceção de densidade de 10px mais é abusada — é entrada em `EXCEPTIONS.md` com contraste 7:1, não padrão (`A11Y.md` §4).
 - Um "gráfico" que é um número só (um card de KPI) é texto: marque como texto, não como imagem de um número.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 1.1.1 Conteúdo Não Textual | A | o gráfico tem alternativa textual — e, para dado, o equivalente é o dado |
-| 1.4.1 Uso de Cor | A | matiz nunca é o único canal que distingue série ou estado |
-| 1.4.11 Contraste Não Textual | AA | séries, marcadores e eixos a 3:1, inclusive entre si |
-| 2.1.1 Teclado | A | pontos, tooltips, zoom e seleção alcançáveis sem mouse |
-| 2.4.7 Foco Visível | AA | o ponto focado está visivelmente focado |
-| 2.2.2 Pausar, Parar, Ocultar | A | gráficos com atualização ao vivo podem ser pausados |
-| 4.1.3 Mensagens de Status | AA | mudança de filtro e de intervalo anuncia o resultado |
+*Critérios de sucesso cobertos: 1.1.1 Conteúdo Não Textual (A) · 1.4.1 Uso de Cor (A) · 1.4.11 Contraste Não Textual (AA) · 2.1.1 Teclado (A) · 2.4.7 Foco Visível (AA) · 2.2.2 Pausar, Parar, Ocultar (A) · 4.1.3 Mensagens de Status (AA)*

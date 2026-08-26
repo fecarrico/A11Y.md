@@ -13,11 +13,4 @@
 5. **Dispensável por teclado:** um `<button>` de fechar de verdade, com nome, alcançável por `Tab` — e `Esc` dispensa o toast focado.
 6. **Mesmo canal, mesmo lugar:** toasts aparecem em posição consistente no produto inteiro; repetições colapsam (*"3 itens arquivados"*) em vez de empilhar uma torre que o leitor anuncia uma a uma.
 
-## Critérios de sucesso mapeados
-
-| SC | Nível | O que exige aqui |
-| :--- | :--- | :--- |
-| 4.1.3 Mensagens de Status | AA | a mensagem é anunciada sem receber foco |
-| 2.2.1 Tempo Ajustável | A | nada acionável desaparece por cronômetro |
-| 2.1.1 Teclado | A | dispensar e agir sem mouse |
-| 1.4.13 Conteúdo em Hover ou Foco | AA | pausar no hover não pode ser o único jeito de segurar o toast |
+*Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.2.1 Tempo Ajustável (A) · 2.1.1 Teclado (A) · 1.4.13 Conteúdo em Hover ou Foco (AA)*
