@@ -1,6 +1,6 @@
 # tools/
 
-Three dependency-free Python scripts. All are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
+Four dependency-free Python scripts. All are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
 
 > [!IMPORTANT]
 > **These scripts are not part of the standard.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. Nothing in the normative core requires running these — and nothing ever should. They are a convenience for teams that want CI enforcement.
@@ -48,6 +48,16 @@ Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report wi
 ```
 
 Vendoring the script into your repository is equally valid, and gives you a reviewable diff when you upgrade.
+
+## `contrast-check.py` — deterministic WCAG contrast
+
+```bash
+python3 contrast-check.py --bg '#121212' '#f2f2f2' '#5a5a5a'   # verdict per pair; exits non-zero on failure
+python3 contrast-check.py --css styles.css --page-bg '#fff'     # triage: full pair matrix, never gates
+python3 contrast-check.py --self-test                            # built-in fixture cases
+```
+
+Born from the project's own benchmark: contrast was the failure present in every condition of Study 2, and it is arithmetic — it should be computed, never estimated by a model. Pair mode gives a verdict against the Standard (AA) or Shield (AAA) floors and can gate a build; CSS mode extracts every color literal (hex/rgb/hsl, alpha composited over `--page-bg`) and flags failing pairs as **triage** — it cannot know which colors actually meet on the rendered page. The rendered-page check in `REPORT.md` remains mandatory.
 
 ## `lint-standard.py` — for maintaining the standard itself
 

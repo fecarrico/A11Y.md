@@ -38,6 +38,7 @@ Caminhos críticos da funcionalidade e validação via Leitores de Tela.
   - Quem executou e quando: [nome — AAAA-MM-DD]
 - [ ] **Controle por Voz:** Todo controle visível pode ser acionado **falando o rótulo visível dele**? *(SC 2.5.3 — um `aria-label` que substitui o texto visível torna o controle inalcançável por voz. Nomeie a ferramenta usada, ou declare que os nomes foram conferidos contra os rótulos por leitura.)*
   - Ferramenta ou método: [ex.: Voice Control do iOS · Voice Access do Android · leitura dos nomes acessíveis contra os rótulos visíveis]
+- [ ] **Estados interativos inventariados:** cada componente com estado (menu, diálogo, accordion, validação, loading) lista seus estados e como cada um foi verificado — **navegado**, **lido no código**, ou **não verificado (com o motivo)**. *(Estado que ninguém visitou é estado que ninguém verificou: o caso de campo por trás desta linha é um menu quebrado que sobreviveu a um relatório porque nenhuma navegação o abriu.)*
 - [ ] **Mudança de Status (`aria-live`):** Erros de formulário, loading states ou atualizações não visuais são corretamente anunciadas?
 - [ ] **Preenchimento de Formulários:** Labels corretas e relacionadas (`for` e `id`) em todos os inputs?
 
