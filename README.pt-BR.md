@@ -4,7 +4,7 @@
 > A versão oficial e atualizada do projeto (e da Wiki) está em inglês.
 
 <div align="center">
-  <img src="./a11ymd.png" alt="Project A11Y.md Banner" style="max-width: 100%; border-radius: 8px;" />
+  <img src="./a11ymd.png" alt="A11Y.md em tipografia de código coral sobre grade escura, com o selo do Claude for Open Source. Abaixo: Accessibility before any prompt — Human-centric, AI-ready, Certifiable." style="max-width: 100%; border-radius: 8px;" />
   <br/><br/>
   <h1>Project A11Y.md</h1>
   <p><b>O Sistema de Contexto Persistente para Acessibilidade</b></p>
