@@ -1,6 +1,6 @@
 # Guia de Mapas Interativos
 
-> **Escopo:** Mapas embutidos e interativos — localizadores de loja, rastreio de entrega, seletores de área, mapas de cobertura. O componente mais frequentemente entregue como ilha inacessível de terceiro, e o caso mais claro do Princípio Zero: se a tarefa só pode ser concluída no mapa, a tarefa não pode ser concluída.
+> **Escopo:** Mapas embutidos e interativos — localizadores de loja, rastreio de entrega, seletores de área, mapas de cobertura — vale o Princípio Zero: se a tarefa só pode ser concluída no mapa, a tarefa não pode ser concluída.
 
 ## 0. A regra da qual todas as outras decorrem
 
@@ -82,7 +82,3 @@ A maioria dos mapas vem de Google Maps, Mapbox, Leaflet ou equivalente. **A obri
 | 1.4.1 Uso de Cor | A | categoria nunca carregada só por cor |
 | 1.4.11 Contraste Não Textual | AA | rotas, zonas e marcadores a 3:1 |
 | 4.1.3 Mensagens de Status | AA | mudança de área visível ou de resultados anunciada |
-
-## Dica para a IA:
-
-Conclua a tarefa com o mapa escondido — `display: none` no container, e então termine o fluxo. Se você não consegue achar a loja, escolher o endereço ou confirmar a área de entrega, a interface está quebrada para todo mundo que não usa o mapa, e nenhuma quantidade de ARIA no canvas conserta isso. Construa a lista primeiro; o mapa é o incremento.

@@ -2,7 +2,7 @@
 
 > Escopo: Uso semântico de botões, padrões ARIA, interações por teclado e regras de rotulagem.
 
-## Bons Exemplos (Good Examples)
+## Bons Exemplos
 
 ### 1. Elemento Native Button
 ```html
@@ -20,7 +20,7 @@
 ```
 - **Por quê:** Para botões sem texto visível, o `aria-label` fornece o contexto necessário para usuários de screen reader.
 
-## Maus Exemplos (Bad Examples)
+## Maus Exemplos
 
 ### 1. A "Clickable Div"
 ```html
@@ -28,13 +28,9 @@
 ```
 - **Implicação:** Isso é invisível para usuários de teclado (sem tab focus) e screen readers (sem a role "button"). Exige excesso de JS para consertar o que o HTML faz de graça.
 
-### 2. Vague Labels (Rótulos Vagos)
+### 2. Rótulos Vagos
 ```html
 <button>Click Here</button>
 <button>Learn More</button>
 ```
 - **Implicação:** Usuários de screen reader frequentemente listam todos os botões de uma página para navegar. "Click Here" não fornece nenhum contexto sobre o que o botão realmente faz. Use "Download Report" ou "Leia sobre nossa história" em vez disso.
-
-## Implicações de Acessibilidade
-- **Affordance:** Botões visualmente distintos ajudam usuários com deficiências cognitivas a identificar pontos de interação.
-- **Precisão:** Projete áreas de clique de **44x44px** (Regra da Casa — Apple HIG/Material; o piso WCAG AA é 24×24, SC 2.5.8): essenciais para usuários mobile e pessoas com deficiências motoras.

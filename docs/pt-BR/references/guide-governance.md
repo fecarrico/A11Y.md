@@ -2,16 +2,6 @@
 
 > Escopo: Verificação estática, estratégia VPAT, conformidade ADA/EAA, EN 301 549 e prontidão para auditoria externa.
 
-## 0. Onde uma regra deve morar (princípio de projeto deste padrão)
-
-> **Evidência de campo (01/08/2026):** num post-mortem documentado de um projeto real, um agente aplicou corretamente as Seções 0 a 6 e não produziu nenhum `REPORT.md` nem `EXCEPTIONS.md`. O artefato que *foi* produzido (`A11Y-DECISIONS.md`) era o único citado pelo nome dentro de uma regra do **AI Behavior Contract**. A variável não foi obrigatoriedade — os outros dois já eram MUST em outros pontos — foi **onde o nome do arquivo aparecia**.
-
-Agentes tratam a Seção 2 como contrato executável e todo o resto como material de consulta. Portanto, ao estender este padrão:
-
-- **Tudo que a IA precisa FAZER** — criar um arquivo, recusar uma ação, checar algo antes de prosseguir — pertence ao **AI Behavior Contract (Seção 2)**, com um evento-gatilho explícito.
-- **A Seção 7 e os guias de referência** carregam profundidade, detalhe de verificação e justificativa — eles explicam e ampliam, mas nunca devem ser o *único* lugar onde uma obrigação existe.
-- Prefira **gatilhos por evento** ("antes de qualquer entrega ao usuário final") a **gatilhos por fase** ("na entrega final"): projetos de entrega contínua nunca alcançam a fase, e a regra nunca dispara.
-
 ## 1. Verificação Estática (O Mínimo de Engenharia)
 A verificação primária não consiste em ditar regras rígidas em uma *pipeline específica*, mas responsabilizar o ambiente de desenvolvimento (Seja o Dev ou a IA rodando em tempo real) por testes estáticos de validação rápida.
 - **Padrão de Código:** O código *deve* passar obrigatoriamente pelas checagens de linters ou avaliadores focados em acessibilidade (como `eslint-plugin-jsx-a11y` ou motor `axe`) sem exibir violações do nível crítico/sério antes da consolidação de código. 
@@ -22,7 +12,7 @@ A verificação primária não consiste em ditar regras rígidas em uma *pipelin
 
 Uma rodada limpa do axe significa "nenhuma violação entre as regras que estavam ligadas". Dois padrões merecem correção, ambos descobertos ao construir a landing deste próprio projeto sob este padrão:
 
-- **Ligue as regras experimentais que carregam um Critério de Sucesso.** A `label-content-name-mismatch` detecta nome acessível que não contém o texto visível — uma **falha de SC 2.5.3, Nível AA**, que quebra controle por voz — e vem **desligada por padrão**, tanto no axe-core quanto na extensão de navegador. Ligue: `axe.run(context, { rules: { 'label-content-name-mismatch': { enabled: true } } })`, ou marque *Experimental rules* nas configurações da extensão. Em campo, foi essa regra que pegou um `aria-label` substituindo o texto visível de um seletor de idioma; a rodada padrão passou limpa.
+- **Ligue as regras experimentais que carregam um Critério de Sucesso.** A `label-content-name-mismatch` detecta nome acessível que não contém o texto visível — uma **falha de SC 2.5.3, Nível AA**, que quebra controle por voz — e vem **desligada por padrão**, tanto no axe-core quanto na extensão de navegador. Ligue: `axe.run(context, { rules: { 'label-content-name-mismatch': { enabled: true } } })`, ou marque *Experimental rules* nas configurações da extensão.
 - **Resolva o conflito linter × motor em vez de silenciá-lo.** A `scrollable-region-focusable` (axe) exige parada de foco num container que o usuário consegue rolar mas não alcançar por Tab; a `no-noninteractive-tabindex` (`eslint-plugin-jsx-a11y`) acusa exatamente esse `tabIndex`. Seguir as duas ao pé da letra é impossível, e o caminho de menor resistência — desligar a regra do ESLint — remove uma proteção real. Configure:
   ```jsonc
   // .eslintrc — permite a parada de foco que o axe exige, mantém a regra no resto
@@ -53,7 +43,7 @@ Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir 
 - Como os estados são comunicados?
 - Qual é o fallback para ambientes sem JS?
 
-## 3. Restrições da Linguagem Visual (Visual Language Constraints)
+## 3. Restrições da Linguagem Visual
 - **Color:** NUNCA comunique um estado (Válido/Inválido/Aviso) usando apenas cor. Um ícone acompanhando ou uma descrição em texto é obrigatório.
 - **Contrast:** Cores da marca que falham no ratio de 4.5:1 MUST ser ajustadas para elementos de UI ou pareadas com uma alternativa de alto contraste.
 
@@ -99,9 +89,3 @@ Para produtos com público no Brasil:
 ## 7. Compliance Versioning
 Padrão Atual focado: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brasil, quando aplicável).
 Desvios do requisito legal devido a limitações severas de UI/UX, plataforma nativa ou arquitetura base, **MUST** ser justificados usando obrigatoriamente o arquivo matriz na página: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). Todos esses pontos devem possuir ações compensatórias.
-
-## 8. Padrões Externos e Motores (External Standards & Engines)
-Para o contexto em tempo real da IA e referência do desenvolvedor, siga estes padrões canônicos da indústria:
-- **WAI-ARIA APG:** [https://www.w3.org/WAI/ARIA/apg/](https://www.w3.org/WAI/ARIA/apg/)
-- **eBay MIND Patterns:** [https://ebay.github.io/mindpatterns/](https://ebay.github.io/mindpatterns/)
-- **Deque Axe Core:** [https://github.com/dequelabs/axe-core](https://github.com/dequelabs/axe-core)

@@ -21,7 +21,3 @@
 | 4.1.3 Status Messages | AA | each loaded batch announced, with position in the whole |
 | 2.1.1 Keyboard | A | everything reachable without scroll gestures |
 | 2.4.1 Bypass Blocks | A | a way past the feed to what follows it |
-
-## Tip for the AI:
-
-With the keyboard only, reach the footer. If it runs away every time you get close, the pattern has failed Principle Zero — the content exists and cannot be used. Then press Back after loading three batches: the user should land where they left, not at the top of a different page.

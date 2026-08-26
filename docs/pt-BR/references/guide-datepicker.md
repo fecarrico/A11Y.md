@@ -1,6 +1,6 @@
 # Guia de Date Picker & Calendário
 
-> **Escopo:** Campos de data, grades de calendário e seletores de intervalo — citados no `A11Y.md` §6 como componente a adotar em vez de reinventar, e reinventados do zero na maioria dos projetos mesmo assim.
+> **Escopo:** Campos de data, grades de calendário e seletores de intervalo — adote em vez de reinventar (`A11Y.md` §6).
 
 ## 0. A regra da qual todas as outras decorrem
 
@@ -67,7 +67,3 @@ O `<input type="date">` entrega o picker da própria plataforma — já operáve
 | 3.3.8 Autenticação Acessível | AA | colagem e preenchimento automático nunca bloqueados |
 | 1.4.1 Uso de Cor | A | disponibilidade e seleção nunca sinalizadas só por cor |
 | 4.1.2 Nome, Função, Valor | A | células expõem data completa, estado de seleção e data atual |
-
-## Dica para a IA:
-
-Antes de dar um campo de data por pronto, tente preenchê-lo **sem nunca abrir o calendário** — digite a data, saia do campo, envie. Se esse caminho não existe ou o valor é rejeitado, o componente está errado por mais correta que a grade esteja. Depois faça o contrário: abra o calendário e chegue ao mês seguinte só com o teclado, conferindo se você foi informado de em que mês aterrissou.

@@ -2,16 +2,6 @@
 
 > Scope: Static verification, VPAT strategy, ADA/EAA compliance, EN 301 549, and external audit readiness.
 
-## 0. Where a rule belongs (design principle for this standard)
-
-> **Field evidence (2026-08-01):** in a documented post-mortem of a real project, an agent applied Sections 0–6 correctly and produced no `REPORT.md` or `EXCEPTIONS.md` at all. The artifact that *was* produced (`A11Y-DECISIONS.md`) was the only one named inside a rule of the **AI Behavior Contract**. The variable was not obligation — the other two were already MUST elsewhere — it was **where the filename appeared**.
-
-Agents treat Section 2 as an executable contract and everything else as reference material. Therefore, when extending this standard:
-
-- **Anything the AI must DO** — create a file, refuse an action, check something before proceeding — belongs in the **AI Behavior Contract (Section 2)**, with an explicit trigger event.
-- **Sections 7 and the reference guides** carry depth, verification detail and rationale — they explain and expand, but must never be the *only* place an obligation exists.
-- Prefer **event triggers** ("before any delivery to an end user") over **phase triggers** ("at final delivery"): continuous-delivery projects never reach a phase, so a phase-triggered rule never fires.
-
 ## 1. Static Verification (The Engineering Minimum)
 Primary verification does not consist of dictating rigid rules in a *specific pipeline*, but holding the development environment (Be it the Dev or the AI running in real-time) accountable for fast static validation tests.
 - **Code Standard:** The code *must* necessarily pass through linters or accessibility-focused evaluators (like `eslint-plugin-jsx-a11y` or the `axe` engine) without displaying critical/serious violations before code consolidation.
@@ -20,9 +10,9 @@ Primary verification does not consist of dictating rigid rules in a *specific pi
 
 ### 1.1. Default configuration is not coverage
 
-A clean axe run means "no violation among the rules that were enabled". Two defaults are worth correcting, both found while building this project's own landing page under this standard:
+A clean axe run means "no violation among the rules that were enabled". Two defaults are worth correcting:
 
-- **Enable the experimental rules that carry a Success Criterion.** `label-content-name-mismatch` detects an accessible name that does not contain the visible text — an **SC 2.5.3 Level AA failure** that breaks voice control — and it ships **disabled by default**, in axe-core and in the browser extension alike. Turn it on: `axe.run(context, { rules: { 'label-content-name-mismatch': { enabled: true } } })`, or check *Experimental rules* in the extension's settings. In the field this rule was what caught an `aria-label` replacing the visible text of a language selector; the default run passed it clean.
+- **Enable the experimental rules that carry a Success Criterion.** `label-content-name-mismatch` detects an accessible name that does not contain the visible text — an **SC 2.5.3 Level AA failure** that breaks voice control — and it ships **disabled by default**, in axe-core and in the browser extension alike. Turn it on: `axe.run(context, { rules: { 'label-content-name-mismatch': { enabled: true } } })`, or check *Experimental rules* in the extension's settings.
 - **Resolve the linter × engine conflict instead of silencing it.** `scrollable-region-focusable` (axe) requires a focus stop on a container the user can scroll but not tab into; `no-noninteractive-tabindex` (`eslint-plugin-jsx-a11y`) flags that exact `tabIndex`. Following both literally is impossible, and the path of least resistance — disabling the ESLint rule — removes a real guard. Configure it instead:
   ```jsonc
   // .eslintrc — allow the focus stop axe requires, keep the rule everywhere else
@@ -99,9 +89,3 @@ For products serving a Brazilian audience:
 ## 7. Compliance Versioning
 Current focused standard: **WCAG 2.2 AA** | **EN 301 549** | **ABNT NBR 17225** (Brazil, where applicable).
 Deviations from legal requirements due to severe UI/UX, native platform, or base architecture limitations, **MUST** be justified mandatorily using the matrix file on the page: [**`templates/EXCEPTIONS.md`**](../templates/EXCEPTIONS.md). All these points must have compensatory actions.
-
-## 8. External Standards & Engines
-For real-time AI context and developer reference, adhere to these canonical industry standards:
-- **WAI-ARIA APG:** [https://www.w3.org/WAI/ARIA/apg/](https://www.w3.org/WAI/ARIA/apg/)
-- **eBay MIND Patterns:** [https://ebay.github.io/mindpatterns/](https://ebay.github.io/mindpatterns/)
-- **Deque Axe Core:** [https://github.com/dequelabs/axe-core](https://github.com/dequelabs/axe-core)

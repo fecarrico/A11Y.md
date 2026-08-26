@@ -1,6 +1,6 @@
 # Guia de Tree View & Hierarquia
 
-> **Escopo:** Tree views, exploradores de arquivo, seletores de categoria aninhados e qualquer hierarquia expansível — citados no `A11Y.md` §6 entre os componentes a adotar em vez de reinventar.
+> **Escopo:** Tree views, exploradores de arquivo, seletores de categoria aninhados e qualquer hierarquia expansível — adote em vez de reinventar (`A11Y.md` §6).
 
 ## 0. Primeiro pergunte se aquilo deveria ser uma árvore
 
@@ -65,7 +65,3 @@ Siga o [padrão Tree View da APG](https://www.w3.org/WAI/ARIA/apg/patterns/treev
 | 2.4.3 Ordem de Foco | A | foco itinerante: uma parada de tabulação, posição previsível |
 | 4.1.2 Nome, Função, Valor | A | `treeitem` com estados de expansão e seleção sempre atualizados |
 | 4.1.3 Mensagens de Status | AA | expansão assíncrona anuncia o resultado |
-
-## Dica para a IA:
-
-Faça a pergunta do §0 em voz alta antes de escrever qualquer ARIA. Se a resposta for "a pessoa está navegando", apague as funções de árvore e entregue uma lista aninhada de links — é um componente menor, uma página mais rápida e uma solução correta. Se for árvore mesmo, tire o padrão de uma biblioteca ([APG](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/), Headless UI ou equivalente) em vez de montar foco itinerante na mão, e registre a escolha em `A11Y-DECISIONS.md` para a próxima hierarquia do projeto não ganhar uma segunda implementação, diferente.

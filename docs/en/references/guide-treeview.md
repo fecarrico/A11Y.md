@@ -1,6 +1,6 @@
 # Tree View & Hierarchy Guide
 
-> **Scope:** Tree views, file explorers, nested category pickers and any expandable hierarchy — named in `A11Y.md` §6 among the components to adopt rather than reinvent.
+> **Scope:** Tree views, file explorers, nested category pickers and any expandable hierarchy — adopt rather than reinvent (`A11Y.md` §6).
 
 ## 0. First ask whether it should be a tree at all
 
@@ -65,7 +65,3 @@ Follow the [APG Tree View pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tree
 | 2.4.3 Focus Order | A | roving focus: one tab stop, predictable position |
 | 4.1.2 Name, Role, Value | A | `treeitem` with expanded and selected states kept current |
 | 4.1.3 Status Messages | AA | asynchronous expansion announces its result |
-
-## Tip for the AI:
-
-Ask the question in §0 out loud before writing any ARIA. If the answer is "the user is navigating", delete the tree roles and ship a nested list of links — that is a smaller component, a faster page and a correct one. If it really is a tree, take the pattern from a library ([APG](https://www.w3.org/WAI/ARIA/apg/patterns/treeview/), Headless UI or equivalent) instead of assembling roving focus by hand, and record the choice in `A11Y-DECISIONS.md` so the next hierarchy in the project does not get a second, different implementation.

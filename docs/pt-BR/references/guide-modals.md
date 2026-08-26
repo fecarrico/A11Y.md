@@ -2,7 +2,7 @@
 
 > Escopo: Focus trapping, elemento dialog nativo, controle por teclado e anti-padrões de modal.
 
-## Bons Exemplos (Good Examples)
+## Bons Exemplos
 
 ### 1. Focus Trapping e Labeling
 ```javascript
@@ -40,14 +40,10 @@
 - **Esc Key:** Deve sempre fechar o modal.
 - **Tab:** Deve circular através dos elementos APENAS dentro do modal (Focus Trap).
 
-## Maus Exemplos (Bad Examples)
+## Maus Exemplos
 
-### 1. Deixar o Foco para Trás (Leaving Focus Behind)
+### 1. Deixar o Foco para Trás
 - **Implicação:** Se um modal abre e o foco permanece no acionador ao fundo, um usuário de screen reader pode continuar interagindo com a página "por baixo" do modal, levando a confusões e erros.
 
-### 2. Sem Botão de Fechar (No Close Button)
+### 2. Sem Botão de Fechar
 - **Implicação:** Usuários que dependem de screen readers ou possuem deficiências cognitivas podem não saber como sair de um modal se não houver uma ação clara e rotulada de "Close" ou "Fechar".
-
-## Implicações de Acessibilidade
-- **Modality:** Garantir que o usuário saiba que ele está em um "sub-estado" da aplicação.
-- **Restoration:** Quando o modal é fechado, o foco MUST retornar para o elemento que o acionou, para que o usuário saiba onde ele está no documento.

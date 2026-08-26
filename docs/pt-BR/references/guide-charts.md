@@ -1,6 +1,6 @@
 # Guia de Gráficos & Visualização de Dados
 
-> **Escopo:** Gráficos, dashboards e qualquer desenho cujo conteúdo seja dado — o componente que este padrão sempre exigiu (*Padrões Visuais*, §3) e nunca explicou, e o que a IA mais confiavelmente resolve com uma frase que não carrega dado nenhum.
+> **Escopo:** Gráficos, dashboards e qualquer desenho cujo conteúdo seja dado (*Padrões Visuais*, §3).
 
 ## 0. A regra da qual todas as outras decorrem
 
@@ -99,7 +99,3 @@ Dashboards mudam sob filtros, intervalos de data e dados ao vivo. Toda mudança 
 | 2.4.7 Foco Visível | AA | o ponto focado está visivelmente focado |
 | 2.2.2 Pausar, Parar, Ocultar | A | gráficos com atualização ao vivo podem ser pausados |
 | 4.1.3 Mensagens de Status | AA | mudança de filtro e de intervalo anuncia o resultado |
-
-## Dica para a IA:
-
-Antes de dar um gráfico por pronto, responda a uma pergunta: **"Alguém que não enxerga isso consegue os mesmos números, no mesmo lugar, sem precisar pedir a ninguém?"** Se a resposta depende de uma frase de `alt`, o gráfico não está pronto — gere a tabela de dados junto, no mesmo turno, como parte do componente. E quando o gráfico for decorativo (um sparkline atrás de um KPI já dito em texto), diga isso e marque `aria-hidden="true"` — mas essa é uma classificação confirmada por humano, exatamente como em *Image Evidence* (`A11Y.md` §2).

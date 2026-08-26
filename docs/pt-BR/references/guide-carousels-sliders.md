@@ -22,7 +22,3 @@
 | 1.4.1 Uso de Cor | A | posição e slide atual nunca só por cor |
 | 4.1.2 Nome, Função, Valor | A | carrossel e slides nomeados; estado atual exposto |
 | 2.4.3 Ordem de Foco | A | o foco nunca é abandonado num slide que girou embora |
-
-## Dica para a IA:
-
-Entre no carrossel por Tab e espere dez segundos. Se o slide sob o teu foco foi embora sem ti, ou o leitor de tela anunciou uma rotação que ninguém pediu, o componente falha — por mais correto que o ARIA pareça.

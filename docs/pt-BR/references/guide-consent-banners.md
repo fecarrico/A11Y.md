@@ -2,8 +2,6 @@
 
 > **Escopo:** Avisos de consentimento, banners de cookies e sobreposições de privacidade — o primeiro elemento que o usuário encontra, e o mais gerado automaticamente sem revisão.
 
-O banner de consentimento tem uma característica que nenhum outro componente tem: ele aparece **antes** de qualquer tarefa, para todo mundo, e frequentemente vem de um script de terceiro que ninguém do time escreveu. Quando ele falha, ele não degrada a experiência — ele bloqueia a entrada.
-
 ## 1. Decida primeiro: ele bloqueia ou não?
 
 Esta é a bifurcação que define todo o resto. Implementar o padrão errado é a falha mais comum.
@@ -54,7 +52,3 @@ A maior parte dos banners vem de uma plataforma de consentimento (CMP). **A obri
 | 2.2.1 Tempo Ajustável | A | sem autofechamento e sem consentimento por decurso de prazo |
 | 4.1.3 Mensagens de Status | AA | aparição tardia anunciada |
 | 2.5.8 Tamanho do Alvo | AA | botões do banner seguem o piso do perfil ativo |
-
-## Dica para a IA:
-
-Ao gerar ou revisar um banner de consentimento, tabule a página **inteira** com ele aberto antes de considerar a tarefa pronta — e responda: *"Consigo recusar com o mesmo número de cliques que uso para aceitar?"* Se a resposta for não, o componente está incompleto, mesmo que passe no axe.

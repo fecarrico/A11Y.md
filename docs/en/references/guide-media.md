@@ -2,8 +2,6 @@
 
 > Scope: video and audio, decorative/background media, parallax and scroll-driven motion, text over moving media, and the human-in-the-loop rule for captions and transcripts.
 
-Still images fail quietly through a missing `alt`. Time-based media fails through **four different criteria at once** — captions, audio control, moving content and flashing — and three of them are Level A, so they hold at **every** compliance profile, including Launchpad.
-
 ## 1. Classify before you embed
 
 The removal test from the [Images guide](guide-images.md) applies unchanged: *"If I remove this media, what does the user lose?"*
@@ -132,14 +130,6 @@ Scroll-driven translation is a vestibular trigger — nausea, dizziness and diso
 - **Audio description (SC 1.2.5, AA):** required when the picture carries information the soundtrack does not — a chart appearing on screen, on-screen text nobody reads aloud. The cheap fix is upstream: script the narration so it says what the screen shows, and the description becomes unnecessary.
 - **Controls:** prefer the native `controls` attribute. A custom player is a Complex Component (Section 5 of the core file) — keyboard operable end to end, every control a real `<button>` with a name, state announced.
 - **Third-party embeds (YouTube, Vimeo, Loom):** the embed does not transfer the obligation. Verify that captions exist on the hosted asset and that the `<iframe>` carries a `title`. Auto-generated captions are a draft, exactly as in Section 2.
-
-## 7. What this flow forbids
-
-- **The AI declaring media decorative on its own** — the mirror of the silent `alt=""`, with more at stake: it suppresses captions, not just a name.
-- **Machine captions shipped unreviewed**, or a transcript "to be added later" while the video is already live.
-- **Autoplay with audio.** SC 1.4.2 is Level A, and automatic sound masks the screen reader's own speech — the user's only channel of operation.
-- **Motion the user cannot stop:** no pause control, or a control that only appears on hover.
-- **Flashing above three per second** (SC 2.3.1) — a health risk, and the one item on this page that is never a trade-off.
 
 ## Success criteria mapped
 

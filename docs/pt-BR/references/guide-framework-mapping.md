@@ -58,7 +58,7 @@ const panelId = useId();                    // gera OUTRO valor
 return <div id={panelId}>…</div>;
 ```
 
-O `aria-controls` aponta para um `id` que não existe. Cada chamada de `useId()` é independente — nada faz dois componentes chegarem ao mesmo valor. E o defeito **passa** no axe e no Lighthouse: eles validam a sintaxe do atributo, não resolvem o destino da referência entre componentes. Esse modo de falha é o **inverso do ARIA Soup**: lá, ARIA é adicionado onde a semântica nativa bastava; aqui o ARIA é sintaticamente correto e vazio no destino — o leitor de tela segue o ponteiro e não encontra nada. *(Encontrado em campo pelo primeiro teste independente deste padrão: [a11y-md-ai-test](https://github.com/mjepis7/a11y-md-ai-test), de Maria Eduarda Iwashita — a sessão guiada ainda entregou exatamente este bug, e foi isso que o transformou no anti-pattern da Seção 6.)*
+O `aria-controls` aponta para um `id` que não existe. Cada chamada de `useId()` é independente — nada faz dois componentes chegarem ao mesmo valor. E o defeito **passa** no axe e no Lighthouse: eles validam a sintaxe do atributo, não resolvem o destino da referência entre componentes. Esse modo de falha é o **inverso do ARIA Soup**: lá, ARIA é adicionado onde a semântica nativa bastava; aqui o ARIA é sintaticamente correto e vazio no destino — o leitor de tela segue o ponteiro e não encontra nada.
 
 ### ✅ Correto
 
@@ -83,45 +83,3 @@ Vale para `aria-controls`, `aria-labelledby`, `aria-describedby` e `aria-actived
 *Ver o anti-padrão **Referência ARIA Órfã** na Seção 6 do arquivo central.*
 
 ---
-
-## Exemplo de Tradução: Toggle Button
-
-### 🔵 Origem (React/TSX)
-```tsx
-<button
-  aria-pressed={isActive}
-  onClick={() => setIsActive(!isActive)}
->
-  Alternar
-</button>
-```
-
-### 🟢 Vue.js
-```html
-<button
-  :aria-pressed="isActive"
-  @click="isActive = !isActive"
->
-  Alternar
-</button>
-```
-
-### 🔴 Angular
-```html
-<button
-  [attr.aria-pressed]="isActive"
-  (click)="isActive = !isActive"
->
-  Alternar
-</button>
-```
-
-### 🟠 Svelte
-```html
-<button
-  aria-pressed={isActive}
-  onclick={() => isActive = !isActive}
->
-  Alternar
-</button>
-```

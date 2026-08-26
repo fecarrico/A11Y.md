@@ -2,10 +2,6 @@
 
 > Scope: memory, attention, language, time and decision load — the criteria WCAG 2.2 added for cognition, text spacing, and the protocol for when two accessibility needs contradict each other.
 
-Cognitive disability is the most prevalent and the least machine-verifiable. A screen reader exposes a missing `alt`; no automated engine detects that a checkout flow requires the person to **remember** the code that arrived by SMS three screens ago, or that the critical instruction is written in passive voice with a double negative.
-
-This guide covers the part that **is** verifiable in code — and it is larger than it looks. Of the criteria WCAG 2.2 added at Level A/AA, **three are cognitive**, and all three are resolved in markup and flow, without a browser.
-
 ## 1. SC 3.3.8 Accessible Authentication (AA) — the one generated code violates most
 
 The criterion forbids requiring a **cognitive function test** at any step of authentication — recalling a password, transcribing characters, solving a puzzle, performing a calculation — unless an alternative, an assistance mechanism, object recognition, or user-supplied personal content is available.
@@ -139,7 +135,3 @@ The [W3C Cognitive Accessibility Guidance](https://www.w3.org/WAI/WCAG2/suppleme
 | 3.3.3 Error Suggestion | AA | the message says how to fix it, not only what failed |
 | 3.3.9 Accessible Authentication (Enhanced) | AAA (Shield profile) | removes the object-recognition and personal-content exceptions |
 | 3.1.5 Reading Level | AAA | the language of Section 6 as a requirement, not a good practice |
-
-## Tip for the AI:
-
-Before closing any flow with more than one step, ask three questions no checker asks for you: *"What am I asking this person to **remember**? What am I asking them to **type again**? And if they get stuck here, **where is the help** — in the same place as on the previous screen?"*

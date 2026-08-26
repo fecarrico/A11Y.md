@@ -21,7 +21,3 @@
 | 2.2.1 Tempo Ajustável | A | nada acionável desaparece por cronômetro |
 | 2.1.1 Teclado | A | dispensar e agir sem mouse |
 | 1.4.13 Conteúdo em Hover ou Foco | AA | pausar no hover não pode ser o único jeito de segurar o toast |
-
-## Dica para a IA:
-
-Dispare o toast e tire as mãos do teclado, com um leitor de tela ligado. Foi anunciado exatamente uma vez? Você teria alcançado a ação antes de ele sumir? Se a resposta à segunda for não, a ação nunca existiu para uma classe inteira de usuários — mova-a para um lugar permanente e deixe o toast ser o que ele é: um eco.

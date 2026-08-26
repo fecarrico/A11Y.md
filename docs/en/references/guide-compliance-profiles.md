@@ -2,10 +2,6 @@
 
 > **Scope:** AI Generation & Auditing
 
-Accessibility is not a monolith. While **WCAG 2.2 AA** is the industry and legal standard, different stages of a project demand different levels of rigor.
-
-This guide details the three compliance profiles supported by the `A11Y.md` ruleset.
-
 > [!NOTE]
 > **Normative vs House Rules.** Each profile mixes two layers: **WCAG Success Criteria** at its target level (cited by SC number — skipping one requires `EXCEPTIONS.md`) and **House Rules†** — this standard's stricter ergonomic policy (marked †; relaxing one is a product decision, recorded in `A11Y-DECISIONS.md`). WCAG defines **no minimum font size** at any level, and Level A defines **no contrast or target-size criteria** — every value in those positions below is a House Rule.
 
@@ -25,7 +21,6 @@ This guide details the three compliance profiles supported by the `A11Y.md` rule
 *The highest standard of web accessibility.*
 
 **When to use:** Applications for government, healthcare, education, or specialized audiences with severe disabilities.
-**AI Instruction:** `"Apply Shield Profile (AAA)"`
 
 ### Key Requirements (Beyond AA)
 - **Contrast (SC 1.4.6):** Text must have a **7:1** ratio against its background. Large text (18pt+) must have **4.5:1**. UI components remain at 3:1 (SC 1.4.11 — WCAG has no AAA non-text contrast criterion).
@@ -40,7 +35,6 @@ This guide details the three compliance profiles supported by the `A11Y.md` rule
 *The global benchmark for legal compliance (ADA, EAA).*
 
 **When to use:** This is the **default**. Use for any production software, public-facing website, or commercial product.
-**AI Instruction:** `"Apply Standard Profile (AA)"`
 
 ### Key Requirements
 - **Contrast (SC 1.4.3, 1.4.11):** Text must have a **4.5:1** ratio. Large text must have **3:1**. UI elements (borders, icons) must have **3:1**.
@@ -55,7 +49,6 @@ This guide details the three compliance profiles supported by the `A11Y.md` rule
 *The absolute floor. Below this, the software is considered broken.*
 
 **When to use:** Rapid prototyping, internal admin panels with controlled audiences, or initial MVP builds.
-**AI Instruction:** `"Apply Launchpad Profile (A)"`
 
 > [!WARNING]  
 > The Launchpad profile does **NOT** mean "no accessibility". It still requires semantic HTML, keyboard operability, and screen reader support. It only relaxes strict visual criteria.

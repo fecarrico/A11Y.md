@@ -22,7 +22,3 @@
 | 4.1.3 Status Messages | AA | grabbed / moved / dropped announced |
 | 2.4.7 Focus Visible | AA | focus visibly tracks the moved item |
 | 1.4.11 Non-text Contrast | AA | drop indicators at 3:1, never color alone |
-
-## Tip for the AI:
-
-Unplug the mouse and reorder a list from top to bottom, then cancel one move halfway with `Esc`. If any of those steps is impossible — or possible but silent — the component is a pointer-only feature wearing a list's clothes.

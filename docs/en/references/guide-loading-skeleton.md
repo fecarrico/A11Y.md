@@ -29,7 +29,3 @@
 | 2.4.3 Focus Order | A | loading never steals or strands focus |
 | 1.1.1 / Principle Zero | A | content never gated behind a script that may not run |
 | Motion (House Rule†) | — | skeleton pulse honors `prefers-reduced-motion` |
-
-## Tip for the AI:
-
-Load the page twice: once with JavaScript disabled, once with it enabled and throttled to a crawl. At no point may the page be blank while its content sits in the DOM. Then run a screen reader through one load cycle — you should hear exactly two things: that the wait started, and what arrived.

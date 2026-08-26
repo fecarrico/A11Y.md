@@ -47,7 +47,3 @@
 
 ### 2. No Close Button
 - **Implication:** Users who rely on screen readers or have cognitive disabilities might not know how to exit a modal if there isn't a clear, labeled "Close" action.
-
-## Accessibility Implications
-- **Modality:** Ensuring the user is aware they are in a "sub-state" of the application.
-- **Restoration:** When the modal closes, focus MUST return to the element that triggered it, so the user knows where they are in the document.
