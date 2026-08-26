@@ -2,7 +2,7 @@
 
 > Escopo: Vinculação de labels, mensagens de erro, agrupamento de campos e padrões acessíveis de formulário.
 
-## Bons Exemplos (Good Examples)
+## Bons Exemplos
 
 ### 1. Labels Explícitas e Helper Text
 ```html
@@ -14,7 +14,7 @@
 ```
 - **Por quê:** A `label` está explicitamente vinculada ao `id`. O `aria-describedby` vincula o helper text ao input para os screen readers.
 
-### 2. Tratamento de Erros (Error Handling)
+### 2. Tratamento de Erros
 ```html
 <div class="form-group error">
   <label for="password-field">Password</label>
@@ -24,7 +24,7 @@
 ```
 - **Por quê:** `aria-invalid` sinaliza o estado de erro. O `role="alert"` garante que o screen reader anuncie o erro imediatamente.
 
-## Maus Exemplos (Bad Examples)
+## Maus Exemplos
 
 ### 1. Placeholder como Label
 ```html
@@ -37,7 +37,3 @@
 <input type="text" style="border: 1px solid red;">
 ```
 - **Implicação:** Usuários daltônicos ou com baixa visão podem não ver a mudança na borda. Sempre adicione um ícone ou texto indicando o erro.
-
-## Implicações de Acessibilidade
-- **Cognitive Load:** Labels explícitas reduzem o esforço necessário para lembrar para que serve um campo.
-- **Predictability:** O uso de tipos de input padrão (email, tel, date) permite que os browsers forneçam teclados especializados e preenchimento automático (autofill).

@@ -53,12 +53,4 @@ Quando a imagem vem do usuário — um screenshot colado, um asset enviado, um a
 
 **Passo 3 — Proponha; o humano decide.** Apresente a classificação e o rascunho do `alt` ao desenvolvedor e obtenha uma confirmação explícita. A leitura que a IA faz de uma imagem é hipótese, não evidência — o mesmo princípio da validação humana com leitor de tela no Complex Component Protocol. A confirmação faz parte do fluxo, não é formalidade.
 
-**O que este fluxo proíbe:**
-- `alt` fabricado a partir do nome do arquivo (`alt="hero-final-v2"`) — violação de *No Inference*.
-- `alt=""` vazio como fallback silencioso: esconde do usuário de leitor de tela uma imagem possivelmente informativa, e nenhum verificador automático consegue pegar — o axe não tem como saber que a imagem importava.
-- Entregar com o `alt` "a preencher depois": imagem não resolvida bloqueia o Definition of Done (funcional = 🔴 CRITICAL, informativa = 🟠 HIGH).
-
 Classificações-limite (ex.: uma hero image discutivelmente decorativa) são decisões de padrão: registre no `A11Y-DECISIONS.md` e reutilize.
-
-## Dica para a IA:
-Sempre que gerar um componente com imagem, a IA deve se perguntar: *"Se eu remover essa imagem, qual informação o usuário perde?"*. Essa resposta deve ser o seu `alt`.

@@ -37,7 +37,3 @@
 <input type="text" style="border: 1px solid red;">
 ```
 - **Implication:** Color-blind users or those with low vision may not see the border change. Always add an icon or text indicating the error.
-
-## Accessibility Implications
-- **Cognitive Load:** Explicit labels reduce the effort needed to remember what a field is for.
-- **Predictability:** Using standard input types (email, tel, date) allows browsers to provide specialized keyboards and autofill.

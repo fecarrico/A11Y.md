@@ -34,7 +34,3 @@
 <button>Learn More</button>
 ```
 - **Implication:** Screen reader users often list all buttons on a page to navigate. "Click Here" provides no context about what the button actually does. Use "Download Report" or "Read about our history" instead.
-
-## Accessibility Implications
-- **Affordance:** Visually distinctive buttons help users with cognitive impairments identify interaction points.
-- **Precision:** Design tap targets to **44x44px** (House Rule — Apple HIG/Material; the WCAG AA floor is 24×24, SC 2.5.8): essential for mobile users and those with motor impairments.

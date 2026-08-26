@@ -33,7 +33,3 @@
 <span onclick="window.location='/new-page'">Go to Page</span>
 ```
 - **Implication:** This is not an anchor tag. It has no focus, no "link" role, and cannot be opened in a new tab.
-
-## Accessibility Implications
-- **Searchability:** Proper navigation landmarks allow screen reader users to jump directly to the navigation section using shortcut keys.
-- **Predictability:** Keeping the navigation in the same place and order across pages reduces cognitive load.

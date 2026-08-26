@@ -1,6 +1,6 @@
 # Date Picker & Calendar Guide
 
-> **Scope:** Date fields, calendar grids and range pickers — named in `A11Y.md` §6 as a component to adopt rather than reinvent, and generated from scratch anyway in most projects.
+> **Scope:** Date fields, calendar grids and range pickers — adopt rather than reinvent (`A11Y.md` §6).
 
 ## 0. The rule everything else follows
 
@@ -67,7 +67,3 @@ Arrowing past the end of a month, or pressing the next-month button, changes the
 | 3.3.8 Accessible Authentication | AA | paste and autofill are never blocked |
 | 1.4.1 Use of Color | A | availability and selection never signalled by color alone |
 | 4.1.2 Name, Role, Value | A | cells expose full date, selected state and current date |
-
-## Tip for the AI:
-
-Before finishing a date field, try to complete it **without ever opening the calendar** — type the date, tab away, submit. If that path does not exist or the value is rejected, the component is wrong no matter how correct the grid is. Then do the opposite: open the calendar and reach next month with the keyboard only, and check that you were told which month you landed in.

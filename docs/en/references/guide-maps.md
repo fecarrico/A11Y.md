@@ -1,6 +1,6 @@
 # Interactive Maps Guide
 
-> **Scope:** Embedded and interactive maps — store locators, delivery tracking, area pickers, coverage displays. The component most often shipped as an inaccessible third-party island, and the clearest case of Principle Zero: if the task can only be completed on the map, the task cannot be completed.
+> **Scope:** Embedded and interactive maps — store locators, delivery tracking, area pickers, coverage displays — Principle Zero applies: if the task can only be completed on the map, the task cannot be completed.
 
 ## 0. The rule everything else follows
 
@@ -82,7 +82,3 @@ Most maps come from Google Maps, Mapbox, Leaflet or an equivalent. **The obligat
 | 1.4.1 Use of Color | A | category never carried by color alone |
 | 1.4.11 Non-text Contrast | AA | routes, zones and markers at 3:1 |
 | 4.1.3 Status Messages | AA | changes in view or results announced |
-
-## Tip for the AI:
-
-Complete the task with the map hidden — `display: none` on the container, then finish the flow. If you cannot find the store, choose the address or confirm the delivery area, the interface is broken for everyone who cannot use the map, and no amount of ARIA on the canvas will fix it. Build the list first; the map is the enhancement.

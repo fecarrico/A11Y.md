@@ -22,7 +22,3 @@
 | 4.1.3 Mensagens de Status | AA | pego / movido / solto anunciados |
 | 2.4.7 Foco Visível | AA | o foco acompanha visivelmente o item movido |
 | 1.4.11 Contraste Não Textual | AA | indicadores de soltura a 3:1, nunca só cor |
-
-## Dica para a IA:
-
-Desligue o mouse e reordene uma lista de cima a baixo, cancelando um movimento no meio com `Esc`. Se qualquer desses passos for impossível — ou possível, mas mudo —, o componente é uma funcionalidade só-ponteiro vestida de lista.

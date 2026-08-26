@@ -1,6 +1,6 @@
 # Guia de Interfaces Generativas & Conversacionais
 
-> **Escopo:** Interfaces de chat, saída de modelo em streaming e UI que um modelo monta em tempo de execução. Este padrão existe porque IA escreve interface; este guia cobre o caso em que a interface **é** a IA — e onde as barreiras são novas o bastante para ainda não estarem no checklist de ninguém.
+> **Escopo:** Interfaces de chat, saída de modelo em streaming e UI que um modelo monta em tempo de execução — o caso em que a interface **é** a IA.
 
 ## 0. A regra da qual todas as outras decorrem
 
@@ -72,6 +72,13 @@ Interface conversacional joga todo o peso da estrutura sobre quem lê. Aplique [
 - **Erro e recusa são conteúdo, não silêncio.** "Algo deu errado" numa região `role="status"`, com o que fazer em seguida — um stream que simplesmente para não deixa sinal nenhum de que algo aconteceu.
 - **Diga o que o assistente é** dentro da interface. Quem não enxerga o enquadramento visual merece a mesma informação que todo mundo recebe do layout.
 
+## Fontes
+
+- **Mecânica das regiões vivas** — o comportamento em que o §0 e o §1 se apoiam (a região precisa existir antes da primeira mensagem; como adições são processadas): [WAI-ARIA — role `log`](https://www.w3.org/TR/wai-aria-1.2/#log) · Sara Soueidan, [*Accessible notifications with ARIA Live Regions*](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-1/).
+- **Por que streams de token gaguejam ou recomeçam de forma diferente por leitor** — o tratamento de regiões vivas diverge mensuravelmente entre pares leitor/navegador, e é por isso que este guia anuncia transições em vez de transmitir conteúdo: [a11ysupport.io — resultados de teste do `aria-live`](https://a11ysupport.io/tech/aria/aria-live_attribute).
+- **UI montada em runtime precisa de verificação no render (§5):** *Accessible GenAI UI Generation with Post-Render Verification*, ICCHP 2026 ([Springer](https://link.springer.com/chapter/10.1007/978-3-032-31285-3_47)) — padrões estáticos não alcançam marcação que só existe em tempo de execução; uma segunda checagem precisa rodar onde a interface é composta.
+- **Carga cognitiva em interfaces conversacionais (§6):** Hervás et al., *Cognitive Accessibility in Generative AI Interfaces* — revisão sistemática, International Journal of Human–Computer Interaction, 2026 ([Taylor & Francis](https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2618562)) — as interfaces textuais de IA generativa atuais impõem carga cognitiva excessiva e carecem de previsibilidade e scaffolding.
+
 ## Critérios de sucesso mapeados
 
 | SC | Nível | O que exige aqui |
@@ -83,14 +90,3 @@ Interface conversacional joga todo o peso da estrutura sobre quem lê. Aplique [
 | 2.4.3 Ordem de Foco | A | o foco nunca é roubado por uma resposta que chega |
 | 2.5.3 Label in Name | AA | controles por mensagem nomeados de forma distinta, contendo o texto visível |
 | 1.1.1 Conteúdo Não Textual | A | imagens e gráficos gerados carregam alternativa, resolvida com o humano |
-
-## Fontes
-
-- **Mecânica das regiões vivas** — o comportamento em que o §0 e o §1 se apoiam (a região precisa existir antes da primeira mensagem; como adições são processadas): [WAI-ARIA — role `log`](https://www.w3.org/TR/wai-aria-1.2/#log) · Sara Soueidan, [*Accessible notifications with ARIA Live Regions*](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-1/).
-- **Por que streams de token gaguejam ou recomeçam de forma diferente por leitor** — o tratamento de regiões vivas diverge mensuravelmente entre pares leitor/navegador, e é por isso que este guia anuncia transições em vez de transmitir conteúdo: [a11ysupport.io — resultados de teste do `aria-live`](https://a11ysupport.io/tech/aria/aria-live_attribute).
-- **UI montada em runtime precisa de verificação no render (§5):** *Accessible GenAI UI Generation with Post-Render Verification*, ICCHP 2026 ([Springer](https://link.springer.com/chapter/10.1007/978-3-032-31285-3_47)) — padrões estáticos não alcançam marcação que só existe em tempo de execução; uma segunda checagem precisa rodar onde a interface é composta.
-- **Carga cognitiva em interfaces conversacionais (§6):** Hervás et al., *Cognitive Accessibility in Generative AI Interfaces* — revisão sistemática, International Journal of Human–Computer Interaction, 2026 ([Taylor & Francis](https://www.tandfonline.com/doi/full/10.1080/10447318.2026.2618562)) — as interfaces textuais de IA generativa atuais impõem carga cognitiva excessiva e carecem de previsibilidade e scaffolding.
-
-## Dica para a IA:
-
-Ligue um leitor de tela e envie um prompt longo. Se a resposta for lida em voz alta enquanto ainda está sendo escrita, a região viva está no lugar errado — mova o anúncio para uma região de status e deixe o conteúdo renderizar em silêncio. Depois aperte `Tab` no meio do stream: você deve alcançar *Parar geração* antes de qualquer outra coisa.

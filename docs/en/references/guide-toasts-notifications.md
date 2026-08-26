@@ -21,7 +21,3 @@
 | 2.2.1 Timing Adjustable | A | nothing actionable disappears on a timer |
 | 2.1.1 Keyboard | A | dismiss and act without a mouse |
 | 1.4.13 Content on Hover or Focus | AA | hover pausing dismissal must not be the only way to keep it |
-
-## Tip for the AI:
-
-Trigger the toast, then take your hands off the keyboard, with a screen reader running. Was it announced exactly once? Could you have reached its action before it vanished? If the answer to the second is no, the action never existed for a whole class of users — move it somewhere permanent and let the toast be what it is: an echo.

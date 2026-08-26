@@ -2,8 +2,6 @@
 
 > Escopo: vídeo e áudio, mídia decorativa/de fundo, parallax e movimento disparado por scroll, texto sobre mídia em movimento, e a regra de humano no circuito para legendas e transcrições.
 
-Imagens paradas falham em silêncio por um `alt` ausente. Mídia temporal falha por **quatro critérios ao mesmo tempo** — legendas, controle de áudio, conteúdo em movimento e flashes — e três deles são Nível A, ou seja: valem em **todos** os perfis de conformidade, inclusive no Launchpad.
-
 ## 1. Classifique antes de embedar
 
 O teste de remoção do [guia de Imagens](guide-images.md) vale sem alteração: *"Se eu remover esta mídia, o que o usuário perde?"*
@@ -133,14 +131,6 @@ Translação disparada por scroll é gatilho vestibular — náusea, tontura e d
 - **Controles:** prefira o atributo nativo `controls`. Um player customizado é Componente Complexo (Seção 5 do arquivo central) — operável por teclado de ponta a ponta, cada controle um `<button>` real com nome, estado anunciado.
 - **Embeds de terceiros (YouTube, Vimeo, Loom):** o embed não transfere a obrigação. Verifique se as legendas existem no ativo hospedado e se o `<iframe>` tem `title`. Legenda autogerada é rascunho, exatamente como na Seção 2.
 
-## 7. O que este fluxo proíbe
-
-- **A IA declarar a mídia decorativa por conta própria** — o espelho do `alt=""` silencioso, com mais em jogo: suprime legendas, não só um nome.
-- **Legenda automática entregue sem revisão**, ou transcrição "a acrescentar depois" com o vídeo já no ar.
-- **Autoplay com áudio.** A SC 1.4.2 é Nível A, e som automático mascara a fala do próprio leitor de tela — o único canal de operação daquele usuário.
-- **Movimento que o usuário não consegue parar:** sem controle de pausa, ou com controle que só aparece no hover.
-- **Flashes acima de três por segundo** (SC 2.3.1) — risco de saúde, e o único item desta página que nunca é trade-off.
-
 ## Critérios de sucesso mapeados
 
 | SC | Nível | O que exige aqui |
@@ -154,7 +144,3 @@ Translação disparada por scroll é gatilho vestibular — náusea, tontura e d
 | 2.3.1 Três Flashes | A | no máximo três flashes por segundo |
 | 2.3.3 Animação por Interação | AAA (Regra da Casa† aqui) | `prefers-reduced-motion` respeitado por autoplay e parallax |
 | 1.4.3 Contraste (Mínimo) | AA | texto sobre mídia medido contra camada estável, não contra um frame |
-
-## Dica para a IA:
-
-Antes de embedar qualquer `<video>` ou `<audio>`, faça a você mesma a pergunta que você não consegue responder sozinha: *"Isto carrega informação — e quem vai escrever as legendas?"* Você consegue perceber uma imagem. Você não consegue perceber um vídeo. Pergunte.

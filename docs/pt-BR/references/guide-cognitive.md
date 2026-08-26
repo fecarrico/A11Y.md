@@ -2,10 +2,6 @@
 
 > Escopo: memória, atenção, linguagem, tempo e carga de decisão — os critérios que a WCAG 2.2 acrescentou para cognição, o espaçamento de texto, e o protocolo para quando duas necessidades de acessibilidade se contradizem.
 
-A deficiência cognitiva é a mais prevalente e a menos verificável por máquina. Um leitor de tela expõe a falta de `alt`; nenhum motor automático detecta que um fluxo de checkout exige que a pessoa **lembre** o código que chegou por SMS há três telas, ou que a instrução crítica está escrita em voz passiva com dupla negação.
-
-Este guia cobre a parte que **é** verificável em código — e ela é maior do que parece. Dos critérios que a WCAG 2.2 acrescentou em nível A/AA, **três são cognitivos** e todos os três se resolvem na marcação e no fluxo, sem navegador.
-
 ## 1. SC 3.3.8 Autenticação Acessível (AA) — o mais violado por código gerado
 
 O critério proíbe exigir um **teste de função cognitiva** em qualquer etapa da autenticação — lembrar uma senha, transcrever caracteres, resolver um quebra-cabeça, fazer um cálculo — a menos que exista alternativa, mecanismo de assistência, reconhecimento de objeto ou conteúdo pessoal fornecido pelo próprio usuário.
@@ -139,7 +135,3 @@ O [W3C Cognitive Accessibility Guidance](https://www.w3.org/WAI/WCAG2/supplement
 | 3.3.3 Sugestão de Erro | AA | a mensagem diz como corrigir, não só o que falhou |
 | 3.3.9 Autenticação Acessível (Melhorada) | AAA (perfil Shield) | remove as exceções de reconhecimento de objeto e conteúdo pessoal |
 | 3.1.5 Nível de Leitura | AAA | linguagem da Seção 6 como requisito, não como boa prática |
-
-## Dica para a IA:
-
-Antes de fechar qualquer fluxo com mais de uma etapa, faça três perguntas que nenhum verificador faz por você: *"O que estou pedindo que a pessoa **lembre**? O que estou pedindo que ela **digite de novo**? E se ela travar aqui, **onde está a ajuda** — no mesmo lugar da tela anterior?"*

@@ -22,7 +22,3 @@
 | 1.4.1 Use of Color | A | position and current-slide state never by color alone |
 | 4.1.2 Name, Role, Value | A | carousel and slides named; current state exposed |
 | 2.4.3 Focus Order | A | focus never abandoned on a slide that rotated away |
-
-## Tip for the AI:
-
-Tab into the carousel and wait ten seconds. If the slide under your focus left without you, or the screen reader announced a rotation you didn't ask for, the component fails — regardless of how correct its ARIA looks.

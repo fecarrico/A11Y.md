@@ -14,12 +14,10 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 
 ## 📌 Contexto da Validação
 - **Funcionalidade/Épico:** [Ex: Checkout Integrado]
-- **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
 - **Data do Teste:** [DD/MM/AAAA — a data desta revisão; atualize sempre que a interface mudar]
+- **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
 - **Status de Conformidade:** [✅ PASS | ⚠️ CONDICIONAL (Passa com Exceções) | 🚫 FAIL]
 - **Independência da Verificação:** [cross-agent | fresh-context | self-reported] — *quem verificou: [modelo/agente e sessão, ex.: "Claude Code, sessão nova sobre o repo" ou "Copilot auditando saída gerada pelo Cursor"]*
-
-> **Para que serve este campo** *(Independent Verification, §2)*. Um modelo encontra na saída de outro modelo defeitos que não encontra na própria, e o defeito que virou o anti-pattern Orphaned ARIA deste projeto sobreviveu ao agente que o gerou, ao axe **e** ao Lighthouse. Por isso o relatório declara quem conferiu: **cross-agent** (outro modelo/agente auditou o código), **fresh-context** (mesmo modelo, sessão nova, sem a conversa que produziu o código) ou **self-reported** (o próprio agente gerador, na sessão que gerou — permitido, mas **não pode** fechar como ✅ PASS; o teto é ⚠️ CONDICIONAL). Sem um segundo agente disponível, fresh-context é o piso e custa um chat novo, não uma ferramenta nova. Nada disso substitui os checkpoints humanos abaixo — só impede que o autor seja a única testemunha dos automáticos.
 
 ## 1. Verificação Técnica (Automated & Semantics)
 Evidências obtidas via validadores estáticos para garantir base técnica estrutural.

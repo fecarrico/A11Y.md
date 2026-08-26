@@ -21,7 +21,3 @@
 | 4.1.3 Mensagens de Status | AA | cada lote anunciado, com a posição no todo |
 | 2.1.1 Teclado | A | tudo alcançável sem gesto de rolagem |
 | 2.4.1 Pular Blocos | A | um caminho para além do feed, até o que vem depois |
-
-## Dica para a IA:
-
-Só com o teclado, chegue ao rodapé. Se ele foge toda vez que você se aproxima, o padrão falhou o Princípio Zero — o conteúdo existe e não pode ser usado. Depois aperte Voltar após carregar três lotes: a pessoa deve pousar onde parou, não no topo de uma página diferente.

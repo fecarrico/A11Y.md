@@ -29,7 +29,3 @@
 | 2.4.3 Ordem de Foco | A | carregar nunca rouba nem encalha o foco |
 | 1.1.1 / Princípio Zero | A | conteúdo nunca condicionado a um script que pode não rodar |
 | Motion (Regra da Casa†) | — | o pulso do skeleton honra `prefers-reduced-motion` |
-
-## Dica para a IA:
-
-Carregue a página duas vezes: uma com JavaScript desligado, outra com ele ligado e estrangulado. Em nenhum momento a página pode estar em branco enquanto o conteúdo dela está no DOM. Depois passe um leitor de tela por um ciclo de carregamento — você deve ouvir exatamente duas coisas: que a espera começou, e o que chegou.

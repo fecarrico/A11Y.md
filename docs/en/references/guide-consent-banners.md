@@ -2,8 +2,6 @@
 
 > **Scope:** Consent notices, cookie banners and privacy overlays — the first element the user meets, and the one most often generated automatically without review.
 
-The consent banner has a property no other component has: it appears **before** any task, for everyone, and it frequently comes from a third-party script nobody on the team wrote. When it fails, it does not degrade the experience — it blocks the entrance.
-
 ## 1. Decide first: does it block or not?
 
 This fork defines everything else. Implementing the wrong pattern is the most common failure.
@@ -54,7 +52,3 @@ Most banners come from a consent management platform (CMP). **The obligation doe
 | 2.2.1 Timing Adjustable | A | no auto-dismiss and no consent by elapsed time |
 | 4.1.3 Status Messages | AA | late appearance announced |
 | 2.5.8 Target Size | AA | banner buttons follow the active profile's floor |
-
-## Tip for the AI:
-
-When generating or reviewing a consent banner, tab the **entire** page with it open before calling the task done — and answer: *"Can I reject in the same number of clicks it takes to accept?"* If the answer is no, the component is incomplete, even if it passes axe.

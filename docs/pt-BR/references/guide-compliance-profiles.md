@@ -2,10 +2,6 @@
 
 > **Escopo:** Geração por IA & Auditorias
 
-Acessibilidade não é um monólito. Enquanto a **WCAG 2.2 AA** é o padrão da indústria e base legal, diferentes estágios de um projeto exigem diferentes níveis de rigor.
-
-Este guia detalha os três perfis de conformidade suportados pelas regras do `A11Y.md`.
-
 > [!NOTE]
 > **Normativo vs Regras da Casa.** Cada perfil mistura duas camadas: **Critérios de Sucesso da WCAG** no seu nível-alvo (citados por número de SC — pular um exige `EXCEPTIONS.md`) e **Regras da Casa†** — a política ergonômica mais estrita deste padrão (marcadas com †; flexibilizar uma é decisão de produto, registrada no `A11Y-DECISIONS.md`). A WCAG **não define fonte mínima** em nenhum nível, e o Nível A **não define critérios de contraste nem de tamanho de alvo** — todo valor nessas posições abaixo é Regra da Casa.
 
@@ -25,7 +21,6 @@ Este guia detalha os três perfis de conformidade suportados pelas regras do `A1
 *O mais alto padrão de acessibilidade web.*
 
 **Quando usar:** Aplicações para governo, saúde, educação, ou públicos especializados.
-**Instrução IA:** `"Apply Shield Profile (AAA)"`
 
 ### Principais Requisitos (Além do AA)
 - **Contraste (SC 1.4.6):** Texto deve ter um ratio de **7:1** contra o fundo. Textos grandes (18pt+) exigem **4.5:1**. Componentes de UI permanecem em 3:1 (SC 1.4.11 — a WCAG não possui critério AAA de contraste não-textual).
@@ -40,7 +35,6 @@ Este guia detalha os três perfis de conformidade suportados pelas regras do `A1
 *O benchmark global para conformidade legal (ADA, EAA).*
 
 **Quando usar:** Este é o **padrão**. Use para qualquer software em produção, site público ou produto comercial.
-**Instrução IA:** `"Apply Standard Profile (AA)"`
 
 ### Principais Requisitos
 - **Contraste (SC 1.4.3, 1.4.11):** Texto deve ter ratio **4.5:1**. Textos grandes, **3:1**. Elementos de UI (bordas, ícones) devem ter **3:1**.
@@ -55,7 +49,6 @@ Este guia detalha os três perfis de conformidade suportados pelas regras do `A1
 *O piso absoluto. Abaixo disso, o software é considerado quebrado.*
 
 **Quando usar:** Prototipação rápida, painéis internos, ou primeiras versões MVP.
-**Instrução IA:** `"Apply Launchpad Profile (A)"`
 
 > [!WARNING]  
 > O perfil Launchpad **NÃO** significa "sem acessibilidade". Ele ainda exige HTML semântico, operabilidade por teclado e suporte a leitores de tela. Ele apenas flexibiliza critérios visuais estritos.

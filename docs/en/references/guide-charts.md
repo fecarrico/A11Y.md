@@ -1,6 +1,6 @@
 # Charts & Data Visualization Guide
 
-> **Scope:** Charts, graphs, dashboards and any drawing whose content is data — the component this standard has always required (*Visual Patterns*, §3) and never explained, and the one an agent most reliably resolves with a sentence that carries no data at all.
+> **Scope:** Charts, graphs, dashboards and any drawing whose content is data (*Visual Patterns*, §3).
 
 ## 0. The rule everything else follows
 
@@ -99,7 +99,3 @@ Dashboards change under filters, date ranges and live data. Every change is a st
 | 2.4.7 Focus Visible | AA | the focused data point is visibly focused |
 | 2.2.2 Pause, Stop, Hide | A | live-updating charts can be paused |
 | 4.1.3 Status Messages | AA | filter and range changes announce their result |
-
-## Tip for the AI:
-
-Before finishing a chart, answer one question: **"Can someone who cannot see this get the same numbers, in the same place, without asking anyone?"** If the answer depends on an `alt` sentence, the chart is not done — generate the data table with it, in the same turn, as part of the component. And when the chart is decorative (a sparkline behind a KPI already stated in text), say so and mark it `aria-hidden="true"` — but that is a human-confirmed classification, exactly as in *Image Evidence* (`A11Y.md` §2).

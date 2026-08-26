@@ -53,11 +53,6 @@ When the image comes from the user — a pasted screenshot, an uploaded asset, a
 
 **Step 3 — Propose; the human decides.** Present the classification and the draft `alt` to the developer and get an explicit confirmation. The AI's reading of an image is a hypothesis, not evidence — the same principle behind the human screen-reader validation in the Complex Component Protocol. The confirmation is part of the workflow, not a formality.
 
-**What this flow forbids:**
-- An `alt` fabricated from the filename (`alt="hero-final-v2"`) — a *No Inference* violation.
-- An empty `alt=""` as a silent fallback: it hides a possibly informative image from screen reader users, and no automated checker can catch it — axe has no way of knowing the image mattered.
-- Shipping with the `alt` "to be filled in later": an unresolved image blocks the Definition of Done (functional = 🔴 CRITICAL, informative = 🟠 HIGH).
-
 Borderline classifications (e.g., a hero image that is arguably decorative) are pattern-level decisions: record them in `A11Y-DECISIONS.md` and reuse.
 
 ## Tip for AI:
