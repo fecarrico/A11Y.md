@@ -90,6 +90,8 @@ Our philosophy dictates that web accessibility should never be an "afterthought 
 - 🤖 **AI-Ready:** Deterministic guidelines specifically created to anchor the behavior of coding Agents, nipping "invention" (technical hallucinations) in the bud.
 - ⚖️ **Certifiable:** Each guideline in `A11Y.md` is mapped to WCAG 2.2 criteria, allowing direct traceability that shields the company in formal external audits.
 
+> **And the agentic web?** We build for people — and it turns out AI agents operate pages through the same accessibility tree a screen reader uses. In controlled testing, semantic, accessible markup nearly doubled agent task success. An interface generated under this standard is agent-operable for free; the order never inverts. Details: [Accessibility & the Agentic Web](docs/en/references/guide-agentic-web.md).
+
 ---
 
 ## 🤝 Open Source & Community

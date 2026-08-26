@@ -95,6 +95,8 @@ Nossa filosofia determina que a acessibilidade web nunca deve ser um "polimento 
 - 🤖 **AI-Ready:** Diretrizes determinísticas criadas especificamente para ancorar o comportamento de Agentes de código, ceifando pela raiz a "invenção" (alucinações técnicas).
 - ⚖️ **Certifiable:** Cada diretriz no `A11Y.md` é mapeada explicitamente para critérios WCAG 2.2 rigorosos, permitindo uma rastreabilidade direta que blinda a empresa em auditorias.
 
+> **E a web agêntica?** Construímos para pessoas — e acontece que agentes de IA operam páginas pela mesma árvore de acessibilidade que um leitor de tela usa. Em teste controlado, marcação semântica e acessível quase dobrou a taxa de sucesso de agentes. Uma interface gerada sob este padrão é operável por agentes de graça; a ordem nunca se inverte. Detalhes: [Acessibilidade & a Web Agêntica](docs/pt-BR/references/guide-agentic-web.md).
+
 ---
 
 ## 🤝 Open Source & Comunidade
