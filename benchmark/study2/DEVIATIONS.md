@@ -37,6 +37,12 @@
   the standard's disfavor, not its favor. The A′ baseline and the
   within-condition governance counts (10/10 vs 0/20) are unaffected in kind:
   no A′ or B′ run produced the artifacts, aware or not.
+- **Stated in the other direction, deliberately:** the same arithmetic means
+  the credit this study gives the generic phrase may be **overstated in this
+  arm** — how much of B′'s showing is the phrase and how much is the leak
+  cannot be decomposed from these captures. The clean evidence for the
+  phrase's real effect lives in Study 1's API arm and in the Antigravity arm,
+  both unaffected; readers should weigh the Claude Code B′ cells accordingly.
 - **Why it is a deviation and not an edit:** the registered protocol declared
   the ecological environment; it did not declare that the environment names
   the object of study in the system prompt, and the audit that cleared the
