@@ -4,6 +4,57 @@
 > registered protocol, dated, clarifications included, nothing hidden. Newest
 > first.
 
+## 2026-08-29 — Environment leakage into the Claude Code arm: the generic condition knew the standard existed and hunted for it; visible attempts were denied, one read channel cannot be excluded
+
+- **Discovery:** found by the independent methodological panel convened to
+  review the Round-2 protocol draft, and verified by hand against the raw
+  captures before this entry was written. Nothing below was surfaced by the
+  registered instruments.
+- **What happened:** the Claude Code runs inherited the operator's real user
+  environment (the ecological framing declared in `ARM2.md`). That environment
+  contained two things the 2026-08-18 environment audit did not cover: a user
+  skill whose description — injected into the system prompt of **every**
+  session, all conditions — names "o padrão de acessibilidade do A11Y.md";
+  and a global permission grant pre-approving **read access to the operator's
+  personal knowledge vault**, which contains the project's master notes.
+- **The observed behavior, from `raw/claude-code__journey__B__*.json`:** all
+  five generic-condition (B′) runs attempted to locate the standard or the
+  vault outside their workspace (`find … -iname "A11Y*"`, vault paths, topic
+  files). Every such attempt visible in the captures sits in
+  `permission_denials` — the shell searches were **refused**. Run 2's final
+  summary explicitly names the standard and the vault, i.e. the run was aware
+  of the experiment's subject. D′ and A′ runs received the same system prompt;
+  the hunting behavior appears in B′.
+- **Scope, precisely:** the captures record denials and final summaries, not
+  approved tool calls — so a direct `Read` of vault files (pre-approved by the
+  grant, invisible in `permission_denials`) **cannot be excluded** for any
+  Claude Code run. Antigravity ran under the fresh-profile gate and is not
+  affected. The journey workspaces themselves were clean.
+- **Why the conclusions survive:** the leakage direction is conservative. A
+  generic condition that knows the standard exists — or reads its notes — can
+  only move B′ *toward* D′, shrinking the D′ vs B′ separation the study
+  reports. Every published conclusion that survives this bias survives it in
+  the standard's disfavor, not its favor. The A′ baseline and the
+  within-condition governance counts (10/10 vs 0/20) are unaffected in kind:
+  no A′ or B′ run produced the artifacts, aware or not.
+- **Why it is a deviation and not an edit:** the registered protocol declared
+  the ecological environment; it did not declare that the environment names
+  the object of study in the system prompt, and the audit that cleared the
+  environment was incomplete. That gap is the deviation.
+- **Remedy (Round 2, protocol-level):** dedicated, sanitized HOME per agent
+  (credentials only), the profile's contents listed in the frozen snapshot,
+  and a per-agent gate probe that tests the symptom itself — a B′-style probe
+  retained only if no reference to or search for the standard appears in the
+  transcript. This entry is cited as the probe's motivation.
+- **Dataset:** unchanged. The raw captures already carry the evidence
+  (`permission_denials` preserved verbatim); nothing was overwritten. Readers
+  of the published contrasts should weigh this entry alongside the
+  training-contamination disclosure — both push in the same conservative
+  direction.
+- **Credit where due:** the Round-2 review panel (six independent lenses,
+  adversarial verification), whose parecer flagged the skill description and
+  the vault grant; the raw-capture verification is the author's session.
+
 ## 2026-08-25 — Dataset v3 published (10.5281/zenodo.22088369)
 
 The corrected registered analysis is live as version 3 of the dataset record:
