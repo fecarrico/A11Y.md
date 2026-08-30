@@ -36,10 +36,17 @@ ALLOW = {
     "claude-code": [
         ".claude/.credentials.json",   # OAuth credentials
     ],
-    # Round 1's Antigravity swap ran with an empty fresh HOME (ARM2.md /
-    # DEVIATIONS.md 2026-08-20) — authentication did not live in HOME. The
-    # empty list is therefore correct until the gate probe proves otherwise.
-    "antigravity": [],
+    # The gate probe (2026-08-30) proved the empty HOME insufficient for
+    # client 1.1.18: it demands interactive OAuth. The credential lives at
+    # ~/.gemini/antigravity-cli/antigravity-oauth-token — ONLY that file
+    # enters. Deliberately excluded, found in the live profile during this
+    # very extension: ~/.gemini/GEMINI.md (the operator's global context,
+    # whose FIRST line points the client at the standard — the same channel
+    # class as the Round-1 Claude Code leakage), plus brain/, conversations/,
+    # knowledge/, settings.json. The sanitized HOME cuts them by construction.
+    "antigravity": [
+        ".gemini/antigravity-cli/antigravity-oauth-token",
+    ],
 }
 
 # Written fresh into the sanitized HOME (never copied from the real one):
