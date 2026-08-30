@@ -2,7 +2,7 @@
 """
 build_home.py — build the sanitized per-agent HOME the protocol requires.
 
-PROTOCOL-DRAFT.md §Environment hygiene: "Dedicated sanitized HOME per agent —
+PROTOCOL.md §Environment hygiene: "Dedicated sanitized HOME per agent —
 credentials and client configuration only; no user skills, no personal
 CLAUDE.md, no vault grants, no additionalDirectories. The profile's full
 contents are listed in the frozen snapshot."

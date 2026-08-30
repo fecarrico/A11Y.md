@@ -42,7 +42,7 @@ from pathlib import Path
 IMPACTS = ("critical", "serious")
 
 # The ladder class, derived from axe 4.13.0's ARIA/structural parent-child
-# rules (derivation published in PROTOCOL-DRAFT.md): a composite pattern
+# rules (derivation published in PROTOCOL.md): a composite pattern
 # announced but not completed. Frozen list.
 KILL_CLASS = (
     "aria-required-parent",

@@ -2,7 +2,7 @@
 """
 run.py — Round 2 collection runner (4 conditions, tag-archived treatments).
 
-Instrumentation for PROTOCOL-DRAFT.md — every behaviour here is dictated by
+Instrumentation for PROTOCOL.md — every behaviour here is dictated by
 the protocol; this file adds none. Frozen by hash before registration;
 collection opens only after the registration is public.
 

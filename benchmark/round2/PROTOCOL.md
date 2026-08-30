@@ -1,12 +1,17 @@
-# Round 2 — the v2.0.0 audit (v1.8.0 × v2.0.0)
+# Study 3 — the v2.0.0 audit (v1.8.0 × v2.0.0)
 
-> **DRAFT v2 — not frozen, not registered.** Revised in full after an
+> **FROZEN 2026-08-30 — awaiting registration.** Public name: **Study 3**
+> (Study 1: components via API; Study 2: journeys under v1.8.0; Study 3:
+> v2.0.0 vs v1.8.0 on the journey unit — its own primary study, per the
+> lineage note below). The technical directory keeps its historical name,
+> `round2` — the second round of the *journey* benchmark line; renaming
+> merged paths would be churn without gain. Revised in full after an
 > independent methodological panel review (six lenses, adversarial
-> verification; parecer of 2026-08-29). Order of operations inherited from
-> Study 2: open questions closed by written rule → executable rulers frozen by
-> hash → pilot (discarded) → this protocol frozen → OSF registration (its own
-> registration) → collection. Nothing binds until the freeze; after it,
-> everything routes through `DEVIATIONS.md`.
+> verification; parecer of 2026-08-29); pilot executed and journaled in
+> [`PILOT.md`](PILOT.md), including the pre-freeze tool-runnability
+> amendment (author's ruling, 2026-08-30). This file's own sha256 is
+> recorded in [`REGISTRATION.md`](REGISTRATION.md) — the freeze binds from
+> there; every later change routes through `DEVIATIONS.md`.
 
 ## Why this round exists
 
@@ -258,20 +263,27 @@ quota walls set the pace, cut rule declared.
 
 ## Status — every box gates the freeze
 
-- [ ] Rulers 1–3: `RULERS.md` definitions + `rulers.py` frozen by hash,
-      `--self-test` reproducing Round 1's published numbers (33/13/38 ·
-      9/11/8 · 0-0-2/5) and containing a D-loses fixture per ruler
-- [ ] Ruler v2: `CLASSIFIER-v2.md` + `classifier_v2.py` frozen by hash,
-      condition-blind principles + held-out counter-fixtures in `--self-test`
-- [ ] Kill-criterion class list derivation published (axe 4.13.0 structural
-      rules; native and keyboard boundaries resolved)
-- [ ] `round2/run.py` + `round2/analyze.py`: 4 conditions, tag-archived
-      workspaces, D20−D18 implemented, interleaving, version pinning,
-      mechanical retry; frozen by hash; validated against a synthetic 40-run
-      fixture
-- [ ] Sanitized per-agent HOME built; contents listed; gate probes defined
-- [ ] Pilot: 1 journey per agent (discarded), D20 affordance probe (shell /
-      tool / formula path) + gate probes; observations journaled
-- [ ] This protocol frozen (hash in header)
-- [ ] OSF registration (own registration; lineage note as written above)
+- [x] Rulers 1–3: `RULERS.md` definitions + `rulers.py` frozen by hash
+      (`d9c067b8…`), `--self-test` reproducing Round 1's published numbers
+      (33/13/38 · 9/11/8 · 0-0-2/5) and containing a D-loses fixture per
+      ruler
+- [x] Ruler v2: `CLASSIFIER-v2.md` + `classifier_v2.py` frozen by hash
+      (`49055cc6…`; fixtures `69a31efa…`), condition-blind principles +
+      held-out counter-fixtures in `--self-test` (58 checks), adversarially
+      verified twice
+- [x] Kill-criterion class list derivation published (`RULERS.md`; native
+      and keyboard boundaries resolved)
+- [x] `round2/run.py` (`0786bcd1…`) + `round2/analyze.py` (`b80a74b4…`):
+      4 conditions, tag-archived workspaces (D18 `a6dc0d78…`, D20
+      `bf8986b6…`), D20−D18 implemented, interleaving, version pinning,
+      mechanical retry; validated against a synthetic 40-run fixture
+- [x] Sanitized per-agent HOME built (`build_home.py`, `b2ad17b2…`);
+      contents listed in each HOME's `MANIFEST.json`; gate probes defined
+      and executed
+- [x] Pilot: D20 journey per agent (discarded), affordance measured — tool
+      path (Claude Code, under the narrow grant) and formula path
+      (Antigravity); gate probes PASS; everything journaled in `PILOT.md`
+- [x] This protocol frozen (2026-08-30; its sha256 in `REGISTRATION.md`)
+- [ ] OSF registration (own registration; lineage note as written above;
+      package in `REGISTRATION.md`, submission by the author)
 - [ ] Collection opens with the dated `DEVIATIONS.md` entry

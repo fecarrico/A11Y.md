@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 analyze.py — Round 2 registered analysis. Instrumentation for
-PROTOCOL-DRAFT.md: every judgment here is dictated by the protocol's
+PROTOCOL.md: every judgment here is dictated by the protocol's
 outcomes section and canonical panel; this file adds none.
 
 Descriptive and estimation-oriented by declaration — point estimates, seeded
