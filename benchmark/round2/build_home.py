@@ -50,10 +50,26 @@ ALLOW = {
 }
 
 # Written fresh into the sanitized HOME (never copied from the real one):
-# a minimal settings file with NO permission grants, NO additional
-# directories, NO hooks — so the leakage channel cannot re-enter by copy.
+# a minimal settings file with NO hooks, NO additional directories, and a
+# single narrow permission — so the leakage channel cannot re-enter by
+# copy. The one grant (author's directive, 2026-08-30, pre-freeze:
+# "everything that came after must be tested" — the contrast checker was
+# born from the earlier studies' findings): pre-approve executing
+# tools/contrast-check.py and nothing else. The grant is UNIFORM across
+# conditions; only the D20 workspace ships the file, so the asymmetry
+# remains the treatment. It simulates the approval an interactive user
+# gives when the agent asks to run the standard's own tool; both spellings
+# cover the cwd-relative and absolute-path invocations the pilot observed.
 CLAUDE_SETTINGS = {
-    "permissions": {"allow": [], "deny": []},
+    "permissions": {
+        "allow": [
+            "Bash(python3 tools/contrast-check.py:*)",
+            "Bash(python tools/contrast-check.py:*)",
+            "Bash(python3 */tools/contrast-check.py:*)",
+            "Bash(python */tools/contrast-check.py:*)",
+        ],
+        "deny": [],
+    },
 }
 
 

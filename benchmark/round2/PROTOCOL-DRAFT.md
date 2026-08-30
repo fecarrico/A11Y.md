@@ -54,14 +54,29 @@ study** on the journey unit. Motivation cited, not an outcome promoted.
   (`tools/` at v1.8.0 has no `contrast-check.py`) **is the treatment** —
   release-as-delivered, both sides. Per-condition SHA-256 over the archive's
   files concatenated in path order enters the registration.
-- **Shell affordance is measured, not assumed.** The runner invokes Claude
-  Code with the same permission mode as Round 1 (unchanged, for harness
-  comparability) — a mode that does not auto-approve Bash. The pilot
-  therefore runs **one D20 journey per agent** and records the observed
-  affordance (shell granted? tool executed? formula path taken?) in the
-  journal before the freeze. If an agent cannot run the tool, the protocol
-  declares: for that agent, D20 measures the formula path by construction —
-  the fallback the standard itself prescribes.
+- **Shell affordance is measured, not assumed — and the release's own tool
+  must be RUNNABLE (pre-freeze amendment, 2026-08-30).** The first pilot
+  measured the inherited Round-1 permission mode: the agent asked to run
+  `tools/contrast-check.py` four times and was denied every time — the
+  tool travelled in the treatment but could not execute, which contradicts
+  this section's own rationale ("testing the release without its tool
+  would test a hypothetical") and the author's standing directive
+  (everything born from the earlier studies' findings must be tested).
+  Resolution: the sanitized HOME's settings pre-approve executing
+  **exactly that script and nothing else** (four spellings covering
+  relative/absolute invocation; grant listed in the frozen MANIFEST).
+  The grant is **uniform across all four conditions** — A/B/D18 receive
+  the same permission but ship no such file, so the asymmetry remains the
+  treatment — and it simulates the approval an interactive user gives
+  when the agent asks to run the standard's own tool; the fully-denying
+  non-interactive mode was the harness artifact, not the ecology. The
+  pilot re-runs under the grant and records the observed affordance
+  before the freeze. For an agent whose client offers no equivalent
+  narrow grant (Antigravity), the protocol declares: D20 measures the
+  formula path by construction — the fallback the standard itself
+  prescribes; with both agents, the study then measures BOTH of the
+  standard's official paths, one per agent, stated per-agent in the
+  registration and never pooled.
 - **Agents (2):** Claude Code and Antigravity, client versions named at
   registration. **Codex rule (closed):** Codex enters only if its quota is
   active and the client installable on freeze day; its quota resets
