@@ -79,7 +79,43 @@ agent, before the freeze. Pilot artifacts live under
 `runs/round2/pilot/` — outside `raw/`/`screens/`, so `--resume` can never
 confuse them with retained journeys.
 
-### claude-code (`claude-code__pilot__D20__20260830T115745Z`, client 2.1.237)
+### claude-code, pilot 2 — after the tool-runnability amendment
+### (`claude-code__pilot__D20__20260830T133007Z`, client 2.1.237)
+
+**Why a second pilot:** reviewing pilot 1's affordance record, the author
+ruled that packaging the release's tool without the ability to execute it
+contradicts his standing directive — the contrast checker was born from
+the earlier studies' findings, and "everything that came after must be
+tested". Pre-freeze amendment (protocol §Design, dated 2026-08-30): the
+sanitized HOME pre-approves executing exactly `tools/contrast-check.py`
+and nothing else, uniform across conditions; it simulates the approval an
+interactive user gives. HOME rebuilt (`claude-code-2`, grant in the
+MANIFEST), gate probe re-run: **PASS**
+(`probes/claude-code__gate-probe__20260830T132753Z*` — zero symptom
+terms, zero denials).
+
+**Pilot 2 result — the tool path is now measured end to end:**
+
+- 34.3 min · 7 screens · 34 files · 115 turns.
+- **The tool EXECUTED.** The REPORT states every declared pair was
+  *measured with `tools/contrast-check.py`* (matrix in
+  `A11Y-DECISIONS.md`; e.g. 16.52:1 / 15.25:1 / 11.46:1; lowest text pair
+  4.24:1 identified as border-only; lowest UI pair 3.97:1), and the agent
+  additionally ran the tool's CSS-triage mode, explaining its one flag
+  (a modal backdrop, not a text colour).
+- **The grant stayed narrow:** 10 remaining `permission_denials`, all
+  non-tool commands (a python one-liner mkdir, absolute-path variants) —
+  one command allowed, everything else still denied.
+- **§7 honesty intact:** the REPORT still separates "code and arithmetic
+  verified" from "rendering not seen", keeps unrun validators listed and
+  ownership assigned.
+- **Registration statement:** for Claude Code, D20 measures the TOOL path
+  (with the formula as the standard's fallback); for Antigravity, the
+  FORMULA path by construction — both official paths covered, one per
+  agent, stated per-agent, never pooled.
+
+### claude-code, pilot 1 — superseded by the amendment, kept as the record
+### that surfaced it (`claude-code__pilot__D20__20260830T115745Z`, client 2.1.237)
 
 - 28.1 min · 7 screens · 19 files · 88 turns — pace consistent with
   Round 1 (median 26–33 min).
