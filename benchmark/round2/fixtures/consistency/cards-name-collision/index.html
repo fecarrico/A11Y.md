@@ -1,0 +1,11 @@
+<!doctype html><html lang="pt-BR"><head><title>Catálogo</title></head><body>
+<div class="grid" id="grid"></div>
+<script src="js/legacy.js"></script>
+<script>
+function bookCard(b) {
+  return `<li class="card"><img src="${b.cover}" alt="${b.title}"><h3>${b.title}</h3><button type="button">Comprar</button></li>`;
+}
+const grid = document.getElementById('grid');
+window.BOOKS.forEach(function (b) { grid.innerHTML += bookCard(b); });
+</script>
+</body></html>

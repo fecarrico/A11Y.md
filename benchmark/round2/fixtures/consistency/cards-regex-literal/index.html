@@ -1,0 +1,13 @@
+<!doctype html><html lang="pt-BR"><head><title>Catálogo</title></head><body>
+<div class="grid" id="grid"></div>
+<script>
+function esc(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+function bookCard(b) {
+  return `<li class="card"><img src="${b.cover}" alt="${esc(b.title)}"><h3>${esc(b.title)}</h3><button type="button">Comprar</button></li>`;
+}
+const grid = document.getElementById('grid');
+window.BOOKS.forEach(function (b) { grid.innerHTML += bookCard(b); });
+</script>
+</body></html>

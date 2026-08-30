@@ -1,0 +1,10 @@
+<!doctype html><html lang="pt-BR"><head><title>Catálogo</title></head><body>
+<div class="grid" id="grid"></div>
+<script>
+function renderCatalog() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = `<ul class="books">${window.BOOKS.map(b => `<li class="book-card"><img src="${b.cover}" alt="${b.title}"><h3>${b.title}</h3><button type="button">Comprar</button></li>`).join('')}</ul>`;
+}
+renderCatalog();
+</script>
+</body></html>

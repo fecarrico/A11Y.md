@@ -1,0 +1,14 @@
+<!doctype html><html lang="pt-BR"><head><title>Catálogo</title></head><body>
+<div class="grid" id="grid"></div>
+<script>
+const grid = document.getElementById('grid');
+function bookCard(b) {
+  return `<li class="card"><img src="${b.cover}" alt="${b.title}"><h3>${b.title}</h3><button type="button">Comprar</button></li>`;
+}
+function promoTile(p) {
+  return `<div class="promo"><img src="${p.banner}" alt=""><a href="${p.url}">Ver oferta</a></div>`;
+}
+window.BOOKS.forEach(function (b) { grid.innerHTML += bookCard(b); });
+// promoTile nunca é chamada nem ligada a um contêiner
+</script>
+</body></html>
