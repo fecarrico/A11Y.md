@@ -1,7 +1,9 @@
 # Rulers 1–3 & 5 — frozen definitions, and the kill-class derivation
 
-> Status: **draft — frozen when the protocol freezes; hashes recorded here.**
-> Executable judge: `rulers.py` (stdlib-only). Its `--self-test` reproduces
+> Status: **FROZEN 2026-08-30.** Executable judge: `rulers.py`, sha256
+> `d9c067b824debd83c034c3dee8ab315235facc968e35c0d7ada137f6cc5508f2`.
+> Any change after this line is a dated `DEVIATIONS.md` entry.
+> Its `--self-test` reproduces
 > every Round-1 published number cited below from the published dataset —
 > a definition that cannot reproduce the published reading is a defect in the
 > definition, found before the freeze. Ruler 4 (consistency) is specified

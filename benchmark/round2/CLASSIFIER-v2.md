@@ -1,8 +1,11 @@
 # Consistency classifier v2 — specification
 
-> Status: **draft, adversarially verified twice — frozen when the hash is
-> recorded here at protocol freeze.** Code: `classifier_v2.py`
-> (stdlib-only, deterministic, condition-blind). v1
+> Status: **FROZEN 2026-08-30** (adversarially verified twice). Code:
+> `classifier_v2.py`, sha256
+> `49055cc6ba2c642ff02d8d82f7149d51e791e53e7bb71c01be6c738f0af8eb66`;
+> fixtures corpus (all files, path order), sha256
+> `69a31efacaa9bb1728cb65b5d5f846617245b2e67ee44fb53a023d8c8e68af46`.
+> Any change after this line is a dated `DEVIATIONS.md` entry. v1
 > (`../study2/classifier.py`, sha256 `485d4064…`) stays untouched and
 > re-runnable as a sensitivity analysis.
 
@@ -296,11 +299,11 @@ instrument twice moved numbers against and in favor of every condition at
 different points, which is what a condition-blind instrument under honest
 repair looks like.
 
-## Freeze procedure
+## Freeze record
 
-1. ~~Adversarial verification~~ — done twice (rounds 1 and 2 above); every
+1. Adversarial verification — done twice (rounds 1 and 2 above); every
    confirmed finding fixed or documented.
-2. `sha256sum classifier_v2.py` recorded here and in the OSF registration
-   package at protocol freeze; the fixtures directory hashed alongside.
-3. After the freeze, any change is a dated `DEVIATIONS.md` entry — same
-   discipline as every other Round 2 instrument.
+2. Hashes recorded in the header (2026-08-30) and in `REGISTRATION.md`
+   (the OSF package).
+3. From here on, any change is a dated `DEVIATIONS.md` entry — same
+   discipline as every other instrument of this study.
