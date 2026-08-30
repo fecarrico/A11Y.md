@@ -1,0 +1,15 @@
+<!doctype html><html lang="pt-BR"><head><title>Busca</title></head><body>
+<div class="grid" id="results-grid"></div>
+<script>
+const grid = document.getElementById('results-grid');
+function el(tag, attrs) { return document.createElement(tag); }
+function bookCard(b) {
+  const li = el('li', {});
+  li.appendChild(el('img', {}));
+  li.appendChild(el('h3', {}));
+  li.appendChild(el('button', {}));
+  return li;
+}
+window.BOOKS.forEach(function (b) { grid.appendChild(bookCard(b)); });
+</script>
+</body></html>

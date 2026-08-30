@@ -1,0 +1,12 @@
+<!doctype html><html lang="pt-BR"><head><title>Catálogo</title></head><body>
+<div class="grid" id="grid"></div>
+<script>
+const bookCard = (b) => {
+  return `<li class="card"><img src="${b.cover}" alt="${b.title}"><h3>${b.title}</h3><button type="button">Comprar</button></li>`;
+};
+document.addEventListener('DOMContentLoaded', function () {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = window.BOOKS.map(bookCard).join('');
+});
+</script>
+</body></html>

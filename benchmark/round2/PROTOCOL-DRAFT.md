@@ -125,7 +125,7 @@ near-complete separation is distinguishable from noise.
 | 1 | **Screens with error** — screen×error pairs, axe critical+serious. *Construct qualified: the machine-detectable layer only (axe-class coverage 30–57% in the literature, cited in the registration).* | the person navigating | `rulers.py screens` |
 | 2 | **Wrong decisions** — distinct violated rules per journey (each error counted once however often its mold repeats). Definition frozen in `RULERS.md`, validated in `--self-test` against Round 1's published 9/11/8. | the maintainer fixing | `rulers.py decisions` |
 | 3 | **Clean journeys** — descriptive only, base rates printed (Round 1: 0/5 · 0/5 · 2/5 on the small model). | the team shipping | `rulers.py clean` |
-| 4 | **Consistency v2** — see spec direction below; frozen as `classifier-v2.py`. The frozen v1 (hash intact) runs over all Round-2 data as a **sensitivity analysis**; both results published; divergence reported as a finding about the instrument. | the person relearning each screen | `classifier-v2.py` |
+| 4 | **Consistency v2** — see spec direction below; frozen as `classifier_v2.py` (underscore: `analyze.py` and the self-test import it as a module — a filename detail settled before the freeze, noted here so the draft's earlier `classifier-v2.py` spelling has a paper trail). The frozen v1 (hash intact) runs over all Round-2 data as a **sensitivity analysis**; both results published; divergence reported as a finding about the instrument. | the person relearning each screen | `classifier_v2.py` |
 | 5 | **Flagged elements** — raw node count (registered since Round 1). | the auditor | axe + `analyze.py` |
 
 All rulers 1–3 ship as **frozen scripts with `--self-test`** whose fixtures
@@ -194,6 +194,15 @@ these constraints, panel-reviewed:
   dispersion, and the card detector blind in 27/30 runs of a bookstore.
 - The frozen **v1 runs over all Round-2 data as sensitivity analysis** (cost:
   seconds; gain: cross-round auditability).
+- **Cross-vocabulary rule (adversarial panel, bias lens):** variant excess is
+  only measurable inside the semantic vocabulary the standard prescribes —
+  non-semantic A/B implementations of the same components disperse invisibly.
+  Ruler 4 therefore informs the **primary contrast only** (D20 vs D18, same
+  vocabulary on both sides). In secondary contrasts (vs A/B) it is
+  descriptive: quoted per family, conditioned on the family being counted in
+  both cells, `families_counted` alongside, and raw cross-condition sums
+  barred from headlines. `analyze.py` enforces this mechanically (excess is
+  absent from the secondary contrast tables).
 
 ## Instrument discipline
 
@@ -237,7 +246,7 @@ quota walls set the pace, cut rule declared.
 - [ ] Rulers 1–3: `RULERS.md` definitions + `rulers.py` frozen by hash,
       `--self-test` reproducing Round 1's published numbers (33/13/38 ·
       9/11/8 · 0-0-2/5) and containing a D-loses fixture per ruler
-- [ ] Ruler v2: `CLASSIFIER-v2.md` + `classifier-v2.py` frozen by hash,
+- [ ] Ruler v2: `CLASSIFIER-v2.md` + `classifier_v2.py` frozen by hash,
       condition-blind principles + held-out counter-fixtures in `--self-test`
 - [ ] Kill-criterion class list derivation published (axe 4.13.0 structural
       rules; native and keyboard boundaries resolved)
