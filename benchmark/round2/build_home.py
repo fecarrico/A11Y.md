@@ -73,6 +73,20 @@ CLAUDE_SETTINGS = {
 }
 
 
+# 2026-09-04 deviation (journaled): client 1.1.26 CANCELS a print-mode
+# session on its first soft-denied command confirmation (reproduced
+# deterministically; Round 1's client continued after denials). Writing the
+# denial as DECLARED POLICY sidesteps the broken confirmation path while
+# preserving the arm's profile exactly: commands are still denied, edits
+# still auto-approved. Verified: the same reproduction completes (SUCCESS)
+# under this settings file.
+# Deny-only: an explicit empty "allow" hides the edit tools too (probed:
+# the model then answers with inline HTML and writes nothing).
+AGY_SETTINGS = {
+    "permissions": {"deny": ["command(*)"]},
+}
+
+
 def sha256(p: Path) -> str:
     h = hashlib.sha256()
     with p.open("rb") as fh:
@@ -110,6 +124,10 @@ def main() -> int:
         s = dest / ".claude" / "settings.json"
         s.parent.mkdir(parents=True, exist_ok=True)
         s.write_text(json.dumps(CLAUDE_SETTINGS, indent=1) + "\n", encoding="utf-8")
+    if args.agent == "antigravity":
+        s = dest / ".gemini" / "antigravity-cli" / "settings.json"
+        s.parent.mkdir(parents=True, exist_ok=True)
+        s.write_text(json.dumps(AGY_SETTINGS, indent=1) + "\n", encoding="utf-8")
 
     manifest = {
         "agent": args.agent,

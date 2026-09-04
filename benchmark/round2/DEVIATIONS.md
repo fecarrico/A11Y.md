@@ -5,6 +5,41 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — Client 1.1.26 cancels a print-mode session on its first denied command; denial re-expressed as declared policy (same profile, working mechanics); one real session lost to the bug, quarantined and recollected
+
+- **What happened:** wave 2's true first run (a REAL session this time —
+  72,867 tokens, treatment A delivered) died at 1.2 min with status
+  CANCELED, empty response, zero files. The client log shows the chain:
+  the model requested `RunCommand`, print mode soft-denied the
+  confirmation (correct for this arm), and the client's emitter then broke
+  its own stdout and shut the session down. **Reproduced
+  deterministically** with a minimal two-files-and-a-command task: the
+  session dies at the first denied command; Round 1's client continued
+  after denials.
+- **Fix, preserving the arm's profile exactly:** the sanitized HOME now
+  carries a one-key client settings file —
+  `{"permissions": {"deny": ["command(*)"]}}` (sha256
+  `07d0d607f26c911dce8f38007f2087bb9dc3befdf5539e6b326c0096d93db088`) —
+  so command denial is DECLARED POLICY rather than a per-request
+  confirmation, sidestepping the broken path. Commands are still denied;
+  edits still auto-approved; nothing else changes. Verified both ways:
+  the reproduction now completes (SUCCESS, both files written, command
+  denied without killing the session), and the gate probe produces its
+  screen. A first draft with an explicit empty `"allow": []` was probed
+  and REJECTED — it hides the edit tools too (the model answers with
+  inline HTML and writes nothing); deny-only is the correct form.
+- **`build_home.py`** now writes this settings file for the antigravity
+  HOME (hash `845afc80…`-era value superseded; current
+  `ea56fd9fc73649820277cf790145ce8bc5a53135f889bf0d833925be95b5cc00`).
+- **Gate probe under the final settings: PASS** (1 screen; zero symptom
+  terms across the probe raws of this sequence).
+- **The lost session:** `antigravity__journey__A__run1` (72,867 tokens,
+  zero artifacts — killed by the client bug, not by the agent or the
+  task) is quarantined in `runs/round2/quarantine-agycli-20260904/` and
+  the slug is recollected: a harness failure upstream of the outcome, not
+  a study failure rate. The log keeps its record.
+- **Wave 2 restarts** (again) from run index 1.
+
 ## 2026-09-04 — The Round-1 Antigravity model is retired from the client: gemini-3.5-flash no longer exists in 1.1.26; successor chosen by the Round-1 rule (current mainline flash, low effort): gemini-3.8-flash
 
 - **What happened:** the re-pinned wave-2 relaunch failed differently — the
