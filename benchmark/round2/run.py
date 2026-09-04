@@ -164,8 +164,19 @@ def collect_produced(ws: Path, seeded: set, dest: Path):
     return produced
 
 
+# The journey's seven named screens (PROMPTS.md). Retention means THESE
+# exist non-empty — an extra page must not fail the run (2026-09-04
+# instrument defect, journaled: strict count==7 marked a complete journey
+# plus one scratch page as not-retained).
+JOURNEY_SCREENS = ("index", "search", "book", "cart", "sell", "dashboard", "orders")
+
 def screens_in(produced: list) -> int:
     return sum(1 for f in produced if f["path"].endswith(".html") and f["bytes"] > 0)
+
+def journey_complete(produced: list) -> bool:
+    have = {f["path"].rsplit("/", 1)[-1] for f in produced
+            if f["path"].endswith(".html") and f["bytes"] > 0}
+    return all(f"{s}.html" in have for s in JOURNEY_SCREENS)
 
 
 def one_attempt(agent, full_prompt, ws, env):
@@ -237,7 +248,8 @@ def run_collection(args):
                       "treatment_sha256": hashes.get(condition),
                       "home": args.home, "duration_s": elapsed,
                       "collected_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                      "screens": screens, "retained": final and screens == 7 and not err,
+                      "screens": screens,
+                      "retained": final and journey_complete(produced) and not err,
                       "files_created": produced}
             if err: record["error"] = err
             with log.open("a", encoding="utf-8") as fh:
@@ -293,9 +305,10 @@ if marker.is_file():
     marker.unlink()
     sys.stderr.write("simulated infra failure: connection reset\n")
     sys.exit(2)
+names = ("index", "search", "book", "cart", "sell", "dashboard", "orders")
 n = int(os.environ.get("FAKE_SCREENS", "7"))
-for i in range(n):
-    Path(f"screen{i}.html").write_text(f"<html><body>tela {i}</body></html>")
+for name in names[:n]:
+    Path(f"{name}.html").write_text(f"<html><body>{name}</body></html>")
 print(json.dumps({"ok": True}))
 '''
 

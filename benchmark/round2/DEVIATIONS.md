@@ -5,6 +5,47 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — Collection complete: 39/40 retained; one instrument defect found by a real run (strict screen count) — fixed with dual records; both waves contamination-audited clean
+
+- **Final tally (latest record per run id):** Claude Code **20/20
+  retained** (zero failures, zero retries, every run first-attempt);
+  Antigravity **19/20 retained** + 1 legitimate non-retained.
+- **The non-retained run, precisely:** `antigravity__journey__D20__run2` —
+  a real 561k-token session (SUCCESS) whose only denial was
+  `AskQuestion`: the agent asked for the compliance profile (the standard
+  tells an *interactive* session to confirm it) instead of applying the
+  documented non-interactive default, and delivered an architectural plan
+  as prose — zero files. The harness is identical to every retained run
+  (D20 runs 1/3/4/5 completed 7/7 under it); this is agent behavior under
+  the D20 condition — study data, reported as the cell's failure rate,
+  never replaced.
+- **Instrument defect, found by a real run (the tradition holds):**
+  `antigravity__journey__A__run4` produced all 7 named journey screens
+  PLUS a scratch `test.html`; the runner's strict `screens == 7` marked a
+  complete journey not-retained. Fix: retention now requires the seven
+  NAMED screens non-empty (`journey_complete`), extras allowed —
+  faithful to the registered wording ("produces 7 non-empty screens").
+  `run.py` sha256 → `87f733443f5043f0…` (self-test PASS). Dual records:
+  the original false-negative log line is preserved; a recomputed record
+  is appended (the analyzer reads the latest per id) with the correction
+  note embedded.
+- **Contamination audit, both waves, all 40 raws:** zero symptom terms in
+  A/B cells, zero network use, zero references to the operator's files.
+  The only denials across the corpus: Claude Code's own HTML-validation
+  attempts outside the narrow tool grant (denied as designed) and the two
+  journaled Antigravity harness episodes.
+- **Verification:** the registered `verify.js` (pinned axe 4.13.0) runs
+  per retained run; extra non-journey pages (the one `test.html`) are
+  excluded from measurement via a staging copy — nothing deleted from the
+  collected artifacts.
+
+- **Registered analysis executed** (frozen analyze.py; sensitivity v1
+  alongside; results in `runs/round2/analysis.json`, to ship with the
+  dataset). The pre-declared topology inspection for the single isolated
+  `nested-interactive` (D20 run3, sell, 1 node) confirms a lapse, not a
+  mold. Publication remains gated on the protocol's human-eye sampling
+  rule — the author's step.
+
 ## 2026-09-04 — 1.1.26 also demands confirmation for file READS in print mode; explicit read allow restores the Round-1 profile; one harness-degraded run quarantined and recollected, five untouched runs kept with proof
 
 - **What happened:** with commands denied by policy, run B2 still failed
