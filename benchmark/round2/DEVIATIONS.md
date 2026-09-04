@@ -5,6 +5,36 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — Antigravity client auto-updated mid-launch (1.1.22 → 1.1.26) and dropped the frozen command's --effort flag; command adapted, version re-pinned, zero agent sessions affected
+
+- **What happened:** wave 2's first slug failed 3× in seconds — client
+  1.1.26 rejects `--effort` for gemini-3.5-flash ("--effort is not
+  supported for model") — and the runner then **aborted by design** on the
+  version pin (1.1.26 ≠ 1.1.22) before touching a second slug. The client
+  had auto-updated between the pre-launch version check and the first run.
+- **Scope, precisely:** zero agent sessions occurred (0 screens, 0 turns,
+  0 tokens — the CLI rejected the invocation before any model ran). Wave 1
+  (Claude Code, 20/20 retained) is untouched.
+- **Version re-pin:** 1.1.26, applied BEFORE the agent's first retained
+  run — the pre-declared window (the protocol permits version changes
+  between complete cycles, logged; no Antigravity cycle existed). The
+  registered pin (1.1.22, in the immutable OSF snapshot) is superseded by
+  this dated entry; the version×condition table will show 1.1.26 for every
+  Antigravity cell.
+- **Frozen-command amendment, minimal:** `--effort low` removed from the
+  Antigravity invocation (the client discontinued the flag for this
+  model); the model itself stays the Round-1 model (gemini-3.5-flash).
+  Effort semantics now follow the client's default for this model —
+  declared as a limitation for any reading against Round 1 (already
+  context-only); the primary contrast (D20 vs D18) is internal to this
+  wave and unaffected. `run.py` frozen hash `0786bcd1…` →
+  `845afc8098c5715f9715e87856cabdeba5a8abb4670ab2790df79a24e40a85a9`
+  (this change only); self-test PASS.
+- **Quarantine:** the burned slug's raw attempts and empty screen dir
+  moved to `runs/round2/quarantine-agycli-20260904/`; `log.jsonl` keeps
+  every record (the analyzer reads the latest per id).
+- **Wave 2 restarts** from run index 1 under the re-pinned version.
+
 ## 2026-09-03 — Stale-credential false start: 60 auth-failed attempts quarantined; zero agent sessions occurred; HOME rebuilt with the live credential; gate probe re-passed
 
 - **What happened:** the first collection launch failed to authenticate on
