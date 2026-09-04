@@ -5,6 +5,38 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — The Round-1 Antigravity model is retired from the client: gemini-3.5-flash no longer exists in 1.1.26; successor chosen by the Round-1 rule (current mainline flash, low effort): gemini-3.8-flash
+
+- **What happened:** the re-pinned wave-2 relaunch failed differently — the
+  client's full error revealed the deeper cause: *"model gemini-3.5-flash
+  is not recognized as a known model"*. The 1.1.26 catalog carries only
+  Gemini 3.6/3.7/3.8 Flash (plus Pro and non-Gemini models); the Round-1
+  model was retired by the vendor. 12 more slugs burned as CLI rejections
+  before the runner was stopped — again **zero agent sessions, zero
+  tokens** (every failure is a pre-model CLI error).
+- **Decision, by the Round-1 rule:** Round 1 chose the CURRENT mainline
+  flash of its collection window at low effort; the same rule today gives
+  **gemini-3.8-flash + --effort low** (the flag is supported again for
+  catalog models). Freezing on the numerically closest retired-adjacent
+  model (3.6) would be false continuity — it is not the Round-1 model
+  either — and carries the highest risk of another mid-collection
+  retirement. The primary contrast (D20 vs D18) is internal to this wave
+  — same model both sides — and is unaffected; readings against Round 1
+  were already declared context-only (clients no longer exist), now with
+  the model change stated on top.
+- **Instrument amendment:** `run.py` hash `845afc80…` →
+  `6ed7720e97d9bbd8265ed73a3c5329c0081d5cffd4dc59cd6e0c4cf85e7e274a` (the Antigravity
+  command only); self-test PASS.
+- **Gate probe under the new model: PASS**
+  (`probes/antigravity__gate-probe__20260904T092241Z*` — SUCCESS, one
+  screen, zero symptom terms).
+- **Quarantine:** the 12 burned slugs' raw attempts and empty screen dirs
+  joined `runs/round2/quarantine-agycli-20260904/`; `log.jsonl` keeps
+  every record.
+- **Version×condition note for the report:** every retained Antigravity
+  cell will carry client 1.1.26 + gemini-3.8-flash (low); Claude Code
+  cells carry 2.1.237. **Wave 2 restarts** from run index 1.
+
 ## 2026-09-04 — Antigravity client auto-updated mid-launch (1.1.22 → 1.1.26) and dropped the frozen command's --effort flag; command adapted, version re-pinned, zero agent sessions affected
 
 - **What happened:** wave 2's first slug failed 3× in seconds — client

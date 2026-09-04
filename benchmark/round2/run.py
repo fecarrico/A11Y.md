@@ -81,12 +81,16 @@ AGENTS = {
         "rule_file": None,
         "prompt_rule": True,
         "version": ["agy", "--version"],
-        # 2026-09-04 deviation (journaled): client 1.1.26 removed --effort
-        # support for gemini-3.5-flash; the flag is dropped — the model stays
-        # the Round-1 model, effort now follows the client's default. Zero
-        # runs had been collected under the old command.
+        # 2026-09-04 deviations (both journaled): client 1.1.26 first
+        # rejected --effort for gemini-3.5-flash, then revealed the model
+        # itself was RETIRED from the catalog (only 3.6/3.7/3.8 Flash
+        # remain). Successor chosen by the Round-1 rule (the CURRENT
+        # mainline flash at collection time, low effort): gemini-3.8-flash
+        # + --effort low. Zero runs were ever collected under the old
+        # command — every failed attempt was a CLI rejection.
         "command": lambda prompt: ["agy", "-p", prompt,
-                                   "--model", "gemini-3.5-flash",
+                                   "--model", "gemini-3.8-flash",
+                                   "--effort", "low",
                                    "--output-format", "json",
                                    "--mode", "accept-edits",
                                    "--print-timeout", "90m",
