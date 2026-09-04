@@ -284,6 +284,7 @@ quota walls set the pace, cut rule declared.
       path (Claude Code, under the narrow grant) and formula path
       (Antigravity); gate probes PASS; everything journaled in `PILOT.md`
 - [x] This protocol frozen (2026-08-30; its sha256 in `REGISTRATION.md`)
-- [ ] OSF registration (own registration; lineage note as written above;
-      package in `REGISTRATION.md`, submission by the author)
+- [x] OSF registration: [osf.io/wt5n4](https://osf.io/wt5n4), registered
+      2026-08-31 (own registration; lineage note as written above; this URL
+      is the pre-declared fill-in — post-fill-in hash in `REGISTRATION.md`)
 - [ ] Collection opens with the dated `DEVIATIONS.md` entry

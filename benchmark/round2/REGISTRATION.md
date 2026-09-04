@@ -21,6 +21,19 @@ line; kept for path stability).
 
 Protocol: [`PROTOCOL.md`](PROTOCOL.md) — frozen 2026-08-30, sha256 below.
 
+**Registered: [osf.io/wt5n4](https://osf.io/wt5n4)** — "A11Y.md Efficacy
+Benchmark (Study 3)", date_registered 2026-08-31, public, no embargo,
+archiving complete (API-verified 2026-09-03). Acceptance-day audit: the 7
+frozen files + fixtures corpus re-hashed against the table below, 8/8
+identical. The registration-URL fill-in changes `PROTOCOL.md` §Status as
+pre-declared; its post-fill-in sha256 is
+`26986b072858f29981eeb0e1f9f91123f1f1e22f26c3affcc7505aa061111664` (the frozen pre-fill-in hash in the
+table below remains the freeze reference). First-submission note: the
+2026-08-30 attempt failed in OSF archiving ("errors copying files from
+linked third-party services" — with no third-party services connected;
+OSF-side, support ticket filed); the identical draft resubmitted
+2026-08-31 succeeded. No content changed between attempts.
+
 ## Frozen snapshot (sha256)
 
 | File | sha256 |
