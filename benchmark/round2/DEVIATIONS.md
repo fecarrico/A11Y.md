@@ -5,6 +5,33 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — 1.1.26 also demands confirmation for file READS in print mode; explicit read allow restores the Round-1 profile; one harness-degraded run quarantined and recollected, five untouched runs kept with proof
+
+- **What happened:** with commands denied by policy, run B2 still failed
+  (0 screens): its raw shows a denied `read_file`/ViewFile and a final
+  response ASKING for permissions instead of building. The 1.1.26 client
+  requires confirmation for reads in print mode; Round 1's client
+  auto-approved them. A multi-page task realistically requires re-reading
+  one's own files — this was harness degradation, not agent failure.
+- **Fix, completing the Round-1 profile:** the settings gain
+  `"allow": ["read_file(*)"]` beside `"deny": ["command(*)"]` — reads
+  auto-approved (as in Round 1), commands denied (as in Round 1), edits
+  auto-approved by the mode (as in Round 1). Probed end-to-end: a
+  read-then-write task completes with the command denied mid-way and the
+  session alive; the gate probe produces its screen with zero denials and
+  zero symptom terms. `build_home.py` updated (current sha256 recorded in
+  git; the HOME settings file's sha256:
+  `07d0d607f26c911dce8f38007f2087bb9dc3befdf5539e6b326c0096d93db088`).
+- **The five already-retained wave-2 runs are KEPT:** their raws show
+  `denied_actions: None` — no run ever touched a deniable path, so the
+  harness change is behaviorally invisible to them; the effective harness
+  they ran under is identical to the final one. Stated precisely so the
+  reader can weigh it: A1, B1, D18-1, D20-1, A2 (7/7 screens each, zero
+  denials each).
+- **Run B2 quarantined** (`quarantine-agycli-20260904/`) as a harness
+  failure and its slug recollected under the final settings.
+- **Wave 2 resumes** (5 kept + 15 to collect).
+
 ## 2026-09-04 — Client 1.1.26 cancels a print-mode session on its first denied command; denial re-expressed as declared policy (same profile, working mechanics); one real session lost to the bug, quarantined and recollected
 
 - **What happened:** wave 2's true first run (a REAL session this time —
