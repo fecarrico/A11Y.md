@@ -5,6 +5,37 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-03 — Stale-credential false start: 60 auth-failed attempts quarantined; zero agent sessions occurred; HOME rebuilt with the live credential; gate probe re-passed
+
+- **What happened:** the first collection launch failed to authenticate on
+  every attempt — "OAuth session expired and could not be refreshed". The
+  sanitized HOME carried a credential *copied* on 2026-08-30; the client
+  in the operator's live environment had since rotated the refresh token,
+  invalidating the copy. The runner burned all 20 slugs (3 mechanical
+  retries each, 60 records) in under a minute.
+- **Scope, precisely:** no agent session ever authenticated — zero screens,
+  zero prompts delivered, zero contact with the task. This is a harness
+  failure upstream of the experiment, not failed study runs.
+- **Remedy, everything preserved:** the 60 raw attempt captures and empty
+  screen dirs moved to `runs/round2/quarantine-auth-20260903/` (with a
+  copy of the log at incident time); `log.jsonl` keeps all 60 records —
+  the analyzer reads the latest record per run id, so the quarantined
+  false start can never displace a real journey. The sanitized HOME was
+  rebuilt (`claude-code-3`) with the credential as a **symlink to the
+  operator's live auth file** — authentication only, rotating by nature
+  (its manifest hash is of build time and is declared stale by design);
+  settings byte-identical to the frozen grant (sha256 `8198a92e…`).
+- **Gate probe re-run under the rebuilt HOME: PASS**
+  (`probes/claude-code__gate-probe__20260904T004957Z*` — zero symptom
+  terms; the only permission denials are the agent's own HTML-validation
+  attempts outside the narrow grant, denied as designed).
+- **Why this is a deviation entry and not silence:** the protocol's
+  environment section describes credentials-only HOMEs; it did not
+  anticipate credential rotation between freeze and collection. The
+  symlink is the minimal amendment, applied to the auth file only, and
+  journaled here before any retained run.
+- **Collection restarts** from run index 1 under the rebuilt HOME.
+
 ## 2026-09-03 — Registration accepted; collection opens
 
 - **Registration:** [osf.io/wt5n4](https://osf.io/wt5n4) — "A11Y.md
