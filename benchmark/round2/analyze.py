@@ -100,14 +100,39 @@ def token_outcomes(out_dir: Path, rid: str, n_screens: int = 7):
             "total_per_screen": (fresh + cache) / n_screens}
 
 
+JOURNEY_SCREEN_FILES = {f"{s}.html" for s in
+    ("index", "search", "book", "cart", "sell", "dashboard", "orders")}
+
+def _staged_screens(out_dir: Path, rid: str) -> Path:
+    """The consistency ruler consumes the SAME screen set as axe: the seven
+    named journey pages (2026-09-04 audit — a scratch extra page had been
+    ingested by the classifier while the journal claimed it excluded)."""
+    src = out_dir / "screens" / rid
+    extras = [p for p in src.glob("*.html") if p.name not in JOURNEY_SCREEN_FILES]
+    if not extras:
+        return src
+    import shutil, tempfile
+    stage = Path(tempfile.mkdtemp(prefix=f"classify-stage-{rid}-")) / rid
+    shutil.copytree(src, stage)
+    for p in extras:
+        (stage / p.name).unlink()
+    return stage
+
 def consistency_outcomes(out_dir: Path, rid: str):
-    r2 = classify_v2(out_dir / "screens" / rid)
-    r1 = classify_v1(out_dir / "screens" / rid)
+    staged = _staged_screens(out_dir, rid)
+    r2 = classify_v2(staged)
+    r1 = classify_v1(staged)
     if r2.get("status") != "ok":
-        return {"excess_v2": None, "families_counted": None, "excess_v1": None}
+        return {"excess_v2": None, "families_counted": None, "excess_v1": None,
+                "families_unmeasurable": None, "exclusions": None, "stubs": None}
     return {"excess_v2": r2["variant_excess"],
             "families_counted": r2["richness"]["families_counted"],
-            "excess_v1": r1["variant_excess"]}
+            "excess_v1": r1["variant_excess"],
+            # 2026-09-04 audit: the spec always promised these beside the
+            # excess; they were missing from the analysis output
+            "families_unmeasurable": r2["richness"]["families_unmeasurable"],
+            "exclusions": sum(r2["families"][f]["excluded"] for f in r2["families"]),
+            "stubs": r2["richness"]["stub_instances"]}
 
 
 def governance(out_dir: Path, rid: str):
@@ -175,7 +200,15 @@ def panel_for_agent(vouts: dict):
     c18 = sum(1 for o in d18.values() if "color-contrast" in o["floors_hit"])
     c20 = sum(1 for o in d20.values() if "color-contrast" in o["floors_hit"])
     out["contrast_bet"] = {"d18_journeys_affected": c18, "d20_journeys_affected": c20,
-                           "verdict": contrast_verdict(c18, c20)}
+                           "d18_n": len(d18), "d20_n": len(d20),
+                           # 2026-09-04 audit: the registered edge column
+                           # requires the estimand's CI beside the verdict,
+                           # and the count-vs-rate sensitivity at unequal n
+                           # is disclosed in DEVIATIONS
+                           "d18_rate_ci95": wilson95(c18, len(d18)),
+                           "d20_rate_ci95": wilson95(c20, len(d20)),
+                           "verdict": contrast_verdict(c18, c20),
+                           "reading": "counts (frozen operationalization); rate reading disclosed in DEVIATIONS"}
     if d18:
         all18 = set().union(*(o["violated_classes"] for o in d18.values())) if d18 else set()
         all20 = set().union(*(o["violated_classes"] for o in d20.values())) if d20 else set()
@@ -214,6 +247,10 @@ def adjudicate(panels: dict):
 
 def analyze(out_dir: Path):
     recs = journeys(out_dir)
+    all_latest = {}
+    for line in (out_dir / "log.jsonl").read_text().splitlines():
+        r = json.loads(line)
+        all_latest[r["id"]] = r
     data = defaultdict(lambda: defaultdict(dict))     # agent -> cond -> rid -> outcomes
     vdata = defaultdict(lambda: defaultdict(dict))    # verify outcomes (panel inputs)
     gov = defaultdict(lambda: defaultdict(dict))
@@ -236,7 +273,15 @@ def analyze(out_dir: Path):
 
     panels = {}
     for agent, conds in sorted(data.items()):
+        # 2026-09-04 audit: per-cell failure rates as an explicit field
+        # (retained / attempted, from the log's latest records)
+        attempted = defaultdict(int)
+        for rid2, rec2 in all_latest.items():
+            a2, _, c2, _ = rid2.split("__")
+            if a2 == agent: attempted[c2] += 1
         block = {"n": {c: len(v) for c, v in sorted(conds.items())},
+                 "failure_rates": {c: f"{attempted[c] - len(conds.get(c, {}))}/{attempted[c]}"
+                                   for c in sorted(attempted)},
                  "medians": {}, "clean_journeys": {}, "contrasts": {}}
         for c, v in sorted(conds.items()):
             vals = list(v.values())
@@ -246,6 +291,10 @@ def analyze(out_dir: Path):
             block["medians"][c]["families_counted"] = (
                 statistics.median(o["families_counted"] for o in vals)
                 if all(o["families_counted"] is not None for o in vals) else None)
+            for extra in ("families_unmeasurable", "exclusions", "stubs"):
+                block["medians"][c][f"{extra}_total"] = (
+                    sum(o[extra] for o in vals)
+                    if all(o.get(extra) is not None for o in vals) else None)
             block["clean_journeys"][c] = f"{sum(1 for o in vals if o['clean'])}/{len(vals)}"
         for label, hi, lo in CONTRASTS:
             if hi not in conds or lo not in conds: continue
