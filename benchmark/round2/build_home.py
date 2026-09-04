@@ -80,10 +80,14 @@ CLAUDE_SETTINGS = {
 # preserving the arm's profile exactly: commands are still denied, edits
 # still auto-approved. Verified: the same reproduction completes (SUCCESS)
 # under this settings file.
-# Deny-only: an explicit empty "allow" hides the edit tools too (probed:
-# the model then answers with inline HTML and writes nothing).
+# Final form, probed three ways (journaled 2026-09-04): commands denied by
+# policy (the 1.1.26 confirmation path cancels sessions); file READS
+# explicitly allowed (1.1.26 also demands confirmation for read_file in
+# print mode — Round 1's client auto-approved reads, so the allow restores
+# the Round-1 profile); an explicit empty "allow" is WRONG (it hides the
+# edit tools and the model answers inline, writing nothing).
 AGY_SETTINGS = {
-    "permissions": {"deny": ["command(*)"]},
+    "permissions": {"allow": ["read_file(*)"], "deny": ["command(*)"]},
 }
 
 
