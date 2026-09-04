@@ -5,6 +5,139 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-04 — Pre-publication results audit (author-requested): 10 confirmed findings across 10 lenses; five sentences in this journal corrected; two published readings re-qualified; no panel verdict overturned
+
+An adversarial audit (10 independent lenses, skeptic verification per
+finding, 22 agents) ran over the full data path before the author's
+human-verification pass — his standing instruction, since every prior
+instrument defect was caught at this stage. 95 checks came back clean
+(among them: the pinned axe reproduces the published violations exactly
+on every probed page; screenshots render styled and populated; the
+headline ladder nodes and the nested-interactive were traced to the
+exact HTML elements and are real; retention, cell composition and the
+recomputed panel match the published numbers; treatment hashes match on
+every D run). The confirmed findings, grouped, with corrections:
+
+### A. This journal made claims the artifacts contradict — corrected here
+
+1. **The read-allow fix never reached the collection.** The previous
+   entry ("1.1.26 also demands confirmation for file READS…") states the
+   HOME settings gained `"allow": ["read_file(*)"]` — **that is false.**
+   The file was written with the allow at ~09:30Z, but the client itself
+   rewrote `settings.json` at 09:34:51Z during a probe run and discarded
+   the allow key (its own hash quote in that entry — `07d0d607…` — is
+   the deny-only file's hash, contradicting the entry's text; the
+   operator session did not re-check the file after the client ran).
+   **Every retained Antigravity run (09:43–11:12Z) executed under
+   deny-only settings with reads unapproved.** Implications, stated
+   plainly: (a) the wave's real harness had print-mode read
+   confirmations soft-denied throughout; 19/19 retained sessions
+   completed 7/7 screens under it regardless (raws show zero read
+   denials in retained runs — agents simply did not need approved
+   reads, or worked around); (b) the B run2 quarantine's stated
+   rationale ("recollected under the final settings") is wrong — the
+   recollected B run2 ran under a harness IDENTICAL to the one the
+   original failed under, so the original failure and the successful
+   recollection are two draws of agent behavior under the same harness,
+   not a fixed-harness repair. **Re-adjudication of that quarantine is
+   explicitly left to the author's human-verification pass**, with both
+   readings prepared: keep-quarantined (client permission pathology, an
+   episode also visible in retained A run1's first turn, arguably
+   infra) or reclassify-as-legitimate-failure (B cell failure rate
+   1/5, mirroring the D20 AskQuestion case). The build_home.py
+   allow-read amendment remains correct for FUTURE builds but must be
+   paired with a post-run settings check; journaled as a Round-3 rule.
+2. **"The only denials across the corpus: Claude Code's own
+   HTML-validation attempts… denied as designed" — false.** The corpus
+   also contains denials of the release's OWN tools: contrast-check.py
+   denied in claude-code D20 runs 2, 3 and 5 (compound/absolute/looped
+   spellings the four-pattern grant does not match), and
+   tools/verify-a11y.py — shipped in BOTH treatment tags — denied in 6
+   D runs and never runnable anywhere. In D20 run2 the contrast tool
+   NEVER executed: the run itself says so and fell back to the formula.
+   **The claude-code D20 cell is therefore 4 tool-path + 1 formula-path
+   journeys**, corrected against REGISTRATION.md's "Measured D20 path:
+   tool" (the registration is immutable; this entry is the correction
+   of record). The grant's spelling gap is an instrument defect of
+   build_home.py's pattern list, disclosed for Round 3.
+3. **"9/9 governance in D cells" was a D20-only figure.** D18 also
+   produces the pair (10/10 across both agents, verified by file
+   tree); the corrected statement: governance pair in 19/19 retained D
+   journeys vs 0/20 in A/B.
+4. **"Extra pages excluded from measurement" was true for axe, false
+   for ruler 4:** the consistency classifier ingested A run4's scratch
+   test.html. Fixed in reporting (the analyzer now stages extras out
+   for the classifier too); measured effect on published numbers: none
+   (re-run identical).
+5. **Case-sensitivity nit on the symptom grep** ("zero symptom terms"):
+   case-insensitive matching finds benign "README" strings in 6
+   claude-code raws (the agents' own files). The claim stands with the
+   corrected wording: zero references to the operator's environment or
+   the standard outside its own treatment.
+
+### B. Measurement changes and validity threats, disclosed
+
+6. **Antigravity 1.1.26 reports thinking_tokens=0 in all 20 sessions**
+   (Round 1: 15/15 nonzero; this round's own 1.1.22-era pilot: 7,655).
+   Indistinguishable from "the model does not think" vs "the field
+   died" — either way, Antigravity fresh/total token figures are lower
+   bounds, and the D20−D18 fresh estimate (+1,284/screen) is of the
+   same order as the pilot's per-screen thinking — flagged as sensitive.
+7. **Persistent per-agent HOME across all 40 interleaved sessions**: the
+   client regrew mutable state (41 brain/ conversation dirs, a shared
+   summaries db) and a D20 session provably deposited REPORT/DECISIONS
+   into the HOME minutes before an A run started. Mitigations verified:
+   fresh conversation per run, empty knowledge store, zero symptom
+   terms in any A/B output. Disclosed as an undisclosed-until-now
+   carryover VECTOR (no evidence of expression); Round-3 rule: reset
+   client state dirs between runs.
+8. **The contrast-bet reading at unequal n:** the registered rule
+   compares "journeys affected"; the frozen analyzer compares counts
+   (1 vs 1 → tie → not-corroborated, as published). Read as rates
+   (1/4 = 25% > 1/5 = 20%) the same words give "refuted". The count
+   operationalization was frozen before any data existed and matches
+   every other panel row — the published verdict is
+   correct-by-registration — but the sensitivity is disclosed here,
+   with the registered caveat repeated: at n=5×4 only near-complete
+   separation is distinguishable from noise, and the promised CI now
+   accompanies the verdict in analysis.json.
+
+### C. The consistency ruler meets a new model generation — limits found
+
+9. **Antigravity D20's card family is unmeasurable in 4/4 runs** (the
+   gemini-3.8 idiom — createElement wrapper + innerHTML template — is
+   the fragment-forest case the ruler flags as shape-indeterminate by
+   design). Family excess can only shrink when a family goes
+   unmeasured, and a sensitivity re-scoring on the measurable axes
+   FLIPS the primary consistency contrast's sign (median diff 0.0 →
+   +1.0 against D20). **The antigravity excess_v2 D20-vs-D18 contrast
+   is declared not robust and must not be quoted as evidence in either
+   direction**; families_counted 5-vs-6 must not be read as component
+   poverty (it is instrument blindness, now reported via the
+   families_unmeasurable field added to the analysis output).
+10. **JS-lane false positives on the new corpus** (image carousels, a
+    page-init IIFE, a form error-summary adopted as card factories)
+    inflate claude-code B's consistency excess (median 4; ~2 with the
+    traced misfires removed) — bias direction flatters the D cells;
+    disclosed, dual-reported, and queued as Round-3 counter-fixtures.
+    Additionally the validity gate reads the canonical APG
+    menubar-with-submenu as a broken ladder (stricter than axe; one
+    run documents the pattern in its own DECISIONS file), wiping the
+    nav family from 2 runs — exclusion counts per condition are now in
+    the analysis output as the spec always required.
+
+Reporting amendments executed with this entry (analyzer only — frozen
+detectors untouched): analysis.json now carries per-cell
+families_unmeasurable / exclusions / stubs, per-cell failure rates,
+Wilson CIs beside proportion verdicts, and the classifier consumes the
+same staged screen set as axe. analyze.py re-hashed (sha256 `aa907b37e5537e193c0f6bbb094463c014fc99c919089cf8394bcafb3b70f28b`); analysis re-run;
+all previously published numbers reproduced identically except the new
+fields. Minor disclosures kept with the audit record: label floor id
+list lacks `label-title-only` (present in B/D18, absent in D20 — no
+number affected, risk disclosed); verify.js wait strategy is
+load+500ms (tested adequate for this corpus); verify.js absent from
+the freeze hash table (an omission — its axe.lock pinning held).
+
 ## 2026-09-04 — Collection complete: 39/40 retained; one instrument defect found by a real run (strict screen count) — fixed with dual records; both waves contamination-audited clean
 
 - **Final tally (latest record per run id):** Claude Code **20/20
