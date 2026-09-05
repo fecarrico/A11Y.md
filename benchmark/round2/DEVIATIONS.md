@@ -5,6 +5,51 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-05 — Human verification complete (the author's pass): 24/24 blind sample inspected, batch integrity CONFIRMED; all four headline calls ratified; B run2 re-adjudicated as agent failure by symmetry
+
+- **Blind sample (the registered human-eye rule):** 24 hash-renamed
+  screenshots (seed 20260904, 3 per cell, sealed map sha256
+  `8339507a…934bf92` recorded before first look). Result: 17 clean,
+  7 flagged. Every flag was investigated before unsealing anything to
+  the author and **all 7 are authentic page defects, none is a harness
+  artifact** — the measurement batch is intact and no corpus-wide
+  correction fires. The flags, by class: 3 broken cover images
+  (agent-generated malformed SVG data-URIs — sibling covers on the same
+  pages render); 1 dead dashboard chart (the page's own JavaScript
+  throws SyntaxError — re-rendered with a 10s wait and console capture:
+  the chart never draws at any wait); 2 sparse single-column carts and
+  1 title-overflow (CSS fully loaded, authentic layout choices). The
+  author also noted one screenshot with a dropdown stuck open —
+  matching the audit's finding that these are authentic agent CSS bugs.
+  **Registered as report texture: none of these seven defects produces
+  a single axe violation — the concrete demonstration that "zero on
+  axe" never meant "a good page".**
+- **Headline calls, ratified by the author:** the two ARIA ladders
+  (same mold both sides — carousel tablist with role-less buttons; the
+  2×2 tie stands); the nested-interactive as **lapse, not mold** (one
+  node, one screen, one run); and the D20 REPORT contrast-arithmetic
+  finding (two hand-computed pairs that the standard's own tool
+  refutes) approved for citation.
+- **B run2 re-adjudicated — option (b), agent failure, by symmetry:**
+  the author's ruling. The original B run2 session (read request
+  denied → the agent asked for permissions instead of building, zero
+  screens) counts as **agent behavior**, with the same ruler applied to
+  the D20 AskQuestion case — the two give-up episodes are classified
+  identically. Official failure-rate reading: **Antigravity B 1/5 and
+  D20 1/5** (Claude Code 0/20). Operational notes, dual-record
+  discipline: the recollected B run2 remains the analytic run for its
+  slot — it was collected in good faith under a provably identical
+  harness before the audit revealed the settings had never changed —
+  and no panel verdict or estimate moves (B was always a control
+  cell). The quarantined raw keeps its original filename
+  (`B__run2-read-denied-harness.json`), which carries the superseded
+  diagnosis; this entry is the correction of record. The analyzer's
+  derived `failure_rates` field (computed latest-per-id from the log)
+  reads B 0/5 by construction; the official reading above governs the
+  write-up.
+- With this entry the registered human-gate is satisfied. Publication
+  of results (dataset, study page, dissemination) is unblocked.
+
 ## 2026-09-04 — Pre-publication results audit (author-requested): 10 confirmed findings across 10 lenses; five sentences in this journal corrected; two published readings re-qualified; no panel verdict overturned
 
 An adversarial audit (10 independent lenses, skeptic verification per
