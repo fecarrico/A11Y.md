@@ -1,0 +1,35 @@
+{
+ "study": "Study 3 (osf.io/wt5n4)",
+ "prepared": "2026-09-05",
+ "concept_doi": "10.5281/zenodo.22073025",
+ "files": {
+  "a11ymd-study3-screens.zip": {
+   "md5": "02a6ec4c99867245c2a32c035f8da431",
+   "bytes": 2129886
+  },
+  "a11ymd-study3-raw.zip": {
+   "md5": "8e4300c3d3db809f2cafcf0b1a01e558",
+   "bytes": 113452
+  },
+  "a11ymd-study3-verify.zip": {
+   "md5": "f9698068d1231de4ffad4d616809fb75",
+   "bytes": 56664629
+  },
+  "a11ymd-study3-analysis.zip": {
+   "md5": "56df4413ff1f614389b47f190af99149",
+   "bytes": 12854
+  },
+  "a11ymd-study3-quarantines.zip": {
+   "md5": "60a3adcfc5874ccc4b7bc5bc6cc837c3",
+   "bytes": 64380
+  },
+  "a11ymd-study3-probes-pilot.zip": {
+   "md5": "97b8df28dea53109fd351f4df7801f06",
+   "bytes": 253376
+  },
+  "a11ymd-study3-human-qa.zip": {
+   "md5": "7dc20ca34e7ec7a79b0b16ae6f265c96",
+   "bytes": 4016933
+  }
+ }
+}

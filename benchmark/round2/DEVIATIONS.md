@@ -5,6 +5,27 @@
 > hidden. Newest first. The frozen snapshot proves this journal started
 > with the entry below and nothing else.
 
+## 2026-09-06 — Dataset published (10.5281/zenodo.22548474); MD5-audited 8/8 on publication day
+
+Study 3's complete raw record is live:
+[doi.org/10.5281/zenodo.22548474](https://doi.org/10.5281/zenodo.22548474)
+(concept DOI [10.5281/zenodo.22548473](https://doi.org/10.5281/zenodo.22548473)
+always resolves to the latest version) — screens, raw captures, pinned-axe
+verification with screenshots, the registered analysis and append-only log
+(dual records preserved), every quarantine, the gate probes and discarded
+pilots, and the human-verification pass (seeded blind sample, sealed map,
+verdicts). MD5-audited via the Zenodo API on publication day: **8/8 files
+identical** to the local originals, `MANIFEST-study3.json` included.
+
+One declared departure from the registration's wording: the OSF
+registration said the data would join the combined benchmark dataset
+(concept DOI 10.5281/zenodo.22073025). The author published Study 3 as
+its own record instead — one registration per study, mirroring the OSF
+structure — with the two records cross-linked (`Continues` /
+`Is supplement to` related-work identifiers). Nothing about content,
+license (CC-BY 4.0) or auditability changes; noted here as the
+correction of record.
+
 ## 2026-09-05 — Human verification complete (the author's pass): 24/24 blind sample inspected, batch integrity CONFIRMED; all four headline calls ratified; B run2 re-adjudicated as agent failure by symmetry
 
 - **Blind sample (the registered human-eye rule):** 24 hash-renamed
