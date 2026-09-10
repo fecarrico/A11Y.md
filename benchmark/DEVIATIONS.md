@@ -244,6 +244,40 @@
   (`<main>` present, `landmark-one-main`, `page-has-heading-one`, `region`) and
   **moderate-impact violations**, which in Arm 1 fell from 6.80 per page to 0.04
   under condition D — a 99% drop the registered primary barely registers.
+- **Correction to the target-size finding recorded hours earlier the same day
+  (2026-09-10).** The entry below reports that 24×24 px target size *falls*
+  14–23 points under condition D and calls it "a finding against the standard".
+  That reading was published before the failing targets were looked at. They
+  were then looked at, one by one, and most of them are not what the item is
+  meant to catch:
+
+  | Condition-D targets under 24 px | Nemotron | Gemini |
+  |---|---|---|
+  | Carousel dot controls | 35 | 30 |
+  | **Visually-hidden skip links** (1–2 px) | 6 | 1 |
+  | Genuinely small controls | 7 | 48 |
+
+  The skip links are the standard's own instruction: A11Y.md requires a skip
+  link, and the canonical way to hide one until it takes focus is a 1×1 px box.
+  **The checklist counts a page as failing because it followed the rule.** The
+  carousel dots sit under SC 2.5.8's *equivalent control* exception — the
+  prev/next buttons — which the harness itself flags as needing "a human eye"
+  and which no automated pass can resolve. Discounting both, the gap nearly
+  disappears: Nemotron **1% → 3%** of pages failing (not 2% → 15%), Gemini
+  **8% → 10%** (not 8% → 14%).
+
+  **And on the ruler the standard actually asks for, condition D is far ahead.**
+  The Standard profile's House Rule is 44 px, not 24. Share of visible targets
+  under 44 px: Nemotron **98% (A) → 57% (D)**; Gemini **97% (A) → 47% (D)**.
+  The 24 px item was measuring the floor the standard treats as the exception
+  case, and the improvement lives at the threshold it treats as the norm.
+
+  What survives as a real product question is narrower and worth keeping: the
+  registered checklist's `target-24px` item **cannot tell a hidden skip link or
+  an equivalent-control dot from a genuinely undersized button**, so it reports
+  against pages that comply. That is a defect in the standard's own instrument,
+  not in the standard — and it is the second time in this session that reading a
+  number without opening it produced a wrong conclusion.
 - **The registered co-primary nº 2 had never been measured — in any arm
   (2026-09-10).** METHODOLOGY.md §Measurement lists the violation outcome as
   *two* instruments: axe, and a **deterministic per-task checklist mapped to WCAG
