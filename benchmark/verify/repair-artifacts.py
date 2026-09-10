@@ -19,10 +19,13 @@ sensitivity).
 
 Prints aggregates only: no generation ids, no conditions.
 """
-import json, re, sys
+import argparse, json, re, sys
 from pathlib import Path
 
 RUNS = Path(__file__).resolve().parent.parent / "runs"
+# Defaults are Arm 1's directories, unchanged: called with no flags this script
+# does exactly what it did on 2026-08-23. The flags exist so the same repair,
+# rule for rule, can run over an extension arm's output.
 HTML, RAW, OUT = RUNS / "html", RUNS / "raw", RUNS / "html-repaired"
 MARK = "<!-- repaired 2026-08-23: css/js fences restored from this generation's own raw response; see DEVIATIONS.md -->"
 
@@ -48,7 +51,14 @@ def repair(html, raw_text):
     return html, bool(css)
 
 def main():
-    OUT.mkdir(exist_ok=True)
+    global HTML, RAW, OUT
+    ap = argparse.ArgumentParser(description="Restore css/js fences dropped by extract_html.")
+    ap.add_argument("--html", type=Path, default=HTML)
+    ap.add_argument("--raw", type=Path, default=RAW)
+    ap.add_argument("--out", type=Path, default=OUT)
+    args = ap.parse_args()
+    HTML, RAW, OUT = args.html, args.raw, args.out
+    OUT.mkdir(parents=True, exist_ok=True)
     total = repaired = no_css_found = 0
     for f in sorted(HTML.glob("*.html")):
         t = f.read_text(errors="replace")

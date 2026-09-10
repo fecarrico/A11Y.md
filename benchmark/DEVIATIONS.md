@@ -4,6 +4,334 @@
 
 ---
 
+## 2026-09-07 — Extension arm (Arm 1-ext) on an OpenAI-compatible endpoint: three transport differences, declared before collection
+
+- **Registered text:** the Arms table registers Arm 1-ext as *"the identical
+  protocol runs on additional models if and when usable API credits exist.
+  Extension arms replicate; they do not alter the design. Each extension arm is
+  reported separately, never pooled with Arm 1."* NVIDIA's free NIM tier made
+  the credits exist; this entry opens the arm.
+- **What runs:** the full factorial (10 tasks × 4 conditions × 10 runs) against
+  an open-weights model served over an OpenAI-compatible endpoint. Conditions,
+  preambles, grounding sentences, task prompts and the tool schema are
+  **imported** from the frozen `collect.py` by `benchmark/arm1ext.py` — not
+  retyped. Only transport is new.
+- **The documents are pinned to what Arm 1 actually read.** Collection runs from
+  a worktree at `benchmark-protocol-v2.0`, verified by measurement, not by
+  assumption: the 100 condition-D generations logged `A11Y.md` at **36,367
+  characters**, which is that commit exactly. HEAD (v2.0.1) is 36,953. Running
+  against HEAD would move the model *and* the standard at once, and the arm
+  would answer neither question.
+- **Transport difference 1 — the endpoint is stateless, so the token co-primary
+  is not paired with Arm 1's.** Arm 1 chained calls with
+  `previous_interaction_id` and the provider held the conversation; here every
+  call resends the whole message list, core file included. Caching exists on
+  this provider (the probe's condition-D generation reported 12,672 cached
+  tokens) but does not make the two arms comparable. **Token contrasts are
+  reported within Arm 1-ext only; any cross-arm token difference is an
+  instrument difference, not a model effect, and is not reported as one.**
+- **Transport difference 2 — `max_tokens` must be sent.** Arm 1 sent no output
+  cap; several NIM models default to a cap below the length of a full page,
+  which would truncate generations and read as model failure. Declared harness
+  concession: `--max-tokens 16000`, logged per generation, with
+  `finish_reason` recorded so truncation is visible **in the data** rather than
+  inferred from it.
+- **Transport difference 3 — no sampling controls, by symmetry with Arm 1.** The
+  provider's defaults apply. The protocol promises a reproducible process, never
+  reproducible outputs.
+- **What is deliberately NOT replicated:** the sampled human adjudication of 60
+  generations (*Measurement* §4). The extension arm is reported on the automated
+  outcomes only, and says so wherever it is reported.
+- **Known defect inherited on purpose:** `extract_html` still drops css/js
+  fences (see 2026-08-23). Raw responses are kept per generation, and
+  `verify/repair-artifacts.py` produces the same dual reporting — frozen
+  instrument and repaired sensitivity — the Arm-1 repair established.
+- **Gate probe, passed (2026-09-07):** one task × four conditions. Condition D
+  opened `A11Y.md`, then `references/guide-forms.md` — the §2.1 map row for that
+  task — then `guide-cognitive` and `guide-toasts-notifications` (the
+  pre-registered *core-rule* / *template* classes). 4/4 cells finished with
+  `finish_reason=stop`; the pinned axe pass ran clean over the four pages. Lazy
+  loading emerged from reading the core, with no hint in the prompt.
+- **Document-tree integrity check before collection (2026-09-07).** The
+  worktree was audited against the commit, not assumed equal to it: no local
+  modifications (`git status` clean), `docs/en/A11Y.md` SHA-256 identical to
+  `benchmark-protocol-v2.0` and different from HEAD, all **32 paths the core
+  cites resolve on disk**, and no file present that the core never names.
+  Screening runs recorded **0 failed file requests in 28**.
+  Noted while auditing: Arm 1 logged **48 failed requests out of 804 (6%)**, and
+  none of them is a missing file. Both documents — the standard and the placebo
+  alike — name the lifecycle artifacts two ways: bare (`REPORT.md`,
+  `PERF-REPORT.md`) in the prose rules, where they are files the agent is told to
+  *create in the user's project*, and pathed (`templates/REPORT.md`) in the §2.1
+  loading table, where they are files to *read*. A model holding only a read tool
+  tries the bare name and misses. It falls 46/2 between the placebo and the
+  standard, so the D−C contrast is not skewed by it; it is logged here because
+  the same ambiguity in a real agent's filesystem would resolve silently, and
+  because it belongs in the post-Study-3 backlog for the standard itself.
+- **Model screening before committing the budget (2026-09-07), recorded because
+  it is a finding, not housekeeping.** A condition-D-only probe (one task, ~5
+  calls per model) across five models, same documents, same frozen sentence.
+  All five called the tool; **the standard's §2.1 map was hit by four of five**
+  — and the loading behaviour it produced diverged far beyond the pre-registered
+  classes:
+
+  | Model | Calls | Files opened | Tokens | Page |
+  |---|---|---|---|---|
+  | `nvidia/nemotron-3-super-120b-a12b` | 5 | 4 (map + 2 core-rule) | 51,635 | 14,402 chars |
+  | `moonshotai/kimi-k3` | 3 | 3 (map + 1) | 23,771 | 8,752 chars |
+  | `deepseek-ai/deepseek-v4-pro-0813` | 6 | 6, core re-read once | 77,737 | 2,977 chars |
+  | `nvidia/nemotron-3-ultra-550b-a55b` | 13 | 12, incl. 3 templates | 178,661 | **117 chars — no page** |
+  | `openai/gpt-oss-20b` | 2 | 1 (core only, **no guide**) | 12,684 | 11,101 chars |
+
+  Two of the five break the mechanism in opposite directions: `gpt-oss-20b`
+  reads the core and stops — lazy loading never starts — while
+  `nemotron-3-ultra` keeps opening guides and templates until it hits the
+  harness's `--max-tool-calls` ceiling and **never emits the page**
+  (`finish_reason=tool_calls`). Neither is a tool-calling failure: both called
+  the tool correctly. **The standard's loading architecture is model-dependent,
+  and that is now measured rather than assumed.** The full factorial runs on
+  `nemotron-3-super`, whose behaviour matches the pre-registered expectation and
+  whose per-generation cost is predictable; the other four are reported as this
+  screening, n=1 per model, exploratory, never as arms.
+- **Collection order changed mid-flight, at task 1 of 10 (2026-09-07).** The
+  runner swept task-major (all 40 cells of task 1, then task 2…). On a metered
+  free tier that is the wrong failure mode: running out of credit would leave
+  the last tasks with **zero** cells, and a factorial missing whole tasks cannot
+  be analysed as one. Order is now run-major — every task × every condition at
+  run 1, then run 2 — so an interruption costs repetitions instead of tasks
+  (10×4×8 is still a factorial; 8×4×10 is not). Conditions remain interleaved,
+  which is what the registered wave rule asks for. **No collected cell was
+  discarded or recollected**; the 37 already on disk are reused by `--resume`.
+- **Endpoint instability, measured:** 42 retried HTTP 5xx in the first 99 calls,
+  and one generation lost outright after exhausting its retries (recollected by
+  `--resume`, since only completed generations are written to disk). Retry
+  budget raised 4 → 6 for this reason, logged here rather than tuned silently.
+- **First `finish_reason=length` observed** (signup-form, condition D, run 8):
+  the model re-read `guide-forms` three times and `guide-buttons` twice across
+  10 calls and emitted 75,577 characters before hitting the output cap. The cell
+  is retained with its truncation flag — this is exactly what logging
+  `finish_reason` per generation was for, and the analysis will decide how
+  truncated cells are handled **before** unblinding, not after.
+- **The credit budget in this entry was wrong, and the correction is recorded
+  rather than quietly edited away (2026-09-07).** Collection opened under the
+  premise of a 1,000-call free-tier ceiling, taken from third-party write-ups of
+  the NVIDIA API catalog. It is obsolete: NVIDIA staff state on the developer
+  forum that **the credit system was removed**, and that catalog access is now
+  governed by a per-account request *rate* limit that varies with model and
+  traffic, visible in the account menu at build.nvidia.com — not by a total
+  quota. So the arm is not budget-bound; it is rate-bound and time-bound, and
+  the factorial can complete on this route. The per-condition call rates
+  measured over the first 37 generations (A 1.0, B 1.0, C 3.8, D 5.6 → ~1,140
+  calls for 400 generations) stand as a cost measurement of the arm, which is
+  what they were always worth reporting for.
+- **Transient 404s cost 28 generations; recovered, and the runner hardened
+  (2026-09-07).** Partway through collection the endpoint began returning HTTP
+  404 with an empty body for a model that was present in the catalog the whole
+  time and answered normally before and after. The runner retried 429 and 5xx
+  but not 404 — a wrong model id returns 404 too — so those generations died on
+  the first call: **27 lost to 404, 1 to an exhausted 500 retry**, spread across
+  all four conditions (A 6, B 4, C 5, D 2 among the identifiable ones). Nothing
+  was written to disk for them, so `--resume` recollects them; the cost is that
+  those cells were collected later in wall-clock time than their neighbours,
+  which is recorded here rather than smoothed over. 404 is now retried: a wrong
+  model id still fails loudly on the first cell, and a transient one no longer
+  silently drains the factorial.
+- **Two further models, list closed before collection (2026-09-08).** The
+  extension is widened from one model to three, with a stated purpose that is
+  not "find an effect": **map how the standard behaves across models, so the
+  guidance given to developers is model-aware.** The protection against that
+  becoming a fishing expedition is this entry — the list is fixed here, each
+  model's question is stated in advance, and **all three are reported whichever
+  way they come out**, exactly as Study 3's null was.
+
+  | Model | The question it answers |
+  |---|---|
+  | `moonshotai/kimi-k3` | A second family that executes the mechanism cleanly (3 calls, map hit in screening). Does the effect appear where the model both obeys and loads? |
+  | `openai/gpt-oss-20b` | Reads the core and opens **no guide at all**. If condition D still improves structure, the core alone carries the effect and the loading architecture is dispensable in this model; if not, it constrains the finding further. |
+
+  **Excluded, and why it must be said:** `deepseek-ai/deepseek-v4-pro-0813`
+  sustains the mechanism but spent 338 seconds on a single call in screening —
+  400 generations at that rate is days, not a night. Excluded for wall-clock
+  cost, **not for its result**, which is the only acceptable reason to drop a
+  model already probed.
+
+  **Kimi K3 abandoned mid-collection for measured infeasibility (2026-09-08),
+  not for its result.** Screening said 3 calls per condition-D generation and a
+  clean map hit — it said nothing about throughput. In 294 minutes of collection
+  the arm produced **7 generations**: 49 minutes each, of which only 39 minutes
+  *total* were spent waiting on the model and the rest on backoff from **302
+  HTTP 429s**. Projected 320 hours for 400 generations. The cell data collected
+  (8 generations) is retained and reported as what it is — an aborted arm — and
+  the throughput figures are themselves a finding worth publishing: on this
+  provider's free tier the model is not practically reachable for a study of
+  this size, whatever its behaviour would have been. A replacement is screened
+  and declared before it runs, under the same rule as every other model here.
+
+    **Widened screening, and the finding it produced (2026-09-08).** Losing Kimi
+  left the design without a second model that *executes the loading
+  architecture*, so four more were screened — this time on three criteria, not
+  one: does it open the guides, does it produce a page, **and is it reachable at
+  the study's scale** (the column whose absence cost five hours on Kimi).
+  Across **nine models screened in total**:
+
+  | Executes the architecture (opens guides) | Reachable? |
+  |---|---|
+  | `nemotron-3-super` (3 guides, 5 calls) | yes — carries the arm |
+  | `deepseek-v4-pro` (4 guides, 6 calls) | no — 338 s on a single call |
+  | `kimi-k3` (2 guides, 3 calls) | no — 49 min per generation, 302 × HTTP 429 |
+  | `nemotron-3-ultra` (9 guides, 13 calls) | reachable, but emits **no page** |
+
+  | Reads the core, opens **no guide at all** | Reachable? |
+  |---|---|
+  | `gpt-oss-20b` (page: 11.1k chars) | yes — arm running |
+  | `minimax-m3` (page: 17.8k chars) | yes — 44 s |
+  | `gemma-4-31b-it` (page: 9.1k chars) | no — 789 s per generation |
+
+  Unreachable outright: `mistral-large-2-instruct` (404, not provisioned for
+  this account) and `deepseek-v4-flash` (no response inside 900 s).
+
+  **This screening is itself a result, and arguably a larger one than the arm.**
+  Of nine models, four execute the standard's lazy-loading architecture and
+  **exactly one of those is usable at this study's scale**; three read the core
+  and never open a guide at all. If that ratio holds, **what lives in the
+  reference guides does not reach most models**, and the core has to stand on
+  its own — a product consequence that no single-model study could have shown.
+  Screening cells are n=1 per model, exploratory, and reported as screening.
+
+    **Third arm added and the harness hardened (2026-09-08).** `minimax-m3`
+  joins as the third arm: like `gpt-oss-20b` it reads the core and opens no
+  guide, and it is fast (44 s in screening). Two models of the same class turn
+  "reads the core and does not load" from an anecdote into something that can be
+  checked for consistency — and if they diverge, that is equally informative.
+  The search stopped here on purpose: continuing to screen until a second model
+  that executes the architecture turned up would have been shopping for a
+  convenient result. The scarcity **is** the finding.
+
+  Five failure modes were observed during this collection, and each is now a
+  mechanism rather than a lesson: (1) transient statuses treated as fatal — the
+  retry list now covers 404/408/425/429/529 and every 5xx, after three separate
+  codes turned out to mean "busy"; (2) an unreachable model burning hours
+  undetected — the runner aborts itself above a configurable minutes-per-
+  generation ceiling (default 12, which would have stopped Kimi after three
+  generations instead of 294 minutes); (3) generations lost in bulk — abort
+  after 15 outright failures; (4) a dead process nobody notices —
+  `supervise-arms.sh` restarts a crashed run with `--resume`, up to five times,
+  while **respecting a deliberate abort** (exit code 2) and moving to the next
+  model instead of retrying a model already judged unusable; (5) invisible state
+  — every generation now writes `status.json` with pace, throttle events,
+  failures and ETA. Arms remain strictly sequential: two at once would split the
+  same rate limit and poison each other's retries.
+
+    **The third arm was retired by its vendor before it could run (2026-09-09).**
+  `minimax-m3` was screened on 2026-09-08 and answered in 44 s. When the queue
+  reached it the next morning, every call returned **HTTP 410 Gone: "reached its
+  end of life on 2026-09-09T09:00:00Z"** — the model was withdrawn five minutes
+  before collection started. The circuit breaker aborted the arm after 15
+  failures, in 28 seconds. This is the same class of event Study 3 recorded when
+  `gemini-3.5-flash` was retired mid-wave: **on hosted endpoints the object of
+  study can be withdrawn between screening and collection**, and a protocol that
+  runs over weeks has to treat that as normal rather than exceptional.
+  **The extension closes with two arms** — `nemotron-3-super` (executes the
+  loading architecture) and `gpt-oss-20b` (400/400, zero failures, loads a guide
+  in ~16% of condition-D generations). No replacement is sought: the class
+  `gpt-oss` represents is already measured, a second member would have bought
+  replication rather than a new question, and screening further models after
+  seeing the first arm's result is how a closed list stops being closed.
+
+    **Primary outcome stays as registered** (critical+serious axe violations).
+  Added as pre-declared exploratory outcomes for all three models, because the
+  Nemotron arm showed the primary is blind to them: **structural obedience**
+  (`<main>` present, `landmark-one-main`, `page-has-heading-one`, `region`) and
+  **moderate-impact violations**, which in Arm 1 fell from 6.80 per page to 0.04
+  under condition D — a 99% drop the registered primary barely registers.
+- **The published analysis scripts did not run from a clean clone
+  (2026-09-10).** Found while regression-testing the extension's changes: both
+  registered analysis scripts resolved their default input paths to files that
+  do not exist — `robustness.py` had one `.parent` too many (pointing at the
+  repository root instead of `benchmark/`) and `confirmatory.py` was missing the
+  `runs` segment entirely. Present since they were published in #42. **The
+  Study-1 figures themselves are unaffected** — they were produced by these
+  scripts run from a working directory where the paths happened to resolve, and
+  both now reproduce the published `summary.json` and `confirmatory.json`
+  **exactly**: same n, same per-condition distributions, same contrasts, same
+  IRRs. What was broken was the promise in `analysis/README.md` — *"anyone can
+  rerun both against the published dataset without re-collecting anything"* —
+  which was false for anyone who tried. Paths corrected; the reproduction is the
+  test that they are right. A reproducibility package nobody re-ran from scratch
+  is a claim, not a guarantee, and this one went eleven days unchecked.
+- **Instrument audit after collection, run adversarially (2026-09-08).** Before
+  reading anything into the arm's null result, the harness was audited against
+  the possibility that the null is ours. What held: axe **4.13.0 in both arms**,
+  same pinned build, same runner; conditions A and B logged **zero file reads
+  and exactly one call per generation**, so the tool never leaked into the
+  conditions that must not have it; the documents were the pinned commit
+  throughout; and where a response carried several fenced blocks, the extractor
+  chose the complete document in **8 of 8** cases.
+- **What the audit found, and it is ours: 13 cells are not pages (2026-09-08).**
+  In 11 condition-C cells and 2 condition-D cells the model **asked a question
+  instead of generating** — reading the placebo's profile table and replying
+  *"which performance profile governs this project?"* — and `extract_html`'s
+  fallback wrote that prose to a `.html` file, where axe scored it (≈2 serious
+  each, from a fragment with no lang and no title). Arm 1 carries the same
+  defect in 2 cells, so it is inherited, not introduced. **Impact, measured
+  rather than assumed:** excluding non-pages moves condition C from 1.10 to
+  0.99 mean critical+serious violations and D from 0.93 to 0.91 (A and B
+  unaffected); Arm 1's C moves 1.22 → 1.20. **The registered conclusion does not
+  change — the arm is null either way.** Following the precedent set by the
+  2026-08-23 repair, affected outcomes are reported **under both versions**, and
+  a cell that is not a page is counted in the completeness outcome instead of
+  being silently averaged into the primary one. A model that answers a
+  generation task with a clarifying question is data about the model, not noise.
+- **Generations that produce no page: the inherited rule, made explicit
+  (2026-09-08).** Two condition-D cells (`file-upload` run 2,
+  `async-save-with-toasts` run 4) opened 13 files, hit the harness's tool-call
+  ceiling and emitted **zero characters** — the same failure the model screening
+  found in `nemotron-3-ultra`, now observed in the model carrying the arm. Arm 1
+  had one such cell of 400. The registered analysis already excludes them:
+  `analysis/robustness.py` keeps only generations with `output_chars > 0`. That
+  rule is inherited unchanged, and stated here rather than left implicit in
+  code, with the consequence spelled out: **an empty generation cannot score
+  zero violations by having nothing on the page.** The count of page-less
+  generations per condition is reported as a completeness outcome alongside the
+  violation results, since a standard that makes a model read until it runs out
+  of turns is a cost the violation count would otherwise hide.
+- **Two malformed file requests, logged as model behaviour (2026-09-07).** In
+  two condition-D generations (`product-card-grid` run 1, `image-carousel`
+  run 3) the model asked the tool for **`A11Y11Y.md`** — the standard's own
+  filename corrupted mid-token. The harness answered "no such file", as it
+  answers any path that does not resolve, and the generation continued. These
+  are counted in the loading-behaviour outcome as failed requests, not dropped:
+  a model mangling the filename it was just given is a property of the
+  mechanism under test, not noise to be cleaned.
+- **What this does not change:** run-major collection order stays (an
+  interruption from any cause — rate limiting, endpoint errors, a stopped
+  machine — should still cost repetitions rather than tasks), and the OpenRouter
+  route stays declared and validated as contingency, unused unless needed.
+- **Second free route, declared before it is used (2026-09-07).** If NVIDIA's
+  credits run out before the factorial does, the remaining cells collect through
+  OpenRouter's free tier (request-metered, 50/day, no payment), on the same
+  weights, **pinned to NVIDIA as the serving provider with fallbacks disabled**
+  — without that pin the router could serve a generation from a different host
+  and the arm would silently mix instruments. Every generation records the route
+  it came through (`route`, `endpoint`, and the provider the response reports),
+  so a split collection can be shown to be homogeneous instead of assumed to be.
+  **Verified before the route was needed (2026-09-07):** the free variant is
+  served by NVIDIA itself — the same host as the primary route — and a request
+  byte-identical to the collector's produced the same first move, a
+  `read_file("A11Y.md")` tool call, at zero cost. (The paid variant of the same
+  model routes to DeepInfra and DigitalOcean instead; pinning matters, and an
+  early probe of mine failed for exactly that reason before the pin was right.)
+  Free-tier ceiling is request-based — 50/day on an unfunded account — so the
+  runner carries `--daily-cap` to stop cleanly instead of collecting 429s.
+  If the two routes disagree on any outcome, that is reported, not resolved by
+  dropping the inconvenient half.
+- **Budget, stated up front:** the free tier grants 1,000 credits (≈1 credit per
+  call) and the probe projects ~900 calls for the factorial. If credits run out
+  mid-collection, `--resume` continues from disk; **a partial factorial is
+  reported as partial**, never silently rebalanced across conditions.
+
+---
+
 ## 2026-08-23 — Instrument defect found by the human adjudicator: extract_html dropped delivered CSS/JS; mechanical repair + dual reporting
 
 - **Discovery:** during blind adjudication, the adjudicator opened a sampled
