@@ -8,21 +8,37 @@ track), the token co-primary, and the loading behaviour raw counts. The
 confirmatory mixed model and everything requiring blind human judgment are
 explicitly marked pending. Stdlib only; bootstrap seeded for reproducibility.
 """
-import json, random, statistics, html
+import argparse, json, random, statistics, html
 from datetime import datetime, timezone
 from pathlib import Path
 
-BENCH = Path(__file__).resolve().parent.parent.parent
+# One `.parent` too many here pointed RUNS at the repository root instead of
+# benchmark/, so the registered analysis printed "0 rows" for anyone running
+# it from a clean clone. confirmatory.py next door always had it right.
+BENCH = Path(__file__).resolve().parent.parent
 RUNS = BENCH / "runs"
-OUT = RUNS / "overnight"
+
+# Sources are flags with the registered Arm-1 paths as defaults: run with no
+# arguments and this is the same script that produced the Study-1 figures.
+# The flags exist so an extension arm gets the identical computation over its
+# own files instead of a second, subtly different analysis.
+_ap = argparse.ArgumentParser(description="Pre-registered descriptive + robustness figures.")
+_ap.add_argument("--log", type=Path, default=RUNS / "log.jsonl")
+_ap.add_argument("--axe", type=Path, default=RUNS / "verify" / "arm1-axe.jsonl")
+_ap.add_argument("--arm2-log", type=Path, default=RUNS / "arm2" / "log.jsonl")
+_ap.add_argument("--arm2-axe", type=Path, default=RUNS / "verify" / "arm2-axe.jsonl")
+_ap.add_argument("--out", type=Path, default=RUNS / "overnight")
+_args = _ap.parse_args()
+OUT = _args.out
+OUT.mkdir(parents=True, exist_ok=True)
 
 def load_jsonl(p):
     return [json.loads(l) for l in p.read_text().splitlines() if l.strip()] if p.is_file() else []
 
 # ---------- braço 1 ----------
-log = {r["id"]: r for r in load_jsonl(RUNS / "log.jsonl")}
+log = {r["id"]: r for r in load_jsonl(_args.log)}
 gens = [r for r in log.values() if "error" not in r and r.get("output_chars", 0) > 0]
-axe = {r["id"]: r for r in load_jsonl(RUNS / "verify" / "arm1-axe.jsonl") if "error" not in r}
+axe = {r["id"]: r for r in load_jsonl(_args.axe) if "error" not in r}
 rows = []
 for g in gens:
     a = axe.get(g["id"])
@@ -74,8 +90,8 @@ for other in "BCA":
     }
 
 # ---------- braço 2 (recap) ----------
-a2log = {r["id"]: r for r in load_jsonl(RUNS / "arm2" / "log.jsonl")}
-a2axe = {r["id"]: r for r in load_jsonl(RUNS / "verify" / "arm2-axe.jsonl") if "error" not in r}
+a2log = {r["id"]: r for r in load_jsonl(_args.arm2_log)}
+a2axe = {r["id"]: r for r in load_jsonl(_args.arm2_axe) if "error" not in r}
 a2 = {}
 for agent in ("claude-code", "codex"):
     for cond in "AD":

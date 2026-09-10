@@ -17,9 +17,20 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 from scipy import stats as sps
 
-RUNS = Path(__file__).resolve().parent.parent
-log = {json.loads(l)["id"]: json.loads(l) for l in (RUNS/"log.jsonl").read_text().splitlines()}
-axe = {json.loads(l)["id"]: json.loads(l) for l in (RUNS/"verify"/"arm1-axe.jsonl").read_text().splitlines() if "error" not in l[:200] or True}
+import argparse
+# RUNS is benchmark/runs, not benchmark: without the last segment the defaults
+# resolved to files that do not exist, and the registered model would not run
+# at all from a clean clone. Same class of defect as robustness.py had.
+RUNS = Path(__file__).resolve().parent.parent / "runs"
+# Same defaults, same computation; the flags let an extension arm be fitted by
+# this exact model instead of a lookalike written for it.
+_ap = argparse.ArgumentParser(description="Pre-registered confirmatory NB2 model.")
+_ap.add_argument("--log", type=Path, default=RUNS / "log.jsonl")
+_ap.add_argument("--axe", type=Path, default=RUNS / "verify" / "arm1-axe.jsonl")
+_ap.add_argument("--out", type=Path, default=Path(__file__).parent / "confirmatory.json")
+_args = _ap.parse_args()
+log = {json.loads(l)["id"]: json.loads(l) for l in _args.log.read_text().splitlines()}
+axe = {json.loads(l)["id"]: json.loads(l) for l in _args.axe.read_text().splitlines() if "error" not in l[:200] or True}
 
 rows = []
 for gid, g in log.items():
@@ -68,5 +79,5 @@ def contrasts(model, tag):
 res = {"n": len(df), "alpha": alpha,
        "fixed_effects": contrasts(m, "efeitos fixos de tarefa"),
        "cluster_robust": contrasts(m_rob, "sensibilidade: erros robustos por cluster de tarefa")}
-Path(__file__).parent.joinpath("confirmatory.json").write_text(json.dumps(res, indent=2))
+_args.out.write_text(json.dumps(res, indent=2))
 print("\nsalvo em confirmatory.json")
