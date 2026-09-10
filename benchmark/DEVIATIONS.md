@@ -244,6 +244,48 @@
   (`<main>` present, `landmark-one-main`, `page-has-heading-one`, `region`) and
   **moderate-impact violations**, which in Arm 1 fell from 6.80 per page to 0.04
   under condition D — a 99% drop the registered primary barely registers.
+- **Second engine run, and the two engines disagree (2026-09-10).**
+  METHODOLOGY.md registers a second independent scanner as a robustness check;
+  it had never been run. HTML_CodeSniffer (via pa11y, WCAG2AA, `verify/pa11y-run.js`)
+  was run over all 400 pages of Arm 1 and all 400 of the Nemotron arm. Errors
+  per page, condition A → D:
+
+  | Arm | axe (critical+serious) | HTML_CodeSniffer |
+  |---|---|---|
+  | Gemini (Arm 1) | 1.71 → 0.61 | 2.27 → 1.59 |
+  | Nemotron 3 Super | 0.99 → **0.91** | 1.46 → **0.63** |
+
+  Bootstrap on the second engine (5,000 resamples, seed 20260910): Nemotron
+  **D − A = −0.83 [−1.41, −0.24], excluding zero**, while D − B and D − C do
+  not; Gemini D − A = −0.68 [−1.65, +0.36], which does not. **The engine that
+  found no effect in the Nemotron arm is the registered primary; the engine that
+  finds one is the registered robustness check — and it finds a larger effect
+  there than in the arm where the primary found one.** Per the registered plan,
+  *"agreement between engines is reported; disagreement is reported, not resolved
+  by choosing the friendlier engine."* The confirmatory result stands as
+  registered: **null on the primary outcome.** This entry is what disagreement
+  looks like when it is not hidden.
+- **Three independent signals point the same way, and the primary outcome is
+  not one of them.** Asked to sanity-check the Nemotron near-tie, three things
+  were measured: (a) the second engine above; (b) what is actually in the code —
+  `:focus-visible` 0% → **70%**, `aria-live`/`role="alert"` 0% → **61%**,
+  `prefers-reduced-motion` 0% → **55%**, associated `<label>` 20% → 39%, skip
+  link 0% → 12%, all A → D; (c) page size and testable elements — condition D
+  pages are nearly twice as long (11.4k vs 5.9k characters) with more testable
+  elements, so **normalised violations per 100 elements read 26.8 (A) vs 23.6
+  (D)** even where raw counts tie. axe's critical+serious rules largely do not
+  test focus visibility, reduced-motion, or the presence of a live region — the
+  three places this model changed most. The finding is not that the standard
+  failed on Nemotron; it is that **the registered primary outcome is measuring
+  the wrong part of what the standard does to this model.** All of (b) and (c)
+  are exploratory and labelled as such.
+- **Nemotron 3 Ultra retested with the harness ceiling doubled, still out
+  (2026-09-10).** Its screening failure — 13 calls, no page — could have been an
+  artefact of our `--max-tool-calls 12`, inherited from Arm 1 where the ceiling
+  was never reached. Retested at 25: **no generation completed within 900
+  seconds.** The exclusion holds, now for throughput rather than for a limit of
+  ours. Worth stating because the first reading blamed the model for something
+  the instrument might have caused.
 - **The published analysis scripts did not run from a clean clone
   (2026-09-10).** Found while regression-testing the extension's changes: both
   registered analysis scripts resolved their default input paths to files that
