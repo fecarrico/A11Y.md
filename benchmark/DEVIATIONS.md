@@ -244,6 +244,43 @@
   (`<main>` present, `landmark-one-main`, `page-has-heading-one`, `region`) and
   **moderate-impact violations**, which in Arm 1 fell from 6.80 per page to 0.04
   under condition D — a 99% drop the registered primary barely registers.
+- **The registered co-primary nº 2 had never been measured — in any arm
+  (2026-09-10).** METHODOLOGY.md §Measurement lists the violation outcome as
+  *two* instruments: axe, and a **deterministic per-task checklist mapped to WCAG
+  success criteria**. The checklist exists, implemented in `harness/index.html`,
+  and was written for a browser driven by hand — so when collection moved to the
+  API it was never run, not for Arm 1 and not for the extension arms. It was
+  ported here **without being rewritten**: `verify/extract-checklist.py` lifts the
+  function verbatim out of the registered harness and `verify/checklist-run.js`
+  injects it into each collected page under Playwright. Rewriting it for the new
+  context would have produced a similar number measuring something else.
+
+  Pass rate over applicable items, condition A → D:
+
+  | Arm | A | B | C | D | D − A |
+  |---|---|---|---|---|---|
+  | Gemini (Arm 1) | 67% | 90% | 79% | **92%** | +25 pp |
+  | Nemotron 3 Super | 69% | 84% | 72% | **84%** | +14 pp |
+  | gpt-oss-20b | 67% | 83% | 72% | **81%** | +13 pp |
+
+  **The standard improves this outcome in all three arms, including the one the
+  primary called null.** Item by item the three models move together:
+  associated `<label>` ~50% → ~97%, live region **0% → 55–89%**, native
+  elements already at ceiling.
+
+  **And one item moves the wrong way in all three: 24×24 px target size falls
+  14–23 points under condition D.** Pages written under the standard carry more
+  interactive elements, and more of them land under the threshold. This is a
+  finding against the standard, produced by the standard's own registered
+  instrument, and it is stated here first because that is the only way it is
+  worth stating. §6 of the standard sets 48/44/24 px floors by profile; the
+  generated pages do not meet them, and neither the core nor `guide-buttons`
+  appears to make that stick.
+
+  **This is not outcome switching.** No outcome was added, removed, or promoted:
+  the primary remains axe critical+serious, still null on the Nemotron arm. What
+  changed is that a registered instrument which had gone unrun for two studies
+  was finally run, and it does not agree with the one that was.
 - **Second engine run, and the two engines disagree (2026-09-10).**
   METHODOLOGY.md registers a second independent scanner as a robustness check;
   it had never been run. HTML_CodeSniffer (via pa11y, WCAG2AA, `verify/pa11y-run.js`)
