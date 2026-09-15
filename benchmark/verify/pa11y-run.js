@@ -19,7 +19,8 @@ const stream = fs.createWriteStream(out, {flags: 'w'});
       const errors = r.issues.filter(x => x.type === 'error');
       rec = {id: f.replace(/\.html$/, ''), engine: 'htmlcs', errors: errors.length,
              warnings: r.issues.filter(x => x.type === 'warning').length,
-             codes: [...new Set(errors.map(x => x.code.split('.').slice(-1)[0]))]};
+             codes: [...new Set(errors.map(x => x.code))],
+             detail: errors.slice(0, 40).map(x => ({code: x.code, sel: (x.selector||'').slice(0,60)}))};
     } catch (e) {
       rec = {id: f.replace(/\.html$/, ''), error: String(e.message).slice(0, 120)};
     }

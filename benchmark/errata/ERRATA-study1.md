@@ -50,15 +50,18 @@ redundant ARIA 0 occurrences in every condition; 24×24 px target size
 
 ### Robustness — second engine
 
-HTML_CodeSniffer (via pa11y, WCAG2AA), errors per page, 7 pages unreadable by
-the engine:
+HTML_CodeSniffer (via pa11y, WCAG2AA), errors per page, all 400 pages read:
 
 | Condition | Errors per page |
 |---|---|
 | A — bare | 2.27 |
-| B — generic request | **0.92** |
-| C — placebo standard | 1.22 |
+| B — generic request | **0.87** |
+| C — placebo standard | 1.20 |
 | D — A11Y.md | 1.59 |
+
+*(A first pass left 7 pages unread on engine timeouts; it was re-run to
+completion and the complete run is what is reported and shipped. The
+incomplete pass differed by at most 0.05 per page and is not used.)*
 
 **On the raw count this engine does not agree with the primary.** It puts D
 ahead of the bare condition and behind both the generic request and the
