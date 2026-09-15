@@ -19,3 +19,6 @@ __pycache__/
 # benchmark: headless verification — the one external dependency (Playwright),
 # contained here; the lockfile is committed, the installed tree is not.
 benchmark/verify/node_modules/
+# ...e os logs das passagens de verificação: são registro de execução, não de método.
+# O que a análise precisa está nos .jsonl, que vão para o dataset publicado.
+benchmark/verify/*.log
