@@ -244,6 +244,18 @@
   (`<main>` present, `landmark-one-main`, `page-has-heading-one`, `region`) and
   **moderate-impact violations**, which in Arm 1 fell from 6.80 per page to 0.04
   under condition D — a 99% drop the registered primary barely registers.
+- **Erratum published: dataset v4, DOI 10.5281/zenodo.22772831 (2026-09-15).**
+  The Study-1 package goes v1 → v2 inside record version v4, which now carries
+  the two registered instruments that had never been run, the exploratory target
+  audit, the post-hoc power analysis and `ERRATA-study1.md` itself. Integrity
+  audited via the Zenodo API on publication day: **7/7 files**, with the two new
+  ones matching the checksums computed locally at build
+  (`a11ymd-benchmark-dataset-v2.zip` md5 `2aa577ae…`, `MANIFEST-v2.json` md5
+  `3243ea6e…`) and the five carried over from v3 bit-identical. The v1 package
+  was removed from the new record and remains citable at its own DOI; the concept
+  DOI `10.5281/zenodo.22073025` now resolves to v4.
+  **The DOIs in the entries below are not rewritten.** Each records what was
+  published on its date, and a diary that edits its own past is not a diary.
 - **Correction to the target-size finding recorded hours earlier the same day
   (2026-09-10).** The entry below reports that 24×24 px target size *falls*
   14–23 points under condition D and calls it "a finding against the standard".
