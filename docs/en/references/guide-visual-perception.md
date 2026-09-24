@@ -22,7 +22,7 @@ While WCAG 2.1/2.2 uses the static ratio (e.g., 4.5:1), **APCA** (Advanced Perce
 The moment the colors are born is the moment contrast is decided — this standard's benchmark found contrast failures in every uninstructed condition, and contrast is the web's largest audit debt (WebAIM Million: 83.9% of pages). When creating or changing design tokens, palettes or theme files, the AI **MUST**:
 
 1. **Enumerate the intentional pairs** — every text/background and UI/background combination the tokens will form, including states (hover, focus, disabled, error) and both themes when there are two.
-2. **Compute each pair's WCAG ratio at definition time** — [`tools/contrast-check.py`](https://github.com/fecarrico/A11Y.md/tree/main/tools) with a shell, the relative-luminance formula without one. Never "looks dark enough".
+2. **Compute each pair's WCAG ratio at definition time** — [`tools/contrast-check.py`](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/contrast-check.py) with a shell, the relative-luminance formula without one. Never "looks dark enough".
 3. **Adjust luminance, not just hue**, until every pair clears the active profile's floor (core §0.1).
 4. **Record the pair matrix** (pair → measured ratio) in `A11Y-DECISIONS.md`; the values feed `REPORT.md` §1.
 
