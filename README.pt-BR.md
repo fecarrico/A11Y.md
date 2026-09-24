@@ -42,7 +42,7 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetivo real. Faça isto **agora** no seu projeto:
 
 1. **Aponte sua IA para o Padrão:** Adicione **uma regra** ao arquivo de configuração do seu agente (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`…):
-   > *"Ao desenvolver o frontend, siga estritamente as regras de acessibilidade definidas no A11Y.md: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md"*
+   > *"Ao desenvolver o frontend, siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md"*
 
    Só isso — nenhum arquivo copiado. A IA lê o arquivo núcleo e carrega sob demanda apenas os guias de referência necessários, sempre atualizados. (Prefere inglês? Aponte para `docs/en/A11Y.md`.)
 2. **Prefere uma cópia offline ou fixada?** Copie o `docs/pt-BR/A11Y.md` para o seu repositório (raiz, `docs/`, onde quiser) — opcionalmente com as pastas `references/` e `templates/` — e aponte a regra para o caminho local. Se copiar só o arquivo núcleo, a IA usa como fallback os guias deste repositório via URLs upstream.

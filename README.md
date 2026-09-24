@@ -39,7 +39,7 @@ We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repo
 Reading about accessibility is the first step, injecting it into your code is the real goal. Do this **right now** in your project:
 
 1. **Point your AI to the Standard:** Add **one rule** to your agent's configuration file (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`…):
-   > *"When developing the frontend, follow strictly the accessibility rules defined in A11Y.md: https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md"*
+   > *"When developing the frontend, follow strictly the accessibility rules in the file https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md"*
 
    That's it — no files copied. The AI reads the core file and lazy-loads only the reference guides it needs, always up to date. (Prefer Portuguese? Point to `docs/pt-BR/A11Y.md` instead.)
 2. **Prefer an offline or pinned copy?** Copy `docs/en/A11Y.md` into your repository (root, `docs/`, anywhere) — optionally with the `references/` and `templates/` folders — and point the rule at the local path. If you copy only the core file, the AI falls back to this repository's guides via their upstream URLs.

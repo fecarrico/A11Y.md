@@ -28,7 +28,7 @@ Crie um arquivo `.mdc` dentro do diretório `.cursor/rules/`.
 description: "Contexto persistente de acessibilidade — delega todas as regras para o A11Y.md"
 alwaysApply: true
 ---
-Siga estritamente as regras de acessibilidade definidas no arquivo <caminho ou URL do seu A11Y.md — ex.: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
+Siga estritamente as regras de acessibilidade do arquivo <caminho ou URL do seu A11Y.md — ex.: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
 ```
 > [!NOTE]  
 > `alwaysApply: true` é crucial. Acessibilidade é uma pré-condição estrita para todo código de UI e não deve depender de padrões glob para ser ativada.
@@ -39,7 +39,7 @@ Adicione uma seção ao seu arquivo `CLAUDE.md` raiz.
 **Arquivo:** `CLAUDE.md`
 ```markdown
 ## Acessibilidade
-Siga estritamente as regras de acessibilidade definidas no arquivo <caminho ou URL do seu A11Y.md — ex.: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
+Siga estritamente as regras de acessibilidade do arquivo <caminho ou URL do seu A11Y.md — ex.: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
 ```
 
 ## 3. GitHub Copilot
@@ -48,7 +48,7 @@ Adicione a instrução ao arquivo de instruções customizadas do Copilot.
 **Arquivo:** `.github/copilot-instructions.md`
 ```markdown
 ## Acessibilidade
-Siga estritamente as regras de acessibilidade definidas no arquivo <caminho ou URL do seu A11Y.md — ex.: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
+Siga estritamente as regras de acessibilidade do arquivo <caminho ou URL do seu A11Y.md — ex.: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
 ```
 
 ## 4. Gemini / Antigravity
@@ -56,7 +56,7 @@ Adicione a instrução ao arquivo de regras do agente.
 
 **Arquivo:** `AGENTS.md` ou `.agents/AGENTS.md`
 ```markdown
-Siga estritamente as regras de acessibilidade definidas no arquivo <caminho ou URL do seu A11Y.md — ex.: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
+Siga estritamente as regras de acessibilidade do arquivo <caminho ou URL do seu A11Y.md — ex.: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
 ```
 
 ## 5. Windsurf
@@ -64,5 +64,5 @@ Crie um arquivo de regra no diretório de regras do Windsurf.
 
 **Arquivo:** `.windsurf/rules/a11y.md`
 ```markdown
-Siga estritamente as regras de acessibilidade definidas no arquivo <caminho ou URL do seu A11Y.md — ex.: https://github.com/fecarrico/A11Y.md/blob/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
+Siga estritamente as regras de acessibilidade do arquivo <caminho ou URL do seu A11Y.md — ex.: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md, ou uma cópia local>.
 ```

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Invocation phrase now points at the raw file, URL first:** `When developing the frontend, follow strictly the accessibility rules in the file https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md` (pt-BR: `…siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md`). The old wording named `A11Y.md` before the URL — and `.md` is a real top-level domain, so linkifiers in IDE chats could turn it into `http://a11y.md` and a fetch-happy agent could resolve the wrong host. The raw URL also hands the agent plain markdown instead of GitHub's HTML page, and relative links to `references/` and `templates/` still resolve. Updated in both READMEs and both `SETUP.md` editions (and on the Wiki and site). Benchmark protocols keep the phrase they were run with.
+
 ## [2.0.1] - 2026-09-06
 
 The consequence release. Study 3 (preregistered at [osf.io/wt5n4](https://osf.io/wt5n4), published unconditionally as registered) ran v2.0.0 against v1.8.0 on the frozen journey unit and its kill criterion **failed**: the half-climbed ARIA ladder did not disappear as a class. The 2×2 the protocol demanded shows the same residue on both sides — one node, one screen, per arm — so this is not a regression, but §6 did not eliminate what it promised to eliminate. Per the pre-written consequence table, the anti-pattern is amended with the surviving mold named explicitly (the carousel thumbnail `tablist` whose buttons lack `role="tab"`, with the two legal exits spelled out) and this note is the dated correction of record. Both editions amended identically. No other change.

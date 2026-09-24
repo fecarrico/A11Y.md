@@ -28,7 +28,7 @@ Create a `.mdc` file inside the `.cursor/rules/` directory.
 description: "Persistent accessibility context — delegates all rules to A11Y.md"
 alwaysApply: true
 ---
-Follow strictly the accessibility rules defined in the file <path or URL to your A11Y.md — e.g. https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md, or a local copy>.
+Follow strictly the accessibility rules in the file <path or URL to your A11Y.md — e.g. https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md, or a local copy>.
 ```
 > [!NOTE]  
 > `alwaysApply: true` is crucial. Accessibility is a strict precondition for all UI code and must not rely on glob patterns to be activated.
@@ -39,7 +39,7 @@ Add a section to your root `CLAUDE.md` file.
 **File:** `CLAUDE.md`
 ```markdown
 ## Accessibility
-Follow strictly the accessibility rules defined in the file <path or URL to your A11Y.md — e.g. https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md, or a local copy>.
+Follow strictly the accessibility rules in the file <path or URL to your A11Y.md — e.g. https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md, or a local copy>.
 ```
 
 ## 3. GitHub Copilot
@@ -48,7 +48,7 @@ Add the instruction to Copilot's custom instructions file.
 **File:** `.github/copilot-instructions.md`
 ```markdown
 ## Accessibility
-Follow strictly the accessibility rules defined in the file <path or URL to your A11Y.md — e.g. https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md, or a local copy>.
+Follow strictly the accessibility rules in the file <path or URL to your A11Y.md — e.g. https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md, or a local copy>.
 ```
 
 ## 4. Gemini / Antigravity
@@ -56,7 +56,7 @@ Add the instruction to the agent rules file.
 
 **File:** `AGENTS.md` or `.agents/AGENTS.md`
 ```markdown
-Follow strictly the accessibility rules defined in the file <path or URL to your A11Y.md — e.g. https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md, or a local copy>.
+Follow strictly the accessibility rules in the file <path or URL to your A11Y.md — e.g. https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md, or a local copy>.
 ```
 
 ## 5. Windsurf
@@ -64,5 +64,5 @@ Create a rule file in the Windsurf rules directory.
 
 **File:** `.windsurf/rules/a11y.md`
 ```markdown
-Follow strictly the accessibility rules defined in the file <path or URL to your A11Y.md — e.g. https://github.com/fecarrico/A11Y.md/blob/main/docs/en/A11Y.md, or a local copy>.
+Follow strictly the accessibility rules in the file <path or URL to your A11Y.md — e.g. https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md, or a local copy>.
 ```
