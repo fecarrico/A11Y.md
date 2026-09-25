@@ -5,7 +5,9 @@ verify-a11y.py — static gate for projects adopting the A11Y.md standard.
 Checks what can be verified without a browser: that the project artifacts
 exist, are current and well-formed, and that the source is free of the
 anti-patterns a regex can catch. Exits non-zero when a check fails, so it
-can gate a build.
+can gate a build. Every run ends with the line to record in the report's
+Static gate field; when the script cannot run at all, the agent records
+NOT RUN with the reason and says so in the delivery (A11Y.md §2).
 
 It does NOT establish WCAG conformance. Automated tooling detects only a
 fraction of real barriers; the human checkpoints in REPORT.md remain the
@@ -100,7 +102,7 @@ def check_report_status(report: Path) -> None:
     failed = len(re.findall(r"^\s*-\s*\[!\]", body, re.M))
     partial = len(re.findall(r"^\s*-\s*\[~\]", body, re.M))
 
-    field = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body)
+    field = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body, re.I)
     value = field.group(1).strip() if field else ""
     if not value:
         fail("report-status", "REPORT.md has no Compliance Status field — fill it from templates/REPORT.md.")
@@ -132,7 +134,7 @@ def check_report_independence(report: Path) -> None:
     text = report.read_text(encoding="utf-8", errors="replace")
     body = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith(">"))
 
-    field = re.search(r"(?:Verification Independence|Independência da Verificação):?\*{0,2}[ \t]*(.*)", body)
+    field = re.search(r"(?:Verification Independence|Independência da Verificação):?\*{0,2}[ \t]*(.*)", body, re.I)
     if not field:
         fail("independence", "REPORT.md has no Verification Independence field. Add it from "
                              "templates/REPORT.md and declare who reproduced the automated checkpoints "
@@ -148,7 +150,7 @@ def check_report_independence(report: Path) -> None:
         return
 
     level = levels[0]
-    status = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body)
+    status = re.search(r"(?:Compliance Status|Status de Conformidade):?\*{0,2}[ \t]*(.*)", body, re.I)
     status_value = status.group(1).strip() if status else ""
     conditional = re.search(r"CONDITIONAL|CONDICIONAL", status_value, re.I)
     claims_pass = not conditional and (re.search(r"\bPASS\b", status_value, re.I) or "✅" in status_value)
@@ -168,6 +170,30 @@ def check_report_independence(report: Path) -> None:
         warn("independence", f"Verification level is '{level}' but nobody is named. Record which "
                              f"model/agent and which session reproduced the checkpoints — an "
                              f"unattributed level is not reproducible evidence.")
+
+
+def check_report_gate(report: Path) -> str | None:
+    """The gate's own outcome is part of the evidence (Static Gate, §2).
+
+    A gate that silently did not run reads exactly like one that passed, so
+    the report must declare one of three outcomes — PASS, FAIL or NOT RUN
+    with the reason. This validates the declaration's shape and returns its
+    value; main() compares it with what this run actually found.
+    """
+    text = report.read_text(encoding="utf-8", errors="replace")
+    body = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith(">"))
+
+    field = re.search(r"(?:Static gate|Gate estático)[^:\n]*:\*{0,2}[ \t]*(.*)", body, re.I)
+    if not field:
+        fail("gate-declared", "REPORT.md has no Static gate field. Add it from templates/REPORT.md and "
+                              "record this run's outcome (A11Y.md §2, Static Gate).")
+        return None
+    value = field.group(1).strip()
+    if value.count("|") >= 2:  # the template's untouched menu of outcomes
+        fail("gate-declared", "REPORT.md still carries the template's Static gate menu "
+                              "(PASS | FAIL | NOT RUN). Declare this run's outcome.")
+        return None
+    return value
 
 
 def check_exceptions(root: Path) -> None:
@@ -300,14 +326,27 @@ def main() -> int:
     src = (root / args.src).resolve() if args.src else root
 
     report = check_artifacts_exist(root)
+    gate_declared = None
     if report:
         check_report_freshness(root, report, src)
         check_report_status(report)
         check_report_independence(report)
+        gate_declared = check_report_gate(report)
     check_exceptions(root)
     check_gitignore(root)
     check_source_antipatterns(root, src)
     check_orphaned_aria(root, src)
+
+    # The declared outcome must match this run — a stale PASS is the silent
+    # failure the Static Gate rule exists to catch.
+    if gate_declared is not None:
+        found = sum(1 for f in findings if f[0] == "ERROR")
+        if re.search(r"NOT RUN|N[ÃA]O RODOU", gate_declared, re.I):
+            warn("gate-declared", "REPORT.md declares the static gate NOT RUN, but it is running now — "
+                                  "record this run's outcome instead.")
+        elif re.search(r"\bPASS\b", gate_declared, re.I) and found:
+            fail("gate-declared", f"REPORT.md declares the static gate PASS, but this run found {found} "
+                                  f"error(s). Record the real outcome.")
 
     errors = [f for f in findings if f[0] == "ERROR"]
     warnings = [f for f in findings if f[0] == "WARN"]
@@ -323,6 +362,10 @@ def main() -> int:
     else:
         print("PASS — nothing statically detectable is wrong.")
     print("This is not a conformance claim: the human checkpoints in REPORT.md are what establish it.")
+    # The line the agent records — so the outcome never has to be remembered (Static Gate, §2).
+    verdict = "FAIL" if errors else "PASS"
+    print(f"Record in REPORT.md → Static gate (verify-a11y.py): {verdict} "
+          f"({len(errors)} error(s), {len(warnings)} warning(s)) — run on: {dt.date.today().isoformat()}")
 
     return 1 if errors and not args.warn_only else 0
 
