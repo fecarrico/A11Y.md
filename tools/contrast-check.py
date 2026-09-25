@@ -153,6 +153,9 @@ def run_pairs(bg_tok, fg_toks, profile) -> int:
             for use, floor in floors.items()
         )
         print(f"  {fmt(composite(fg, bg_rgb))} ({tok}): {r:.2f}:1 — {verdicts}")
+        # The row to paste into the REPORT.md pair table — the static gate recomputes it (A11Y.md §3).
+        print(f"    → REPORT.md: | [use] | {fmt(composite(fg, bg_rgb))} | {fmt(bg_rgb)} | {r:.2f}:1 | "
+              f"{floors['text']}:1 | {'✅' if r >= floors['text'] else '❌'} |")
         if r < min(floors.values()):
             failures += 1
         elif r < floors["text"]:
