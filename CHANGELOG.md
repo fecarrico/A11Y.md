@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-09-25
+
+The receipt release. Study 2 and Study 3 measured what the model does when it reads the standard; nothing measured whether the evidence it writes afterwards is true, or whether the one mechanical check the project ships ever ran — it never did: shipped in both treatment arms, denied in six runs, disclosed by none. This release closes that gap from three sides. A new §2 rule, **Static Gate**, makes the agent run `tools/verify-a11y.py` before any delivery and forbids losing a denied run in silence. The gate itself was audited against Section 6 — it covered 3 of 13 anti-patterns, none completely — and now reads what axe cannot see: overlay scripts, placeholder-only labels, half-climbed composites, the ARIA Soup table, click handlers in every framework syntax. And the one piece of evidence that is arithmetic, contrast, is recomputed instead of trusted. No runtime became mandatory: the obligation is the attempt and the disclosure. Both editions amended identically.
+
+### Migration
+- A `REPORT.md` written before this release has no *Static gate* field, and `verify-a11y.py` fails on its absence. Add the line from `templates/REPORT.md` and record the last run's outcome — `NOT RUN` with the reason is a valid answer, and an honest one.
+- Contrast recorded in prose (*body ink `#14202b` 15.6:1*) no longer counts as evidence: the gate reads only the pair table — foreground, background, ratio, floor, result, with hex — and recomputes every row. `contrast-check.py` prints the rows; paste them under the contrast checkpoint. A checkpoint marked `[x]` with no row fails.
+- Reports that record contrast by token name (`--foreground`) need the resolved hex beside it; the formula cannot recompute a variable.
+
 ### Added
 - **Static Gate (new §2 rule):** before any delivery, with a shell available, the AI **MUST** run `tools/verify-a11y.py` and record the outcome in the new *Static gate* field of `REPORT.md`; when the run is denied, has no shell or errors out, the report says so and the delivery message tells the user what did not run. Born from the project's own benchmark: the script shipped in both treatment arms, was denied in six runs, and no journey disclosed it — a gate that silently did not run reads exactly like one that passed. The core still requires no runtime: the obligation is the attempt and the disclosure, never the execution. Both editions, the template field, `guide-governance.md` §1.3 and the Wiki amended together.
 - **`gate-declared` check in `verify-a11y.py`:** fails a report with no *Static gate* field or with the template menu untouched; fails a field declaring PASS while the run in progress found errors; warns on NOT RUN while the script is evidently running. Every run now ends with the exact line to record in the field.
