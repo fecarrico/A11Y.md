@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2026-09-25
+
+The plumbing release. Nothing an agent is obliged to do changed; what changed is every address an agent is told to fetch. The invocation phrase, the lazy-loading fallback and the script links now all resolve to the raw file, never to a GitHub HTML page — and the phrase no longer names `A11Y.md` before the URL, because `.md` is a real top-level domain and IDE linkifiers were one click from sending the agent to the wrong host. Both editions amended identically; no rule added, removed or reworded.
+
 ### Changed
 - **Invocation phrase now points at the raw file, URL first:** `When developing the frontend, follow strictly the accessibility rules in the file https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md` (pt-BR: `…siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md`). The old wording named `A11Y.md` before the URL — and `.md` is a real top-level domain, so linkifiers in IDE chats could turn it into `http://a11y.md` and a fetch-happy agent could resolve the wrong host. The raw URL also hands the agent plain markdown instead of GitHub's HTML page, and relative links to `references/` and `templates/` still resolve. Updated in both READMEs and both `SETUP.md` editions (and on the Wiki and site). Benchmark protocols keep the phrase they were run with.
 - **Lazy-loading fetch targets are raw too:** the core's upstream fallback for missing `references/` and `templates/` (§ Lazy Context Loading) now resolves against `https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/<lang>/` instead of a GitHub `tree/` page, and every link an agent follows to fetch a script (`contrast-check.py` in core §3 and `guide-visual-perception.md`; `verify-a11y.py` and `lint-standard.py` in `guide-governance.md`) points at the raw file instead of the `tools/` folder listing. Same rule as the invocation phrase: anything an agent fetches returns plain file content, never an HTML page. Both editions amended identically.
