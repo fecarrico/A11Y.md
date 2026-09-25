@@ -6,7 +6,7 @@ Four dependency-free Python scripts. All are **optional** — the standard works
 > **These scripts are not the standard, and never a precondition for using it.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. What the normative core requires (§2, *Static Gate*) is the *attempt* — run `verify-a11y.py` when a shell exists — and honest disclosure when it cannot run: in `REPORT.md` and in the delivery message. No rule ever makes a runtime mandatory.
 
 > [!WARNING]
-> **Experimental (v0).** First release, exercised against fixtures and this repository — not against a wide range of real projects. A false positive in your pipeline is worse than no gate at all, so start with `--warn-only`, and please [open an issue](https://github.com/fecarrico/A11Y.md/issues) for anything it gets wrong. Bug reports are the fastest way to make it trustworthy.
+> **Experimental (v0).** Exercised against built-in fixtures (`--self-test`), this repository and the project's own site — not against a wide range of real projects. A false positive in your pipeline is worse than no gate at all, so start with `--warn-only`, and please [open an issue](https://github.com/fecarrico/A11Y.md/issues) for anything it gets wrong. Bug reports are the fastest way to make it trustworthy.
 
 > **Neither script establishes conformance.** Automated tooling detects only a fraction of real barriers. These check what a regex and a date comparison can check; the human checkpoints in `REPORT.md` are what establish the rest.
 
@@ -18,7 +18,12 @@ Four dependency-free Python scripts. All are **optional** — the standard works
 
 ```bash
 python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
+python3 verify-a11y.py --self-test        # built-in fixtures, one per check
 ```
+
+It checks two things, and the second is smaller than it looks.
+
+**The evidence the standard demands** — the part no other tool knows exists:
 
 | Check | What it catches |
 |---|---|
@@ -27,14 +32,26 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 | `report-status` | report claiming PASS while carrying `[ ]`, `[~]` or `[!]` checkpoints — or still carrying the template's status placeholder |
 | `independence` | report with no *Verification Independence* field, with more than one level declared, or claiming PASS on `self-reported` — the generating agent as sole witness (Independent Verification, §2) |
 | `gate-declared` | report with no *Static gate* field or still carrying its template menu; a field declaring PASS while this very run found errors; NOT RUN declared while the script is evidently running (Static Gate, §2) |
+| `contrast-evidence` | every pair recorded in the `REPORT.md` pair table (and in the `A11Y-DECISIONS.md` palette matrix) is **recomputed** with the WCAG formula: a declared ratio that does not match the arithmetic fails; a ✅ below the floor it was measured against fails; the contrast checkpoint marked verified with no pair recorded fails. Warns when a recorded color does not appear in the source (§3: computed, never estimated) |
 | `exceptions` | entries without risk owner, approver, tracking issue or expiry — and expired ones |
 | `gitignore` | project artifacts excluded from version control |
-| `clickable-div` · `positive-tabindex` · `outline-none` · `aria-soup` | source anti-patterns from §6 |
-| `redundant-alert` · `nullified-alt` | `role="alert"` declared alongside `aria-live`; `aria-hidden` cancelling a non-empty `alt` |
+
+**What axe cannot see** — the source scan. axe reads the rendered DOM: it does not see event handlers, CSS intent, or source that has not been built yet. These checks read `.html`, `.jsx/.tsx`, `.vue`, `.svelte`, `.astro` and CSS before any build, and they exist for the anti-patterns of Section 6 that pass every DOM checker:
+
+| Check | What it catches |
+|---|---|
+| `clickable-div` | `<div>`/`<span>` with a click handler — `onClick`, Vue `@click`/`v-on:click`, Svelte `on:click`, Angular `(click)`. A div that replicated a button by hand (`role` + `tabindex`) warns instead of failing: verify Enter and Space |
+| `placeholder-label` | `<input>`/`<textarea>` whose only label is its placeholder — axe accepts a placeholder as an accessible name, so this never fails axe |
+| `half-climbed-aria` | `role="tablist"` with no `role="tab"` in the file — the mold Study 3 found surviving two releases — fails; the other composites (`listbox`, `menu`, `tree`, `radiogroup`, `grid`) without their required children warn, since the children may live in another component |
+| `aria-soup` | redundant roles on native elements (`role="button"` on `<button>`, `role="navigation"` on `<nav>`, `role="heading"` on `<h2>`…); `aria-label` repeating the visible text (warning — it drifts into an SC 2.5.3 failure); `aria-expanded` hardcoded in markup that no script in the project ever toggles (warning) |
+| `nullified-alt` | `aria-hidden` (`="true"`, `={true}` or the bare JSX boolean) or `role="presentation"` on an image carrying a non-empty `alt` |
 | `orphaned-aria` | `aria-controls`/`labelledby`/`describedby`/`activedescendant` pointing at an id absent from the file (warning — the target may live elsewhere) |
-| `media-autoplay` | `autoplay` in the markup — immune to `prefers-reduced-motion` by construction (warning) |
+| `overlay` | a script or link from an accessibility-overlay vendor — an overlay never fixes the DOM that produced the barrier (§6) |
+| `positive-tabindex` · `outline-none` · `redundant-alert` · `media-autoplay` | keyboard order, focus visibility, live-region and media rules from Sections 3–4 that a text search can catch |
 
 The source scan reads whole files, not single lines: JSX spreads one element across many lines, and a line-by-line scan never sees `<div` three lines above its `onClick`.
+
+**What the gate does not see, on purpose.** Five anti-patterns of Section 6 are not a job for a text search and are not attempted: focus management in a modal, text over video, a parallel machine-facing copy, a scroll container that does not overflow (`tabindex="0"` is only wrong when nothing scrolls, which is runtime), and content parked at `opacity: 0` (legitimate in too many places to flag). They stay with review and with the human checkpoints in `REPORT.md`. In the project's own Study 2, the uninstructed screens failed axe on 536 critical/serious nodes — 505 of them contrast, 16 missing alt, 13 missing labels — and this scan sees none of those three classes. It is the receipt, not the purchase.
 
 Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report without failing the build while a team adopts the standard.
 

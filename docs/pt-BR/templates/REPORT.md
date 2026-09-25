@@ -46,6 +46,10 @@ Caminhos críticos da funcionalidade e validação via Leitores de Tela.
 ## 4. Percepção Visual e Compreensão
 Testes que validam contraste e estrutura visual (sem dependência de cores).
 - [ ] **Contraste de Texto & UI:** Todos os textos possuem ratio 4.5:1 e componentes essenciais 3:1?
+  Pares medidos — calculados com `tools/contrast-check.py` ou pela fórmula da WCAG, nunca estimados. O gate estático recalcula cada linha; razão que não bate com a aritmética derruba o build. Uma linha por par que carrega significado: texto corrido, texto secundário, links, anel de foco, bordas de UI, cada estado.
+  | Par | Primeiro plano | Fundo | Razão | Piso | Resultado |
+  | :--- | :--- | :--- | ---: | ---: | :--- |
+  | [texto corrido] | [#hex] | [#hex] | [N,NN:1] | [4.5:1 · 7:1 no Shield] | [✅ / ❌] |
 - [ ] **Redundância:** Erros e alertas não comunicam informações exclusivas por meio de cores *(ex: sempre usam Cor + Ícone + Texto)*.
 - [ ] **Scale / Zoom:** Texto redimensionado a 200% sem perda (SC 1.4.4) e conteúdo em reflow a 320 CSS px — ≈400% de zoom num viewport de 1280px (SC 1.4.10) — com tudo operável e sem rolagem bidimensional?
 

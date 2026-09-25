@@ -46,6 +46,10 @@ Critical functional paths and Screen Reader validation.
 ## 4. Visual Perception and Comprehension
 Tests validating contrast and visual structure (color-independent).
 - [ ] **Text & UI Contrast:** Do all texts have a 4.5:1 ratio and essential components 3:1?
+  Measured pairs — computed with `tools/contrast-check.py` or the WCAG formula, never estimated. The static gate recomputes every row; a ratio that does not match the arithmetic fails the build. One row per pair that carries meaning: body text, secondary text, links, focus ring, UI borders, each state.
+  | Pair | Foreground | Background | Ratio | Floor | Result |
+  | :--- | :--- | :--- | ---: | ---: | :--- |
+  | [body text] | [#hex] | [#hex] | [N.NN:1] | [4.5:1 · 7:1 on Shield] | [✅ / ❌] |
 - [ ] **Redundancy:** Errors and alerts do not convey information exclusively through color *(e.g., they always use Color + Icon + Text)*.
 - [ ] **Scale / Zoom:** Text resized to 200% without loss (SC 1.4.4) and content reflowed at 320 CSS px — ≈400% zoom on a 1280px viewport (SC 1.4.10) — with everything operable and no two-dimensional scrolling?
 
