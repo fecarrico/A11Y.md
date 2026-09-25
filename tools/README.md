@@ -3,7 +3,7 @@
 Four dependency-free Python scripts. All are **optional** — the standard works in a purely conversational flow — but a gate that fails a build is stronger than a rule an agent has to remember.
 
 > [!IMPORTANT]
-> **These scripts are not part of the standard.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. Nothing in the normative core requires running these — and nothing ever should. They are a convenience for teams that want CI enforcement.
+> **These scripts are not the standard, and never a precondition for using it.** `A11Y.md` is portable markdown: it must keep working for anyone whose agent can read a file, with no runtime installed. What the normative core requires (§2, *Static Gate*) is the *attempt* — run `verify-a11y.py` when a shell exists — and honest disclosure when it cannot run: in `REPORT.md` and in the delivery message. No rule ever makes a runtime mandatory.
 
 > [!WARNING]
 > **Experimental (v0).** First release, exercised against fixtures and this repository — not against a wide range of real projects. A false positive in your pipeline is worse than no gate at all, so start with `--warn-only`, and please [open an issue](https://github.com/fecarrico/A11Y.md/issues) for anything it gets wrong. Bug reports are the fastest way to make it trustworthy.
@@ -26,7 +26,7 @@ python3 verify-a11y.py [PROJECT_DIR] [--src SUBDIR] [--warn-only]
 | `freshness` | report older than the last interface change (git history, falling back to mtime) |
 | `report-status` | report claiming PASS while carrying `[ ]`, `[~]` or `[!]` checkpoints — or still carrying the template's status placeholder |
 | `independence` | report with no *Verification Independence* field, with more than one level declared, or claiming PASS on `self-reported` — the generating agent as sole witness (Independent Verification, §2) |
-| `placement` *(lint-standard)* | a core rule past the size at which it is carrying its own documentation — a placement rule, not a content cap: no obligation is refused for size, rationale is sent to the guide the rule points at. Run against `v1.7.0`, reports the five rules whose diet produced it |
+| `gate-declared` | report with no *Static gate* field or still carrying its template menu; a field declaring PASS while this very run found errors; NOT RUN declared while the script is evidently running (Static Gate, §2) |
 | `exceptions` | entries without risk owner, approver, tracking issue or expiry — and expired ones |
 | `gitignore` | project artifacts excluded from version control |
 | `clickable-div` · `positive-tabindex` · `outline-none` · `aria-soup` | source anti-patterns from §6 |
@@ -38,12 +38,14 @@ The source scan reads whole files, not single lines: JSX spreads one element acr
 
 Exit code is `1` on errors, `0` on warnings only. Use `--warn-only` to report without failing the build while a team adopts the standard.
 
+Every run ends with the exact line to record in the report's *Static gate* field. When the script cannot run at all — a permission denied, no shell — the agent records `NOT RUN` with the reason and says so in the delivery message (A11Y.md §2, Static Gate): a gate that silently did not run reads exactly like one that passed.
+
 **GitHub Actions** — pin to a tag, never to `main`: this is executable code, and a moving branch is a supply-chain risk. Bump the tag deliberately, the same way you would any other dependency.
 
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v1.7.0/tools/verify-a11y.py
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v2.0.2/tools/verify-a11y.py
     python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
 

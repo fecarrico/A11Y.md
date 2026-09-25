@@ -18,6 +18,7 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 - **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
 - **Status de Conformidade:** [✅ PASS | ⚠️ CONDICIONAL (Passa com Exceções) | 🚫 FAIL]
 - **Independência da Verificação:** [cross-agent | fresh-context | self-reported] — *quem verificou: [modelo/agente e sessão, ex.: "Claude Code, sessão nova sobre o repo" ou "Copilot auditando saída gerada pelo Cursor"]*
+- **Gate estático (`verify-a11y.py`):** [PASS | FAIL (n erros) | NÃO RODOU — motivo: negado por permissão / sem shell / erro do script] — *rodado em: [data]. Gate que não rodou é declarado aqui e na mensagem de entrega, nunca omitido.*
 
 ## 1. Verificação Técnica (Automated & Semantics)
 Evidências obtidas via validadores estáticos para garantir base técnica estrutural.

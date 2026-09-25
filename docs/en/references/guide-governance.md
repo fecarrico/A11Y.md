@@ -32,6 +32,16 @@ A clean axe run means "no violation among the rules that were enabled". Two defa
 
 The declaration is trust-based and still auditable: `REPORT.md` names *who* verified, and `verify-a11y.py` enforces the ceiling mechanically (a self-reported ✅ PASS fails the gate). None of it replaces the human checkpoints — a second agent can resolve a reference between files; it cannot hear a screen reader.
 
+### 1.3. The static gate — and what to say when it cannot run
+
+`tools/verify-a11y.py` is the mechanical half of Release Evidence. It does not judge whether the interface is accessible; it checks whether the process the standard demands actually happened: that `REPORT.md` exists and is newer than the last interface change, that it does not declare PASS over open checkpoints or on self-reported verification, that `EXCEPTIONS.md` entries carry owner, approver and expiry, and that the source is free of the Section 6 anti-patterns a text search can catch. Everything else — axe, ESLint, the human checkpoints — looks at the interface. Only the gate looks at the evidence.
+
+**Three outcomes, all recorded.** The *Static gate* field of `REPORT.md` takes exactly one: `PASS` with the date; `FAIL` with the error count, and the errors fixed or moved to `EXCEPTIONS.md` before delivery; or `NOT RUN` with the exact reason. The script prints the line to record at the end of every run.
+
+**When it cannot run, say so twice.** Agents lose the gate silently far more often than they fail it: a permission prompt denied, a sandbox without a shell, a command allowlist that does not match the invocation. In this project's own benchmark the script shipped in both treatment arms and was denied in six runs — and no journey said so until the deviations audit found it. So the rule is disclosure in two places: the report field, and the delivery message itself, in words the user can act on. For example: *"The A11Y.md static gate (`verify-a11y.py`) did not run: the shell command was denied. It would have checked that the report is current, does not self-approve, and that the source carries none of the §6 anti-patterns it can detect. This delivery is unverified by the gate."* Telling the user is what turns a silent denial into a decision they own.
+
+**Wiring it in CI.** Pin to a release tag, never to `main`, and start with `--warn-only`; once the team stops seeing false positives, drop it and the gate fails the build — stronger than any rule an agent has to remember. The snippet and every check's definition live in [`tools/README.md`](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/README.md).
+
 ## 2. Descriptive Evidence (The "Why")
 When creating custom complex widgets, the developer (or AI) must include a comment block explaining the accessibility strategy:
 - What is the focus order?

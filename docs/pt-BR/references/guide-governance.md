@@ -32,6 +32,16 @@ A *Independent Verification* (`A11Y.md` §2) existe porque a auto-revisão reexe
 
 A declaração é baseada em confiança e ainda assim auditável: o `REPORT.md` nomeia *quem* verificou, e o `verify-a11y.py` aplica o teto mecanicamente (um ✅ PASS self-reported reprova no gate). Nada disso substitui os checkpoints humanos — um segundo agente resolve uma referência entre arquivos; ele não escuta um leitor de tela.
 
+### 1.3. O gate estático — e o que dizer quando ele não pode rodar
+
+O `tools/verify-a11y.py` é a metade mecânica do Release Evidence. Ele não julga se a interface é acessível; ele confere se o processo que o padrão exige de fato aconteceu: que o `REPORT.md` existe e é mais novo que a última mudança de interface, que não declara PASS com checkpoints em aberto nem sobre verificação self-reported, que as entradas do `EXCEPTIONS.md` têm dono, aprovador e validade, e que o código está livre dos anti-padrões da Seção 6 que uma busca de texto consegue pegar. Todo o resto — axe, ESLint, os checkpoints humanos — olha para a interface. Só o gate olha para a evidência.
+
+**Três resultados, todos registrados.** O campo *Gate estático* do `REPORT.md` recebe exatamente um: `PASS` com a data; `FAIL` com a contagem de erros, e os erros corrigidos ou levados ao `EXCEPTIONS.md` antes da entrega; ou `NÃO RODOU` com o motivo exato. O script imprime a linha a registrar no fim de toda execução.
+
+**Quando não pode rodar, diga duas vezes.** Agentes perdem o gate em silêncio muito mais do que reprovam nele: um pedido de permissão negado, um sandbox sem shell, uma lista de comandos permitidos que não casa com a invocação. No benchmark deste próprio projeto o script foi embarcado nos dois braços de tratamento e negado em seis corridas — e nenhuma jornada disse isso até a auditoria de desvios encontrar. Por isso a regra é divulgação em dois lugares: o campo do relatório e a própria mensagem de entrega, em palavras sobre as quais o usuário consiga agir. Por exemplo: *"O gate estático do A11Y.md (`verify-a11y.py`) não rodou: o comando de shell foi negado. Ele teria verificado que o relatório está atual, que não se autoaprova e que o código não carrega nenhum dos anti-padrões da §6 que ele detecta. Esta entrega está sem verificação do gate."* Contar ao usuário é o que transforma uma negativa silenciosa numa decisão que é dele.
+
+**Ligando no CI.** Pine numa tag de release, nunca em `main`, e comece com `--warn-only`; quando o time parar de ver falsos positivos, retire a flag e o gate derruba o build — mais forte que qualquer regra que um agente precise lembrar. O snippet e a definição de cada checagem vivem em [`tools/README.md`](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/README.md).
+
 ## 2. Evidência Descritiva (The "Why")
 Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir um bloco de comentários explicando a estratégia de acessibilidade:
 - Qual é a Focus order (ordem de foco)?
