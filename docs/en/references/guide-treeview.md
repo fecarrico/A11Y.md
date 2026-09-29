@@ -56,4 +56,24 @@ Follow the [APG Tree View pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tree
 - A branch loading its children announces the wait (`aria-busy="true"` on the node, and a polite status region for the result: *"src expanded, 12 items"*). Silent async expansion is the most common reason a screen-reader user thinks the tree is broken.
 - Indentation is visual only. Depth reaches assistive technology through nesting or `aria-level` — never through padding.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a tree, WHEN I press `Tab`, THEN focus lands on one node and the next `Tab` leaves the tree — a single stop.
+- WHEN I press `↓`/`↑`, THEN focus moves through visible nodes only, skipping collapsed subtrees; `Home`/`End` reach the ends.
+- WHEN I press `→` on a closed folder, THEN it expands with focus still on it; `→` again enters its first child; `←` collapses or goes to the parent.
+- WHEN I expand a folder, THEN it is not selected by that; `Space` selects, `Enter` activates.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I reach the tree, THEN I hear "tree" and its name, then each node with level and position — "src, expanded, level 1, 2 of 5".
+- WHEN I reach a folder, THEN I hear "expanded" or "collapsed"; on a file I hear neither.
+- WHEN I expand a branch that loads its children, THEN I hear the wait, then "src expanded, 12 items".
+- WHEN the tree allows multiple selection, THEN every node reads "selected" or "not selected", never silence.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe through the tree, THEN each node reads with its level and position, and files read without "collapsed".
+- WHEN I double-tap a folder and it opens, THEN I hear "expanded" and its children come next in swipe order.
+
 *Success criteria covered: 1.3.1 Info and Relationships (A) · 2.1.1 Keyboard (A) · 2.4.3 Focus Order (A) · 4.1.2 Name, Role, Value (A) · 4.1.3 Status Messages (AA)*

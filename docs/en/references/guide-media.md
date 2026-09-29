@@ -131,6 +131,27 @@ Scroll-driven translation is a vestibular trigger — nausea, dizziness and diso
 - **Controls:** prefer the native `controls` attribute. A custom player is a Complex Component (Section 5 of the core file) — keyboard operable end to end, every control a real `<button>` with a name, state announced.
 - **Third-party embeds (YouTube, Vimeo, Loom):** the embed does not transfer the obligation. Verify that captions exist on the hosted asset and that the `<iframe>` carries a `title`. Auto-generated captions are a draft, exactly as in Section 2.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a page with a background video, WHEN it loads, THEN no audio starts on its own, `Tab` never lands on the video, and a "Pause background video" button is reachable.
+- WHEN I press `Enter` on that button, THEN the loop stops on its still frame and the button now reads "Play background video".
+- GIVEN reduced motion set in the OS, WHEN the page loads, THEN nothing plays or moves on its own: the poster shows, parallax layers stay still.
+- GIVEN a player, WHEN I `Tab` into it, THEN play/pause, volume, captions and seek work with `Space`, `Enter` and the arrows.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I read the hero, THEN I never hear the background video — only the heading, the text and the pause button.
+- WHEN I activate the pause button, THEN I hear its new name ("Play background video").
+- WHEN I reach a player, THEN I hear each control as "button" with name and state, and captions can be turned on.
+- WHEN I reach an embedded player, THEN I hear "frame" and a title saying what it contains, never "frame" alone.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe through the hero, THEN the background video is never an item; the pause button is, and double-tap toggles it and its name.
+- WHEN I swipe onto the player, THEN each control reads as "button" with name and state; double-tap on captions turns them on.
+- WHEN I swipe onto an embedded player, THEN I hear its title before its controls.
+
 *Success criteria covered: 1.2.1 Audio-only and Video-only (A) · 1.2.2 Captions (Prerecorded) (A) · 1.2.3 Audio Description or Media Alternative (A) · 1.2.5 Audio Description (Prerecorded) (AA) · 1.4.2 Audio Control (A) · 2.2.2 Pause, Stop, Hide (A) · 2.3.1 Three Flashes (A) · 2.3.3 Animation from Interactions (AAA (House Rule† here)) · 1.4.3 Contrast (Minimum) (AA)*
 
 ## Tip for AI:

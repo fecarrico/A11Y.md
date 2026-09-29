@@ -112,6 +112,20 @@ def line_of(text: str, pos: int) -> int:
     return text.count("\n", 0, pos) + 1
 
 
+# Markup quoted inside <pre>/<code> is documentation, not a component: a page
+# that explains role="menu" is not a menu. Found by running the gate against a
+# component library's documentation site (Magoo, 2026-09-29).
+CODE_SAMPLE = re.compile(r"(<(pre|code)\b[^>]*>)(.*?)(</\2\s*>)", re.I | re.S)
+
+
+def without_code_samples(text: str | None) -> str | None:
+    """Blank the text quoted inside <pre>/<code>, keeping every newline so the
+    line numbers reported for the rest of the file still point at the right place."""
+    if text is None:
+        return None
+    return CODE_SAMPLE.sub(lambda m: m.group(1) + re.sub(r"[^\n]", " ", m.group(3)) + m.group(4), text)
+
+
 def body_of(report: Path) -> str:
     """The report without its blockquotes: the template explains every field
     inside `>` notes, and a document-wide search would find the explanation."""
@@ -271,6 +285,28 @@ def check_report_gate(report: Path) -> str | None:
     return value
 
 
+def check_report_standard_version(report: Path) -> None:
+    """Which edition of the rules the evidence answers to (Release Evidence, §2).
+
+    The invocation phrase points at `main`, which moves. A report that does not
+    name the version it was verified against cannot be re-read against the
+    rules that were in force when it was written. Absence warns — reports older
+    than the field are still evidence; a placeholder left in place fails — the
+    field was there and nobody filled it.
+    """
+    body = body_of(report)
+    field = re.search(r"(?:Standard version|Versão do padrão)[^:\n]*:\*{0,2}[ \t]*(.*)", body, re.I)
+    if not field:
+        warn("standard-version", "REPORT.md does not name the A11Y.md version it was verified against. Add the "
+                                 "Standard version field from templates/REPORT.md — the Version line at the top of "
+                                 "A11Y.md — so the evidence can be re-read against the rules in force.")
+        return
+    value = field.group(1).strip()
+    if not value or PLACEHOLDER.search(value) or not re.search(r"\b\d+\.\d+\.\d+\b", value):
+        fail("standard-version", "REPORT.md carries the Standard version field but no version (x.y.z) — copy it "
+                                 "from the Version line at the top of the A11Y.md this project follows.")
+
+
 def check_contrast_evidence(root: Path, report: Path, src: Path) -> None:
     """Contrast ratios are computed, never estimated (A11Y.md §3) — and the
     gate recomputes every pair the report records, because a written "7.2:1"
@@ -425,7 +461,7 @@ def check_source_antipatterns(root: Path, src: Path) -> None:
          "conflicts with the assistive technology the person already configured (A11Y.md §6)"),
     )
     for path in source_files(root, src):
-        text = read(path)
+        text = without_code_samples(read(path))
         if text is None:
             continue
         rel = path.relative_to(root)
@@ -459,7 +495,7 @@ def check_placeholder_labels(root: Path, src: Path) -> None:
     field = re.compile(r"<(input|textarea)\b" + ATTRS + r">")
     skip_types = ("hidden", "submit", "button", "reset", "checkbox", "radio", "file", "range", "color", "image")
     for path in source_files(root, src):
-        text = read(path)
+        text = without_code_samples(read(path))
         if text is None or path.suffix in (".css", ".scss", ".js", ".ts"):
             continue
         for match in field.finditer(text):
@@ -489,7 +525,7 @@ def check_half_climbed(root: Path, src: Path) -> None:
     (Half-Climbed ARIA Ladders, A11Y.md §6). Keyboard behavior cannot be
     checked statically; this catches the mold, not the whole ladder."""
     for path in source_files(root, src):
-        text = read(path)
+        text = without_code_samples(read(path))
         if text is None or path.suffix in (".css", ".scss"):
             continue
         roles = set(re.findall(r"\brole\s*=\s*[\"']([\w-]+)[\"']", text))
@@ -518,8 +554,11 @@ def check_aria_soup(root: Path, src: Path) -> None:
     static_expanded = re.compile(r"\baria-expanded\s*=\s*[\"'](?:true|false)[\"']")
     dynamic_expanded = re.compile(r"aria-expanded(?!\s*=\s*[\"'](?:true|false)[\"'])|ariaExpanded")
 
-    files = [(p, read(p)) for p in source_files(root, src)]
-    toggled = any(t and p.suffix in SCRIPT_SUFFIXES and dynamic_expanded.search(t) for p, t in files)
+    files = [(p, without_code_samples(read(p))) for p in source_files(root, src)]
+    # The script that toggles aria-expanded rarely lives beside the markup: `--src`
+    # scopes the interface, so the search for the toggle spans the whole project.
+    toggled = any(p.suffix in SCRIPT_SUFFIXES and dynamic_expanded.search(read(p) or "")
+                  for p in source_files(root, root))
 
     for path, text in files:
         if not text or path.suffix in (".css", ".scss"):
@@ -564,7 +603,7 @@ def check_orphaned_aria(root: Path, src: Path) -> None:
                            r'\s*=\s*"([^"{}]+)"')
     declared = re.compile(r'\bid\s*=\s*"([^"{}]+)"')
     for path in source_files(root, src):
-        text = read(path)
+        text = without_code_samples(read(path))
         if text is None:
             continue
         ids = set(declared.findall(text))
@@ -589,6 +628,7 @@ def run_checks(root: Path, src: Path) -> None:
         check_report_status(report)
         check_report_independence(report)
         gate_declared = check_report_gate(report)
+        check_report_standard_version(report)
         check_contrast_evidence(root, report, src)
     check_exceptions(root)
     check_gitignore(root)
@@ -616,6 +656,7 @@ CLEAN_REPORT = """# Report
 - **Compliance Status:** ⚠️ CONDITIONAL — screen reader validation pending
 - **Verification Independence:** fresh-context — who verified: new session over the repo
 - **Static gate (`verify-a11y.py`):** PASS — run on: 2026-09-25
+- **Standard version:** 2.1.0
 - [x] **Text & UI Contrast:** measured
 | body | #1c1b19 | #f7f6f3 | 15.92:1 | 7:1 | ✅ |
 - [ ] **Screen reader:** pending
@@ -628,7 +669,8 @@ SELF_TEST_CASES = [
         "src/index.html": '<label for="q">Search</label><input id="q" placeholder="title"><button>Go</button>'
                           '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
         "REPORT.md": CLEAN_REPORT,
-    }, set(), set(), {"clickable-div", "placeholder-label", "aria-soup", "contrast-evidence", "gate-declared"}),
+    }, set(), set(), {"clickable-div", "placeholder-label", "aria-soup", "contrast-evidence", "gate-declared",
+                      "standard-version", "half-climbed-aria"}),
     ("clickable div in four syntaxes, hand-made button warns", {
         "src/a.jsx": '<div onClick={() => go()}>x</div>',
         "src/b.vue": '<span @click="go">x</span><div v-on:click="go">y</div>',
@@ -653,6 +695,25 @@ SELF_TEST_CASES = [
         "src/s.html": '<button aria-expanded="false">Menu</button>',
         "src/s.js": 'btn.setAttribute("aria-expanded", String(open))',
     }, {"artifacts"}, set(), {"aria-soup"}),
+    ("aria-expanded toggled by a script outside --src is not soup either", {
+        "src/s.html": '<button aria-expanded="false">Menu</button>',
+        "js/main.js": 'btn.setAttribute("aria-expanded", String(open))',
+    }, {"artifacts"}, set(), {"aria-soup"}),
+    ("markup quoted in <pre>/<code> is documentation, not a component", {
+        "src/doc.html": '<p>Avoid <code>role="menu"</code> on site navigation.</p>'
+                        '<pre><code>&lt;div role="tablist"&gt;</code></pre>'
+                        '<pre>\n<div role="tablist"><button>1</button></div>\n<div onclick="x()">y</div>\n</pre>'
+                        '<div role="tablist"><button role="tab" aria-selected="true">real</button></div>',
+    }, {"artifacts"}, set(), {"half-climbed-aria", "clickable-div", "aria-soup"}),
+    ("standard version: missing field warns", {
+        "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "REPORT.md": CLEAN_REPORT.replace("- **Standard version:** 2.1.0\n", ""),
+    }, set(), {"standard-version"}, {"gate-declared"}),
+    ("standard version: placeholder left in place fails", {
+        "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "REPORT.md": CLEAN_REPORT.replace("- **Standard version:** 2.1.0",
+                                          "- **Standard version:** [e.g. 2.1.0 — the Version line at the top of A11Y.md]"),
+    }, {"standard-version", "gate-declared"}, set(), set()),
     ("nullified alt: bare JSX aria-hidden and role=presentation", {
         "src/i.jsx": '<img alt="Chart" aria-hidden /><img alt="Map" role="presentation" />'
                      '<img alt="" aria-hidden="true" />',

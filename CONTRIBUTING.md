@@ -8,7 +8,7 @@ This project is a **normative standard**, not an application. Contributing here 
 
 **2. An erratum.** The standard states something and reality disagrees — an API that changed, an SC cited wrong, a technique that no longer works in current assistive technology. Open an [erratum issue](https://github.com/fecarrico/A11Y.md/issues/new?template=erratum.yml) with the primary source. This standard cites WCAG by Success Criterion number precisely so it can be proven wrong.
 
-**3. A gap.** A component or situation the standard names but does not cover, or should name and does not. Open a [proposal](https://github.com/fecarrico/A11Y.md/issues/new?template=proposal.yml). Check the [§2.1 loading map](docs/en/A11Y.md#21-loading-triggers-lazy-loading-map) first — 29 guides exist, and the gap may be a missing *trigger* rather than a missing guide.
+**3. A gap.** A component or situation the standard names but does not cover, or should name and does not. Open a [proposal](https://github.com/fecarrico/A11Y.md/issues/new?template=proposal.yml). Check the [§2.1 loading map](docs/en/A11Y.md#21-loading-triggers-lazy-loading-map) first — 31 guides exist, and the gap may be a missing *trigger* rather than a missing guide.
 
 Built something with the standard? [Submit it to the gallery](https://github.com/fecarrico/A11Y.md/issues/new?template=gallery.yml).
 

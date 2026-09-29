@@ -47,3 +47,22 @@
 
 ### 2. No Close Button
 - **Implication:** Users who rely on screen readers or have cognitive disabilities might not know how to exit a modal if there isn't a clear, labeled "Close" action.
+
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a page with a control that opens a dialog, WHEN I reach it with `Tab` and press `Enter`, THEN the dialog opens and focus lands inside it — on its heading or its first control.
+- WHEN I press `Tab` and `Shift+Tab` repeatedly, THEN focus cycles only through the dialog's controls and never reaches the page behind.
+- WHEN I press `Esc`, THEN the dialog closes and focus returns to the control that opened it.
+- WHEN the dialog holds unsaved input and I press `Esc` or Close, THEN I am asked to confirm before the input is lost.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN the dialog opens, THEN I hear "dialog" and its accessible name, then the heading or the first control.
+- WHEN I read forward past the dialog's last control, THEN I do not reach the page content behind it.
+- WHEN I activate Close, THEN I hear the control that opened the dialog announced again.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN the dialog opens, THEN I hear its name, and swiping moves only between the dialog's elements.
+- WHEN I double-tap Close, THEN the dialog is gone and focus is back on the opening control.

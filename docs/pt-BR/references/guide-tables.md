@@ -25,3 +25,20 @@
   </tbody>
 </table>
 ```
+
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma página com uma tabela de dados, QUANDO pressiono `Tab` através dela, ENTÃO nenhuma célula recebe foco — só os controles de verdade dentro da tabela (links, botões), na ordem de leitura.
+- QUANDO a tabela é feita de `<div>`s com papéis ARIA, ENTÃO o `Tab` se comporta exatamente como numa tabela nativa: nenhuma parada a mais, nenhuma a menos.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego na tabela, ENTÃO ouço "tabela", a legenda dela e o tamanho, em linhas e colunas.
+- QUANDO me movo entre células com os comandos de tabela (`Ctrl+Alt` + `←`/`→`/`↑`/`↓`), ENTÃO em cada célula ouço o cabeçalho da coluna — e o da linha, quando existe — antes do valor.
+- QUANDO a tabela é feita de `<div>`s, ENTÃO ainda ouço "tabela" e ainda me movo por linha e coluna — comandos de tabela que não fazem nada são reprovação.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo até a tabela, ENTÃO ouço "tabela", a legenda e quantas linhas e colunas ela tem.
+- QUANDO deslizo pelas células, ENTÃO cada valor vem depois do cabeçalho da coluna — e do da linha, quando existe.

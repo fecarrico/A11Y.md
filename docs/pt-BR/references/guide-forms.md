@@ -24,6 +24,16 @@
 ```
 - **Por quê:** `aria-invalid` sinaliza o estado de erro. O `role="alert"` garante que o screen reader anuncie o erro imediatamente.
 
+### 3. Agrupamento com `fieldset` e `legend`
+```html
+<fieldset>
+  <legend>Forma de entrega</legend>
+  <label><input type="radio" name="entrega" value="retirada"> Retirar na loja</label>
+  <label><input type="radio" name="entrega" value="motoboy"> Entrega por motoboy</label>
+</fieldset>
+```
+- **Por quê:** A `legend` é o nome do grupo — o leitor de tela a diz antes da primeira opção, e "Retirar na loja" é ouvido como resposta a "Forma de entrega" (SC 1.3.1). Grupos de radio, checkboxes relacionados e as partes de uma mesma resposta (dia / mês / ano) são grupos; uma `<div class="form-group">` é classe de CSS, invisível para a tecnologia assistiva. Os controles em si — checkbox, radio, switch, slider, select nativo — estão especificados em [Controles de Formulário](guide-form-controls.md).
+
 ## Maus Exemplos
 
 ### 1. Placeholder como Label
@@ -37,3 +47,21 @@
 <input type="text" style="border: 1px solid red;">
 ```
 - Ver *Semantic Redundancy* — core §3.
+
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO um formulário, QUANDO entro num campo com `Tab`, ENTÃO o rótulo continua visível ao lado enquanto digito — não some como um placeholder.
+- QUANDO envio com um campo inválido, ENTÃO o erro aparece como texto junto do campo, não só como borda vermelha.
+- QUANDO percorro o formulário com `Tab`, ENTÃO alcanço todos os campos e o botão de envio — nada exige o mouse.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego a um campo com `Tab`, ENTÃO ouço o rótulo, o tipo do campo, "obrigatório" quando for, e o texto de ajuda.
+- QUANDO envio com um campo inválido, ENTÃO ouço a mensagem de erro na hora, sem sair do lugar.
+- QUANDO volto a esse campo, ENTÃO ouço "inválido" e o texto do erro junto com o rótulo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo até um campo, ENTÃO ouço o rótulo e o texto de ajuda antes de tocar duas vezes para editar.
+- QUANDO toco duas vezes em Enviar com um campo inválido, ENTÃO ouço a mensagem de erro.

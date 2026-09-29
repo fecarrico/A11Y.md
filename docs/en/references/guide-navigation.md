@@ -66,4 +66,24 @@ After a client-side route change, focus **MUST** be managed — sent to the new 
 ```
 - See *Clickable Divs* — core §6: no focus, no link role, no new-tab, no copy-address.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a freshly loaded page, WHEN I press `Tab` once, THEN the skip link is the first thing focused, and it is visible.
+- WHEN I press `Enter` on the skip link, THEN the next `Tab` lands inside the main content, past the navigation.
+- WHEN I `Tab` across the menu, THEN the items keep the same order on every page, and a submenu opens on `Enter` and closes on `Esc`, never on hover only.
+- WHEN a link changes the route without a reload, THEN focus moves to the new content's heading or the top of the page, and the window title changes.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I jump by landmark, THEN I hear "navigation", "main" and the others by role, and two navigation regions have different names.
+- WHEN I enter the menu, THEN I hear "list, 5 items" and "current page" on the item for this page; the breadcrumb reads the same, its last item "current page".
+- WHEN I list the links out of context, THEN each link's text alone says where it goes — "opens in a new tab" and the file format included.
+- WHEN the route changes without a reload, THEN I hear the new content's heading, and the title I request is already the new one.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe through the menu, THEN I hear "list" with its count and "current page" on the current item, and a submenu opens on double-tap.
+- WHEN I double-tap a link that changes the route, THEN I hear the new content's heading and reading continues from there.
+
 *Success criteria covered: 2.4.1 Bypass Blocks (A) · 2.4.4 Link Purpose — In Context (A) · 2.4.6 Headings and Labels (AA) · 2.4.8 Location (AAA) · 1.3.1 Info and Relationships (A) · 3.2.3 Consistent Navigation (AA) · 3.2.4 Consistent Identification (AA)*

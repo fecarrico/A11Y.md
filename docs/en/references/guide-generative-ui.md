@@ -72,6 +72,27 @@ Conversational interfaces put the whole burden of structure on the reader. Apply
 - **Errors and refusals are content, not silence.** "Something went wrong" in a `role="status"` region, with what to do next — a stream that simply stops leaves no signal that anything happened at all.
 - **Say what the assistant is** in the interface. People who cannot see the visual framing deserve the same disclosure everyone else gets from the layout.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN the composer has focus, WHEN I send a message and the response starts streaming, THEN focus stays in the composer — never pulled to the incoming text.
+- WHEN a response is streaming, THEN `Tab` reaches a "Stop generating" button, and `Enter` on it halts the stream.
+- WHEN I stop early, THEN Copy and Retry are still reachable for the partial response.
+- WHEN I activate "Skip to latest response", THEN focus lands on the newest answer — nothing else ever moves it there.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN a response starts and ends, THEN I hear "Generating response" once, then "Response ready" with its length — never the text arriving in fragments.
+- WHEN I read a message, THEN I hear who is speaking ("Assistant:" / "You:") before its content, and I can jump between turns by heading.
+- WHEN I list the buttons, THEN each per-message action is distinct ("Copy response 3"), not twenty identical "Copy".
+- WHEN generation fails, THEN I hear what went wrong and what to do next, not silence.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN a response arrives, THEN I hear the state change and swiping stays where I was — the new message is not re-read as it grows.
+- WHEN I swipe through the thread, THEN each message starts with who is speaking, and its headings and lists read as such.
+- WHEN I swipe to a message action and double-tap, THEN I hear its distinct name ("Copy response 3, button").
+
 ## Sources
 
 - **Live region mechanics** — the behavior §0 and §1 rely on (a region must exist before its first message; how additions are processed): [WAI-ARIA — `log` role](https://www.w3.org/TR/wai-aria-1.2/#log) · Sara Soueidan, [*Accessible notifications with ARIA Live Regions*](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-1/).

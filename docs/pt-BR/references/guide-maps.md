@@ -71,4 +71,25 @@ A maioria dos mapas vem de Google Maps, Mapbox, Leaflet ou equivalente. **A obri
 - Dê ao `<iframe>` um `title` que diga o que ele contém — um iframe de mapa sem título é anunciado como "frame".
 - Onde o controle do provedor não puder ser corrigido neste ciclo, isso é entrada em `EXCEPTIONS.md` com dono, issue e expiração — e a alternativa textual é o que mantém a funcionalidade utilizável enquanto isso, e é por isso que ela nunca é opcional.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma página com mapa interativo, QUANDO pressiono `Tab`, ENTÃO o mapa é uma única parada, e `Esc` devolve o foco à página — nenhuma tecla me prende lá dentro.
+- QUANDO o foco está no mapa e pressiono `←`/`→`/`↑`/`↓` ou `+`/`-`, ENTÃO o mapa move e dá zoom.
+- QUANDO chego com `Tab` aos controles de zoom, ENTÃO cada um é um botão com foco visível, e `Enter` aplica o zoom.
+- QUANDO uso a lista ao lado do mapa, ENTÃO alcanço ali a informação e a ação de cada marcador; a tarefa termina sem tocar no mapa.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego ao mapa, ENTÃO ouço o nome dele ("Mapa das lojas próximas") — nunca um "frame" ou "grupo" sem nome.
+- QUANDO chego aos controles de zoom, ENTÃO ouço "botão" com nome como "Aproximar", não um ícone sem rótulo.
+- QUANDO movo, dou zoom ou troco um filtro, ENTÃO ouço o resultado ("4 lojas na área visível"), não "mapa movido".
+- QUANDO leio a lista, ENTÃO ouço nome, distância e status de cada loja, e a lista reflete os mesmos filtros do mapa.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo até o mapa, ENTÃO ouço o nome dele, e o próximo deslize sai para os controles ou para a lista.
+- QUANDO deslizo até um controle de zoom e toco duas vezes, ENTÃO ouço "botão", o nome e depois o resultado do zoom.
+- QUANDO deslizo pela lista, ENTÃO ouço cada resultado com nome e distância; o toque duplo abre os detalhes.
+
 *Critérios de sucesso cobertos: 1.1.1 Conteúdo Não Textual (A) · 2.1.1 Teclado (A) · 2.1.2 Sem Armadilha de Teclado (A) · 2.5.1 Gestos de Ponteiro (A) · 1.4.1 Uso de Cor (A) · 1.4.11 Contraste Não Textual (AA) · 4.1.3 Mensagens de Status (AA)*

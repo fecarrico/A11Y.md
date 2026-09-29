@@ -13,4 +13,25 @@
 5. **Slides fora da tela ficam `inert`.** `tabindex="-1"` afeta só o elemento em que está — os links e botões *dentro* do slide oculto continuam focáveis, exatamente o foco invisível que esta regra existe para evitar. `inert` remove a subárvore inteira do foco e da árvore de acessibilidade.
 6. **Anuncie só as mudanças iniciadas pela pessoa:** uma região polida confirma *"Slide 4 de 8"* depois do Próximo — mas a rotação automática **nunca** é anunciada, ou o carrossel narra a si mesmo por cima de todo o resto da página.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO um carrossel que gira sozinho, QUANDO entro nele com `Tab`, ENTÃO a primeira parada é o controle de pausa e a rotação para enquanto o foco está dentro.
+- QUANDO pressiono `Enter` em Pausar, ENTÃO a rotação para.
+- QUANDO sigo com `Tab`, ENTÃO o foco alcança só Anterior, Próximo, os pontos e os links do slide visível — nada dentro de um slide fora da tela.
+- QUANDO o foco está num link dentro de um slide, ENTÃO esse slide nunca vai embora de mim.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego ao carrossel, ENTÃO ouço "carrossel" e o nome dele, e cada slide como "slide" com a posição — "3 de 8" — ou o título.
+- QUANDO aciono Próximo, ENTÃO ouço "Slide 4 de 8" uma vez.
+- QUANDO o carrossel gira sozinho, ENTÃO não ouço nada sobre isso.
+- QUANDO chego a um ponto seletor, ENTÃO ouço "botão", o slide a que ele leva e "atual" no ativo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo para dentro do carrossel, ENTÃO o primeiro elemento que ouço é o controle de pausa.
+- QUANDO continuo deslizando, ENTÃO passo só pelo conteúdo do slide visível, nunca por slides fora da tela.
+- QUANDO toco duas vezes em Próximo, ENTÃO ouço a nova posição do slide; QUANDO ele gira sozinho, ENTÃO não ouço nada.
+
 *Critérios de sucesso cobertos: 2.2.2 Pausar, Parar, Ocultar (A) · 2.1.1 Teclado (A) · 1.4.1 Uso de Cor (A) · 4.1.2 Nome, Função, Valor (A) · 2.4.3 Ordem de Foco (A)*

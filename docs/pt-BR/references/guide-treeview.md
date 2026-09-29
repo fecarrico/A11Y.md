@@ -56,4 +56,24 @@ Siga o [padrão Tree View da APG](https://www.w3.org/WAI/ARIA/apg/patterns/treev
 - Um ramo carregando filhos anuncia a espera (`aria-busy="true"` no nó, e uma região de status polida para o resultado: *"src expandido, 12 itens"*). Expansão assíncrona silenciosa é o motivo mais comum de quem usa leitor de tela achar que a árvore quebrou.
 - Indentação é só visual. Profundidade chega à tecnologia assistiva por aninhamento ou por `aria-level` — nunca por padding.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma árvore, QUANDO pressiono `Tab`, ENTÃO o foco pousa num nó e o próximo `Tab` sai da árvore — uma parada só.
+- QUANDO pressiono `↓`/`↑`, ENTÃO o foco anda só pelos nós visíveis, pulando subárvores recolhidas; `Home`/`End` vão às pontas.
+- QUANDO pressiono `→` numa pasta fechada, ENTÃO ela expande com o foco ainda nela; `→` de novo entra no primeiro filho; `←` recolhe ou sobe ao pai.
+- QUANDO expando uma pasta, ENTÃO ela não fica selecionada por isso; `Espaço` seleciona, `Enter` ativa.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego à árvore, ENTÃO ouço "árvore" e o nome dela, depois cada nó com nível e posição — "src, expandido, nível 1, 2 de 5".
+- QUANDO chego a uma pasta, ENTÃO ouço "expandido" ou "recolhido"; num arquivo, nenhum dos dois.
+- QUANDO expando um ramo que carrega os filhos, ENTÃO ouço a espera, depois "src expandido, 12 itens".
+- QUANDO a árvore permite seleção múltipla, ENTÃO todo nó lê "selecionado" ou "não selecionado", nunca silêncio.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo pela árvore, ENTÃO cada nó lê com nível e posição, e arquivos leem sem "recolhido".
+- QUANDO toco duas vezes numa pasta e ela abre, ENTÃO ouço "expandido" e os filhos dela vêm em seguida na ordem de deslize.
+
 *Critérios de sucesso cobertos: 1.3.1 Informação e Relações (A) · 2.1.1 Teclado (A) · 2.4.3 Ordem de Foco (A) · 4.1.2 Nome, Função, Valor (A) · 4.1.3 Mensagens de Status (AA)*

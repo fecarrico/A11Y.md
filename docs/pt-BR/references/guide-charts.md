@@ -88,4 +88,25 @@ Dashboards mudam sob filtros, intervalos de data e dados ao vivo. Toda mudança 
 - Metadado pequeno é onde a exceção de densidade de 10px mais é abusada — é entrada em `EXCEPTIONS.md` com contraste 7:1, não padrão (`A11Y.md` §4).
 - Um "gráfico" que é um número só (um card de KPI) é texto: marque como texto, não como imagem de um número.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO um gráfico interativo, QUANDO pressiono `Tab`, ENTÃO o gráfico é uma única parada; `→`/`←` andam entre os pontos, e o ponto focado mostra anel ou marcador ampliado.
+- QUANDO um ponto tem tooltip no hover, ENTÃO o mesmo tooltip abre quando o ponto recebe foco.
+- QUANDO pressiono `Esc` num modo de zoom ou brush, ENTÃO o modo termina e continuo na página, com o foco no gráfico.
+- DADO um gráfico estático ou SVG inline, QUANDO percorro a página com `Tab`, ENTÃO nenhuma parada cai no desenho, e o controle "Ver dados como tabela" é alcançável.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- DADO um gráfico interativo, QUANDO ando entre os pontos com as setas, ENTÃO ouço o rótulo e o valor de cada ponto ("março: 35.000").
+- DADO um SVG inline, QUANDO leio através dele, ENTÃO ouço uma única "imagem" com título e tendência, nunca os paths um a um.
+- QUANDO troco um filtro, ENTÃO ouço o resultado ("Filtrado por 2º trimestre: 3 séries, 12 pontos"), não "gráfico atualizado".
+- QUANDO abro a tabela de dados, ENTÃO ouço "tabela" e leio a mesma série linha por linha.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo até um SVG inline, ENTÃO ouço um único item com título e tendência; o próximo deslize sai do gráfico.
+- QUANDO deslizo além do gráfico, ENTÃO chego ao controle da tabela; o toque duplo abre, e as linhas são lidas em ordem.
+- QUANDO toco duas vezes num filtro, ENTÃO ouço o resultado da mudança.
+
 *Critérios de sucesso cobertos: 1.1.1 Conteúdo Não Textual (A) · 1.4.1 Uso de Cor (A) · 1.4.11 Contraste Não Textual (AA) · 2.1.1 Teclado (A) · 2.4.7 Foco Visível (AA) · 2.2.2 Pausar, Parar, Ocultar (A) · 4.1.3 Mensagens de Status (AA)*

@@ -13,4 +13,24 @@
 5. **O rodapé continua alcançável.** Se o conteúdo cresce sozinho, ou pare o carregamento automático depois de alguns lotes (trocando para o botão), ou ofereça um atalho para pular o feed — rodapé que foge quando você se aproxima é conteúdo que existe e não pode ser usado (Princípio Zero).
 6. **`role="feed"`** é o container certo para um feed de verdade (fluxo de artigos): deixa o leitor de tela navegar entre artigos enquanto o carregamento continua; cada artigo carrega `aria-posinset`/`aria-setsize`.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma lista com botão Carregar mais, QUANDO pressiono `Enter` nele, ENTÃO o foco pousa no primeiro item novo — não no topo, não no botão.
+- QUANDO o conteúdo carrega sozinho enquanto desço, ENTÃO o foco fica onde estava e nenhum gatilho invisível recebe `Tab`.
+- QUANDO passo da lista com `Tab`, ENTÃO alcanço o rodapé — um botão Carregar mais ou um atalho de pular o feed me leva lá antes de a lista crescer.
+- QUANDO abro um item e volto, ENTÃO estou na mesma posição, com os mesmos itens carregados.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO aciono Carregar mais, ENTÃO ouço o primeiro item novo, com a posição quando o total é conhecido — "21 de 200".
+- QUANDO um lote carrega sozinho, ENTÃO ouço um anúncio só — "mais 20 resultados, 60 de 200" — nunca um por item.
+- QUANDO itens novos entram enquanto leio, ENTÃO o que estou lendo não se move nem muda; eles vêm depois.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO toco duas vezes em Carregar mais, ENTÃO o próximo elemento que ouço é o primeiro item novo.
+- QUANDO um lote carrega sozinho, ENTÃO ouço um resumo só — "mais 20 resultados, 60 de 200" — e minha posição não muda.
+- QUANDO continuo deslizando além da lista, ENTÃO alcanço o rodapé.
+
 *Critérios de sucesso cobertos: 2.4.3 Ordem de Foco (A) · 4.1.3 Mensagens de Status (AA) · 2.1.1 Teclado (A) · 2.4.1 Pular Blocos (A)*

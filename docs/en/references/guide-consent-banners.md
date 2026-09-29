@@ -43,4 +43,24 @@ Most banners come from a consent management platform (CMP). **The obligation doe
 - If the CMP is inaccessible and cannot be replaced in the current cycle, that is an `EXCEPTIONS.md` entry — with risk owner, issue and expiry — not somebody else's problem.
 - Many CMPs expose accessibility options that ship disabled (initial focus, labels, contrast). Those belong to configuration, not to the backlog.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a modal banner, WHEN it appears, THEN focus lands inside it, `Tab` cycles only within it, and `Esc` closes it and returns focus to its origin.
+- WHEN the banner is a non-modal strip and I `Tab` through the page, THEN I reach it in the natural order and leave it with nothing holding me.
+- WHEN I `Tab` to the end of the page with the strip open, THEN every focused element stays visible — none hidden under the banner.
+- WHEN I reject, THEN "Reject all" costs the same as "Accept all": one activation, at the same level.
+- WHEN I leave the banner unanswered, THEN it never closes itself nor assumes an answer, however long I wait.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN a modal banner appears, THEN I hear "dialog" and its name, and I cannot read past it into the page.
+- WHEN a non-modal strip appears, THEN I hear "region" with its name; if it arrives after load, its message comes as a status without moving me.
+- WHEN I reach the actions, THEN "Accept all", "Reject all" and the X are each "button" with a name that states the outcome.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN a modal banner appears, THEN I hear its name, and swiping stays inside it until I double-tap an action.
+- WHEN a non-modal strip is open, THEN swiping through the page reaches it and passes it, and I hear "region" with its name.
+
 *Success criteria covered: 2.1.2 No Keyboard Trap (A) · 2.4.11 Focus Not Obscured (Minimum) (AA) · 2.2.1 Timing Adjustable (A) · 4.1.3 Status Messages (AA) · 2.5.8 Target Size (AA)*

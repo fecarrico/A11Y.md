@@ -47,3 +47,22 @@
 
 ### 2. Sem Botão de Fechar
 - **Implicação:** Usuários que dependem de screen readers ou possuem deficiências cognitivas podem não saber como sair de um modal se não houver uma ação clara e rotulada de "Close" ou "Fechar".
+
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma página com um controle que abre um diálogo, QUANDO chego nele com `Tab` e pressiono `Enter`, ENTÃO o diálogo abre e o foco pousa dentro dele — no título ou no primeiro controle.
+- QUANDO pressiono `Tab` e `Shift+Tab` repetidamente, ENTÃO o foco circula só pelos controles do diálogo e nunca alcança a página atrás.
+- QUANDO pressiono `Esc`, ENTÃO o diálogo fecha e o foco volta ao controle que o abriu.
+- QUANDO o diálogo tem dados não salvos e pressiono `Esc` ou Fechar, ENTÃO recebo um pedido de confirmação antes de os dados se perderem.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO o diálogo abre, ENTÃO ouço "diálogo" e o nome acessível dele, depois o título ou o primeiro controle.
+- QUANDO leio adiante além do último controle do diálogo, ENTÃO não alcanço o conteúdo da página atrás dele.
+- QUANDO aciono Fechar, ENTÃO ouço de novo o controle que abriu o diálogo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO o diálogo abre, ENTÃO ouço o nome dele, e deslizar move só entre os elementos do diálogo.
+- QUANDO toco duas vezes em Fechar, ENTÃO o diálogo some e o foco está de volta no controle de abertura.

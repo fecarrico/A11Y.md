@@ -13,4 +13,25 @@
 5. **Off-screen slides are `inert`.** `tabindex="-1"` affects only the element it sits on — the links and buttons *inside* the hidden slide stay focusable, which is exactly the invisible focus this rule exists to prevent. `inert` removes the whole subtree from focus and from the accessibility tree.
 6. **Announce only user-initiated changes:** a polite region confirms *"Slide 4 of 8"* after Next — but auto-rotation is **never** announced, or the carousel narrates itself over everything else on the page.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a carousel that rotates on its own, WHEN I `Tab` into it, THEN the first stop is the pause control and the rotation stops while focus is inside.
+- WHEN I press `Enter` on Pause, THEN the rotation stops.
+- WHEN I keep pressing `Tab`, THEN focus reaches Previous, Next, the dots and the visible slide's links only — never anything in an off-screen slide.
+- WHEN focus is on a link inside a slide, THEN that slide never moves away from under me.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I reach the carousel, THEN I hear "carousel" and its name, and each slide as "slide" with its position — "3 of 8" — or its title.
+- WHEN I activate Next, THEN I hear "Slide 4 of 8" once.
+- WHEN the carousel rotates on its own, THEN I hear nothing about it.
+- WHEN I reach a picker dot, THEN I hear "button", the slide it leads to, and "current" on the active one.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe into the carousel, THEN the first element I hear is the pause control.
+- WHEN I keep swiping, THEN I pass only through the visible slide's content, never through off-screen slides.
+- WHEN I double-tap Next, THEN I hear the new slide's position; WHEN it rotates by itself, THEN I hear nothing.
+
 *Success criteria covered: 2.2.2 Pause, Stop, Hide (A) · 2.1.1 Keyboard (A) · 1.4.1 Use of Color (A) · 4.1.2 Name, Role, Value (A) · 2.4.3 Focus Order (A)*

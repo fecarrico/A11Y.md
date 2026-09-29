@@ -71,4 +71,25 @@ Most maps come from Google Maps, Mapbox, Leaflet or an equivalent. **The obligat
 - Give the `<iframe>` a `title` that says what it contains — an untitled map iframe is announced as "frame".
 - Where the provider's control cannot be fixed in this cycle, that is an `EXCEPTIONS.md` entry with owner, issue and expiry — and the text alternative is what keeps the feature usable meanwhile, which is why it is never optional.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a page with an interactive map, WHEN I press `Tab`, THEN the map is a single stop, and `Esc` returns focus to the page — no key locks me inside.
+- WHEN focus is on the map and I press `←`/`→`/`↑`/`↓` or `+`/`-`, THEN the map pans and zooms.
+- WHEN I `Tab` to the zoom controls, THEN each is a button with a visible focus ring, and `Enter` zooms.
+- WHEN I use the list beside the map, THEN I reach every marker's information and action there; the task completes without touching the map.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I reach the map, THEN I hear its name ("Map of nearby stores") — never an unnamed "frame" or "group".
+- WHEN I reach the zoom controls, THEN I hear "button" with a name such as "Zoom in", not an unlabelled icon.
+- WHEN I pan, zoom or change a filter, THEN I hear the outcome ("4 stores in view"), not "map moved".
+- WHEN I read the list, THEN I hear each store's name, distance and status, and the list reflects the same filters as the map.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe onto the map, THEN I hear its name, and the next swipe leaves it for the controls or the list.
+- WHEN I swipe to a zoom control and double-tap, THEN I hear "button", its name, then the outcome of the zoom.
+- WHEN I swipe through the list, THEN I hear each result with name and distance; double-tap opens its details.
+
 *Success criteria covered: 1.1.1 Non-text Content (A) · 2.1.1 Keyboard (A) · 2.1.2 No Keyboard Trap (A) · 2.5.1 Pointer Gestures (A) · 1.4.1 Use of Color (A) · 1.4.11 Non-text Contrast (AA) · 4.1.3 Status Messages (AA)*

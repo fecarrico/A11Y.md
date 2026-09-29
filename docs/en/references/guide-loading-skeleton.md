@@ -21,4 +21,24 @@
 - **Scroll-reveal is the same trap:** below-the-fold content exists for readers, print and search *before* any `IntersectionObserver` fires — the observer adds the animation, it never adds the content.
 - **`<noscript>` is not the fix.** The failing case is usually JavaScript *enabled* but broken, blocked or late — a `<noscript>` block helps none of those.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a region still showing skeletons, WHEN I press `Tab` through it, THEN no skeleton block receives focus.
+- WHEN the real content lands, THEN focus stays exactly where it was — not pulled to the new content, nor to the top of the page.
+- WHEN my focus was inside the region being replaced, THEN it ends up on the nearest stable ancestor, not on the page body.
+- WHEN the script is blocked or has not run, THEN all the content is still visible and reachable with `Tab` — nothing waits for a script.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN loading starts, THEN I hear one status such as "Loading results" — never one per skeleton block, never as an alert.
+- WHEN the content arrives, THEN I hear one outcome such as "12 results loaded", and my reading position is unchanged.
+- WHEN I read across the skeleton area, THEN the placeholders are silent — nothing there pretends to be content.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN loading starts and ends, THEN I hear one "loading" message and one outcome, nothing in between.
+- WHEN I swipe through the loading region, THEN the skeleton blocks are skipped entirely.
+- WHEN the content lands, THEN my position does not jump.
+
 *Success criteria covered: 4.1.3 Status Messages (AA) · 2.4.3 Focus Order (A) · 1.1.1 / Principle Zero (A) · Motion (House Rule†) (—)*
