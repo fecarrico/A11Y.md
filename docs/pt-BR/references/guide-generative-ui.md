@@ -72,6 +72,27 @@ Interface conversacional joga todo o peso da estrutura sobre quem lê. Aplique [
 - **Erro e recusa são conteúdo, não silêncio.** "Algo deu errado" numa região `role="status"`, com o que fazer em seguida — um stream que simplesmente para não deixa sinal nenhum de que algo aconteceu.
 - **Diga o que o assistente é** dentro da interface. Quem não enxerga o enquadramento visual merece a mesma informação que todo mundo recebe do layout.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO o compositor com foco, QUANDO envio uma mensagem e a resposta começa a chegar, ENTÃO o foco fica no compositor — nunca é puxado para o texto que chega.
+- QUANDO uma resposta está em streaming, ENTÃO `Tab` alcança o botão "Parar geração", e `Enter` nele interrompe o stream.
+- QUANDO interrompo cedo, ENTÃO Copiar e Tentar de novo continuam alcançáveis para a resposta parcial.
+- QUANDO aciono "Ir para a última resposta", ENTÃO o foco pousa na resposta mais nova — nada além disso o move até lá.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO uma resposta começa e termina, ENTÃO ouço "Gerando resposta" uma vez e depois "Resposta pronta" com o tamanho — nunca o texto chegando aos pedaços.
+- QUANDO leio uma mensagem, ENTÃO ouço quem fala ("Assistente:" / "Você:") antes do conteúdo, e pulo entre os turnos por cabeçalho.
+- QUANDO listo os botões, ENTÃO cada ação por mensagem é distinta ("Copiar resposta 3"), não vinte "Copiar" iguais.
+- QUANDO a geração falha, ENTÃO ouço o que deu errado e o que fazer em seguida, não silêncio.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO uma resposta chega, ENTÃO ouço a mudança de estado e o deslize continua onde eu estava — a mensagem nova não é relida enquanto cresce.
+- QUANDO deslizo pela conversa, ENTÃO cada mensagem começa por quem fala, e os cabeçalhos e listas dela são lidos como tal.
+- QUANDO deslizo até uma ação de mensagem e toco duas vezes, ENTÃO ouço o nome distinto dela ("Copiar resposta 3, botão").
+
 ## Fontes
 
 - **Mecânica das regiões vivas** — o comportamento em que o §0 e o §1 se apoiam (a região precisa existir antes da primeira mensagem; como adições são processadas): [WAI-ARIA — role `log`](https://www.w3.org/TR/wai-aria-1.2/#log) · Sara Soueidan, [*Accessible notifications with ARIA Live Regions*](https://www.sarasoueidan.com/blog/accessible-notifications-with-aria-live-regions-part-1/).

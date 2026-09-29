@@ -66,4 +66,24 @@ Após uma mudança de rota no cliente, o foco **MUST** ser gerenciado — enviad
 ```
 - Ver *Clickable Divs* — core §6: sem foco, sem role de link, sem nova aba, sem copiar endereço.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma página recém-carregada, QUANDO pressiono `Tab` uma vez, ENTÃO o skip link é a primeira coisa focada, e ele fica visível.
+- QUANDO pressiono `Enter` no skip link, ENTÃO o próximo `Tab` pousa dentro do conteúdo principal, depois da navegação.
+- QUANDO percorro o menu com `Tab`, ENTÃO os itens mantêm a mesma ordem em todas as páginas, e um submenu abre com `Enter` e fecha com `Esc`, nunca só no hover.
+- QUANDO um link troca a rota sem recarregar, ENTÃO o foco vai para o cabeçalho do conteúdo novo ou para o topo da página, e o título da janela muda.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO pulo por landmark, ENTÃO ouço "navegação", "principal" e os demais pelo papel, e duas regiões de navegação têm nomes diferentes.
+- QUANDO entro no menu, ENTÃO ouço "lista, 5 itens" e "página atual" no item desta página; o breadcrumb soa igual, com "página atual" no último item.
+- QUANDO listo os links fora de contexto, ENTÃO o texto de cada um diz sozinho aonde leva — "abre em nova aba" e o formato do arquivo inclusos.
+- QUANDO a rota muda sem recarregar, ENTÃO ouço o cabeçalho do conteúdo novo, e o título da página que peço já é o novo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo pelo menu, ENTÃO ouço "lista" com a contagem e "página atual" no item atual, e um submenu abre com toque duplo.
+- QUANDO toco duas vezes num link que troca a rota, ENTÃO ouço o cabeçalho do conteúdo novo e a leitura continua a partir dele.
+
 *Critérios de sucesso cobertos: 2.4.1 Ignorar Blocos (A) · 2.4.4 Propósito do Link — Em Contexto (A) · 2.4.6 Cabeçalhos e Rótulos (AA) · 2.4.8 Localização (AAA) · 1.3.1 Informações e Relações (A) · 3.2.3 Navegação Consistente (AA) · 3.2.4 Identificação Consistente (AA)*

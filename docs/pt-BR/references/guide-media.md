@@ -131,4 +131,25 @@ Translação disparada por scroll é gatilho vestibular — náusea, tontura e d
 - **Controles:** prefira o atributo nativo `controls`. Um player customizado é Componente Complexo (Seção 5 do arquivo central) — operável por teclado de ponta a ponta, cada controle um `<button>` real com nome, estado anunciado.
 - **Embeds de terceiros (YouTube, Vimeo, Loom):** o embed não transfere a obrigação. Verifique se as legendas existem no ativo hospedado e se o `<iframe>` tem `title`. Legenda autogerada é rascunho, exatamente como na Seção 2.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma página com vídeo de fundo, QUANDO ela carrega, ENTÃO nenhum áudio começa sozinho, o `Tab` nunca pousa no vídeo, e o botão "Pausar vídeo de fundo" é alcançável.
+- QUANDO pressiono `Enter` nesse botão, ENTÃO o loop para no frame estático e o botão passa a dizer "Reproduzir vídeo de fundo".
+- DADO movimento reduzido ativado no sistema, QUANDO a página carrega, ENTÃO nada toca nem se move sozinho: o poster aparece e o parallax fica parado.
+- DADO um player, QUANDO entro nele com `Tab`, ENTÃO reproduzir/pausar, volume, legendas e avanço funcionam com `Espaço`, `Enter` e setas.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO leio o hero, ENTÃO nunca ouço o vídeo de fundo — só o título, o texto e o botão de pausa.
+- QUANDO aciono o botão de pausa, ENTÃO ouço o novo nome dele ("Reproduzir vídeo de fundo").
+- QUANDO chego a um player, ENTÃO ouço cada controle como "botão" com nome e estado, e as legendas podem ser ligadas.
+- QUANDO chego a um player embutido, ENTÃO ouço "frame" e um título que diz o que ele contém, nunca "frame" sozinho.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo pelo hero, ENTÃO o vídeo de fundo nunca é um item; o botão de pausa é, e o toque duplo alterna o estado e o nome dele.
+- QUANDO deslizo até o player, ENTÃO cada controle é lido como "botão" com nome e estado; toque duplo em legendas as liga.
+- QUANDO deslizo até um player embutido, ENTÃO ouço o título dele antes dos controles.
+
 *Critérios de sucesso cobertos: 1.2.1 Apenas Áudio e Apenas Vídeo (A) · 1.2.2 Legendas (Pré-gravado) (A) · 1.2.3 Audiodescrição ou Alternativa (A) · 1.2.5 Audiodescrição (Pré-gravado) (AA) · 1.4.2 Controle de Áudio (A) · 2.2.2 Pausar, Parar, Ocultar (A) · 2.3.1 Três Flashes (A) · 2.3.3 Animação por Interação (AAA (Regra da Casa† aqui)) · 1.4.3 Contraste (Mínimo) (AA)*

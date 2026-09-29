@@ -13,4 +13,25 @@
 5. **Alvos de soltura não falam por cor:** alvos válidos ganham indicador visível a 3:1 (SC 1.4.11) mais uma pista não-cromática (contorno, padrão, linha de inserção), e o alvo atual é nomeado no anúncio, não só destacado.
 6. **Zonas de soltar arquivo** são a mesma regra disfarçada: a zona MUST vir acompanhada de um `<input type="file">` de verdade (ou botão que abre um) — "arraste os arquivos para cá" como único caminho é a SC 2.5.7 falhando na primeira interação do fluxo.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma lista reordenável, QUANDO chego à alça de um item e pressiono `Espaço`, ENTÃO o item é pego e o foco continua nele.
+- QUANDO pressiono `↓` ou `↑`, ENTÃO o item anda uma posição e o anel de foco viaja com ele.
+- QUANDO pressiono `Espaço` de novo, ENTÃO o item é solto ali e o foco continua nele.
+- QUANDO pressiono `Esc` no meio do movimento, ENTÃO o item volta para onde estava, com o foco ainda na alça.
+- QUANDO abro o menu do item, ENTÃO Mover para cima / para baixo / para… reordenam sem arrastar.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego à alça, ENTÃO ouço "botão", "Reordenar Fatura.pdf" e as instruções para movê-lo.
+- QUANDO pressiono `Espaço`, uma seta e `Espaço`, ENTÃO ouço "pego, posição 2 de 5", "movido para a posição 3 de 5", "solto na posição 3".
+- QUANDO pressiono `Esc` no meio do movimento, ENTÃO ouço "reordenação cancelada, devolvido à posição 2".
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO deslizo até um item, ENTÃO ouço a alça dele como botão com o nome do item.
+- QUANDO toco duas vezes em Mover para baixo no menu do item, ENTÃO ouço a nova posição dele.
+- QUANDO deslizo até uma zona de soltar arquivo, ENTÃO alcanço um botão ou campo de arquivo que abre o seletor, não só "arraste para cá".
+
 *Critérios de sucesso cobertos: 2.5.7 Dragging Movements (AA) · 2.1.1 Teclado (A) · 4.1.3 Mensagens de Status (AA) · 2.4.7 Foco Visível (AA) · 1.4.11 Contraste Não Textual (AA)*

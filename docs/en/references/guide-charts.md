@@ -88,4 +88,25 @@ Dashboards change under filters, date ranges and live data. Every change is a st
 - Small metadata is where the 10px density exception gets abused — it is an `EXCEPTIONS.md` entry with 7:1 contrast, not a default (`A11Y.md` §4).
 - A "chart" that is a single number (a KPI tile) is text: mark it up as text, not as an image of a number.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN an interactive chart, WHEN I press `Tab`, THEN the chart is a single stop; `→`/`←` move between points, and the focused point shows a ring or enlarged marker.
+- WHEN a point shows a tooltip on hover, THEN the same tooltip opens when the point has focus.
+- WHEN I press `Esc` in a zoom or brush mode, THEN the mode ends and I am still on the page, focus on the chart.
+- GIVEN a static or inline SVG chart, WHEN I `Tab` through the page, THEN no stop lands inside the drawing, and the "View data as a table" control is reachable.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- GIVEN an interactive chart, WHEN I move between points with the arrows, THEN I hear each point's label and value ("March: 35,000").
+- GIVEN an inline SVG chart, WHEN I read through it, THEN I hear one "image" with its title and the trend, never the individual paths.
+- WHEN I change a filter, THEN I hear the outcome ("Filtered by Q2: 3 series, 12 points"), not "chart updated".
+- WHEN I open the data table, THEN I hear "table" and read the same series row by row.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe onto an inline SVG chart, THEN I hear one item with its title and the trend; the next swipe leaves the chart.
+- WHEN I swipe past the chart, THEN I reach the data table control; double-tap opens it and the rows read in order.
+- WHEN I double-tap a filter, THEN I hear the outcome of the change.
+
 *Success criteria covered: 1.1.1 Non-text Content (A) · 1.4.1 Use of Color (A) · 1.4.11 Non-text Contrast (AA) · 2.1.1 Keyboard (A) · 2.4.7 Focus Visible (AA) · 2.2.2 Pause, Stop, Hide (A) · 4.1.3 Status Messages (AA)*

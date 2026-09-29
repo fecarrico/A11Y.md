@@ -34,3 +34,21 @@
 <button>Learn More</button>
 ```
 - **Implication:** Screen reader users often list all buttons on a page to navigate. "Click Here" provides no context about what the button actually does. Use "Download Report" or "Read about our history" instead.
+
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a page with buttons, WHEN I press `Tab`, THEN each button receives focus in turn, with a clearly visible focus ring.
+- WHEN I press `Enter` or `Space` on a focused button, THEN its action runs — the same one a click triggers.
+- WHEN I `Tab` through the page, THEN nothing that looks and acts like a button is skipped.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I `Tab` to a button, THEN I hear its name followed by "button" — never "clickable" or a bare "button".
+- WHEN I reach an icon-only button, THEN I hear what it does ("Close modal"), not the icon or a file name.
+- WHEN I open the screen reader's list of buttons, THEN every name says what the button does out of context — no "Click here" or "Learn more".
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I swipe to a button, THEN I hear its name, then "button", and double-tapping runs the action.
+- WHEN I swipe to an icon-only button, THEN I hear an action name, never "unlabelled button".

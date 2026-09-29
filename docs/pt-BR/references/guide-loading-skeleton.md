@@ -21,4 +21,24 @@
 - **Revelar no scroll é a mesma armadilha:** conteúdo abaixo da dobra existe para leitores, impressão e busca *antes* de qualquer `IntersectionObserver` disparar — o observer adiciona a animação, nunca adiciona o conteúdo.
 - **`<noscript>` não é a correção.** O caso que falha costuma ser JavaScript *ligado* porém quebrado, bloqueado ou atrasado — um bloco `<noscript>` não ajuda nenhum desses.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO uma região ainda mostrando skeletons, QUANDO pressiono `Tab` através dela, ENTÃO nenhum bloco de skeleton recebe foco.
+- QUANDO o conteúdo de verdade chega, ENTÃO o foco fica exatamente onde estava — não é puxado para o conteúdo novo nem para o topo.
+- QUANDO meu foco estava dentro da região substituída, ENTÃO ele termina no ancestral estável mais próximo, não no corpo da página.
+- QUANDO o script está bloqueado ou ainda não rodou, ENTÃO todo o conteúdo continua visível e alcançável por `Tab` — nada espera um script.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO o carregamento começa, ENTÃO ouço um status só, como "Carregando resultados" — nunca um por bloco de skeleton, nunca como alerta.
+- QUANDO o conteúdo chega, ENTÃO ouço um desfecho só, como "12 resultados carregados", e minha posição de leitura não muda.
+- QUANDO leio pela área do skeleton, ENTÃO os placeholders ficam mudos — nada ali finge ser conteúdo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO o carregamento começa e termina, ENTÃO ouço uma mensagem de "carregando" e uma de desfecho, nada entre elas.
+- QUANDO deslizo pela região em carregamento, ENTÃO os blocos de skeleton são pulados por completo.
+- QUANDO o conteúdo chega, ENTÃO minha posição não salta.
+
 *Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.4.3 Ordem de Foco (A) · 1.1.1 / Princípio Zero (A) · Motion (Regra da Casa†) (—)*

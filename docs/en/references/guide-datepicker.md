@@ -56,4 +56,24 @@ Arrowing past the end of a month, or pressing the next-month button, changes the
 
 `<input type="date">` gives you the platform's own picker — already keyboard-operable, already localized, already familiar to the person's screen reader, and free on mobile. It is the right default whenever you do not need range selection, custom disabled dates, or a specific visual identity. The reasons *not* to use it (inconsistent styling, no range support, format tied to locale) are product decisions — record them in `A11Y-DECISIONS.md` rather than re-deciding per screen. On native platforms, use the system picker: see [Platform-Native Mapping](guide-platform-native.md).
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN a date field, WHEN I type `1/2/26` or paste a date, THEN it is accepted and the calendar stays closed.
+- WHEN I press `Enter` on the calendar button, THEN the grid opens with focus on the selected date, or today.
+- WHEN I press `←`/`→`, `↑`/`↓`, `Home`/`End`, THEN focus moves by day, by week and to the week's edges, inside one `Tab` stop.
+- WHEN I press `Enter` on a day, THEN the calendar closes, the input holds the date as text and focus is on the input.
+- WHEN I press `Esc`, THEN the calendar closes and focus returns to the calendar button.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN I reach the empty field, THEN I hear its label and "Format: DD/MM/YYYY" before I type.
+- WHEN I move through the grid, THEN each cell reads a full date — "15 March 2026" — plus "selected" or "unavailable" with its reason where they apply.
+- WHEN I arrow past the end of the month or activate next month, THEN I hear the new month's name.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN I double-tap the calendar button, THEN I hear the selected date, or today, and each day I swipe to reads its full date.
+- WHEN I double-tap a day, THEN the calendar is gone and I hear the input with the date in it.
+
 *Success criteria covered: 1.3.1 Info and Relationships (A) · 2.1.1 Keyboard (A) · 2.1.2 No Keyboard Trap (A) · 3.3.2 Labels or Instructions (A) · 3.3.8 Accessible Authentication (AA) · 1.4.1 Use of Color (A) · 4.1.2 Name, Role, Value (A)*

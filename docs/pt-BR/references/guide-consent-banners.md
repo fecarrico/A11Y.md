@@ -43,4 +43,24 @@ A maior parte dos banners vem de uma plataforma de consentimento (CMP). **A obri
 - Se o CMP é inacessível e não pode ser trocado no ciclo atual, isso é uma entrada no `EXCEPTIONS.md` — com dono do risco, issue e expiração —, não um problema de outra pessoa.
 - Muitos CMPs expõem opções de acessibilidade desligadas por padrão (foco inicial, rótulos, contraste). Elas fazem parte da configuração, não do backlog.
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO um banner modal, QUANDO ele aparece, ENTÃO o foco pousa dentro dele, o `Tab` circula só ali, e `Esc` o fecha devolvendo o foco à origem.
+- QUANDO o banner é uma faixa não-modal e percorro a página com `Tab`, ENTÃO chego nele na ordem natural e saio sem nada me prender.
+- QUANDO tabulo até o fim da página com a faixa aberta, ENTÃO todo elemento focado continua visível — nenhum escondido sob o banner.
+- QUANDO recuso, ENTÃO "Recusar tudo" custa o mesmo que "Aceitar tudo": um acionamento, no mesmo nível.
+- QUANDO deixo o banner sem resposta, ENTÃO ele nunca se fecha sozinho nem assume uma resposta, por mais que eu espere.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO um banner modal aparece, ENTÃO ouço "diálogo" e o nome dele, e não consigo ler além dele para dentro da página.
+- QUANDO uma faixa não-modal aparece, ENTÃO ouço "região" com o nome dela; se chega depois do carregamento, a mensagem vem como status sem me tirar do lugar.
+- QUANDO chego às ações, ENTÃO "Aceitar tudo", "Recusar tudo" e o X são, cada um, "botão" com nome que diz o resultado.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO um banner modal aparece, ENTÃO ouço o nome dele, e o deslize fica dentro dele até eu tocar duas vezes numa ação.
+- QUANDO uma faixa não-modal está aberta, ENTÃO deslizar pela página chega nela e passa dela, e ouço "região" com o nome.
+
 *Critérios de sucesso cobertos: 2.1.2 Sem Armadilha de Teclado (A) · 2.4.11 Foco Não Obscurecido (Mínimo) (AA) · 2.2.1 Tempo Ajustável (A) · 4.1.3 Mensagens de Status (AA) · 2.5.8 Tamanho do Alvo (AA)*

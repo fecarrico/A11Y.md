@@ -56,4 +56,24 @@ Passar do fim do mês com as setas, ou apertar o botão de próximo mês, troca 
 
 O `<input type="date">` entrega o picker da própria plataforma — já operável por teclado, já localizado, já familiar ao leitor de tela da pessoa, e de graça no mobile. É o padrão certo sempre que você não precisa de seleção de intervalo, datas desabilitadas customizadas ou identidade visual específica. Os motivos para *não* usá-lo (estilização inconsistente, sem suporte a intervalo, formato preso ao locale) são decisões de produto — registre em `A11Y-DECISIONS.md` em vez de redecidir a cada tela. Em plataforma nativa, use o picker do sistema: ver [Tradução para Plataformas Nativas](guide-platform-native.md).
 
+## Comportamento esperado (cenários de verificação)
+
+*O que a pessoa que verifica este componente precisa observar — com teclado, depois com leitor de tela no desktop e no celular. São os cenários por trás do `REPORT.md` §3: execute-os, registre o par leitor de tela + navegador, marque cada um como aprovado ou reprovado. Descrevem resultado, nunca implementação.*
+
+**Teclado**
+- DADO um campo de data, QUANDO digito `1/2/26` ou colo uma data, ENTÃO ela é aceita e o calendário fica fechado.
+- QUANDO pressiono `Enter` no botão do calendário, ENTÃO a grade abre com o foco na data selecionada, ou em hoje.
+- QUANDO pressiono `←`/`→`, `↑`/`↓`, `Home`/`End`, ENTÃO o foco anda por dia, por semana e até as bordas da semana, numa só parada de `Tab`.
+- QUANDO pressiono `Enter` num dia, ENTÃO o calendário fecha, o input carrega a data como texto e o foco está no input.
+- QUANDO pressiono `Esc`, ENTÃO o calendário fecha e o foco volta ao botão do calendário.
+
+**Leitor de tela, desktop (NVDA + Firefox, JAWS + Chrome ou VoiceOver + Safari)**
+- QUANDO chego ao campo vazio, ENTÃO ouço o rótulo dele e "Formato: DD/MM/AAAA" antes de digitar.
+- QUANDO percorro a grade, ENTÃO cada célula lê a data completa — "15 de março de 2026" — e, onde couber, "selecionado" ou "indisponível" com o motivo.
+- QUANDO passo do fim do mês com as setas ou aciono o próximo mês, ENTÃO ouço o nome do mês novo.
+
+**Leitor de tela, celular (TalkBack ou VoiceOver, navegação por deslize)**
+- QUANDO toco duas vezes no botão do calendário, ENTÃO ouço a data selecionada, ou hoje, e cada dia em que deslizo lê a data completa.
+- QUANDO toco duas vezes num dia, ENTÃO o calendário some e ouço o input com a data dentro.
+
 *Critérios de sucesso cobertos: 1.3.1 Informação e Relações (A) · 2.1.1 Teclado (A) · 2.1.2 Sem Armadilha de Teclado (A) · 3.3.2 Rótulos ou Instruções (A) · 3.3.8 Autenticação Acessível (AA) · 1.4.1 Uso de Cor (A) · 4.1.2 Nome, Função, Valor (A)*

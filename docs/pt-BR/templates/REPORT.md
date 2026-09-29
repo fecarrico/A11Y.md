@@ -16,6 +16,7 @@ Este relatório compila as evidências de conformidade para uma determinada *Fea
 - **Funcionalidade/Épico:** [Ex: Checkout Integrado]
 - **Data do Teste:** [DD/MM/AAAA — a data desta revisão; atualize sempre que a interface mudar]
 - **Cobre a interface em:** [commit / build / versão contra a qual este relatório foi verificado]
+- **Versão do padrão:** [Ex: 2.2.0 — a linha **Versão** no topo do `A11Y.md` que o projeto segue; o gate estático lê este campo, para que a evidência possa ser relida contra as regras em vigor]
 - **Status de Conformidade:** [✅ PASS | ⚠️ CONDICIONAL (Passa com Exceções) | 🚫 FAIL]
 - **Independência da Verificação:** [cross-agent | fresh-context | self-reported] — *quem verificou: [modelo/agente e sessão, ex.: "Claude Code, sessão nova sobre o repo" ou "Copilot auditando saída gerada pelo Cursor"]*
 - **Gate estático (`verify-a11y.py`):** [PASS | FAIL (n erros) | NÃO RODOU — motivo: negado por permissão / sem shell / erro do script] — *rodado em: [data]. Gate que não rodou é declarado aqui e na mensagem de entrega, nunca omitido.*
@@ -37,6 +38,7 @@ Caminhos críticos da funcionalidade e validação via Leitores de Tela.
 - [ ] **Screen Reader Test:** Realizou a tarefa principal com **pelo menos um par leitor de tela + navegador**, nomeado aqui? *(Registre o par, não só o leitor: NVDA + Firefox, JAWS + Chrome e VoiceOver + Safari divergem em comportamento ARIA, e "usei NVDA" não é evidência reproduzível. Se o produto tem público corporativo em Windows, JAWS + Chrome é o par que falta na maioria dos relatórios.)*
   - Par(es) usado(s): [ex.: NVDA 2026.1 + Firefox 141 · macOS VoiceOver + Safari 18]
   - Quem executou e quando: [nome — AAAA-MM-DD]
+  - Cenários executados: [o bloco *Comportamento esperado* de cada guia carregado para esta funcionalidade — nomeie o guia e marque cada cenário como aprovado ou reprovado]
 - [ ] **Controle por Voz:** Todo controle visível pode ser acionado **falando o rótulo visível dele**? *(SC 2.5.3 — um `aria-label` que substitui o texto visível torna o controle inalcançável por voz. Nomeie a ferramenta usada, ou declare que os nomes foram conferidos contra os rótulos por leitura.)*
   - Ferramenta ou método: [ex.: Voice Control do iOS · Voice Access do Android · leitura dos nomes acessíveis contra os rótulos visíveis]
 - [ ] **Estados interativos inventariados:** cada componente com estado (menu, diálogo, accordion, validação, loading) lista seus estados e como cada um foi verificado — **navegado**, **lido no código**, ou **não verificado (com o motivo)**. *(Estado que ninguém visitou é estado que ninguém verificou: o caso de campo por trás desta linha é um menu quebrado que sobreviveu a um relatório porque nenhuma navegação o abriu.)*

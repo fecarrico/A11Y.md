@@ -13,4 +13,23 @@
 5. **Dismissible by keyboard:** a real close `<button>` with a name, reachable by `Tab` — and `Esc` dismisses the focused toast.
 6. **Same channel, same place:** toasts appear in a consistent position across the product; repeats collapse (*"3 items archived"*) instead of stacking a tower the reader announces one by one.
 
+## Expected behavior (verification scenarios)
+
+*What a person verifying this component must observe — with a keyboard, then with a screen reader on desktop and on a phone. These are the scenarios behind `REPORT.md` §3: run them, record the screen reader + browser pair, mark each one passed or failed. They describe outcomes, never implementation.*
+
+**Keyboard**
+- GIVEN I am typing in a field, WHEN a toast appears, THEN focus stays in the field and nothing I typed is lost.
+- WHEN a toast carries an action or a link, THEN it stays until I dismiss it, and `Tab` reaches the action and a Close button.
+- WHEN the toast has focus and I press `Esc`, THEN it is dismissed.
+- WHEN a toast with "Undo" is gone, THEN the same operation is still reachable elsewhere — in the item's menu or history.
+
+**Screen reader, desktop (NVDA + Firefox, JAWS + Chrome or VoiceOver + Safari)**
+- WHEN a toast appears, THEN I hear its text once without leaving what I was reading; an error toast interrupts, a status toast waits its turn.
+- WHEN three identical events fire, THEN I hear one collapsed message ("3 items archived"), not three announcements.
+- WHEN I navigate to the toast, THEN I hear its text and then "Close, button" — the closing control has a name.
+
+**Screen reader, mobile (TalkBack or VoiceOver, swipe navigation)**
+- WHEN a toast appears, THEN I hear its text once and my position on the page does not change.
+- WHEN I swipe to a persistent toast, THEN I reach its action and "Close, button", and a double-tap on Close removes it.
+
 *Success criteria covered: 4.1.3 Status Messages (AA) · 2.2.1 Timing Adjustable (A) · 2.1.1 Keyboard (A) · 1.4.13 Content on Hover or Focus (AA)*
