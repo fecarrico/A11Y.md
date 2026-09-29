@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-09-29
+
 The scenario release. Since 1.7.0 the standard has required that someone other than the author witness that the interface conforms, and since 2.1.0 that the gate's own outcome be declared — but nothing told the witness *what to look for*. §5 asked the agent to "document expected behavior (keyboard and announcements)" and gave it no shape; `REPORT.md` §3 asked for a screen-reader test and offered no script. This release borrows the shape from **Magoo**, Marcelo Sales' pre-design-system behavior library ([magoo.cc](https://magoo.cc) · [acessibilidade/magoo](https://github.com/acessibilidade/magoo), MIT), which writes each component's acceptance criteria as Given/When/Then scenarios split by how the person operates — keyboard, screen reader on desktop, screen reader on a phone — and says what the person *hears*. Twenty-one component guides now end with that block. The comparison also exposed two holes: the controls Magoo specifies most carefully (checkbox, radio, switch, slider, select, the disabled state) had no guide here, and `REPORT.md` never named which edition of the rules its evidence answered to. Both closed. Running the gate against Magoo's own site found two false positives in the instrument, none in the site; both fixed. Both editions amended identically.
 
 ### Migration
