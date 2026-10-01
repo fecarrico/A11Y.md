@@ -30,6 +30,8 @@ A *Independent Verification* (`A11Y.md` §2) existe porque a auto-revisão reexe
 - **fresh-context** — o mesmo modelo *sem a conversa que produziu o código*: remove a memória de ter decidido. O piso em qualquer lugar — custa um chat novo sobre o mesmo projeto, nunca uma ferramenta nova.
 - **self-reported** ⚠️ — honesto e visível, nunca suficiente: reexecuta exatamente o modo de falha que a regra existe para quebrar. Teto: ⚠️ CONDICIONAL.
 
+**Escopo e custo do verificador.** O verificador reproduz os checkpoints da Seção 7 que não exigem uma pessoa, nos arquivos que a mudança tocou — ele não audita o produto do zero, e não precisa do modelo mais forte disponível: um modelo menor, em sessão própria, é um verificador *cross-agent* válido, e em geral o mais barato. Caso de campo (um design system de 81 peças, 30/09/2026): um verificador fresh-context no mesmo modelo que gerou o código foi cortado pelo limite de uso do plano depois de 24 minutos, sem entregar nada; relançado num modelo menor, terminou em 40 minutos, achou 8 defeitos que o gerador não viu, e o nível declarado *subiu*, para cross-agent. Limite o verificador aos checkpoints, e faça-o remover o que ele mesmo inicia — servidores, scripts de medição — antes de relatar.
+
 A declaração é baseada em confiança e ainda assim auditável: o `REPORT.md` nomeia *quem* verificou, e o `verify-a11y.py` aplica o teto mecanicamente (um ✅ PASS self-reported reprova no gate). Nada disso substitui os checkpoints humanos — um segundo agente resolve uma referência entre arquivos; ele não escuta um leitor de tela.
 
 ### 1.3. O gate estático — e o que dizer quando ele não pode rodar

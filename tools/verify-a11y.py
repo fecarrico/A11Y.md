@@ -60,6 +60,13 @@ COMPOSITES = {
     "menu": ("menuitem", "menuitemcheckbox", "menuitemradio"),
     "menubar": ("menuitem", "menuitemcheckbox", "menuitemradio"),
 }
+# Native elements that carry a required child role implicitly: a radiogroup of
+# <input type="radio">, a grid drawn as a <table> of <tr>. No explicit role needed.
+NATIVE_CHILDREN = {
+    "radiogroup": re.compile(r"<input\b[^>]*\btype\s*=\s*[\"']radio[\"']", re.I),
+    "grid": re.compile(r"<tr\b", re.I),
+    "treegrid": re.compile(r"<tr\b", re.I),
+}
 
 # Native elements whose implicit role makes the explicit one redundant (ARIA
 # Soup). Only unconditional pairs: `header`/`footer`/`section`/`form` change
@@ -124,6 +131,36 @@ def without_code_samples(text: str | None) -> str | None:
     if text is None:
         return None
     return CODE_SAMPLE.sub(lambda m: m.group(1) + re.sub(r"[^\n]", " ", m.group(3)) + m.group(4), text)
+
+
+# Comments are not markup either. A `// role="menu"` in a doc string, a
+# `{/* aria-live */}` beside a role="alert", an `outline: none` inside a CSS
+# comment: three false positives in one adopter's review (2026-09-30), all
+# the same class. Whole-line `//` comments only — `https://` mid-line is a URL,
+# not a comment, and a trailing comment after code is rare enough to leave.
+BLOCK_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+LINE_COMMENT = re.compile(r"^[ \t]*//[^\n]*", re.M)
+HTML_COMMENT = re.compile(r"<!--.*?-->", re.S)
+MARKUP_SUFFIXES = {".html", ".htm", ".vue", ".svelte", ".astro"}
+
+
+def without_comments(text: str | None, suffix: str) -> str | None:
+    """Blank comments for the file's language, keeping every newline."""
+    if text is None:
+        return None
+    blank = lambda m: re.sub(r"[^\n]", " ", m.group(0))
+    if suffix in SCRIPT_SUFFIXES or suffix in (".css", ".scss"):
+        text = BLOCK_COMMENT.sub(blank, text)
+    if suffix in SCRIPT_SUFFIXES:
+        text = LINE_COMMENT.sub(blank, text)
+    if suffix in MARKUP_SUFFIXES:
+        text = HTML_COMMENT.sub(blank, text)
+    return text
+
+
+def scannable(path: Path) -> str | None:
+    """The file as the source scan sees it: no quoted samples, no comments."""
+    return without_comments(without_code_samples(read(path)), path.suffix.lower())
 
 
 def body_of(report: Path) -> str:
@@ -461,7 +498,7 @@ def check_source_antipatterns(root: Path, src: Path) -> None:
          "conflicts with the assistive technology the person already configured (A11Y.md §6)"),
     )
     for path in source_files(root, src):
-        text = without_code_samples(read(path))
+        text = scannable(path)
         if text is None:
             continue
         rel = path.relative_to(root)
@@ -495,7 +532,7 @@ def check_placeholder_labels(root: Path, src: Path) -> None:
     field = re.compile(r"<(input|textarea)\b" + ATTRS + r">")
     skip_types = ("hidden", "submit", "button", "reset", "checkbox", "radio", "file", "range", "color", "image")
     for path in source_files(root, src):
-        text = without_code_samples(read(path))
+        text = scannable(path)
         if text is None or path.suffix in (".css", ".scss", ".js", ".ts"):
             continue
         for match in field.finditer(text):
@@ -525,12 +562,14 @@ def check_half_climbed(root: Path, src: Path) -> None:
     (Half-Climbed ARIA Ladders, A11Y.md §6). Keyboard behavior cannot be
     checked statically; this catches the mold, not the whole ladder."""
     for path in source_files(root, src):
-        text = without_code_samples(read(path))
+        text = scannable(path)
         if text is None or path.suffix in (".css", ".scss"):
             continue
         roles = set(re.findall(r"\brole\s*=\s*[\"']([\w-]+)[\"']", text))
         for parent, children in COMPOSITES.items():
-            if parent in roles and not any(child in roles for child in children):
+            native = NATIVE_CHILDREN.get(parent)
+            if parent in roles and not any(child in roles for child in children) \
+                    and not (native and native.search(text)):
                 pos = re.search(r"\brole\s*=\s*[\"']" + parent + r"[\"']", text).start()
                 where = f"{path.relative_to(root)}:{line_of(text, pos)}"
                 need = "/".join(children)
@@ -554,10 +593,10 @@ def check_aria_soup(root: Path, src: Path) -> None:
     static_expanded = re.compile(r"\baria-expanded\s*=\s*[\"'](?:true|false)[\"']")
     dynamic_expanded = re.compile(r"aria-expanded(?!\s*=\s*[\"'](?:true|false)[\"'])|ariaExpanded")
 
-    files = [(p, without_code_samples(read(p))) for p in source_files(root, src)]
+    files = [(p, scannable(p)) for p in source_files(root, src)]
     # The script that toggles aria-expanded rarely lives beside the markup: `--src`
     # scopes the interface, so the search for the toggle spans the whole project.
-    toggled = any(p.suffix in SCRIPT_SUFFIXES and dynamic_expanded.search(read(p) or "")
+    toggled = any(p.suffix in SCRIPT_SUFFIXES and dynamic_expanded.search(scannable(p) or "")
                   for p in source_files(root, root))
 
     for path, text in files:
@@ -603,7 +642,7 @@ def check_orphaned_aria(root: Path, src: Path) -> None:
                            r'\s*=\s*"([^"{}]+)"')
     declared = re.compile(r'\bid\s*=\s*"([^"{}]+)"')
     for path in source_files(root, src):
-        text = without_code_samples(read(path))
+        text = scannable(path)
         if text is None:
             continue
         ids = set(declared.findall(text))
@@ -705,6 +744,22 @@ SELF_TEST_CASES = [
                         '<pre>\n<div role="tablist"><button>1</button></div>\n<div onclick="x()">y</div>\n</pre>'
                         '<div role="tablist"><button role="tab" aria-selected="true">real</button></div>',
     }, {"artifacts"}, set(), {"half-climbed-aria", "clickable-div", "aria-soup"}),
+    ("comments are documentation, not markup", {
+        "src/c.tsx": '// role="menu" lives on the Dropdown, with its menuitems\n'
+                     '{/* aria-live="polite" is implied by role="alert" */}<p role="alert">Saved</p>\n'
+                     '/* outline: none would hide focus */\n'
+                     'const url = "https://example.com/x";\n'
+                     '<div role="tablist"><button role="tab" aria-selected="true">1</button></div>',
+        "src/c.css": '/* outline: none */ a:focus { outline: 2px solid }',
+        "src/h.html": '<!-- <div onclick="x()">old</div> --><button>ok</button>',
+    }, {"artifacts"}, set(), {"half-climbed-aria", "redundant-alert", "outline-none", "clickable-div"}),
+    ("native children satisfy a composite: radios under radiogroup, rows under grid", {
+        "src/r.html": '<fieldset role="radiogroup" aria-label="Plan"><label><input type="radio" name="p"> A</label></fieldset>'
+                      '<table role="grid"><tr><td>1</td></tr></table>',
+    }, {"artifacts"}, set(), {"half-climbed-aria"}),
+    ("a comment does not hide the real markup after it", {
+        "src/m.html": '<!-- the menu below needs menuitems -->\n<ul role="menu"><li>1</li></ul>',
+    }, {"artifacts"}, {"half-climbed-aria"}, set()),
     ("standard version: missing field warns", {
         "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
         "REPORT.md": CLEAN_REPORT.replace("- **Standard version:** 2.1.0\n", ""),
