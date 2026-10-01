@@ -22,3 +22,6 @@ benchmark/verify/node_modules/
 # ...e os logs das passagens de verificação: são registro de execução, não de método.
 # O que a análise precisa está nos .jsonl, que vão para o dataset publicado.
 benchmark/verify/*.log
+
+# Playwright MCP session logs — a tool wrote one here during a screenshot session and a `git add -A` swept it into v2.2.0.
+.playwright-mcp/
