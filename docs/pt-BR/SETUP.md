@@ -5,7 +5,17 @@ Este guia explica como configurar adequadamente seu assistente de IA (Cursor, Cl
 > [!IMPORTANT]  
 > **Regra de Ouro:** O arquivo de configuração do seu ambiente deve conter **APENAS** uma referência apontando para o `A11Y.md`. **NUNCA** copie ou duplique regras de acessibilidade fora do `A11Y.md` — isso previne a fragmentação de regras e garante que a IA sempre carregue o contexto completo.
 >
-> A referência pode apontar para a **URL deste repositório** (sempre atualizada, zero arquivos copiados — o padrão recomendado) ou para uma **cópia local** (offline/fixada). Falantes de inglês podem apontar para `docs/en/A11Y.md`.
+> A referência pode apontar para a **URL deste repositório** ou para uma **cópia local** — as três formas de entrada estão comparadas abaixo. Falantes de inglês podem apontar para `docs/en/A11Y.md`.
+
+## Três formas de o padrão entrar num projeto
+
+| | Como | Quando é a melhor | O que você assume |
+| :--- | :--- | :--- | :--- |
+| **1. Link para o upstream** | a regra aponta para a URL raw em `main` | zero arquivos copiados, sempre a edição atual | rede na hora da leitura; o padrão pode mudar debaixo de você — fixe uma tag na URL (`/v2.2.0/` no lugar de `/main/`) para congelar |
+| **2. Cópia fixada, regra no seu arquivo de agente** | copie `docs/<idioma>/A11Y.md` com `references/` e `templates/` para o repositório (`docs/a11y/` é um bom lugar); a regra no `CLAUDE.md`, `.cursorrules` ou equivalente aponta para o caminho local | trabalho offline, atualização revisada como diff, times que clonam o repositório e precisam herdar as regras | a atualização é sua: uma nota de procedência com commit de origem, versão e licença, e a atualização tratada como qualquer mudança revisada |
+| **3. Cópia fixada, regra no `AGENTS.md`** | a mesma cópia, com a regra num `AGENTS.md` neutro de ferramenta, em vez de um `CLAUDE.md` que não é seu | o `CLAUDE.md` pertence a outro fluxo, ou vários agentes leem o repositório | dois arquivos de instrução para manter coerentes: o `CLAUDE.md` diz como o projeto trabalha, o `AGENTS.md` diz a regra de acessibilidade |
+
+Seja qual for a porta: a regra é **uma linha**, e as regras de acessibilidade em si vivem só no `A11Y.md`. Com cópia, o `REPORT.md` registra a *Versão do padrão* a partir da linha *Versão* da própria cópia, e o `tools/verify-a11y.py` pode ficar ao lado dela para o gate rodar offline. *(As três opções como o agente de um time adotante as apresentou ao autor antes de uma revisão, em 29/09/2026 — o autor escolheu a terceira.)*
 
 ## Referência Rápida
 

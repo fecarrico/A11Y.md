@@ -30,6 +30,8 @@ A clean axe run means "no violation among the rules that were enabled". Two defa
 - **fresh-context** — the same model *without the conversation that produced the code*: removes the memory of having decided. The floor everywhere — it costs a new chat over the same project, never a new tool.
 - **self-reported** ⚠️ — honest and visible, never sufficient: it re-runs the exact failure mode the rule exists to break. Ceiling: ⚠️ CONDITIONAL.
 
+**Scope and cost of the verifier.** The verifier reproduces the Section 7 checkpoints that do not need a human, on the files the change touched — it does not re-audit the product from scratch, and it does not need the strongest model available: a smaller model in its own session is a valid *cross-agent* verifier, and usually the cheaper one. Field case (a design system of 81 components, 2026-09-30): a fresh-context verifier on the generating model was cut by the plan's usage limit after 24 minutes and delivered nothing; relaunched on a smaller model it finished in 40 minutes, found 8 defects the generator had missed, and the declared level went *up*, to cross-agent. Bound the verifier to the checkpoints, and have it remove what it starts — servers, scratch scripts — before it reports.
+
 The declaration is trust-based and still auditable: `REPORT.md` names *who* verified, and `verify-a11y.py` enforces the ceiling mechanically (a self-reported ✅ PASS fails the gate). None of it replaces the human checkpoints — a second agent can resolve a reference between files; it cannot hear a screen reader.
 
 ### 1.3. The static gate — and what to say when it cannot run
