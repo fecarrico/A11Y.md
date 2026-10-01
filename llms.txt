@@ -1,0 +1,39 @@
+# A11Y.md
+
+> The persistent context system for accessibility: a normative core an AI coding agent reads before generating any interface, per-component reference guides loaded on demand, and three governance templates. WCAG 2.2 AA (AAA under the Shield profile), portable markdown, MIT. Current version: 2.2.0 (2026-09-29). Pin an edition by replacing `main` with a tag such as `v2.2.0` in any URL below.
+
+## The core — read this first; nothing else is required
+
+- [A11Y.md, English](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md): the normative core. Principle Zero, compliance profiles, the AI Behavior Contract (19 rules), the §2.1 loading map, POUR standards, visual directives, anti-patterns, Definition of Done.
+- [A11Y.md, Português (Brasil)](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md): the same core, same obligations, written in Portuguese.
+
+The one rule to add to an agent's configuration file (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`): "When developing the frontend, follow strictly the accessibility rules in the file https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md" — in Portuguese: "Ao desenvolver o frontend, siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md"
+
+## Reference guides — load one at a time, only the row of §2.1 that matches the task
+
+- [docs/en/references/](https://github.com/fecarrico/A11Y.md/tree/main/docs/en/references): 31 guides, one per component or concern (modals, forms, form controls, navigation, tables, charts, maps, media, generative UI…). Raw file pattern: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/references/guide-<name>.md
+- [docs/pt-BR/references/](https://github.com/fecarrico/A11Y.md/tree/main/docs/pt-BR/references): the same 31 guides in Portuguese. Raw file pattern: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/references/guide-<name>.md
+
+## Templates — load by event, never preloaded
+
+- [REPORT.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/REPORT.md): the verification report, required before any delivery to an end user.
+- [EXCEPTIONS.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/EXCEPTIONS.md): a consciously accepted deviation, with risk owner, approver, tracking issue and expiry.
+- [A11Y-DECISIONS.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/A11Y-DECISIONS.md): choices between equally conformant alternatives, indexed by pattern.
+- Portuguese editions under https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/templates/
+
+## Tools — optional, Python 3.9+, standard library only
+
+- [tools/verify-a11y.py](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/verify-a11y.py): the static gate the core's Static Gate rule asks the agent to run before a delivery; checks the artifacts and the anti-patterns a text search can catch.
+- [tools/contrast-check.py](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/tools/contrast-check.py): deterministic WCAG contrast, pair mode and CSS triage mode.
+- [tools/README.md](https://github.com/fecarrico/A11Y.md/blob/main/tools/README.md): what each script checks and does not check.
+
+## Optional
+
+- [CHANGELOG.md](https://github.com/fecarrico/A11Y.md/blob/main/CHANGELOG.md): every rule change, dated and reasoned.
+- [CONTRIBUTING.md](https://github.com/fecarrico/A11Y.md/blob/main/CONTRIBUTING.md): the evidence bar for changing a rule; field reports are the most valued contribution.
+- [Wiki](https://github.com/fecarrico/A11Y.md/wiki): human-facing documentation, evidence and research, project gallery.
+- [Website](https://fecarrico.github.io/a11ymd/): the project page, with the preregistered efficacy studies.
+
+## Not context
+
+- benchmark/: research protocol, harness and aggregated results of the project's own studies (large). Not part of the standard; do not load it to build an interface.

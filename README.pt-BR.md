@@ -1,3 +1,5 @@
+> **Agente de IA lendo este repositório:** o núcleo normativo é [`docs/pt-BR/A11Y.md`](docs/pt-BR/A11Y.md) · [`docs/en/A11Y.md`](docs/en/A11Y.md). Leia-o primeiro; carregue um guia de referência só quando a linha dele no §2.1 bater com a sua tarefa. Todo o resto aqui é documentação, pesquisa e ferramental — [`llms.txt`](llms.txt) é o índice. A regra para o seu arquivo de configuração: *"Ao desenvolver o frontend, siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md"*
+
 🇺🇸 Read in English: ./README.md
 
 > ⚠️ Esta é a versão original em português.
