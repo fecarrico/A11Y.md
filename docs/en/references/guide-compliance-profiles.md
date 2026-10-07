@@ -67,7 +67,7 @@
 
 Any use of the Launchpad profile in production should be documented in the `EXCEPTIONS.md` file as technical debt to be upgraded to Standard (AA).
 
-## 4. Brazil Mapping (ABNT NBR 17225)
+## 4. Brazil Mapping (ABNT NBR 17225 and NBR 17060)
 
 When the product serves Brazil, the declared profile also states its NBR 17225 level:
 
@@ -77,3 +77,5 @@ When the product serves Brazil, the declared profile also states its NBR 17225 l
 | 🛡️ Shield (AAA) | **Plena** — requirements + all 50 recommendations; each unmet recommendation carries a reasonable justification in `EXCEPTIONS.md` |
 
 Structure of the norm and the Annex A critical-items checklist: [Governance §6.1](guide-governance.md).
+
+For a **mobile app** — native, hybrid or web app on phones and tablets — the reference is **ABNT NBR 17060:2022**, which defines no conformance levels. This standard maps it the same way: ⚖️ Standard = every *requirement*; 🛡️ Shield = requirements plus every *recommendation*, each unmet one justified in `EXCEPTIONS.md`. What the norm asks beyond WCAG 2.2, and the sources: [Platform-Native § Brazil](guide-platform-native.md).

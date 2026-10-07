@@ -67,7 +67,7 @@
 
 Qualquer uso do Launchpad em produção deve ser documentado no `EXCEPTIONS.md` como débito técnico a ser evoluído para o Standard (AA).
 
-## 4. Mapeamento Brasil (ABNT NBR 17225)
+## 4. Mapeamento Brasil (ABNT NBR 17225 e NBR 17060)
 
 Quando o produto serve o Brasil, o perfil declarado informa também seu nível NBR 17225:
 
@@ -77,3 +77,5 @@ Quando o produto serve o Brasil, o perfil declarado informa também seu nível N
 | 🛡️ Shield (AAA) | **Plena** — requisitos + todas as 50 recomendações; cada recomendação não atendida carrega justificativa razoável no `EXCEPTIONS.md` |
 
 Estrutura da norma e o checklist de itens críticos do Anexo A: [Governança §6.1](guide-governance.md).
+
+Para **aplicativo móvel** — nativo, híbrido ou web app em celulares e tablets — a referência é a **ABNT NBR 17060:2022**, que não define níveis de conformidade. Este padrão a mapeia do mesmo jeito: ⚖️ Standard = todo *requisito*; 🛡️ Shield = requisitos mais toda *recomendação*, com cada uma não atendida justificada no `EXCEPTIONS.md`. O que a norma pede além da WCAG 2.2, e as fontes: [Nativo § Brasil](guide-platform-native.md).

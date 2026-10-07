@@ -87,7 +87,7 @@ Para conformidade com o EAA:
 - **Interoperability:** Garantir que o software não impeça o uso de tecnologias assistivas de terceiros.
 - **Accessibility Declaration:** Manter uma página de acessibilidade pública descrevendo as funcionalidades e o nível de conformidade alcançado.
 
-## 6.1. Conformidade Brasileira (ABNT NBR 17225 / LBI)
+## 6.1. Conformidade Brasileira (ABNT NBR 17225 / NBR 17060 / LBI)
 
 Para produtos que servem público brasileiro:
 
@@ -97,6 +97,7 @@ Para produtos que servem público brasileiro:
 - **Anexo A — a lista de itens críticos**, o checklist de aceitação em compras públicas brasileiras: CAPTCHA com modalidade alternativa · **reconhecimento facial / biometria com rota alternativa acessível** · conteúdo apenas em hover/foco · conteúdo inserido via CSS · conteúdo de terceiros, com o usuário avisado · componentes customizados · **arquivos para download (não-HTML) eles próprios acessíveis** · tabelas de leiaute · marcação conforme a especificação. Três desses vão além da prática WCAG do dia a dia: biometria, arquivos e conteúdo via CSS.
 - O **Anexo B** traz dez declarações de desempenho funcional (da EN 301 549) — o `REPORT.md` §7 as oferece como seção opcional que serve NBR, EN 301 549 e VPAT de uma vez.
 - **Validadores oficiais:** o diagnóstico formal do selo de acessibilidade digital de São Paulo — e a orientação federal — convergem em três motores: **AMAWeb**, **AccessMonitor** e **WAVE**. Uma rodada limpa de axe cobre a maior parte do que eles medem, mas destino brasileiro roda os três antes de qualquer alegação formal (o selo exige o diagnóstico deles datado de até 10 dias).
+- A **ABNT NBR 17060:2022** — *Acessibilidade em aplicativos de dispositivos móveis: requisitos* (outubro de 2022) — é a irmã mobile: aplicativos nativos, híbridos e web apps em smartphones e tablets, sites abertos no celular incluídos, sob o mesmo art. 63 da LBI. 54 requisitos e recomendações em quatro grupos sobre base **WCAG 2.1** — uma construção conforme a este padrão já satisfaz quase tudo. O resto (rótulo antes do campo, contador de etapas, configurações de acessibilidade do sistema, limites de tempo, sem travamento na navegação com tecnologia assistiva, piscante com aviso), o mapeamento de perfil e as fontes estão em [Nativo § Brasil](guide-platform-native.md). Com destino mobile, o `REPORT.md` nomeia a NBR 17060 ao lado do perfil.
 - **Efeito prático:** com destino brasileiro, o `REPORT.md` declara o nível NBR pretendido (regular/plena) ao lado do perfil de conformidade, e o Anexo A é tratado como checklist nomeado. Para usuários de língua de sinais, ver [Língua de Sinais & Libras](guide-sign-language-br.md).
 
 ## 7. Compliance Versioning
