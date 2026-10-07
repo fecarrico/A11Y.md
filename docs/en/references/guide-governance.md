@@ -87,7 +87,7 @@ For EAA compliance:
 - **Interoperability:** Ensure the software does not prevent the use of third-party assistive technologies.
 - **Accessibility Declaration:** Maintain a public accessibility page describing the features and the achieved compliance level.
 
-## 6.1. Brazilian Compliance (ABNT NBR 17225 / LBI)
+## 6.1. Brazilian Compliance (ABNT NBR 17225 / NBR 17060 / LBI)
 
 For products serving a Brazilian audience:
 
@@ -97,6 +97,7 @@ For products serving a Brazilian audience:
 - **Annex A — the critical-items list**, the acceptance checklist in Brazilian public procurement: CAPTCHA with an alternative modality · **facial recognition / biometrics with an accessible alternative route** · content only on hover/focus · content inserted via CSS · third-party content, with the user warned · custom components · **downloadable (non-HTML) files that are themselves accessible** · layout tables · markup per specification. Three of these go beyond day-to-day WCAG practice: biometrics, files, and CSS-injected content.
 - **Annex B** carries ten functional-performance statements (from EN 301 549) — `REPORT.md` §7 offers them as an optional section serving NBR, EN 301 549 and VPAT at once.
 - **Official validators:** the formal diagnosis for the São Paulo digital-accessibility seal — and the federal guidance — converge on three engines: **AMAWeb**, **AccessMonitor** and **WAVE**. A clean axe run covers most of what they measure, but a Brazilian destination runs the three before any formal claim (the seal requires their diagnosis dated within 10 days).
+- **ABNT NBR 17060:2022** — *Accessibility in mobile device applications: requirements* (October 2022) — is the mobile sibling: native, hybrid and web apps on smartphones and tablets, sites opened on a phone included, under the same article 63 of the LBI. 54 requirements and recommendations in four groups on a **WCAG 2.1** base — a build conforming to this standard already satisfies nearly all of it. The remainder (label before the field, step counters, system accessibility settings, time limits, no stall in assistive-technology navigation, flashing with a warning), the profile mapping and the sources are in [Platform-Native § Brazil](guide-platform-native.md). With a mobile destination, `REPORT.md` names NBR 17060 beside the profile.
 - **Practical effect:** with a Brazilian destination, `REPORT.md` declares the NBR level targeted (regular/plena) alongside the compliance profile, and Annex A is treated as a named checklist. For sign-language users, see [Sign Language & Libras](guide-sign-language-br.md).
 
 ## 7. Compliance Versioning
