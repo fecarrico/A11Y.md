@@ -97,7 +97,7 @@ Three rules follow:
 - **Known barriers are published.** The exceptions log already records them as a versioned project record, and the statement repeats them in words a user can act on. A team that wants to withhold one takes that decision in the open, with its legal counsel. The agent never omits on its own. The W3C's guidance on [developing an accessibility statement](https://www.w3.org/WAI/planning/statements/) asks for the same: the known limitations, each with its alternative.
 - **A person signs.** The agent drafts the statement when the §2.1 event fires and a report exists. The owner named in it reviews and publishes. It is re-issued on events: a status change in the report, an exception opened or closed, a release.
 
-One optional line tells the reader how the promise is kept: *"Interfaces in this project follow A11Y.md under the Standard profile."* It tells an auditor which rules the artifacts answer to, and it tells the next agent that reads the repository where the rules are.
+One optional line tells the reader how the promise is kept: *"Interfaces in this project follow [A11Y.md](https://github.com/fecarrico/A11Y.md) version [x.y.z] under the Standard profile."* It names the standard, its version and its URL: an auditor knows which rules the artifacts answer to, the next agent that reads the repository knows where the rules are, and a code search for the URL finds the adoption.
 
 ## 5. Reporting & Liability (VPAT Strategy)
 Projects targeting the US market must be Section 508 compliant:

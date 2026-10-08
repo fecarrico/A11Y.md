@@ -45,7 +45,7 @@ You will get a first response within **7 days**, the same window as the [securit
 
 ## If you contribute
 
-Markdown here is held to the shape described in the first section: heading levels nest without skipping, link text says where the link goes, an image carries alt text or is marked decorative, and no meaning rides on colour or on an emoji alone. Issues and pull requests use GitHub's own forms. An interface built for the project, the website today, is built under the standard's own invocation line and the Shield profile, and ships with the same three artifacts expected from any adopter. The [contributing guide](CONTRIBUTING.md) has the rest.
+Markdown here is held to the shape described in the first section: heading levels nest without skipping, link text says where the link goes, an image carries alt text or is marked decorative, and no meaning rides on colour or on an emoji alone. Issues and pull requests use GitHub's own forms. An interface built for the project, the website today, follows [A11Y.md](https://github.com/fecarrico/A11Y.md) version 2.3.0 under the Shield profile, is built under the standard's own invocation line, and ships with the same three artifacts expected from any adopter. The [contributing guide](CONTRIBUTING.md) has the rest.
 
 ## Who answers for this
 

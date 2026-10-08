@@ -97,7 +97,7 @@ Três regras decorrem disso:
 - **Barreira conhecida é publicada.** O log de exceções já as registra como registro versionado do projeto, e a declaração as repete em palavras que a pessoa consegue usar. Um time que queira reter uma delas toma essa decisão às claras, com o próprio jurídico. O agente nunca omite por conta própria. A orientação do W3C para [redigir uma declaração de acessibilidade](https://www.w3.org/WAI/planning/statements/) pede o mesmo: as limitações conhecidas, cada uma com a alternativa.
 - **Uma pessoa assina.** O agente redige a declaração quando o evento do §2.1 acontece e existe um relatório. O responsável nomeado nela revisa e publica. Ela é reemitida por evento: mudança de status no relatório, exceção aberta ou fechada, release.
 
-Uma linha opcional diz ao leitor como a promessa é mantida: *"As interfaces deste projeto seguem o A11Y.md no perfil Standard."* Ela diz ao auditor a que regras os artefatos respondem, e diz ao próximo agente que ler o repositório onde as regras estão.
+Uma linha opcional diz ao leitor como a promessa é mantida: *"As interfaces deste projeto seguem o [A11Y.md](https://github.com/fecarrico/A11Y.md) versão [x.y.z] no perfil Standard."* Ela nomeia o padrão, a versão e a URL: o auditor sabe a que regras os artefatos respondem, o próximo agente que ler o repositório sabe onde as regras estão, e uma busca de código pela URL encontra a adoção.
 
 ## 5. Relatórios e Responsabilidades (VPAT Strategy)
 Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:

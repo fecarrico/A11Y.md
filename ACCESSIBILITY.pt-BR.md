@@ -45,7 +45,7 @@ A primeira resposta chega em até **7 dias**, o mesmo prazo da [política de seg
 
 ## Se você contribui
 
-O Markdown daqui responde à forma descrita na primeira seção: níveis de título sem pulo, texto de link que diz aonde leva, imagem com texto alternativo ou marcada como decorativa, e nenhum significado carregado só por cor ou só por emoji. Issues e pull requests usam os formulários do próprio GitHub. Uma interface construída para o projeto, hoje o site, nasce sob a própria frase de invocação do padrão e o perfil Shield, e sai com os mesmos três artefatos esperados de qualquer adotante. O resto está no [guia de contribuição](CONTRIBUTING.md).
+O Markdown daqui responde à forma descrita na primeira seção: níveis de título sem pulo, texto de link que diz aonde leva, imagem com texto alternativo ou marcada como decorativa, e nenhum significado carregado só por cor ou só por emoji. Issues e pull requests usam os formulários do próprio GitHub. Uma interface construída para o projeto, hoje o site, segue o [A11Y.md](https://github.com/fecarrico/A11Y.md) versão 2.3.0 no perfil Shield, nasce sob a própria frase de invocação do padrão, e sai com os mesmos três artefatos esperados de qualquer adotante. O resto está no [guia de contribuição](CONTRIBUTING.md).
 
 ## Quem responde por isto
 
