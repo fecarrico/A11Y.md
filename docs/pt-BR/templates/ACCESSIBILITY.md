@@ -36,7 +36,9 @@ A declaração pública da acessibilidade de um produto: o que ele promete, o qu
 - **O que acontece depois:** primeira resposta em até [n] dias. Barreira confirmada entra no `EXCEPTIONS.md` com responsável e data de revisão até ser corrigida.
 
 ### Para quem contribui
-[As regras a que uma mudança responde e onde vai a evidência, ex. "As interfaces seguem o A11Y.md no perfil Standard. Uma mudança sai com o `REPORT.md` atualizado, e um desvio aceito com uma entrada no `EXCEPTIONS.md`." Uma linha basta. O padrão é a versão longa.]
+As regras a que uma mudança responde e onde vai a evidência. Uma linha basta, e ela nomeia o padrão, a versão e a URL, para que o auditor saiba a que regras os artefatos respondem e uma busca de código encontre esta adoção:
+
+> As interfaces deste projeto seguem o [A11Y.md](https://github.com/fecarrico/A11Y.md) versão [x.y.z] no perfil [Launchpad | Standard | Shield]. Uma mudança sai com o `REPORT.md` atualizado, e um desvio aceito com uma entrada no `EXCEPTIONS.md`.
 
 ### Quem responde por isto
 - **Responsável:** [uma pessoa, com um jeito de falar com ela]

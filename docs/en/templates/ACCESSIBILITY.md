@@ -36,7 +36,9 @@ The public statement of a product's accessibility: what it promises, what has be
 - **What happens next:** first response within [n] days. A confirmed barrier enters `EXCEPTIONS.md` with an owner and a review date until it is fixed.
 
 ### For contributors
-[The rules a change is held to and where the evidence goes, e.g. "Interfaces follow A11Y.md under the Standard profile. A change ships with `REPORT.md` updated, and an accepted deviation with an `EXCEPTIONS.md` entry." One line is enough. The standard itself is the long version.]
+The rules a change is held to, and where the evidence goes. One line is enough, and it names the standard, its version and its URL, so an auditor knows which rules the artifacts answer to and a code search can find this adoption:
+
+> Interfaces in this project follow [A11Y.md](https://github.com/fecarrico/A11Y.md) version [x.y.z] under the [Launchpad | Standard | Shield] profile. A change ships with `REPORT.md` updated, and an accepted deviation with an `EXCEPTIONS.md` entry.
 
 ### Who answers for this
 - **Owner:** [a person, with a way to reach them]
