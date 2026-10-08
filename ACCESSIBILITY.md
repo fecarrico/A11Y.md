@@ -2,36 +2,38 @@
 
 🇧🇷 Leia em português: [ACCESSIBILITY.pt-BR.md](./ACCESSIBILITY.pt-BR.md)
 
-A11Y.md is a standard that AI coding agents read before they generate an interface. This file is the statement the standard asks every adopter to publish about their own product, written here about this project's own surfaces: the documents in this repository, the project website, the Wiki and the scripts in `tools/`. The rules themselves are in [`docs/en/A11Y.md`](docs/en/A11Y.md).
+A11Y.md is a set of Markdown documents: a standard that AI coding agents read before they generate an interface, the guides and templates it points to, and two small scripts. There is no app here. This statement covers what a person using assistive technology will find when reading, running or contributing to those documents, and where the project's one interface, its website, keeps its own evidence.
 
-You are reading this through GitHub. The accessibility of that interface is [GitHub's own statement](https://accessibility.github.com/) to make. What follows is what this project controls.
+## What you will find here, and in what shape
 
-## What this project holds itself to
-
-- **Profile:** Shield (AAA), the strictest of the standard's three [compliance profiles](docs/en/references/guide-compliance-profiles.md), for every interface produced from this repository.
-- **Standard version:** 2.3.0.
-- **The same evidence we ask of adopters.** The website keeps the three artifacts the standard requires, in public: a [verification report](https://github.com/fecarrico/a11ymd/blob/main/REPORT.en.md), an [exceptions log](https://github.com/fecarrico/a11ymd/blob/main/EXCEPTIONS.md) and a [decisions log](https://github.com/fecarrico/a11ymd/blob/main/A11Y-DECISIONS.md). The status in the table is read from them, not from memory.
-
-## Where things stand
-
-| Surface | What was verified | Status |
-| :--- | :--- | :--- |
-| [Website](https://fecarrico.github.io/a11ymd/) | axe-core 4.13.0 with the AAA rule set on all eight routes, at 1280 px and 320 px. Keyboard pass with computed styles over the menu, the disclosure and the lightbox. 200% zoom and text spacing. The standard's static gate: PASS. | ⚠️ CONDITIONAL. The screen-reader pass has not been done by a person. |
-| The standard and its guides (`docs/`) | Plain Markdown in two editions kept at parity by `tools/lint-standard.py`: same files, same headings, same rule count. Heading levels nest without skips in every file under `docs/` and in the root documents, no link reads "click here", and the images in the README carry alt text. | Maintained. Not audited by a third party. |
-| Scripts in `tools/` | Output is plain text with no colour. The last line says PASS or FAIL in words and gives the counts. | Maintained. The level of each finding is told by a leading marker, not a word (see known barriers). |
-| [Wiki](https://github.com/fecarrico/A11Y.md/wiki) | Markdown with the same conventions as `docs/`. | Not audited. |
+- **Plain Markdown, in two editions.** Everything under `docs/` exists in English and in Portuguese, kept at parity by `tools/lint-standard.py`: same files, same headings, same number of rules. A screen reader gets the same structure in either language.
+- **Structure you can navigate.** Heading levels nest without skipping in every file under `docs/` and in the documents at the root. Link text says where the link goes. Code samples sit under headings that say "Good Examples" and "Bad Examples", in words.
+- **Nothing carried by colour or symbol alone.** The severity levels pair a coloured dot with the word (🔴 CRITICAL). The compliance profiles pair an icon with the name.
+- **Images.** The only image is the banner in the README, with alt text. The badges under it are images with alt text.
+- **The scripts** print plain text with no colour, and the last line says PASS or FAIL in words.
+- **Reading with an agent.** The standard is meant to be fed to an AI agent, and the agent reads the same Markdown a person does. The one line that does it is in the [README](README.md#-quick-start-under-2-minutes).
+- **The page around this text is GitHub's.** For the accessibility of GitHub itself, their statement is at [accessibility.github.com](https://accessibility.github.com/).
 
 `benchmark/` is research material. The pages the studies generated are published as a dataset with its own DOI, and many of them are inaccessible on purpose, because that is what the studies measure. Nothing there is an example to follow.
 
+## The website
+
+The project's only interface is [fecarrico.github.io/a11ymd](https://fecarrico.github.io/a11ymd/). It lives in [its own repository](https://github.com/fecarrico/a11ymd) and is built under this standard's Shield (AAA) profile, with the three artifacts the standard requires kept in public: the [verification report](https://github.com/fecarrico/a11ymd/blob/main/REPORT.en.md), the [exceptions log](https://github.com/fecarrico/a11ymd/blob/main/EXCEPTIONS.md) and the [decisions log](https://github.com/fecarrico/a11ymd/blob/main/A11Y-DECISIONS.md). Its status today is ⚠️ **CONDITIONAL**: axe-core 4.13.0 with the AAA rule set passes on all eight routes at 1280 px and 320 px, the keyboard pass and the 200% zoom pass are done, the standard's static gate says PASS, and the screen-reader pass has not been done by a person.
+
 ## Known barriers
 
-Everything here is also an open item in the website's report or exceptions log. Nothing is held back from this list.
+Nothing is held back from this list. The website items are also open in its report or exceptions log.
 
-1. **The website has not been tested with a screen reader by a person.** Every automated and keyboard checkpoint passes. The standard forbids an agent from claiming a screen-reader test it could not hear, so the status stays CONDITIONAL until someone runs the script in [REPORT §3](https://github.com/fecarrico/a11ymd/blob/main/REPORT.en.md#3-behavior-and-task-return). If you use NVDA, JAWS, VoiceOver or TalkBack and have twenty minutes, this is the single most useful thing you can do for this project. Your name goes in the report.
-2. **No colour-vision simulator has been run on the website.** Contrast ratios are measured and recomputed by the gate. Functional loss through colour is not.
-3. **Three decisions on the website await the author:** right-aligned text in the timeline, the spacing between paragraphs on the home (both House Rule relaxations against NBR 17225 5.12.5 and 5.12.3), and whether the logos in the timeline are decorative. Until the third is confirmed, those logos carry an empty alt.
-4. **Headings in the READMEs start with an emoji.** A screen reader announces the symbol before the heading text. The structure underneath is correct. They stay for visual scanning, and we are not sure that is the right call. Tell us if it costs you.
-5. **The scripts mark the level of each finding with a symbol.** An error line starts with `✗` and a warning with `!`. The words appear only in the summary at the end.
+In this repository:
+
+1. **Headings in the READMEs start with an emoji.** A screen reader announces the symbol before the heading text. The structure underneath is correct. They stay for visual scanning, and we are not sure that is the right call. Tell us if it costs you.
+2. **The scripts mark the level of each finding with a symbol.** An error line starts with `✗` and a warning with `!`. The words appear only in the summary at the end.
+
+On the website:
+
+1. **No screen-reader pass by a person.** The standard forbids an agent from claiming a screen-reader test it could not hear, so the status stays CONDITIONAL until someone runs the script in [REPORT §3](https://github.com/fecarrico/a11ymd/blob/main/REPORT.en.md#3-behavior-and-task-return). If you use NVDA, JAWS, VoiceOver or TalkBack and have twenty minutes, this is the single most useful thing you can do for this project. Your name goes in the report.
+2. **No colour-vision simulator has been run.** Contrast ratios are measured and recomputed by the gate. Functional loss through colour is not.
+3. **Three decisions await the author:** right-aligned text in the timeline, the spacing between paragraphs on the home (both House Rule relaxations against NBR 17225 5.12.5 and 5.12.3), and whether the logos in the timeline are decorative. Until the third is confirmed, those logos carry an empty alt.
 
 ## How to report a barrier
 
@@ -43,7 +45,7 @@ You will get a first response within **7 days**, the same window as the [securit
 
 ## If you contribute
 
-An interface built for this project is built under the standard's own invocation line and the Shield profile, and ships with the same three artifacts expected from any adopter. For Markdown, the bar is the one measured in the table: heading levels nest without skipping, link text says where the link goes, an image carries alt text or is marked decorative, and no meaning rides on colour or on an emoji alone. The [contributing guide](CONTRIBUTING.md) has the rest.
+Markdown here is held to the shape described in the first section: heading levels nest without skipping, link text says where the link goes, an image carries alt text or is marked decorative, and no meaning rides on colour or on an emoji alone. Issues and pull requests use GitHub's own forms. An interface built for the project, the website today, is built under the standard's own invocation line and the Shield profile, and ships with the same three artifacts expected from any adopter. The [contributing guide](CONTRIBUTING.md) has the rest.
 
 ## Who answers for this
 
