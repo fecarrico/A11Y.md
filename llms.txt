@@ -1,6 +1,6 @@
 # A11Y.md
 
-> The persistent context system for accessibility: a normative core an AI coding agent reads before generating any interface, per-component reference guides loaded on demand, and three governance templates. WCAG 2.2 AA (AAA under the Shield profile), portable markdown, MIT. Current version: 2.2.0 (2026-09-29). Pin an edition by replacing `main` with a tag such as `v2.2.0` in any URL below.
+> The persistent context system for accessibility: a normative core an AI coding agent reads before generating any interface, per-component reference guides loaded on demand, and four governance templates. WCAG 2.2 AA (AAA under the Shield profile), portable markdown, MIT. Current version: 2.3.0 (2026-10-08). Pin an edition by replacing `main` with a tag such as `v2.3.0` in any URL below.
 
 ## The core — read this first; nothing else is required
 
@@ -19,6 +19,7 @@ The one rule to add to an agent's configuration file (`.cursorrules`, `CLAUDE.md
 - [REPORT.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/REPORT.md): the verification report, required before any delivery to an end user.
 - [EXCEPTIONS.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/EXCEPTIONS.md): a consciously accepted deviation, with risk owner, approver, tracking issue and expiry.
 - [A11Y-DECISIONS.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/A11Y-DECISIONS.md): choices between equally conformant alternatives, indexed by pattern.
+- [ACCESSIBILITY.md](https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/templates/ACCESSIBILITY.md): the public accessibility statement, drafted from the report and the exceptions log when the project publishes one. GitHub shows it as the repository's Accessibility tab.
 - Portuguese editions under https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/templates/
 
 ## Tools — optional, Python 3.9+, standard library only
@@ -30,6 +31,7 @@ The one rule to add to an agent's configuration file (`.cursorrules`, `CLAUDE.md
 ## Optional
 
 - [CHANGELOG.md](https://github.com/fecarrico/A11Y.md/blob/main/CHANGELOG.md): every rule change, dated and reasoned.
+- [ACCESSIBILITY.md](https://github.com/fecarrico/A11Y.md/blob/main/ACCESSIBILITY.md): this repository's own statement about its surfaces, written from the website's report. A statement, not rules.
 - [CONTRIBUTING.md](https://github.com/fecarrico/A11Y.md/blob/main/CONTRIBUTING.md): the evidence bar for changing a rule; field reports are the most valued contribution.
 - [Wiki](https://github.com/fecarrico/A11Y.md/wiki): human-facing documentation, evidence and research, project gallery.
 - [Website](https://fecarrico.github.io/a11ymd/): the project page, with the preregistered efficacy studies.

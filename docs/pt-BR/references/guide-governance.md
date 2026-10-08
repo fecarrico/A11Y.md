@@ -77,6 +77,28 @@ Quando houver auditoria formal, avaliação de terceiro ou declaração pública
 
 Os `REPORT.md` acumulados do projeto são a **evidência de origem** dessa auditoria: eles mostram o que foi verificado, quando, por quem e o que ficou em aberto. Um repositório com histórico de relatórios chega à avaliação formal com lastro; um sem histórico começa do zero.
 
+## 4.2. A declaração pública de acessibilidade (`ACCESSIBILITY.md`)
+
+O `REPORT.md` e o `EXCEPTIONS.md` são escritos para quem constrói e audita o produto. A declaração de acessibilidade é escrita para quem usa: o que o produto promete, quais ambientes foram testados, o que se sabe que está quebrado e como contornar, e quem responde quando algo falha. Desde outubro de 2026 o GitHub mostra um arquivo chamado `ACCESSIBILITY.md` — na raiz do repositório, em `.github/` ou em `docs/` — como uma aba **Accessibility** na página do repositório, ao lado do README e da política de segurança. O mesmo texto é a declaração pública que a Seção 6 pede sob o EAA e a Seção 6.1 sob a LBI.
+
+O template é [`templates/ACCESSIBILITY.md`](../templates/ACCESSIBILITY.md). Ele é **derivado**, nunca original: cada seção tem um artefato de origem, e o agente a preenche a partir dele.
+
+| Seção da declaração | Origem |
+| :--- | :--- |
+| Status declarado, versão do padrão, nível de verificação | o contexto de validação do `REPORT.md` |
+| Ambientes suportados | `REPORT.md` §3: os pares leitor de tela + navegador que de fato rodaram, e nada além deles |
+| Barreiras conhecidas | toda entrada aberta do `EXCEPTIONS.md` e todo checkpoint `[ ]` / `[!]` do relatório, em linguagem simples, com o contorno |
+| Como reportar | o canal do próprio projeto e o prazo de primeira resposta |
+| Responsável e data de revisão | uma pessoa, e a data do último evento que mudou o relatório |
+
+Três regras decorrem disso:
+
+- **Nunca à frente da evidência.** A declaração carrega o status do relatório, ⚠️ CONDITIONAL incluído, e diz o que falta. Uma declaração que soa melhor que o relatório é a forma pública de marcar `[x]` sem evidência.
+- **Barreira conhecida é publicada.** O log de exceções já as registra como registro versionado do projeto, e a declaração as repete em palavras que a pessoa consegue usar. Um time que queira reter uma delas toma essa decisão às claras, com o próprio jurídico. O agente nunca omite por conta própria. A orientação do W3C para [redigir uma declaração de acessibilidade](https://www.w3.org/WAI/planning/statements/) pede o mesmo: as limitações conhecidas, cada uma com a alternativa.
+- **Uma pessoa assina.** O agente redige a declaração quando o evento do §2.1 acontece e existe um relatório. O responsável nomeado nela revisa e publica. Ela é reemitida por evento: mudança de status no relatório, exceção aberta ou fechada, release.
+
+Uma linha opcional diz ao leitor como a promessa é mantida: *"As interfaces deste projeto seguem o A11Y.md no perfil Standard."* Ela diz ao auditor a que regras os artefatos respondem, e diz ao próximo agente que ler o repositório onde as regras estão.
+
 ## 5. Relatórios e Responsabilidades (VPAT Strategy)
 Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:
 - **VPAT Creation:** Manter um documento técnico que registre quais critérios da WCAG são suportados total ou parcialmente.
@@ -85,7 +107,7 @@ Projetos que visam o mercado dos EUA devem ser compatíveis com a Seção 508:
 ## 6. European Compliance (EN 301 549)
 Para conformidade com o EAA:
 - **Interoperability:** Garantir que o software não impeça o uso de tecnologias assistivas de terceiros.
-- **Accessibility Declaration:** Manter uma página de acessibilidade pública descrevendo as funcionalidades e o nível de conformidade alcançado.
+- **Accessibility Declaration:** Manter uma página de acessibilidade pública descrevendo as funcionalidades e o nível de conformidade alcançado. O arquivo, e o artefato de origem de cada seção: §4.2.
 
 ## 6.1. Conformidade Brasileira (ABNT NBR 17225 / NBR 17060 / LBI)
 

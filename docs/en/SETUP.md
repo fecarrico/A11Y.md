@@ -11,7 +11,7 @@ This guide explains how to properly configure your AI assistant (Cursor, Claude 
 
 | | How | Best when | What you take on |
 | :--- | :--- | :--- | :--- |
-| **1. Link to upstream** | the rule points at the raw URL on `main` | zero files copied, always the current edition | network at read time; the standard can change under you — pin a tag in the URL (`/v2.2.0/` instead of `/main/`) to freeze it |
+| **1. Link to upstream** | the rule points at the raw URL on `main` | zero files copied, always the current edition | network at read time; the standard can change under you — pin a tag in the URL (`/v2.3.0/` instead of `/main/`) to freeze it |
 | **2. Pinned copy, rule in your agent file** | copy `docs/<lang>/A11Y.md` with `references/` and `templates/` into the repository (`docs/a11y/` is a good home); the rule in `CLAUDE.md`, `.cursorrules` or the equivalent points at the local path | offline work, upgrades reviewed as a diff, teams that clone the repository and must inherit the rules | you own the update: a provenance note with origin commit, version and license, and an upgrade treated like any other reviewed change |
 | **3. Pinned copy, rule in `AGENTS.md`** | the same copy, with the rule in a tool-neutral `AGENTS.md` instead of a `CLAUDE.md` you do not own | the `CLAUDE.md` belongs to another workflow, or several agents read the repository | two instruction files to keep coherent: `CLAUDE.md` says how the project works, `AGENTS.md` says the accessibility rule |
 

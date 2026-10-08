@@ -11,10 +11,10 @@
   <h1>Project A11Y.md</h1>
   <p><b>O Sistema de Contexto Persistente para Acessibilidade</b></p>
   
-  [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
-  [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
-  [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
-  [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
+  [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](https://www.w3.org/TR/WCAG22/)
+  ![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)
+  ![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)
+  ![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)
   
   <br/>
   <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Leia a Wiki Oficial</a> | <a href="https://fecarrico.github.io/a11ymd/" target="_blank">🌐 Site Oficial</a> | <a href="https://medium.com/ux-user-experience-design-em-portugues/a11y-md-acessibilidade-antes-de-qualquer-prompt-5c8778ccb310" target="_blank">📝 Leia o Manifesto (Medium)</a>
@@ -33,7 +33,7 @@ Nós tratamos arquivos como `.gitignore`, `eslint` e `CLAUDE.md` como verdades c
 
 ## ⚡ Core Features (Inovações)
 
-- 🧠 **Contrato Comportamental da IA (18 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory), a produzir a evidência do próprio trabalho (Exception Memory + Release Evidence) **e a entregá-la para outro conferir** (Independent Verification — o agente que escreveu o código não pode ser a única testemunha de que ele está conforme), a resolver toda imagem fornecida pelo usuário e todo vídeo ou áudio com o desenvolvedor no circuito (Image Evidence + Media Evidence), a submeter o fluxo inteiro aos critérios cognitivos que a WCAG 2.2 acrescentou (Cognitive Load + Conflicting Access Needs) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis, texto flutuando sobre vídeo de fundo ou um overlay de acessibilidade oferecido como correção).
+- 🧠 **Contrato Comportamental da IA (19 Regras):** Restrições determinísticas que forçam a IA a atuar como tradutora semântica (Framework Adaptation, Platform Awareness), a reutilizar os componentes existentes do projeto em vez de recriá-los (Component Reuse + Decision Memory), a produzir a evidência do próprio trabalho (Exception Memory + Release Evidence) **e a entregá-la para outro conferir** (Independent Verification — o agente que escreveu o código não pode ser a única testemunha de que ele está conforme), a resolver toda imagem fornecida pelo usuário e todo vídeo ou áudio com o desenvolvedor no circuito (Image Evidence + Media Evidence), a submeter o fluxo inteiro aos critérios cognitivos que a WCAG 2.2 acrescentou (Cognitive Load + Conflicting Access Needs) e a parar de gerar anti-padrões destrutivos (como `divs` clicáveis, texto flutuando sobre vídeo de fundo ou um overlay de acessibilidade oferecido como correção).
 - 🛡️ **Compliance Profiles Modulares:** Suporte aos perfis Shield (AAA), Standard (AA) e **Launchpad (A)** — cada um separando o que a WCAG realmente exige (citado por Critério de Sucesso) das **Regras da Casa** mais estritas deste padrão. O perfil Launchpad permite que startups construam MVPs rápidos relaxando regras visuais cosméticas, sem nunca sacrificar a estrutura semântica crítica.
 - 📚 **Lazy Context Loading:** 31 guias de referência (WAI-ARIA APG). A IA é programada para carregar apenas os guias necessários sob demanda, economizando tokens e mantendo o foco afiado.
 
@@ -49,6 +49,7 @@ Ler sobre acessibilidade é o primeiro passo, injetá-la no código é o objetiv
    Só isso — nenhum arquivo copiado. A IA lê o arquivo núcleo e carrega sob demanda apenas os guias de referência necessários, sempre atualizados. (Prefere inglês? Aponte para `docs/en/A11Y.md`.)
 2. **Prefere uma cópia offline ou fixada?** Copie o `docs/pt-BR/A11Y.md` para o seu repositório (raiz, `docs/`, onde quiser) — opcionalmente com as pastas `references/` e `templates/` — e aponte a regra para o caminho local. Se copiar só o arquivo núcleo, a IA usa como fallback os guias deste repositório via URLs upstream.
 3. **Defina o Perfil:** A IA perguntará proativamente qual Compliance Profile (Shield, Standard ou Launchpad) ela deve usar, caso você não tenha especificado.
+4. **Quando a primeira entrega sair, diga isso onde as pessoas olham:** preencha o [`templates/ACCESSIBILITY.md`](docs/pt-BR/templates/ACCESSIBILITY.md) a partir do seu `REPORT.md` e do `EXCEPTIONS.md` e faça commit como `ACCESSIBILITY.md` na raiz do repositório. O GitHub mostra o arquivo como a aba **Accessibility**, ao lado do README. Ele nunca promete mais do que foi verificado: [a declaração deste projeto](ACCESSIBILITY.pt-BR.md) diz CONDITIONAL.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Leia o guia completo de Setup e Integração na nossa Wiki.</a>**
 
