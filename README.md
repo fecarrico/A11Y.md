@@ -8,10 +8,10 @@
   <h1>Project A11Y.md</h1>
   <p><b>The Persistent Context System for Accessibility</b></p>
   
-  [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](#)
-  [![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)](#)
-  [![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)](#)
-  [![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)](#)
+  [![WCAG 2.2 AA](https://img.shields.io/badge/WCAG-2.2_AA-blue.svg)](https://www.w3.org/TR/WCAG22/)
+  ![ADA Compliant](https://img.shields.io/badge/Compliance-ADA%20%7C%20EAA-success.svg)
+  ![AI Ready](https://img.shields.io/badge/Context-AI_Ready-purple.svg)
+  ![Claude for Open Source](https://img.shields.io/badge/Anthropic-Claude_for_Open_Source-D97757.svg)
   
   <br/>
   <a href="https://github.com/fecarrico/A11Y.md/wiki" target="_blank">📖 Read the Official Wiki</a> | <a href="https://fecarrico.github.io/a11ymd/" target="_blank">🌐 Official Website</a> | <a href="https://open.substack.com/pub/felipearriadacarrio340730/p/a11ymd-accessibility-before-any-prompt" target="_blank">📝 Read the Manifesto (Substack)</a>
@@ -30,7 +30,7 @@ We treat `.gitignore`, `eslint`, and `CLAUDE.md` as canonical truths in our repo
 
 ## ⚡ Core Features
 
-- 🧠 **18-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation, Platform Awareness), reuse the project's existing components instead of recreating them (Component Reuse + Decision Memory), produce the evidence of its own work (Exception Memory + Release Evidence) **and hand it to someone else to confirm** (Independent Verification — the agent that wrote the code cannot be the only witness that it conforms), resolve every user-supplied image and every piece of video or audio with the developer in the loop (Image Evidence + Media Evidence), hold the whole flow to the cognitive criteria WCAG 2.2 added (Cognitive Load + Conflicting Access Needs), and stop generating dangerous anti-patterns (like "clickable divs", text floating over a background video, or an accessibility overlay offered as a fix).
+- 🧠 **19-Rule AI Behavioral Contract:** A strict set of deterministic constraints that force the AI to act as a semantic translator (Framework Adaptation, Platform Awareness), reuse the project's existing components instead of recreating them (Component Reuse + Decision Memory), produce the evidence of its own work (Exception Memory + Release Evidence) **and hand it to someone else to confirm** (Independent Verification — the agent that wrote the code cannot be the only witness that it conforms), resolve every user-supplied image and every piece of video or audio with the developer in the loop (Image Evidence + Media Evidence), hold the whole flow to the cognitive criteria WCAG 2.2 added (Cognitive Load + Conflicting Access Needs), and stop generating dangerous anti-patterns (like "clickable divs", text floating over a background video, or an accessibility overlay offered as a fix).
 - 🛡️ **Modular Compliance Profiles:** Support for Shield (AAA), Standard (AA), and **Launchpad (A)** — each separating what WCAG actually requires (cited by Success Criterion) from this standard's stricter **House Rules**. The Launchpad profile allows startups to build rapid MVPs by relaxing visual constraints without ever sacrificing critical semantic structure.
 - 📚 **Lazy Context Loading:** 31 reference guides (WAI-ARIA APG) that act as an actionable database. The AI is programmed to load only the guides it needs on-demand, saving tokens and maintaining sharp focus.
 
@@ -46,6 +46,7 @@ Reading about accessibility is the first step, injecting it into your code is th
    That's it — no files copied. The AI reads the core file and lazy-loads only the reference guides it needs, always up to date. (Prefer Portuguese? Point to `docs/pt-BR/A11Y.md` instead.)
 2. **Prefer an offline or pinned copy?** Copy `docs/en/A11Y.md` into your repository (root, `docs/`, anywhere) — optionally with the `references/` and `templates/` folders — and point the rule at the local path. If you copy only the core file, the AI falls back to this repository's guides via their upstream URLs.
 3. **Set the Profile:** The AI will proactively ask you which Compliance Profile (Shield, Standard, or Launchpad) to use if you don't specify one.
+4. **When the first delivery ships, say so where people look:** fill [`templates/ACCESSIBILITY.md`](docs/en/templates/ACCESSIBILITY.md) from your `REPORT.md` and `EXCEPTIONS.md` and commit it as `ACCESSIBILITY.md` at the root of your repository. GitHub shows it as the **Accessibility** tab beside the README. It never promises more than was verified: [this project's own](ACCESSIBILITY.md) says CONDITIONAL.
 
 👉 **<a href="https://github.com/fecarrico/A11Y.md/wiki/Setup-and-Integration" target="_blank">Read the full Setup and Integration guide on our Wiki.</a>**
 

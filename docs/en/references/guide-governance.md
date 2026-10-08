@@ -77,6 +77,28 @@ Where a formal audit, third-party evaluation or public declaration is on the hor
 
 The project's accumulated `REPORT.md` files are the **provenance evidence** for that audit: they show what was verified, when, by whom, and what stayed open. A repository with a history of reports arrives at formal evaluation with ballast; one without starts from zero.
 
+## 4.2. The public accessibility statement (`ACCESSIBILITY.md`)
+
+`REPORT.md` and `EXCEPTIONS.md` are written for the people who build and audit the product. The accessibility statement is written for the people who use it: what the product promises, which environments were tested, what is known to be broken and how to get around it, and who answers when something is. Since October 2026 GitHub shows a file named `ACCESSIBILITY.md` — at the repository root, in `.github/` or in `docs/` — as an **Accessibility** tab on the repository page, beside the README and the security policy. The same text is the public declaration Section 6 asks for under the EAA and Section 6.1 under the LBI.
+
+The template is [`templates/ACCESSIBILITY.md`](../templates/ACCESSIBILITY.md). It is **derived**, never original: every section has a source artifact, and the agent fills it from that source.
+
+| Statement section | Source |
+| :--- | :--- |
+| Declared status, standard version, verification level | the validation context of `REPORT.md` |
+| Supported environments | `REPORT.md` §3: the screen reader + browser pairs that actually ran, and nothing else |
+| Known barriers | every open `EXCEPTIONS.md` entry and every `[ ]` / `[!]` checkpoint in the report, in plain language, with the workaround |
+| How to report | the project's own channel and its first-response time |
+| Owner and review date | a person, and the date of the last event that changed the report |
+
+Three rules follow:
+
+- **Never ahead of the evidence.** The statement carries the report's status, ⚠️ CONDITIONAL included, and says what is missing. A statement that reads better than its report is the public form of marking `[x]` without evidence.
+- **Known barriers are published.** The exceptions log already records them as a versioned project record, and the statement repeats them in words a user can act on. A team that wants to withhold one takes that decision in the open, with its legal counsel. The agent never omits on its own. The W3C's guidance on [developing an accessibility statement](https://www.w3.org/WAI/planning/statements/) asks for the same: the known limitations, each with its alternative.
+- **A person signs.** The agent drafts the statement when the §2.1 event fires and a report exists. The owner named in it reviews and publishes. It is re-issued on events: a status change in the report, an exception opened or closed, a release.
+
+One optional line tells the reader how the promise is kept: *"Interfaces in this project follow A11Y.md under the Standard profile."* It tells an auditor which rules the artifacts answer to, and it tells the next agent that reads the repository where the rules are.
+
 ## 5. Reporting & Liability (VPAT Strategy)
 Projects targeting the US market must be Section 508 compliant:
 - **VPAT Creation:** Maintain a technical document that records which WCAG criteria are fully or partially supported.
@@ -85,7 +107,7 @@ Projects targeting the US market must be Section 508 compliant:
 ## 6. European Compliance (EN 301 549)
 For EAA compliance:
 - **Interoperability:** Ensure the software does not prevent the use of third-party assistive technologies.
-- **Accessibility Declaration:** Maintain a public accessibility page describing the features and the achieved compliance level.
+- **Accessibility Declaration:** Maintain a public accessibility page describing the features and the achieved compliance level. The file, and the artifact each of its sections is read from: §4.2.
 
 ## 6.1. Brazilian Compliance (ABNT NBR 17225 / NBR 17060 / LBI)
 

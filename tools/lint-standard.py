@@ -94,7 +94,7 @@ def check_triggers(root: Path) -> None:
         if not section:
             fail("triggers", f"docs/{lang}/A11Y.md has no §2.1 loading map")
             continue
-        mapped = set(re.findall(r"(?:guide-[a-z0-9-]+|REPORT|EXCEPTIONS|A11Y-DECISIONS)\.md",
+        mapped = set(re.findall(r"(?:guide-[a-z0-9-]+|REPORT|EXCEPTIONS|A11Y-DECISIONS|ACCESSIBILITY)\.md",
                                 section.group(0)))
         expected = {p.name for p in (root / "docs" / lang / "references").glob("guide-*.md")}
         expected |= {p.name for p in (root / "docs" / lang / "templates").glob("*.md")}

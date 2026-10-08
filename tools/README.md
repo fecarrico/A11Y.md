@@ -63,7 +63,7 @@ Every run ends with the exact line to record in the report's *Static gate* field
 ```yaml
 - name: A11Y.md static gate
   run: |
-    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v2.2.0/tools/verify-a11y.py
+    curl -sO https://raw.githubusercontent.com/fecarrico/A11Y.md/v2.3.0/tools/verify-a11y.py
     python3 verify-a11y.py . --src src --warn-only   # drop --warn-only once the team is ready
 ```
 
