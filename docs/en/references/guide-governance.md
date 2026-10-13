@@ -16,8 +16,9 @@ A clean axe run means "no violation among the rules that were enabled". Two defa
 - **Resolve the linter × engine conflict instead of silencing it.** `scrollable-region-focusable` (axe) requires a focus stop on a container the user can scroll but not tab into; `no-noninteractive-tabindex` (`eslint-plugin-jsx-a11y`) flags that exact `tabIndex`. Following both literally is impossible, and the path of least resistance — disabling the ESLint rule — removes a real guard. Configure it instead:
   ```jsonc
   // .eslintrc — allow the focus stop axe requires, keep the rule everywhere else
-  "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["region"], "tags": [], "allowExpressionValues": true }]
+  "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["tabpanel", "region"], "tags": [], "allowExpressionValues": true }]
   ```
+  Keep `tabpanel` in `roles`: it is the plugin's own default, and a tab panel that opens with text needs the stop ([Tabs & Accordions](guide-tabs-accordion.md), rule 2). A list that names only `region` replaces the default and drops it.
   And remember the axe rule is **conditional**: the focus stop belongs only on regions whose content actually overflows. Applying it to every scroll container adds tab stops that lead nowhere (see *Focus Traps Nobody Asked For*, `A11Y.md` §6).
 
 > **A CI gate is a form of independent verification.** *Independent Verification* (`A11Y.md` §2) asks that the evidence not be authored solely by the agent that wrote the code. A pipeline check satisfies that for the mechanical layer by construction — it runs outside the session, against the artifact, with no memory of the decisions that produced it. It does not, however, satisfy the human checkpoints, and it does not raise the report's declared independence level for anything a machine cannot test.
@@ -60,7 +61,7 @@ When creating custom complex widgets, the developer (or AI) must include a comme
 To prepare subsystems for external certification and audit:
 1. **Inventory:** Consolidate a list or storybook of the key visual components of the flow and their behaviors with assistive technologies.
 2. **Keyboard Path:** Prevent Dead-ends through clear and planned mapping of the visual layout order (`Tab`).
-3. **Standard Audit:** The checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** be operated as "Definition of Done" **before any delivery to an end user** — a published build, a deploy, a shared artifact, a tag — not only at a "final delivery" that continuously delivered projects never reach (see *Release Evidence*, `A11Y.md` §2).
+3. **Standard Audit:** The checklist in [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** be operated as "Definition of Done" **before any delivery to an end user** — a published build, a deploy, a shared artifact, a tag — not only at a "final delivery" that continuously delivered projects never reach (see *Release Evidence*, `A11Y.md` §2). A preview shared for someone else's review — the owner's included — is a delivery too: calling the project a lab, a draft or private does not exempt it, and item 4 keeps the cost at one living report, not one per publish.
 4. **One living report, not one per publish:** the report tracks the **interface**, not the release count. If nothing changed since the last one, it stands as is. When the interface changes, update the date and revisit only the entries that change affects: any checkpoint whose evidence the change invalidates goes back to `[ ]` or `[~]` until re-verified. Human checkpoints (screen reader, color simulator) keep their `[x]` and the date of the session that produced them, and are re-run when the flow they covered changes.
 
 ## 4.1. Formal evaluation (WCAG-EM) — when the project will be audited

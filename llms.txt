@@ -9,7 +9,7 @@
 
 The one rule to add to an agent's configuration file (`.cursorrules`, `CLAUDE.md`, `AGENTS.md`, `copilot-instructions.md`): "When developing the frontend, follow strictly the accessibility rules in the file https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/A11Y.md" — in Portuguese: "Ao desenvolver o frontend, siga estritamente as regras de acessibilidade do arquivo https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/A11Y.md"
 
-## Reference guides — load one at a time, only the row of §2.1 that matches the task
+## Reference guides — load the §2.1 row of each component the interface contains, as it is built
 
 - [docs/en/references/](https://github.com/fecarrico/A11Y.md/tree/main/docs/en/references): 31 guides, one per component or concern (modals, forms, form controls, navigation, tables, charts, maps, media, generative UI…). Raw file pattern: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/en/references/guide-<name>.md
 - [docs/pt-BR/references/](https://github.com/fecarrico/A11Y.md/tree/main/docs/pt-BR/references): the same 31 guides in Portuguese. Raw file pattern: https://raw.githubusercontent.com/fecarrico/A11Y.md/main/docs/pt-BR/references/guide-<name>.md

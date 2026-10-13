@@ -3,10 +3,11 @@
 context-cost.py — what the standard actually costs in context, per task type.
 
 A11Y.md is loaded lazily: the core is always read, and the reference guides are
-consulted one at a time, per the Loading Triggers map in §2.1. So "how much
-context does the standard cost" has no single answer — it has one answer per
-task type. This script computes all of them, reading the trigger map out of the
-core file itself, so it stays correct when the map changes.
+consulted per component — the §2.1 row of each component the interface
+contains, as it is built. So "how much context does the standard cost" has no
+single answer — it has one answer per task type. This script computes all of
+them, reading the trigger map out of the core file itself, so it stays correct
+when the map changes.
 
 It also compares two versions, which is how a release note earns the right to
 claim a reduction:

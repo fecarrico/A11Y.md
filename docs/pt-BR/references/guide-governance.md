@@ -16,8 +16,9 @@ Uma rodada limpa do axe significa "nenhuma violação entre as regras que estava
 - **Resolva o conflito linter × motor em vez de silenciá-lo.** A `scrollable-region-focusable` (axe) exige parada de foco num container que o usuário consegue rolar mas não alcançar por Tab; a `no-noninteractive-tabindex` (`eslint-plugin-jsx-a11y`) acusa exatamente esse `tabIndex`. Seguir as duas ao pé da letra é impossível, e o caminho de menor resistência — desligar a regra do ESLint — remove uma proteção real. Configure:
   ```jsonc
   // .eslintrc — permite a parada de foco que o axe exige, mantém a regra no resto
-  "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["region"], "tags": [], "allowExpressionValues": true }]
+  "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["tabpanel", "region"], "tags": [], "allowExpressionValues": true }]
   ```
+  Mantenha `tabpanel` em `roles`: é o padrão do próprio plugin, e um painel de abas que abre com texto precisa da parada ([Tabs & Accordions](guide-tabs-accordion.md), regra 2). Uma lista que nomeia só `region` substitui o padrão e o perde.
   E lembre que a regra do axe é **condicional**: a parada de foco cabe só em regiões cujo conteúdo de fato transborda. Aplicá-la a todo container rolável cria paradas de tabulação que não levam a nada (ver *Armadilhas de Foco que Ninguém Pediu*, `A11Y.md` §6).
 
 > **Um gate de CI é uma forma de verificação independente.** A *Independent Verification* (`A11Y.md` §2) pede que a evidência não seja de autoria exclusiva do agente que escreveu o código. Uma checagem de pipeline satisfaz isso na camada mecânica por construção — roda fora da sessão, contra o artefato, sem memória das decisões que o produziram. Ela não satisfaz, porém, os checkpoints humanos, e não eleva o nível de independência declarado no relatório para nada que uma máquina não consiga testar.
@@ -60,7 +61,7 @@ Ao criar widgets complexos customizados, o desenvolvedor (ou a IA) MUST incluir 
 Para preparar sub-sistemas para certificação externa e auditoria:
 1. **Inventory:** Consolidar uma lista ou storybook dos componentes visuais chaves do fluxo e seus comportamentos com tecnologias assistivas.
 2. **Keyboard Path:** Prevenir Dead-ends através do mapeamento claro e planejado da ordem do layout visual (`Tab`).
-3. **Auditoria Padrão:** O checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** ser operado como "Definition of Done" **antes de qualquer entrega ao usuário final** — build publicado, deploy, artefato compartilhado, tag — e não apenas numa "entrega final" que projetos de entrega contínua nunca alcançam (ver *Release Evidence*, `A11Y.md` §2).
+3. **Auditoria Padrão:** O checklist em [**`templates/REPORT.md`**](../templates/REPORT.md) **MUST** ser operado como "Definition of Done" **antes de qualquer entrega ao usuário final** — build publicado, deploy, artefato compartilhado, tag — e não apenas numa "entrega final" que projetos de entrega contínua nunca alcançam (ver *Release Evidence*, `A11Y.md` §2). Uma prévia compartilhada para outra pessoa avaliar — o dono do projeto incluído — também é entrega: chamar o projeto de laboratório, rascunho ou privado não o dispensa, e o item 4 mantém o custo em um relatório vivo, não um por publicação.
 4. **Um relatório vivo, não um por publicação:** o relatório acompanha a **interface**, não a contagem de releases. Se nada mudou desde o último, ele continua valendo. Quando a interface muda, atualize a data e revisite apenas as entradas afetadas: todo checkpoint cuja evidência a mudança invalida volta para `[ ]` ou `[~]` até ser reverificado. Checkpoints humanos (leitor de tela, simulador de cor) mantêm o `[x]` e a data da sessão que os produziu, e são refeitos quando o fluxo que cobriam muda.
 
 ## 4.1. Avaliação formal (WCAG-EM) — quando o projeto for auditado
