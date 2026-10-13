@@ -114,6 +114,16 @@ O objetivo deste projeto é ser uma arquitetura viva. Ele depende da comunidade 
 
 ---
 
+## 🎨 A Edição de Design (DA11Y.md)
+
+**Torne suas telas e componentes acessíveis antes do primeiro pixel com o DA11Y.md.**
+
+O DA11Y.md é a edição de design do A11Y.md. O agente do Figma lê o protocolo por link e segue as mesmas regras e os mesmos números enquanto a tela é desenhada. Ele começa pelo que a biblioteca já decidiu, calcula o contraste a partir dos tokens e anota cada achado na própria tela. O relatório de design sai do arquivo e chega a quem vai construir, que segue o A11Y.md no código.
+
+👉 **[Conhecer o DA11Y.md](https://fecarrico.github.io/da11ymd/)** · [Repositório](https://github.com/fecarrico/DA11Y.md)
+
+---
+
 <br />
 
 <div align="center">
