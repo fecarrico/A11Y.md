@@ -3,10 +3,11 @@
 > **Escopo:** Divulgação de Conteúdo
 
 ## Regras Centrais
-1. **Teclado:** Use setas direcionais para abas; tecla Tab para entrar nos painéis.
-2. **Roles (Tabs):** `tablist`, `tab`, `tabpanel`.
-3. **Roles (Accordion):** Use `<details>` e `<summary>`, ou botões com `aria-expanded` e `aria-controls`.
-4. **Aria-selected:** Usado em abas para marcar a ativa.
+1. **Teclado:** Use setas direcionais para abas; tecla Tab para entrar nos painéis (onde ela cai: regra 2).
+2. **Foco no painel:** o `Tab` a partir da aba selecionada cai no primeiro conteúdo do painel. Quando o painel não tem nenhum elemento focável, ou abre com conteúdo que não é focável (um parágrafo de abertura, um título), o painel leva `tabindex="0"`; quando abre com um controle, o foco vai para esse controle e o painel não leva `tabindex` *([Padrão de abas do APG](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/), Keyboard Interaction, nota 4)*. Sem a parada, o `Tab` pula o texto de abertura e quem usa leitor de tela cai num controle no meio do painel, sem o que vinha antes; com uma parada desnecessária, ela é uma caixa contornada sem nada para operar. Decida painel por painel, pelo primeiro conteúdo: *todos os painéis* e *nenhum painel* erram em algum lugar.
+3. **Roles (Tabs):** `tablist`, `tab`, `tabpanel`.
+4. **Roles (Accordion):** Use `<details>` e `<summary>`, ou botões com `aria-expanded` e `aria-controls`.
+5. **Aria-selected:** Usado em abas para marcar a ativa.
 
 ## Comportamento esperado (cenários de verificação)
 
@@ -15,7 +16,7 @@
 **Teclado**
 - DADO uma lista de abas, QUANDO entro nela com `Tab`, ENTÃO o foco pousa na aba selecionada — uma parada para a lista toda.
 - QUANDO pressiono `←`/`→`, ENTÃO o foco anda entre as abas, e só o painel da aba selecionada fica visível.
-- QUANDO pressiono `Tab` numa aba, ENTÃO o foco entra no painel dela, não na próxima aba.
+- QUANDO pressiono `Tab` numa aba, ENTÃO o foco entra no painel dela, não na próxima aba: no primeiro controle quando o painel abre com um, no próprio painel quando abre com texto — nunca passando por cima do texto de abertura até um controle mais abaixo.
 - DADO um acordeão, QUANDO pressiono `Enter` ou `Espaço` num cabeçalho, ENTÃO o painel dele abre ou fecha e o foco fica no cabeçalho.
 - QUANDO um painel está fechado, ENTÃO `Tab` pula o conteúdo dele.
 
