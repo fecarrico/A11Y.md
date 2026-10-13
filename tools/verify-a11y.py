@@ -4,7 +4,9 @@ verify-a11y.py — static gate for projects adopting the A11Y.md standard.
 
 Checks what can be verified without a browser: that the project artifacts
 exist, are current and well-formed, that the evidence they carry adds up
-(the contrast ratios recorded in REPORT.md are recomputed, never trusted),
+(the contrast ratios recorded in REPORT.md are recomputed, never trusted,
+and every component the source contains must have its guide's scenarios
+in the report),
 and that the source is free of the anti-patterns a text search can catch —
 the ones axe cannot see because they live in handlers, CSS intent or source
 that has not been rendered yet. Exits non-zero when a check fails, so it can
@@ -656,6 +658,114 @@ def check_orphaned_aria(root: Path, src: Path) -> None:
                          f"passed down rather than generated on both sides (A11Y.md §6).")
 
 
+# --- checks: the interface against its evidence ----------------------------
+
+# A role as markup, JSX, Vue and scripts write it. The field case behind the
+# coverage check built its tabs entirely in JavaScript (2026-10-13): a scan of
+# `role="…"` alone would have found no tabs at all. `data-role` is not a role.
+Q = r"[\"'`]"
+ROLE_OF = (r"(?:(?<![\w.-]):?role\s*=\s*(?:\{\s*)?(?:\"'|" + Q + r")"   # role="…"  role={"…"}  :role="'…'"
+           r"|(?<![\w-])role\s*:\s*" + Q +                            # { role: "…" }
+           r"|setAttribute\(\s*" + Q + r"role" + Q + r"\s*,\s*" + Q +  # el.setAttribute('role', '…')
+           r"|\.role\s*=\s*" + Q + r")")                              # el.role = '…'
+END = r"(?![\w-])"  # whole names only: <table-row> is a custom element, guide-forms is not guide-form-controls
+
+
+def tag(name: str) -> str:
+    """The element as markup writes it, or as a script creates it: the
+    website's figure lightbox is `document.createElement("dialog")`, and its
+    only literal `<dialog>` sits in a comment."""
+    return r"(?:<" + name + END + r"|createElement\(\s*" + Q + name + Q + r"\s*[,)])"
+
+
+# An attribute inside an opening tag, quoted values skipped whole: `draggable`
+# in a sentence is prose, and so is "popover" inside an alt text.
+IN_TAG = r"<[a-z][\w.-]*(?:\"[^\"]*\"|'[^']*'|[^>\"'])*?\s"
+
+# Each guide that ends with an Expected behavior block, and the static
+# signatures of the component it covers (the rows of A11Y.md §2.1). Guides
+# whose component has no reliable signature in source (charts, maps, consent
+# banners, generative UI) are left out: their inventory stays with whoever
+# writes the report.
+GUIDE_SIGNATURES = {
+    "guide-buttons": (tag("button"), ROLE_OF + r"button" + END),
+    "guide-navigation": (tag("nav"), tag("main"), ROLE_OF + r"(?:navigation|main)" + END),
+    "guide-forms": (tag("form"), tag("textarea"),
+                    tag("input") + r"(?![^>]*\btype\s*=\s*[\"'](?:hidden|checkbox|radio|range|submit|button|reset|image|color)[\"'])"),
+    "guide-form-controls": (tag("select"), r"\btype\s*=\s*[\"'](?:checkbox|radio|range)[\"']",
+                            ROLE_OF + r"(?:switch|checkbox|radiogroup|radio|slider)" + END),
+    "guide-modals": (tag("dialog"), ROLE_OF + r"(?:alertdialog|dialog)" + END, r"\baria-modal\b"),
+    "guide-tabs-accordion": (ROLE_OF + r"(?:tablist|tabpanel|tab)" + END, tag("details")),
+    "guide-tables": (tag("table"), ROLE_OF + r"(?:table|grid|treegrid)" + END),
+    "guide-toasts-notifications": (ROLE_OF + r"(?:status|alert)" + END, r"\baria-live\b"),
+    "guide-tooltips-popovers": (ROLE_OF + r"tooltip" + END, IN_TAG + r"popover(?:target)?(?=\s*=|[\s>/])"),
+    "guide-loading-skeleton": (r"\baria-busy\b",),
+    "guide-autocomplete": (ROLE_OF + r"combobox" + END, r"\baria-autocomplete\b", tag("datalist")),
+    "guide-carousels-sliders": (r"\baria-roledescription\s*=\s*[\"'](?:carousel|slide)[\"']",),
+    "guide-datepicker": (r"\btype\s*=\s*[\"'](?:date|datetime-local|month|week)[\"']",),
+    "guide-drag-drop": (IN_TAG + r"draggable(?:\s*=\s*(?:[\"']true[\"']|\{true\}))?(?=[\s>/])",),
+    "guide-infinite-scroll": (ROLE_OF + r"feed" + END,),
+    "guide-media": (tag("video"), tag("audio"), tag("iframe") + r"[^>]*\b(?:youtube(?:-nocookie)?\.com|player\.vimeo\.com)/"),
+    "guide-treeview": (ROLE_OF + r"tree" + END,),
+}
+
+
+def check_guide_coverage(root: Path, report: Path, src: Path) -> None:
+    """Every component the interface contains is verified against its guide's
+    Expected behavior block (A11Y.md §7, User Flow; REPORT.md §3).
+
+    The inventory comes from the interface, never from the guides opened while
+    building it. In the field case behind this check (2026-10-13) the tabs, the
+    skip link and the status message of a landing page were built from memory,
+    and a report listing "the guides loaded" would have listed none of them.
+    A guide counts as covered when §3 names it by its file
+    (`guide-tabs-accordion`). The signatures are heuristic, so a missing guide
+    warns; a report that claims PASS with one missing fails, because it closes
+    a checkpoint the source says is still open.
+
+    Tag names match case-insensitively only in HTML: in JSX, TSX, Vue, Svelte
+    and Astro `<Table>` is a component and `Array<Table>` a type, and neither is
+    a table. Attribute signatures (`draggable`, `popover`) are not read in plain
+    `.js`/`.ts`, where `i<b && draggable` is a comparison.
+    """
+    body = body_of(report)
+    section = re.search(r"^#{2,3}\s*3\.[^\n]*\n(.*?)(?=^##\s|\Z)", body, re.M | re.S)
+    named = section.group(1).lower() if section else ""
+    claims_pass = status_claims_pass(body)
+
+    seen: dict[str, tuple[str, str]] = {}  # guide → (where, what matched)
+    for path in sorted(source_files(root, src)):
+        suffix = path.suffix.lower()
+        if suffix in (".css", ".scss"):
+            continue
+        text = scannable(path)
+        if not text:
+            continue
+        flags = re.I if suffix in (".html", ".htm") else 0
+        for guide, signatures in GUIDE_SIGNATURES.items():
+            if guide in seen:
+                continue
+            for signature in signatures:
+                if signature.startswith(IN_TAG) and suffix in (".js", ".ts"):
+                    continue
+                match = re.search(signature, text, flags)
+                if match:
+                    seen[guide] = (f"{path.relative_to(root)}:{line_of(text, match.start())}",
+                                   " ".join(match.group(0).split())[:40])
+                    break
+
+    for guide, (where, what) in seen.items():
+        if re.search(r"(?<![\w-])" + re.escape(guide) + END, named):
+            continue
+        message = (f"{where} — `{what}`: a component covered by {guide}, and REPORT.md §3 names no "
+                   f"scenarios run from it. Run the Expected behavior block of references/{guide}.md and "
+                   f"name the guide by its file (A11Y.md §7, User Flow)")
+        if claims_pass:
+            fail("guide-coverage", message + ". The report claims PASS with this checkpoint open.")
+        else:
+            warn("guide-coverage", message + ".")
+
+
 # --- runner ----------------------------------------------------------------
 
 def run_checks(root: Path, src: Path) -> None:
@@ -669,6 +779,7 @@ def run_checks(root: Path, src: Path) -> None:
         gate_declared = check_report_gate(report)
         check_report_standard_version(report)
         check_contrast_evidence(root, report, src)
+        check_guide_coverage(root, report, src)
     check_exceptions(root)
     check_gitignore(root)
     check_source_antipatterns(root, src)
@@ -699,8 +810,12 @@ CLEAN_REPORT = """# Report
 - [x] **Text & UI Contrast:** measured
 | body | #1c1b19 | #f7f6f3 | 15.92:1 | 7:1 | ✅ |
 - [ ] **Screen reader:** pending
+## 3. Behavior and Task Return
+- Scenarios run: guide-forms (4/4 passed) · guide-buttons (3/3 passed)
 """
 CLEAN_ROW = "| body | #1c1b19 | #f7f6f3 | 15.92:1 | 7:1 | ✅ |"
+PASS_REPORT = (CLEAN_REPORT.replace("⚠️ CONDITIONAL — screen reader validation pending", "✅ PASS")
+               .replace("- [ ] **Screen reader:** pending", "- [x] **Screen reader:** NVDA 2026.1 + Firefox 141"))
 
 SELF_TEST_CASES = [
     # (name, files, expected error checks, expected warning checks, checks that must NOT appear)
@@ -709,7 +824,7 @@ SELF_TEST_CASES = [
                           '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
         "REPORT.md": CLEAN_REPORT,
     }, set(), set(), {"clickable-div", "placeholder-label", "aria-soup", "contrast-evidence", "gate-declared",
-                      "standard-version", "half-climbed-aria"}),
+                      "standard-version", "half-climbed-aria", "guide-coverage"}),
     ("clickable div in four syntaxes, hand-made button warns", {
         "src/a.jsx": '<div onClick={() => go()}>x</div>',
         "src/b.vue": '<span @click="go">x</span><div v-on:click="go">y</div>',
@@ -806,6 +921,37 @@ SELF_TEST_CASES = [
         "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
         "REPORT.md": CLEAN_REPORT.replace("PASS — run on: 2026-09-25", "NOT RUN — reason: no shell"),
     }, set(), {"gate-declared"}, set()),
+    ("guide coverage: tabs built by script and a status message warn; a guide named outside §3 does not count", {
+        "src/index.html": '<p role="status"></p><style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "src/tabs.js": "list.setAttribute('role', 'tablist');\ntab.setAttribute('role', 'tab');\n",
+        "REPORT.md": CLEAN_REPORT + "\n## Assessment Notes\n- guide-tabs-accordion and guide-toasts-notifications: next session\n",
+    }, set(), {"guide-coverage"}, {"gate-declared"}),
+    ("guide coverage: a PASS report missing a present component's guide fails", {
+        "src/index.html": '<dialog open><button>Close</button></dialog><style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "REPORT.md": PASS_REPORT,
+    }, {"guide-coverage", "gate-declared"}, set(), set()),
+    ("guide coverage: named guides satisfy; quoted, commented and prose mentions are not components", {
+        "src/index.html": '<div role="tablist"><button role="tab" aria-selected="true">1</button></div>'
+                          '<p>Drag a draggable card; a popover explains it.</p>'
+                          '<pre><video src="a.mp4"></video></pre><!-- <dialog open></dialog> -->'
+                          '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "REPORT.md": CLEAN_REPORT.replace("guide-forms (4/4 passed)", "guide-tabs-accordion (5/5 passed)"),
+    }, set(), set(), {"guide-coverage"}),
+    ("guide coverage: React components, TS generics, custom elements, data-role and attribute values are not components", {
+        "src/a.tsx": 'const [d, setD] = useState<Dialog | null>(null)\nconst rows: Array<Table> = []\n'
+                     'return <Table rows={rows}><Form onSubmit={go} /></Table>',
+        "src/b.html": '<table-row></table-row><video-player></video-player><div data-role="tab"></div>'
+                      '<img alt="a popover and a tooltip" src="x.png"><style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "src/c.js": 'for (let i = 0; i<b && draggable; i++) {}',
+        "REPORT.md": CLEAN_REPORT,
+    }, set(), set(), {"guide-coverage"}),
+    ("guide coverage: roles in JSX braces, Vue bindings and object props, and elements a script creates, are found", {
+        "src/a.tsx": '<div role={"tablist"}><button role="tab" aria-selected="true">1</button></div>',
+        "src/b.vue": '<template><div :role="\'tree\'"></div></template>',
+        "src/c.js": 'h("div", { role: "feed" })\nconst dlg = document.createElement("dialog")',
+        "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
+        "REPORT.md": CLEAN_REPORT,
+    }, set(), {"guide-coverage"}, {"gate-declared"}),
 ]
 
 
