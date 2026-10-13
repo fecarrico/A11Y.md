@@ -672,7 +672,10 @@ END = r"(?![\w-])"  # whole names only: <table-row> is a custom element, guide-f
 
 
 def tag(name: str) -> str:
-    return r"<" + name + END
+    """The element as markup writes it, or as a script creates it: the
+    website's figure lightbox is `document.createElement("dialog")`, and its
+    only literal `<dialog>` sits in a comment."""
+    return r"(?:<" + name + END + r"|createElement\(\s*" + Q + name + Q + r"\s*[,)])"
 
 
 # An attribute inside an opening tag, quoted values skipped whole: `draggable`
@@ -942,10 +945,10 @@ SELF_TEST_CASES = [
         "src/c.js": 'for (let i = 0; i<b && draggable; i++) {}',
         "REPORT.md": CLEAN_REPORT,
     }, set(), set(), {"guide-coverage"}),
-    ("guide coverage: roles in JSX braces, Vue bindings and object props are found", {
+    ("guide coverage: roles in JSX braces, Vue bindings and object props, and elements a script creates, are found", {
         "src/a.tsx": '<div role={"tablist"}><button role="tab" aria-selected="true">1</button></div>',
-        "src/b.vue": '<template><div :role="\'dialog\'"></div></template>',
-        "src/c.js": 'h("div", { role: "feed" })',
+        "src/b.vue": '<template><div :role="\'tree\'"></div></template>',
+        "src/c.js": 'h("div", { role: "feed" })\nconst dlg = document.createElement("dialog")',
         "src/index.html": '<style>.a{color:#1c1b19;background:#f7f6f3}</style>',
         "REPORT.md": CLEAN_REPORT,
     }, set(), {"guide-coverage"}, {"gate-declared"}),
