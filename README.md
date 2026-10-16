@@ -115,7 +115,7 @@ The goal of this project is to be a living, breathing architecture. It relies on
 
 DA11Y.md is the design edition of A11Y.md. The Figma agent reads it by link and follows the same rules and the same numbers while the screen is being drawn. It starts from what the library already decided, computes contrast from the tokens and annotates each finding on the screen itself. The design report leaves the file and reaches whoever builds, who follows A11Y.md in code.
 
-👉 **[Explore DA11Y.md](https://fecarrico.github.io/da11ymd/)** · [Repository](https://github.com/fecarrico/DA11Y.md)
+👉 **[Explore DA11Y.md](https://fecarrico.github.io/da11ymd/)** · [Skill in the Figma Community](https://www.figma.com/community/skill/136973/da11y) · [Repository](https://github.com/fecarrico/DA11Y.md)
 
 ---
 
