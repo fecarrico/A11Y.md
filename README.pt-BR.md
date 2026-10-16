@@ -120,7 +120,7 @@ O objetivo deste projeto é ser uma arquitetura viva. Ele depende da comunidade 
 
 O DA11Y.md é a edição de design do A11Y.md. O agente do Figma lê o protocolo por link e segue as mesmas regras e os mesmos números enquanto a tela é desenhada. Ele começa pelo que a biblioteca já decidiu, calcula o contraste a partir dos tokens e anota cada achado na própria tela. O relatório de design sai do arquivo e chega a quem vai construir, que segue o A11Y.md no código.
 
-👉 **[Conhecer o DA11Y.md](https://fecarrico.github.io/da11ymd/)** · [Repositório](https://github.com/fecarrico/DA11Y.md)
+👉 **[Conhecer o DA11Y.md](https://fecarrico.github.io/da11ymd/)** · [Skill na Comunidade do Figma](https://www.figma.com/community/skill/136973/da11y) · [Repositório](https://github.com/fecarrico/DA11Y.md)
 
 ---
 
