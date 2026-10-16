@@ -23,7 +23,7 @@
 **When to use:** Applications for government, healthcare, education, or specialized audiences with severe disabilities.
 
 ### Key Requirements (Beyond AA)
-- **Contrast (SC 1.4.6):** Text must have a **7:1** ratio against its background. Large text (18pt+) must have **4.5:1**. UI components remain at 3:1 (SC 1.4.11 — WCAG has no AAA non-text contrast criterion).
+- **Contrast (SC 1.4.6):** Text must have a **7:1** ratio against its background. Large text, at least 24px or 18.66px bold (core §0.1), must have **4.5:1**. UI components remain at 3:1 (SC 1.4.11 — WCAG has no AAA non-text contrast criterion).
 - **No Exceptions for Density:** Even tiny badges or labels must meet the 7:1 ratio.
 - **Targets (SC 2.5.5):** Clickable elements must be at least **44×44px** — the AAA minimum, with the SC's own exceptions (equivalent control, inline-in-text target, user-agent control, essential presentation). **House Rule†:** design to **48×48px** (Material norm) and allow no density exceptions under Shield.
 - **Focus (SC 2.4.13 + House Rule†):** The focus indicator must be highly visible — solid 2px outline with 3:1 contrast against the background (House Rule; the SC's normative 3:1 is measured between the focused/unfocused states) — and not rely on default browser styles.
@@ -37,7 +37,7 @@
 **When to use:** This is the **default**. Use for any production software, public-facing website, or commercial product.
 
 ### Key Requirements
-- **Contrast (SC 1.4.3, 1.4.11):** Text must have a **4.5:1** ratio. Large text must have **3:1**. UI elements (borders, icons) must have **3:1**.
+- **Contrast (SC 1.4.3, 1.4.11):** Text must have a **4.5:1** ratio. Large text, at least 24px or 18.66px bold (core §0.1), must have **3:1**. UI elements (borders, icons) must have **3:1**.
 - **Targets (SC 2.5.8):** Clickable elements must be at least **24×24px** — the AA normative floor, with exceptions for inline links and spaced targets. **House Rule†:** design to **44×44px** (Apple HIG / Material norm).
 - **Focus (SC 2.4.7):** Focus must be clearly visible.
 - **Semantic HTML & ARIA:** Strict adherence to APG patterns for complex components.
