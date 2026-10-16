@@ -23,7 +23,7 @@
 **Quando usar:** Aplicações para governo, saúde, educação, ou públicos especializados.
 
 ### Principais Requisitos (Além do AA)
-- **Contraste (SC 1.4.6):** Texto deve ter um ratio de **7:1** contra o fundo. Textos grandes (18pt+) exigem **4.5:1**. Componentes de UI permanecem em 3:1 (SC 1.4.11 — a WCAG não possui critério AAA de contraste não-textual).
+- **Contraste (SC 1.4.6):** Texto deve ter um ratio de **7:1** contra o fundo. Textos grandes, com pelo menos 24px ou 18.66px em negrito (core §0.1), exigem **4.5:1**. Componentes de UI permanecem em 3:1 (SC 1.4.11 — a WCAG não possui critério AAA de contraste não-textual).
 - **Sem Exceções de Densidade:** Mesmo badges pequenos devem atender ao ratio 7:1.
 - **Targets (SC 2.5.5):** Elementos clicáveis devem ter pelo menos **44×44px** — o mínimo AAA, com as exceções do próprio SC (controle equivalente, alvo inline em texto, controle do user agent, apresentação essencial). **Regra da Casa†:** projete para **48×48px** (norma do Material) e não use exceções de densidade no Shield.
 - **Foco (SC 2.4.13 + Regra da Casa†):** O indicador de foco deve ser altamente visível — linha sólida 2px com contraste 3:1 contra o fundo (Regra da Casa; o 3:1 normativo do SC é medido entre os estados focado/não-focado) — e não depender do padrão do navegador.
@@ -37,7 +37,7 @@
 **Quando usar:** Este é o **padrão**. Use para qualquer software em produção, site público ou produto comercial.
 
 ### Principais Requisitos
-- **Contraste (SC 1.4.3, 1.4.11):** Texto deve ter ratio **4.5:1**. Textos grandes, **3:1**. Elementos de UI (bordas, ícones) devem ter **3:1**.
+- **Contraste (SC 1.4.3, 1.4.11):** Texto deve ter ratio **4.5:1**. Textos grandes, com pelo menos 24px ou 18.66px em negrito (core §0.1), **3:1**. Elementos de UI (bordas, ícones) devem ter **3:1**.
 - **Targets (SC 2.5.8):** Elementos clicáveis devem ter no mínimo **24×24px** — o piso normativo AA, com exceções para links inline e alvos espaçados. **Regra da Casa†:** projete para **44×44px** (norma da Apple HIG / Material).
 - **Foco (SC 2.4.7):** O foco deve ser claramente visível.
 - **HTML Semântico & ARIA:** Aderência estrita aos padrões APG para componentes complexos.
