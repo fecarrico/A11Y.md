@@ -24,6 +24,7 @@ This document logs known deviations from accessibility standards (WCAG 2.2 AA / 
 - **Risk Owner:** [Who is accountable for this deviation — a person, not a team]
 - **Approved by:** [Who signed off on accepting the risk — lead/PO/QA]
 - **Tracking Issue:** [Link to the backlog item where this debt is chased]
+- **Gate finding:** [Optional — the `verify-a11y.py` check and each file this exception covers, in backticks, file by file and never a directory, e.g. `clickable-div` in `src/legacy/Grid.tsx`. While the exception is in force and signed by a person, the gate prints that finding as registered instead of failing; when it expires, the finding fails again]
 
 ### 2. Technical Blockade Description
 - **What is broken?** [Explain in detail what the user cannot do].
