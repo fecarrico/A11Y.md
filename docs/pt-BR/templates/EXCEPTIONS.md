@@ -24,6 +24,7 @@ Este documento registra os desvios conhecidos em relação aos padrões de acess
 - **Dono do Risco:** [Quem responde por este desvio — uma pessoa, não um time]
 - **Aprovado por:** [Quem assinou a aceitação do risco — lead/PO/QA]
 - **Issue de Rastreio:** [Link do item de backlog onde esta dívida é cobrada]
+- **Achado do gate:** [Opcional — a checagem do `verify-a11y.py` e cada arquivo que esta exceção cobre, entre crases, arquivo por arquivo e nunca uma pasta, ex.: `clickable-div` em `src/legacy/Grid.tsx`. Enquanto a exceção vale e está assinada por uma pessoa, o gate mostra esse achado como registrado em vez de reprovar; quando ela vence, o achado volta a reprovar]
 
 ### 2. Descrição Técnica do Bloqueio
 - **O que está quebrado?** [Explique detalhadamente o que o usuário não consegue fazer].

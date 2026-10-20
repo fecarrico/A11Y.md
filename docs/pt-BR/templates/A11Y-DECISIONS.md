@@ -11,6 +11,7 @@
 5. **Nunca bifurque em silêncio:** se um requisito novo contradiz uma decisão registrada, pergunte ao usuário — não crie uma variante paralela.
 6. **Mantenha enxuto:** dezenas de linhas, não centenas. Este arquivo divide o orçamento de contexto com o Lazy Loading; se passar de ~40 entradas, consolide.
 7. **Versionado, nunca no gitignore:** esta é memória *compartilhada* — entre turnos, agentes e pessoas. Uma cópia local por dev bifurca os padrões e derrota o propósito inteiro do arquivo.
+8. **Quando o gate estático acusa a escolha:** termine a linha com a checagem e a marcação que a decisão escolheu, um atributo ou declaração com seu valor, como o código a escreve: ``(gate: `aria-soup` · `role="list"`)`` para um `role="list"` mantido porque o Safari deixa de anunciar uma lista estilizada com `list-style: none`. O `verify-a11y.py` passa a mostrar esses achados como registrados, em vez de reprovar. Só valem as checagens que acusam uma escolha (`aria-soup`, `redundant-alert`, `outline-none`, `orphaned-aria`); violação aceita é exceção e vai para o `EXCEPTIONS.md`.
 
 ## Decisões
 

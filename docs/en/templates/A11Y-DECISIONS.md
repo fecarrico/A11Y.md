@@ -11,6 +11,7 @@
 5. **Never fork silently:** if a new requirement contradicts a recorded decision, ask the user — do not create a parallel variant.
 6. **Stay lean:** tens of lines, not hundreds. This file shares the context budget with Lazy Loading; if it grows past ~40 entries, consolidate.
 7. **Versioned, never gitignored:** this is *shared* memory — across turns, agents and developers. A local-only copy per developer forks the patterns and defeats the file's entire purpose.
+8. **When the static gate flags the choice:** end the line with the check and the markup the decision chose, one attribute or declaration with its value, as the source writes it: ``(gate: `aria-soup` · `role="list"`)`` for a `role="list"` kept because Safari stops announcing a list styled with `list-style: none`. `verify-a11y.py` then prints those findings as registered instead of failing. Only checks that flag a choice qualify (`aria-soup`, `redundant-alert`, `outline-none`, `orphaned-aria`); a violation you accept is an exception, and belongs in `EXCEPTIONS.md`.
 
 ## Decisions
 
