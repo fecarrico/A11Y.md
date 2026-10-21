@@ -49,6 +49,6 @@ O Markdown daqui responde à forma descrita na primeira seção: níveis de tít
 
 ## Quem responde por isto
 
-Felipe Carriço mantém este repositório e esta declaração. Ela é revisada sempre que o relatório do site muda de status, uma exceção abre ou fecha, ou uma release sai. Última revisão em 2026-10-13, contra a versão 2.4.0 do padrão.
+Felipe Carriço mantém este repositório e esta declaração. Ela é revisada sempre que o relatório do site muda de status, uma exceção abre ou fecha, ou uma release sai. Última revisão em 2026-10-21, contra a versão 2.5.0 do padrão.
 
 Lendo isto com um agente de IA? As regras que ele deve seguir estão em `docs/pt-BR/A11Y.md`, e a linha única para a configuração dele está no [README](README.pt-BR.md#-quick-start-menos-de-2-minutos).

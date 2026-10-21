@@ -49,6 +49,6 @@ Markdown here is held to the shape described in the first section: heading level
 
 ## Who answers for this
 
-Felipe Carriço maintains this repository and this statement. It is reviewed whenever the website's report changes status, an exception opens or closes, or a release ships. Last reviewed on 2026-10-13, against version 2.4.0 of the standard.
+Felipe Carriço maintains this repository and this statement. It is reviewed whenever the website's report changes status, an exception opens or closes, or a release ships. Last reviewed on 2026-10-21, against version 2.5.0 of the standard.
 
 Reading this with an AI agent? The rules it should follow are in `docs/en/A11Y.md`, and the one line to add to its configuration is in the [README](README.md#-quick-start-under-2-minutes).
