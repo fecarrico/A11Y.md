@@ -22,7 +22,7 @@ Uma faixa fixa no rodapé — o formato mais comum de banner de cookie — cobre
 
 ## 3. Paridade entre aceitar e recusar
 
-**Regra da Casa†:** se "Aceitar tudo" é um botão de um clique, "Recusar tudo" **MUST** ser um botão de um clique, no mesmo nível de navegação e com o mesmo peso visual.
+**Regra do A11Y.md†:** se "Aceitar tudo" é um botão de um clique, "Recusar tudo" **MUST** ser um botão de um clique, no mesmo nível de navegação e com o mesmo peso visual.
 
 Recusa escondida atrás de "Gerenciar preferências" → lista de 40 fornecedores → "Salvar" é uma barreira de esforço que atinge desproporcionalmente pessoas com limitação motora e com fadiga cognitiva. A WCAG não nomeia isso; o EAA e o RGPD nomeiam, e o Principle Zero deste padrão já responde: se completar a tarefa exige percorrer um labirinto, a tarefa está quebrada.
 

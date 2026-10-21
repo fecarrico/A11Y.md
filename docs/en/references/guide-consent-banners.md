@@ -22,7 +22,7 @@ A fixed strip at the bottom — the most common cookie-banner shape — covers t
 
 ## 3. Parity between accept and reject
 
-**House Rule†:** if "Accept all" is a one-click button, "Reject all" **MUST** be a one-click button, at the same navigation level and with the same visual weight.
+**A11Y.md rule†:** if "Accept all" is a one-click button, "Reject all" **MUST** be a one-click button, at the same navigation level and with the same visual weight.
 
 Rejection hidden behind "Manage preferences" → a list of 40 vendors → "Save" is an effort barrier that lands disproportionately on people with motor limitations and cognitive fatigue. WCAG does not name this; the EAA and the GDPR do, and this standard's Principle Zero already answers it: if completing the task requires walking a maze, the task is broken.
 

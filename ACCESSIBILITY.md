@@ -33,7 +33,7 @@ On the website:
 
 1. **No screen-reader pass by a person.** The standard forbids an agent from claiming a screen-reader test it could not hear, so the status stays CONDITIONAL until someone runs the script in [REPORT §3](https://github.com/fecarrico/a11ymd/blob/main/REPORT.en.md#3-behavior-and-task-return). If you use NVDA, JAWS, VoiceOver or TalkBack and have twenty minutes, this is the single most useful thing you can do for this project. Your name goes in the report.
 2. **No colour-vision simulator has been run.** Contrast ratios are measured and recomputed by the gate. Functional loss through colour is not.
-3. **Three decisions await the author:** right-aligned text in the timeline, the spacing between paragraphs on the home (both House Rule relaxations against NBR 17225 5.12.5 and 5.12.3), and whether the logos in the timeline are decorative. Until the third is confirmed, those logos carry an empty alt.
+3. **Three decisions await the author:** right-aligned text in the timeline, the spacing between paragraphs on the home (both A11Y.md rule relaxations against NBR 17225 5.12.5 and 5.12.3), and whether the logos in the timeline are decorative. Until the third is confirmed, those logos carry an empty alt.
 
 ## How to report a barrier
 

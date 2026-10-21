@@ -8,7 +8,7 @@ The normative layer of `A11Y.md` (Principle Zero, POUR, Compliance Profiles, Sev
 
 1. **Never emit web idioms on native platforms.** ARIA attributes, roles, and CSS pixels do not exist in SwiftUI, Compose, React Native or Flutter. Translate the *intent*, not the syntax. Inventing hybrids (e.g., `aria-live` in SwiftUI) is a 🔴 CRITICAL violation.
 2. **Prefer native components.** Platform-standard controls (Button, Switch, Alert) ship with semantics, focus behavior, and touch targets already compliant — the native equivalent of "prefer semantic HTML".
-3. **Touch targets:** **44×44pt (iOS HIG)** / **48×48dp (Material)** are the platform norms and satisfy this standard's House Rule by default. The WCAG floor (SC 2.5.8, 24×24) still applies to custom-drawn controls.
+3. **Touch targets:** **44×44pt (iOS HIG)** / **48×48dp (Material)** are the platform norms and satisfy the A11Y.md rule by default. The WCAG floor (SC 2.5.8, 24×24) still applies to custom-drawn controls.
 4. **Respect system accessibility settings:** font scaling (Dynamic Type / `sp` units / `textScaler`), Reduce Motion, and increased-contrast modes are the native equivalents of zoom, `prefers-reduced-motion`, and contrast requirements.
 5. **Announce dynamic changes.** Toasts, async results, and validation errors MUST be announced through the platform's accessibility notification API — the native equivalent of `aria-live`.
 

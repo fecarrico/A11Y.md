@@ -14,7 +14,7 @@ Built something with the standard? [Submit it to the gallery](https://github.com
 
 ## The evidence bar (read this before writing a rule)
 
-- **Every normative claim is traceable.** A requirement either cites a WCAG 2.2 Success Criterion by number, or it is labeled a **House Rule†** — this standard's own policy, honestly marked as such. There is no third category. A MUST with no SC and no † will be asked to become one or the other.
+- **Every normative claim is traceable.** A requirement either cites a WCAG 2.2 Success Criterion by number, or it is labeled an **A11Y.md rule†** — this standard's own policy, honestly marked as such. There is no third category. A MUST with no SC and no † will be asked to become one or the other.
 - **Primary sources only.** A rule justified by a blog post summarizing a study will be asked for the study. We hold PRs to the same rule the standard holds agents to: *an unverified claim is fabricated evidence*.
 - **Rules live where they fire.** Anything an AI must *do* belongs in the AI Behavior Contract (Section 2) with an explicit **event** trigger — never a phase trigger ("at final delivery" never arrives in continuous delivery). Guides carry depth; they never carry the sole copy of an obligation. This principle exists because [it failed once, in the field](CHANGELOG.md#120---2026-08-02): an agent applied every rule correctly and produced only the artifact whose filename appeared inside a Section 2 rule — the variable was never obligation, it was **where the filename appeared**.
 

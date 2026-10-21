@@ -279,7 +279,7 @@
   **8% → 10%** (not 8% → 14%).
 
   **And on the ruler the standard actually asks for, condition D is far ahead.**
-  The Standard profile's House Rule is 44 px, not 24. Share of visible targets
+  The Standard profile's A11Y.md rule is 44 px, not 24. Share of visible targets
   under 44 px: Nemotron **98% (A) → 57% (D)**; Gemini **97% (A) → 47% (D)**.
   The 24 px item was measuring the floor the standard treats as the exception
   case, and the improvement lives at the threshold it treats as the norm.

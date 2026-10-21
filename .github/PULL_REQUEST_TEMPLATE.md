@@ -13,7 +13,7 @@
 
 - [ ] **Both languages:** `docs/en/` and `docs/pt-BR/` updated together (or the PR says which half needs the maintainer)
 - [ ] **Linter passes:** `python3 tools/lint-standard.py .` runs clean locally
-- [ ] **Traceability:** every new requirement cites a WCAG SC by number **or** is labeled a House Rule†
+- [ ] **Traceability:** every new requirement cites a WCAG SC by number **or** is labeled an A11Y.md rule†
 - [ ] **Placement:** anything the AI must *do* lives in the AI Behavior Contract with an **event** trigger (no phase triggers); guides carry depth, never the sole copy of an obligation
 - [ ] **Discoverability:** a new or renamed guide has its row in the §2.1 loading map, in both languages
 - [ ] **CHANGELOG** entry added

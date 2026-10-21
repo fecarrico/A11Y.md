@@ -33,7 +33,7 @@ No site:
 
 1. **Ninguém fez a passada com leitor de tela.** O padrão proíbe que um agente alegue um teste de leitor de tela que ele não pôde ouvir, então o status fica CONDITIONAL até alguém rodar o roteiro do [REPORT §3](https://github.com/fecarrico/a11ymd/blob/main/REPORT.md#3-comportamento-e-retorno-de-tarefa). Se você usa NVDA, JAWS, VoiceOver ou TalkBack e tem vinte minutos, essa é a contribuição mais útil que este projeto pode receber. Seu nome entra no relatório.
 2. **Nenhum simulador de deficiência de visão de cores rodou.** As razões de contraste são medidas e recalculadas pelo gate. A perda funcional por cor, não.
-3. **Três decisões esperam o autor:** o texto alinhado à direita na linha do tempo, o espaçamento entre parágrafos na home (duas flexibilizações de Regra da Casa frente à NBR 17225 5.12.5 e 5.12.3) e se os logos da linha do tempo são decorativos. Até a terceira ser confirmada, esses logos carregam alt vazio.
+3. **Três decisões esperam o autor:** o texto alinhado à direita na linha do tempo, o espaçamento entre parágrafos na home (duas flexibilizações de regra do A11Y.md frente à NBR 17225 5.12.5 e 5.12.3) e se os logos da linha do tempo são decorativos. Até a terceira ser confirmada, esses logos carregam alt vazio.
 
 ## Como reportar uma barreira
 

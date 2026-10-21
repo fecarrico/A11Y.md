@@ -152,7 +152,7 @@ Scroll-driven translation is a vestibular trigger — nausea, dizziness and diso
 - WHEN I swipe onto the player, THEN each control reads as "button" with name and state; double-tap on captions turns them on.
 - WHEN I swipe onto an embedded player, THEN I hear its title before its controls.
 
-*Success criteria covered: 1.2.1 Audio-only and Video-only (A) · 1.2.2 Captions (Prerecorded) (A) · 1.2.3 Audio Description or Media Alternative (A) · 1.2.5 Audio Description (Prerecorded) (AA) · 1.4.2 Audio Control (A) · 2.2.2 Pause, Stop, Hide (A) · 2.3.1 Three Flashes (A) · 2.3.3 Animation from Interactions (AAA (House Rule† here)) · 1.4.3 Contrast (Minimum) (AA)*
+*Success criteria covered: 1.2.1 Audio-only and Video-only (A) · 1.2.2 Captions (Prerecorded) (A) · 1.2.3 Audio Description or Media Alternative (A) · 1.2.5 Audio Description (Prerecorded) (AA) · 1.4.2 Audio Control (A) · 2.2.2 Pause, Stop, Hide (A) · 2.3.1 Three Flashes (A) · 2.3.3 Animation from Interactions (AAA (A11Y.md rule† here)) · 1.4.3 Contrast (Minimum) (AA)*
 
 ## Tip for AI:
 

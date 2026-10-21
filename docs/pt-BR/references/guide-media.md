@@ -152,4 +152,4 @@ Translação disparada por scroll é gatilho vestibular — náusea, tontura e d
 - QUANDO deslizo até o player, ENTÃO cada controle é lido como "botão" com nome e estado; toque duplo em legendas as liga.
 - QUANDO deslizo até um player embutido, ENTÃO ouço o título dele antes dos controles.
 
-*Critérios de sucesso cobertos: 1.2.1 Apenas Áudio e Apenas Vídeo (A) · 1.2.2 Legendas (Pré-gravado) (A) · 1.2.3 Audiodescrição ou Alternativa (A) · 1.2.5 Audiodescrição (Pré-gravado) (AA) · 1.4.2 Controle de Áudio (A) · 2.2.2 Pausar, Parar, Ocultar (A) · 2.3.1 Três Flashes (A) · 2.3.3 Animação por Interação (AAA (Regra da Casa† aqui)) · 1.4.3 Contraste (Mínimo) (AA)*
+*Critérios de sucesso cobertos: 1.2.1 Apenas Áudio e Apenas Vídeo (A) · 1.2.2 Legendas (Pré-gravado) (A) · 1.2.3 Audiodescrição ou Alternativa (A) · 1.2.5 Audiodescrição (Pré-gravado) (AA) · 1.4.2 Controle de Áudio (A) · 2.2.2 Pausar, Parar, Ocultar (A) · 2.3.1 Três Flashes (A) · 2.3.3 Animação por Interação (AAA (regra do A11Y.md† aqui)) · 1.4.3 Contraste (Mínimo) (AA)*

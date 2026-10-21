@@ -44,8 +44,8 @@ A switch is a checkbox whose change takes effect **now** — no Save button, no 
 1. **Prefer `<input type="range">`** with a `<label>`, `min`, `max`, `step` — and the **current value visible in text** beside it: a knob on a track tells a sighted person nothing exact either.
 2. **When the number is not the meaning, say the meaning:** `aria-valuetext="Medium"` for a 1–3 quality slider, `"14:30"` for a time. A custom slider owes `role="slider"`, `aria-valuemin`/`aria-valuemax`/`aria-valuenow`, and `aria-valuetext` where the number alone says nothing.
 3. **Keys:** `←`/`↓` decrease and `→`/`↑` increase by `step`; `PageUp`/`PageDown` by a larger step; `Home`/`End` to the ends. Every key change updates the visible value and the announced one.
-4. **Dragging is a shortcut** (SC 2.5.7): the value must be settable without a drag — a click or tap on the track, or step buttons. **Precision needs a second door** (House Rule†): when the exact value matters — a price, a dosage, a date range — pair the slider with a numeric `<input>` bound to the same value. Dragging to exactly 37 is a dexterity test, and the numeric field is also the voice-control path.
-5. **The thumb is a target:** 24×24 CSS px minimum (SC 2.5.8), 44×44 under the House Rule† — and the track is not the only way to reach the value.
+4. **Dragging is a shortcut** (SC 2.5.7): the value must be settable without a drag — a click or tap on the track, or step buttons. **Precision needs a second door** (A11Y.md rule†): when the exact value matters — a price, a dosage, a date range — pair the slider with a numeric `<input>` bound to the same value. Dragging to exactly 37 is a dexterity test, and the numeric field is also the voice-control path.
+5. **The thumb is a target:** 24×24 CSS px minimum (SC 2.5.8), 44×44 under the A11Y.md rule† — and the track is not the only way to reach the value.
 
 ## 5. Native select
 
