@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-10-21
+
+The gate reads what the project wrote. `verify-a11y.py` now checks the components the interface contains against the guides `REPORT.md` §3 names, which is the deterministic half of the 2.4.0 inventory rule. It also honors what the project registered: a finding covered by an exception in force or by a recorded decision is printed with its record and no longer counted as an error, so an adopter no longer has to wrap the gate in a script to get past findings already on record. Large text is defined once, in px, with its floor per profile. "House Rule" becomes "A11Y.md rule", a name that says whose rule it is to a first-time reader. Both READMEs point designers to DA11Y.md, the design edition. Both editions amended identically.
+
 ### Migration
 - A project whose `A11Y-DECISIONS.md`, `EXCEPTIONS.md` or reports say "House Rule" needs no change: it is the same rule under its new name, "A11Y.md rule".
 - A `REPORT.md` that claims PASS now fails the gate when the source contains a component whose guide its §3 does not name by file (`guide-tabs-accordion`). Name the guides whose scenarios ran. A report with CONDITIONAL status only warns.
