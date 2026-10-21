@@ -44,8 +44,8 @@ Switch é um checkbox cuja mudança vale **agora** — sem botão Salvar, sem co
 1. **Prefira `<input type="range">`** com `<label>`, `min`, `max`, `step` — e o **valor atual visível em texto** ao lado: um botão numa trilha também não diz nada exato para quem enxerga.
 2. **Quando o número não é o significado, diga o significado:** `aria-valuetext="Médio"` num slider de qualidade 1–3, `"14:30"` num horário. Slider customizado deve `role="slider"`, `aria-valuemin`/`aria-valuemax`/`aria-valuenow`, e `aria-valuetext` onde o número sozinho não diz nada.
 3. **Teclas:** `←`/`↓` diminuem e `→`/`↑` aumentam um `step`; `PageUp`/`PageDown` um passo maior; `Home`/`End` vão aos extremos. Toda mudança por tecla atualiza o valor visível e o anunciado.
-4. **Arrastar é atalho** (SC 2.5.7): o valor precisa poder ser definido sem arrasto — clique ou toque na trilha, ou botões de passo. **Precisão pede uma segunda porta** (Regra da Casa†): quando o valor exato importa — preço, dose, intervalo de datas — acompanhe o slider de um `<input>` numérico ligado ao mesmo valor. Arrastar até exatamente 37 é teste de destreza, e o campo numérico é também o caminho do controle por voz.
-5. **O botão deslizante é um alvo:** 24×24 CSS px no mínimo (SC 2.5.8), 44×44 pela Regra da Casa† — e a trilha não é o único jeito de chegar ao valor.
+4. **Arrastar é atalho** (SC 2.5.7): o valor precisa poder ser definido sem arrasto — clique ou toque na trilha, ou botões de passo. **Precisão pede uma segunda porta** (regra do A11Y.md†): quando o valor exato importa — preço, dose, intervalo de datas — acompanhe o slider de um `<input>` numérico ligado ao mesmo valor. Arrastar até exatamente 37 é teste de destreza, e o campo numérico é também o caminho do controle por voz.
+5. **O botão deslizante é um alvo:** 24×24 CSS px no mínimo (SC 2.5.8), 44×44 pela regra do A11Y.md† — e a trilha não é o único jeito de chegar ao valor.
 
 ## 5. Select nativo
 

@@ -3,7 +3,7 @@
 > **Scope:** AI Generation & Auditing
 
 > [!NOTE]
-> **Normative vs House Rules.** Each profile mixes two layers: **WCAG Success Criteria** at its target level (cited by SC number — skipping one requires `EXCEPTIONS.md`) and **House Rules†** — this standard's stricter ergonomic policy (marked †; relaxing one is a product decision, recorded in `A11Y-DECISIONS.md`). WCAG defines **no minimum font size** at any level, and Level A defines **no contrast or target-size criteria** — every value in those positions below is a House Rule.
+> **Normative vs A11Y.md rules.** Each profile mixes two layers: **WCAG Success Criteria** at its target level (cited by SC number — skipping one requires `EXCEPTIONS.md`) and **A11Y.md rules†** — this standard's stricter ergonomic policy (marked †; relaxing one is a product decision, recorded in `A11Y-DECISIONS.md`). WCAG defines **no minimum font size** at any level, and Level A defines **no contrast or target-size criteria** — every value in those positions below is an A11Y.md rule.
 
 ---
 
@@ -25,8 +25,8 @@
 ### Key Requirements (Beyond AA)
 - **Contrast (SC 1.4.6):** Text must have a **7:1** ratio against its background. Large text, at least 24px or 18.66px bold (core §0.1), must have **4.5:1**. UI components remain at 3:1 (SC 1.4.11 — WCAG has no AAA non-text contrast criterion).
 - **No Exceptions for Density:** Even tiny badges or labels must meet the 7:1 ratio.
-- **Targets (SC 2.5.5):** Clickable elements must be at least **44×44px** — the AAA minimum, with the SC's own exceptions (equivalent control, inline-in-text target, user-agent control, essential presentation). **House Rule†:** design to **48×48px** (Material norm) and allow no density exceptions under Shield.
-- **Focus (SC 2.4.13 + House Rule†):** The focus indicator must be highly visible — solid 2px outline with 3:1 contrast against the background (House Rule; the SC's normative 3:1 is measured between the focused/unfocused states) — and not rely on default browser styles.
+- **Targets (SC 2.5.5):** Clickable elements must be at least **44×44px** — the AAA minimum, with the SC's own exceptions (equivalent control, inline-in-text target, user-agent control, essential presentation). **A11Y.md rule†:** design to **48×48px** (Material norm) and allow no density exceptions under Shield.
+- **Focus (SC 2.4.13 + A11Y.md rule†):** The focus indicator must be highly visible — solid 2px outline with 3:1 contrast against the background (A11Y.md rule; the SC's normative 3:1 is measured between the focused/unfocused states) — and not rely on default browser styles.
 - **Timeouts:** Users must be able to complete tasks without arbitrary time limits, or have mechanisms to easily extend sessions.
 
 ---
@@ -38,7 +38,7 @@
 
 ### Key Requirements
 - **Contrast (SC 1.4.3, 1.4.11):** Text must have a **4.5:1** ratio. Large text, at least 24px or 18.66px bold (core §0.1), must have **3:1**. UI elements (borders, icons) must have **3:1**.
-- **Targets (SC 2.5.8):** Clickable elements must be at least **24×24px** — the AA normative floor, with exceptions for inline links and spaced targets. **House Rule†:** design to **44×44px** (Apple HIG / Material norm).
+- **Targets (SC 2.5.8):** Clickable elements must be at least **24×24px** — the AA normative floor, with exceptions for inline links and spaced targets. **A11Y.md rule†:** design to **44×44px** (Apple HIG / Material norm).
 - **Focus (SC 2.4.7):** Focus must be clearly visible.
 - **Semantic HTML & ARIA:** Strict adherence to APG patterns for complex components.
 - **Responsiveness (SC 1.4.4, 1.4.10):** Text must resize to 200% without loss of content or function, and content must reflow at 320 CSS px width (≈400% zoom) without two-dimensional scrolling.
@@ -54,9 +54,9 @@
 > The Launchpad profile does **NOT** mean "no accessibility". It still requires semantic HTML, keyboard operability, and screen reader support. It only relaxes strict visual criteria.
 
 ### Relaxed Criteria (Compared to AA)
-- **Contrast (House Rule†):** Only a baseline **3:1** ratio is enforced to prevent complete illegibility. (Level A has no contrast criterion — this floor is this standard's policy, not WCAG.)
-- **Targets (House Rule†):** Target sizes can be reduced to **24×24px**, provided there is some spacing. (Level A has no target-size criterion; 24×24 mirrors the AA floor of SC 2.5.8.)
-- **Typography (House Rule†):** Fonts down to **10px** are tolerated without strict contrast mitigation, though highly discouraged. (WCAG defines no minimum font size.)
+- **Contrast (A11Y.md rule†):** Only a baseline **3:1** ratio is enforced to prevent complete illegibility. (Level A has no contrast criterion — this floor is this standard's policy, not WCAG.)
+- **Targets (A11Y.md rule†):** Target sizes can be reduced to **24×24px**, provided there is some spacing. (Level A has no target-size criterion; 24×24 mirrors the AA floor of SC 2.5.8.)
+- **Typography (A11Y.md rule†):** Fonts down to **10px** are tolerated without strict contrast mitigation, though highly discouraged. (WCAG defines no minimum font size.)
 
 ### Immutable Rules (Never Relaxed)
 - ❌ `div` or `span` with `onClick` (Keyboard trap/unreachable)

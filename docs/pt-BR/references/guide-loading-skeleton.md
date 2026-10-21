@@ -41,4 +41,4 @@
 - QUANDO deslizo pela região em carregamento, ENTÃO os blocos de skeleton são pulados por completo.
 - QUANDO o conteúdo chega, ENTÃO minha posição não salta.
 
-*Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.4.3 Ordem de Foco (A) · 1.1.1 / Princípio Zero (A) · Motion (Regra da Casa†) (—)*
+*Critérios de sucesso cobertos: 4.1.3 Mensagens de Status (AA) · 2.4.3 Ordem de Foco (A) · 1.1.1 / Princípio Zero (A) · Motion (regra do A11Y.md†) (—)*

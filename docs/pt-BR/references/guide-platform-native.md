@@ -8,7 +8,7 @@ A camada normativa do `A11Y.md` (Principle Zero, POUR, Perfis de Conformidade, S
 
 1. **Nunca emita idiomas web em plataformas nativas.** Atributos ARIA, roles e pixels CSS não existem em SwiftUI, Compose, React Native ou Flutter. Traduza a *intenção*, não a sintaxe. Inventar híbridos (ex.: `aria-live` no SwiftUI) é violação 🔴 CRITICAL.
 2. **Prefira componentes nativos.** Controles padrão da plataforma (Button, Switch, Alert) já vêm com semântica, comportamento de foco e alvos de toque conformes — o equivalente nativo de "prefira HTML semântico".
-3. **Alvos de toque:** **44×44pt (Apple HIG)** / **48×48dp (Material)** são as normas das plataformas e satisfazem a Regra da Casa deste padrão por default. O piso WCAG (SC 2.5.8, 24×24) segue valendo para controles desenhados do zero.
+3. **Alvos de toque:** **44×44pt (Apple HIG)** / **48×48dp (Material)** são as normas das plataformas e satisfazem a regra do A11Y.md por default. O piso WCAG (SC 2.5.8, 24×24) segue valendo para controles desenhados do zero.
 4. **Respeite as configurações de acessibilidade do sistema:** escala de fonte (Dynamic Type / unidades `sp` / `textScaler`), Reduzir Movimento e modos de contraste elevado são os equivalentes nativos de zoom, `prefers-reduced-motion` e requisitos de contraste.
 5. **Anuncie mudanças dinâmicas.** Toasts, resultados assíncronos e erros de validação MUST ser anunciados pela API de notificação de acessibilidade da plataforma — o equivalente nativo de `aria-live`.
 

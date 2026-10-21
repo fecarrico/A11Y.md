@@ -41,4 +41,4 @@
 - WHEN I swipe through the loading region, THEN the skeleton blocks are skipped entirely.
 - WHEN the content lands, THEN my position does not jump.
 
-*Success criteria covered: 4.1.3 Status Messages (AA) · 2.4.3 Focus Order (A) · 1.1.1 / Principle Zero (A) · Motion (House Rule†) (—)*
+*Success criteria covered: 4.1.3 Status Messages (AA) · 2.4.3 Focus Order (A) · 1.1.1 / Principle Zero (A) · Motion (A11Y.md rule†) (—)*
